@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Terminale D</title>
-<meta name="description" content="Terminale D — le magazine de révision de la classe : cours tapés en classe, fiches de révision vérifiées, pour SES, HGGSP, Histoire-Géo, Philosophie et Anglais.">
+<meta name="description" content="Terminale D — le projet des délégués Adam et Kenza pour la Terminale D 2026-2027, le magazine de révision de la classe : cours tapés en classe, fiches de révision vérifiées, pour SES, HGGSP, Histoire-Géo, Philosophie et Anglais.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://tdlfi.space/">
 <meta property="og:title" content="Terminale D">
@@ -77,12 +77,19 @@ a{color:inherit}
 #curtain span{font-family:var(--grotesk);font-weight:800;font-stretch:125%;text-transform:uppercase;font-size:clamp(40px,9vw,140px);letter-spacing:-.04em;color:var(--bg);opacity:0}
 
 /* ---------- Accueil : couverture ---------- */
-.cover{position:relative;min-height:calc(min(86vh,900px) - 58px);display:grid;grid-template-rows:auto 1fr auto;grid-template-columns:minmax(0,1fr);padding-block:18px 28px;isolation:isolate;overflow:hidden}
+.cover{position:relative;min-height:calc(min(86vh,900px) - 58px);display:grid;grid-template-rows:auto 1fr auto auto;grid-template-columns:minmax(0,1fr);padding-block:18px 28px;isolation:isolate;overflow:hidden}
 .cover canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
 .issue{display:flex;justify-content:space-between;gap:10px 24px;flex-wrap:wrap;border-bottom:1px solid var(--ink);padding-bottom:10px}
 .mast{align-self:center;min-width:0;font-size:clamp(58px,13.2vw,212px);will-change:transform}
 .mast .l{display:inline-block}
 .mast em{font-size:1.12em;color:var(--ses);margin-left:.04em;display:inline-block}
+.byline{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:end;gap:10px clamp(18px,3vw,48px);border-top:1px solid var(--ink);padding:16px 0 26px;margin-bottom:8px}
+.byline .by-names{margin:0;font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(34px,5.4vw,92px);line-height:.95;letter-spacing:-.02em;white-space:nowrap}
+.byline .by-names .amp{font-family:var(--grotesk);font-style:normal;font-weight:800;font-stretch:125%;font-size:.78em;color:var(--ses);margin:0 .12em;display:inline-block;transform:translateY(-.04em)}
+.byline .by-k{display:flex;flex-direction:column;gap:6px}
+.byline .by-k.r{text-align:right;align-items:flex-end}
+.byline .by-year{font-family:var(--grotesk);font-weight:800;font-stretch:125%;font-size:clamp(18px,1.8vw,26px);letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+@media (max-width:760px){ .byline{grid-template-columns:1fr auto;grid-template-areas:"k y" "n n";padding-bottom:22px} .byline .by-k.l{grid-area:k} .byline .by-k.r{grid-area:y} .byline .by-names{grid-area:n;font-size:clamp(40px,12.5vw,64px)} }
 .cover-foot{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:22px 40px;align-items:end}
 .cover-foot p{margin:0;max-width:40ch;font-size:clamp(19px,1.6vw,23px);line-height:1.4}
 .scrollhint{display:flex;align-items:center;gap:10px}
@@ -499,7 +506,7 @@ details.nb-card[open] > summary{margin-bottom:20px}
 <div id="curtain" aria-hidden="true"><span id="curtain-t"></span></div>
 <main id="view" tabindex="-1"></main>
 <footer class="colophon g max">
-  <p><b style="color:var(--ink);font-weight:500">Terminale D</b>, le magazine de révision de la classe. Cours tapés en classe, relus deux fois, fiches vérifiées ; en cas de doute, la parole du professeur prime.</p>
+  <p><b style="color:var(--ink);font-weight:500">Terminale D</b>, le magazine de révision de la classe, un projet d'Adam et Kenza, délégués 2026–2027. Cours tapés en classe, relus deux fois, fiches vérifiées ; en cas de doute, la parole du professeur prime.</p>
   <nav aria-label="Liens utiles">
     <a class="k muted" href="https://docs.google.com/document/d/1-01XoXc3TBBmgmZkVjlQqwadu1qUHWpLWduGNw02vU0/edit" target="_blank" rel="noopener">Emploi du temps ↗</a>
     <a class="k muted" href="https://drive.google.com/drive/folders/1fIv31mR9uOOJnmrh2MtJyOkmCIGJv8y1" target="_blank" rel="noopener">Fiches de révision ↗</a>
@@ -1114,6 +1121,10 @@ function viewHome(root){
   root.append(el("header", {class:"cover g"}, coverCv,
     el("div", {class:"issue max", style:"width:100%"}, el("span", {class:"k"}, "N° 03 · Septembre 2026"), el("span", {class:"k muted"}, "Lycée Français International Mhamed Driss · Sousse"), el("span", {class:"k muted"}, "Mis à jour le 23.09 (soir)")),
     el("div", {class:"max", style:"width:100%;align-self:center"}, mast),
+    el("div", {class:"byline max", style:"width:100%", "aria-label":"Un projet d'Adam et Kenza, délégués de la Terminale D, 2026-2027"},
+      el("div", {class:"by-k l", "aria-hidden":"true"}, el("span", {class:"k"}, "Un projet"), el("span", {class:"k muted"}, "de vos délégués")),
+      el("p", {class:"by-names", "aria-hidden":"true"}, "Adam", el("span", {class:"amp"}, "&"), "Kenza"),
+      el("div", {class:"by-k r", "aria-hidden":"true"}, el("span", {class:"k muted"}, "Terminale D"), el("span", {class:"by-year"}, "2026–2027"))),
     el("div", {class:"cover-foot max", style:"width:100%"},
       el("p", {}, "Tous les cours de la classe, relus et rangés dans un Drive, avec des fiches de révision et de quoi s'entraîner, matière par matière."),
       el("div", {class:"scrollhint"}, el("i"), el("span", {class:"k"}, "Découvrir")))));
@@ -1201,6 +1212,8 @@ function viewHome(root){
     if (!MOTION) { paru.classList.add("stack"); return; }
     G.from($$(".mast .l", root), {yPercent:24, rotate:4, duration:1.3, ease:"expo.out", stagger:.035});
     G.from($(".mast em", root), {xPercent:40, rotate:-10, duration:1.5, ease:"expo.out", delay:.2});
+    G.from($(".byline", root), {y:24, opacity:0, duration:1.2, ease:"power3.out", delay:.25});
+    G.from($(".byline .amp", root), {rotate:-25, scale:.4, duration:1.4, ease:"expo.out", delay:.45});
     G.from($(".cover-foot", root), {y:30, duration:1.2, ease:"power3.out", delay:.3});
     G.to($(".mast", root), {yPercent:-20, scale:.9, transformOrigin:"left bottom", ease:"none", scrollTrigger:{trigger:hdr, start:"top top", end:"bottom top", scrub:true}});
     ST.create({trigger:hdr, start:"top top", end:"bottom top", scrub:true, onUpdate:s => cover.p = s.progress});
