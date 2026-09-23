@@ -1,0 +1,1815 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terminale D</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#F4F3EF; --bg-2:#EAE8E2; --ink:#0E0E10; --ink-2:#5A5C61; --line:#D5D3CC; --focus:#3346D3;
+  --good:#2C7A4B; --bad:#C2362B;
+  --ses:#3346D3; --hggsp:#2F6B45; --hg:#16708A; --philo:#C98A0E; --philo-t:#8F5E00; --es:#5E7185; --ang:#7A4FD0; --droit:#3A3A3E;
+  --grotesk:"Archivo", "Helvetica Neue", Arial, sans-serif;
+  --serif:"Newsreader", "Iowan Old Style", Georgia, serif;
+  --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --gut:clamp(16px,4vw,56px);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F0F11; --bg-2:#18181B; --ink:#F1EFEA; --ink-2:#A1A3A8; --line:#2B2B30; --focus:#8C98FF;
+    --good:#62C58B; --bad:#FF6B5E;
+    --ses:#7F8CFF; --hggsp:#6DBB8A; --hg:#5CB8D1; --philo:#F0B947; --philo-t:#F0B947; --es:#9DB0C3; --ang:#B195FF; --droit:#A7A7AD; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F0F11; --bg-2:#18181B; --ink:#F1EFEA; --ink-2:#A1A3A8; --line:#2B2B30; --focus:#8C98FF;
+  --good:#62C58B; --bad:#FF6B5E;
+  --ses:#7F8CFF; --hggsp:#6DBB8A; --hg:#5CB8D1; --philo:#F0B947; --philo-t:#F0B947; --es:#9DB0C3; --ang:#B195FF; --droit:#A7A7AD; color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:clip}
+#view{display:block;overflow-x:clip;outline:none}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+.g{padding-inline:var(--gut)}
+.max{max-width:1440px;margin-inline:auto}
+.k{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase}
+.muted{color:var(--ink-2)}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--c);flex:none}
+.serif-t{margin:0;font-family:var(--serif);font-weight:300;font-size:clamp(44px,5.8vw,92px);line-height:.95;letter-spacing:-.02em;text-wrap:balance}
+.serif-t em{font-style:italic}
+.wide-t{margin:0;font-family:var(--grotesk);font-weight:800;font-stretch:125%;text-transform:uppercase;line-height:.84;letter-spacing:-.045em}
+.wide-t em{font-family:var(--serif);font-style:italic;font-weight:300;text-transform:none;letter-spacing:-.02em}
+.btn{all:unset;box-sizing:border-box;cursor:pointer;display:inline-flex;align-items:center;gap:12px;background:var(--ink);color:var(--bg);padding:14px 20px;font-family:var(--grotesk);font-weight:600;font-size:14.5px;transition:gap .3s ease;text-decoration:none}
+.btn:hover{gap:20px}
+.btn:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.btn.xl{padding:22px 28px;font-size:17px}
+
+/* ---------- Navigation ---------- */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;gap:18px;height:58px}
+.brand{font-family:var(--grotesk);font-weight:800;font-stretch:125%;font-size:15px;letter-spacing:-.02em;text-transform:uppercase;text-decoration:none;white-space:nowrap;flex:none}
+.brand em{font-family:var(--serif);font-style:italic;font-weight:400;text-transform:none;color:var(--ses);font-size:1.15em}
+.links{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0;mask-image:linear-gradient(90deg,#000 88%,transparent)}
+.links::-webkit-scrollbar{display:none}
+.links a{flex:none;display:inline-flex;align-items:center;gap:7px;padding:8px 10px;font-family:var(--grotesk);font-weight:500;font-size:14px;text-decoration:none;color:var(--ink-2);position:relative;white-space:nowrap}
+.links a::after{content:"";position:absolute;left:10px;right:10px;bottom:2px;height:2px;background:var(--c,var(--ink));transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.7,0,.2,1)}
+.links a:hover{color:var(--ink)}
+.links a[aria-current="page"]{color:var(--ink)}
+.links a[aria-current="page"]::after,.links a:hover::after{transform:scaleX(1)}
+.nav .drive{flex:none;padding:9px 14px;font-size:13.5px}
+#curtain{position:fixed;inset:0;z-index:100;background:var(--c,var(--ink));transform:scaleY(0);pointer-events:none;display:grid;place-items:center}
+#curtain span{font-family:var(--grotesk);font-weight:800;font-stretch:125%;text-transform:uppercase;font-size:clamp(40px,9vw,140px);letter-spacing:-.04em;color:var(--bg);opacity:0}
+
+/* ---------- Accueil : couverture ---------- */
+.cover{position:relative;min-height:calc(min(86vh,900px) - 58px);display:grid;grid-template-rows:auto 1fr auto;grid-template-columns:minmax(0,1fr);padding-block:18px 28px;isolation:isolate;overflow:hidden}
+.cover canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+.issue{display:flex;justify-content:space-between;gap:10px 24px;flex-wrap:wrap;border-bottom:1px solid var(--ink);padding-bottom:10px}
+.mast{align-self:center;min-width:0;font-size:clamp(58px,13.2vw,212px);will-change:transform}
+.mast .l{display:inline-block}
+.mast em{font-size:1.12em;color:var(--ses);margin-left:.04em;display:inline-block}
+.cover-foot{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:22px 40px;align-items:end}
+.cover-foot p{margin:0;max-width:40ch;font-size:clamp(19px,1.6vw,23px);line-height:1.4}
+.scrollhint{display:flex;align-items:center;gap:10px}
+.scrollhint i{width:1px;height:38px;background:var(--ink);transform-origin:top;animation:hint 1.8s cubic-bezier(.7,0,.2,1) infinite}
+@keyframes hint{0%{transform:scaleY(0)}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* Manifeste */
+.manifest{padding-block:120px 100px}
+.manifest p{margin:0;font-family:var(--serif);font-weight:300;font-size:clamp(30px,4.2vw,64px);line-height:1.12;letter-spacing:-.018em;max-width:22ch}
+.manifest .w{opacity:.2;transition:opacity .2s}
+.manifest em{font-style:italic}
+
+/* Drive */
+.drive-sec{border-top:1px solid var(--ink);padding-block:90px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:40px clamp(28px,5vw,90px);align-items:start;min-height:100vh}
+.drive-sec h2{font-size:clamp(56px,8vw,132px)}
+.drive-sec .lead{font-size:clamp(19px,1.5vw,22px);max-width:36ch;margin:26px 0 30px}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin-top:40px;border-top:1px solid var(--ink)}
+.stat{padding:18px 0 14px;border-bottom:1px solid var(--line)}
+.stat:nth-child(odd){border-right:1px solid var(--line);padding-right:16px}
+.stat:nth-child(even){padding-left:18px}
+.stat b{display:block;font-family:var(--grotesk);font-weight:200;font-stretch:62%;font-size:clamp(64px,7vw,110px);line-height:.85;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.tree{position:relative;padding-left:34px;font-family:var(--grotesk)}
+.tree .root{display:flex;align-items:center;gap:14px;font-weight:700;font-stretch:112%;font-size:clamp(22px,2.2vw,30px);margin:0 0 10px -34px;text-decoration:none}
+.tree .root svg,.tree .row svg.fold{width:28px;height:24px;flex:none}
+.trunk{position:absolute;left:13px;top:40px;bottom:26px;width:1.5px;background:var(--ink);transform-origin:top}
+.tree .row{position:relative;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;padding:14px 12px 14px 22px;text-decoration:none;border-bottom:1px solid var(--line);transition:background .3s,padding .35s cubic-bezier(.2,.7,.2,1)}
+.tree .row:hover{background:var(--bg-2);padding-left:30px}
+.tree .row .br{position:absolute;left:-21px;top:50%;width:34px;height:1.5px;background:var(--ink);transform-origin:left}
+.tree .row .nm{font-weight:600;font-size:clamp(17px,1.5vw,20px);display:flex;gap:10px;align-items:center;min-width:0}
+.tree .row .ct{font-family:var(--mono);font-size:12px;color:var(--ink-2);white-space:nowrap}
+.tree .row.sub .nm{font-weight:500;color:var(--ink-2)}
+.fold path{fill:var(--c,var(--ink))}
+
+/* Étapes */
+.steps{border-top:1px solid var(--ink);padding-block:90px}
+.steps-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;margin-top:50px;position:relative}
+.steps-line{position:absolute;left:0;right:0;top:0;height:2px;background:var(--line)}
+.steps-line i{position:absolute;inset:0;background:var(--ink);transform-origin:left;transform:scaleX(0)}
+.step{padding-top:28px}
+.step .n{font-family:var(--grotesk);font-weight:200;font-stretch:62%;font-size:96px;line-height:.8;letter-spacing:-.04em}
+.step h3{margin:18px 0 8px;font-family:var(--grotesk);font-weight:700;font-stretch:112%;font-size:22px}
+.step p{margin:0;color:var(--ink-2);max-width:32ch}
+
+/* Tuiles matières */
+.subjects{border-top:1px solid var(--ink);padding-block:90px}
+.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:44px}
+.tile{position:relative;min-height:460px;background:var(--bg-2);text-decoration:none;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:20px;isolation:isolate}
+.tile canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-1;opacity:.55;transition:transform .8s cubic-bezier(.2,.7,.2,1),opacity .6s}
+.tile:hover canvas{opacity:.9}
+.tile .head{background:color-mix(in srgb,var(--bg-2) 86%,transparent);margin:-8px;padding:8px}
+.tile:hover canvas{transform:scale(1.06)}
+.tile::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;background:var(--c);transform:scaleX(.25);transform-origin:left;transition:transform .6s cubic-bezier(.7,0,.2,1)}
+.tile:hover::after,.tile:focus-visible::after{transform:scaleX(1)}
+.tile h3{margin:0;font-family:var(--grotesk);font-weight:800;font-stretch:125%;text-transform:uppercase;font-size:clamp(28px,2.6vw,42px);line-height:.9;letter-spacing:-.04em}
+.tile .foot{display:flex;justify-content:space-between;align-items:end;gap:10px;background:color-mix(in srgb,var(--bg-2) 82%,transparent);margin:-8px;padding:8px}
+.tiles-small{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:16px}
+.tile-s{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 20px;border:1px solid var(--line);text-decoration:none;transition:border-color .3s,padding .35s}
+.tile-s:hover{border-color:var(--ink);padding-left:26px}
+.tile-s b{font-family:var(--grotesk);font-weight:700;font-stretch:112%;font-size:19px;display:flex;gap:10px;align-items:center}
+
+/* Parutions */
+.paru{border-top:1px solid var(--ink);padding-block:80px 60px;overflow:hidden}
+.paru-head{display:flex;justify-content:space-between;align-items:end;gap:14px 30px;flex-wrap:wrap;margin-bottom:34px}
+.big-t{font-size:clamp(44px,9vw,150px);white-space:nowrap;will-change:transform}
+.track{display:flex;gap:18px;width:max-content;padding-inline:var(--gut);will-change:transform}
+.card{width:min(340px,78vw);min-height:340px;background:var(--bg-2);padding:22px;display:flex;flex-direction:column;justify-content:space-between;text-decoration:none;position:relative;overflow:hidden;flex:none}
+.card::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:var(--c);transform:scaleX(.18);transform-origin:left;transition:transform .5s cubic-bezier(.7,0,.2,1)}
+.card:hover::before,.card:focus-visible::before{transform:scaleX(1)}
+.card .day{font-family:var(--grotesk);font-weight:300;font-stretch:62%;font-size:120px;line-height:.8;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.card .ct{font-size:21px;line-height:1.28;margin:18px 0 14px;text-wrap:balance}
+.card .meta{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.paru.stack .track{flex-direction:column;width:auto}
+.paru.stack .card{width:100%;min-height:0;display:grid;grid-template-columns:92px minmax(0,1fr);grid-template-areas:"d t" "d m";gap:8px 16px;align-items:start;padding:20px 18px 18px}
+.paru.stack .card > :first-child{grid-area:d}
+.paru.stack .card .day{font-size:56px}
+.paru.stack .card .ct{grid-area:t;margin:0;font-size:18px;line-height:1.3;text-wrap:pretty}
+.paru.stack .card .meta{grid-area:m;justify-content:flex-start;gap:14px;align-self:end}
+.paru.stack:not(.all) .card:nth-child(n+7){display:none}
+.paru-more{display:none}
+.paru.stack:not(.all) .paru-more{display:block;padding-top:16px}
+.paru-more .btn{width:100%;justify-content:space-between}
+
+/* ---------- Page matière ---------- */
+.shero{position:relative;padding-block:40px 34px;overflow:hidden;isolation:isolate;border-bottom:1px solid var(--ink)}
+.shero .band{position:absolute;left:0;right:0;top:0;height:10px;background:var(--c);transform-origin:left}
+.shero .top{display:flex;justify-content:space-between;gap:10px 24px;flex-wrap:wrap;padding-top:18px}
+.shero h1{font-size:clamp(76px,17vw,280px);margin-top:36px;color:var(--ink);will-change:transform}
+.shero h1 .l{display:inline-block}
+.shero .full{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(24px,3vw,44px);line-height:1.1;margin:14px 0 0;color:var(--ct,var(--c));max-width:24ch}
+.shero-foot{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px 40px;align-items:end;margin-top:40px}
+.nums{display:flex;gap:36px;flex-wrap:wrap}
+.nums div b{display:block;font-family:var(--grotesk);font-weight:200;font-stretch:62%;font-size:clamp(56px,6vw,96px);line-height:.85;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.btns{display:flex;gap:10px;flex-wrap:wrap}
+
+.dossier{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:40px clamp(28px,5vw,80px);padding-block:70px}
+.plate{position:sticky;top:calc(env(safe-area-inset-top,0px) + 76px);height:min(80vh,740px);background:var(--bg-2);overflow:hidden;margin:0}
+.plate canvas{position:absolute;inset:0;width:100%;height:100%}
+.plate figcaption{position:absolute;left:18px;right:18px;bottom:14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.dtext{display:grid;align-content:start;gap:28px}
+.dtitle{font-size:clamp(40px,4.8vw,78px)}
+.lead{font-size:clamp(19px,1.5vw,22px);line-height:1.5;margin:0;max-width:44ch}
+.quote{margin:8px 0;font-family:var(--grotesk);font-weight:500;font-size:clamp(22px,2.2vw,32px);line-height:1.18;letter-spacing:-.015em;color:var(--ct,var(--c));max-width:24ch;text-wrap:balance}
+.quote .qt::before{content:"« ";} .quote .qt::after{content:" »";}
+.quote cite{display:block;margin-top:10px;font-family:var(--mono);font-style:normal;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+.blk h3{margin:0 0 6px;font-family:var(--mono);font-weight:400;font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+.fl{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
+.fl a{display:grid;grid-template-columns:62px minmax(0,1fr) auto;gap:14px;align-items:baseline;padding:15px 0;border-bottom:1px solid var(--line);text-decoration:none;position:relative;overflow:hidden;isolation:isolate}
+.fl a::after{content:"";position:absolute;inset:0;background:var(--c);transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.7,0,.2,1);z-index:-1;opacity:.12}
+.fl a:hover::after{transform:scaleX(1)}
+.fl .n{font-family:var(--mono);font-size:13px;color:var(--ink-2)}
+.fl .t{font-size:19px;line-height:1.3}
+.fl .go{color:var(--ink-2);transition:transform .3s ease}
+.fl a:hover .go{transform:translateX(4px);color:var(--ink)}
+
+.timeline{border-top:1px solid var(--ink);padding-block:70px}
+.tl{position:relative;margin-top:40px;padding-left:clamp(28px,4vw,60px)}
+.tl-line{position:absolute;left:6px;top:8px;bottom:8px;width:2px;background:var(--line)}
+.tl-line i{position:absolute;inset:0;background:var(--c);transform-origin:top;transform:scaleY(0)}
+.tl a{position:relative;display:grid;grid-template-columns:clamp(90px,10vw,150px) minmax(0,1fr) auto;gap:10px 24px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--line);text-decoration:none;transition:padding .35s cubic-bezier(.2,.7,.2,1)}
+.tl a:hover{padding-left:12px}
+.tl a::before{content:"";position:absolute;left:calc(clamp(28px,4vw,60px) * -1 + 1px);top:30px;width:12px;height:12px;border-radius:50%;background:var(--bg);box-shadow:inset 0 0 0 2px var(--c)}
+.tl .d{font-family:var(--grotesk);font-weight:300;font-stretch:62%;font-size:clamp(40px,4.4vw,64px);line-height:.8;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.tl .d small{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);margin-top:8px;font-stretch:100%}
+.tl .t{font-size:clamp(20px,1.8vw,26px);line-height:1.25}
+.tl .go{color:var(--ink-2)}
+
+.interro{border-top:1px solid var(--ink);padding-block:70px;display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:36px clamp(28px,5vw,80px)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.chip{all:unset;cursor:pointer;display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line);padding:9px 12px;font-family:var(--grotesk);font-size:14px;font-weight:500;transition:border-color .2s,background .2s}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.chip:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.qbox{min-height:440px}
+.qhead{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding-bottom:12px;border-bottom:1px solid var(--ink);margin-bottom:26px}
+.qprog{height:2px;background:var(--line);position:relative;margin-bottom:30px}
+.qprog i{position:absolute;inset:0 auto 0 0;background:var(--c);transition:width .6s cubic-bezier(.2,.7,.2,1)}
+.q{margin:0 0 26px;font-family:var(--serif);font-size:clamp(26px,2.8vw,40px);line-height:1.15;letter-spacing:-.012em;text-wrap:balance}
+.opts{display:grid;border-top:1px solid var(--line)}
+.opt{all:unset;cursor:pointer;display:grid;grid-template-columns:44px minmax(0,1fr) 24px;gap:10px;align-items:baseline;padding:16px 4px;border-bottom:1px solid var(--line);font-size:19px;line-height:1.35;transition:padding .3s ease,background .3s}
+.opt:hover:not([disabled]){padding-left:14px}
+.opt:focus-visible{outline:2px solid var(--focus);outline-offset:-2px}
+.opt .l{font-family:var(--mono);font-size:13px;color:var(--ink-2)}
+.opt .m{font-family:var(--mono);font-size:16px;text-align:right}
+.opt.ok{background:color-mix(in srgb,var(--good) 12%,transparent)} .opt.ok .m{color:var(--good)}
+.opt.ko{background:color-mix(in srgb,var(--bad) 10%,transparent)} .opt.ko .m{color:var(--bad)}
+.opt[disabled]{cursor:default}
+.expl{margin:22px 0 0;font-style:italic;color:var(--ink-2);max-width:60ch}
+.expl b{font-style:normal;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin-right:8px}
+.row-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.score{font-family:var(--grotesk);font-weight:800;font-stretch:125%;font-size:clamp(96px,16vw,220px);line-height:.8;letter-spacing:-.05em;margin:0;font-variant-numeric:tabular-nums}
+.score small{font-family:var(--serif);font-weight:300;font-style:italic;font-stretch:100%;font-size:.3em;letter-spacing:0;color:var(--ink-2)}
+.pips{display:flex;gap:4px;margin-top:22px}
+.pips i{flex:1;max-width:44px;height:4px;background:var(--line)}
+.pips i.y{background:var(--good)} .pips i.n{background:var(--bad)}
+
+.next{display:block;border-top:1px solid var(--ink);padding-block:60px 70px;text-decoration:none;overflow:hidden}
+.next .wide-t{font-size:clamp(56px,12vw,200px);transition:transform .7s cubic-bezier(.2,.7,.2,1);display:inline-block}
+.next:hover .wide-t{transform:translateX(3%)}
+.empty{padding-block:70px;border-top:1px solid var(--ink)}
+.empty p{font-size:clamp(22px,2.4vw,34px);line-height:1.25;max-width:30ch;margin:0 0 28px}
+
+/* ---------- Séance ---------- */
+.seance{padding-block:60px 80px;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:36px clamp(28px,5vw,80px);align-items:start}
+.clock{font-family:var(--grotesk);font-weight:200;font-stretch:62%;font-size:clamp(120px,22vw,330px);line-height:.78;letter-spacing:-.05em;font-variant-numeric:tabular-nums;margin:24px 0 10px}
+.ribbon{height:3px;background:var(--line);position:relative;margin:14px 0 24px}
+.ribbon i{position:absolute;inset:0 auto 0 0;width:0;background:var(--c,var(--ink))}
+.ctrls{display:flex;gap:18px;flex-wrap:wrap;align-items:end;margin-top:26px}
+.f{display:grid;gap:6px}
+.f > span{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+select{font:inherit;font-family:var(--grotesk);font-size:16px;background:var(--bg);color:var(--ink);border:0;border-bottom:1px solid var(--ink);padding:8px 26px 8px 0;border-radius:0;appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--ink) 50%),linear-gradient(135deg,var(--ink) 50%,transparent 50%);background-position:right 8px center,right 3px center;background-size:5px 5px;background-repeat:no-repeat}
+.seg{display:inline-flex;box-shadow:inset 0 0 0 1px var(--ink)}
+.seg button{all:unset;cursor:pointer;padding:10px 14px;font-family:var(--grotesk);font-size:14px;font-weight:500}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.seg button:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.log{border-top:1px solid var(--ink)}
+.log-row{display:grid;grid-template-columns:70px minmax(0,1fr) auto;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.log-row .d,.log-row .m{font-family:var(--mono);font-size:13px}
+.log-row .d{color:var(--ink-2)}
+.total{display:flex;justify-content:space-between;align-items:baseline;margin-top:16px}
+.total b{font-family:var(--grotesk);font-weight:300;font-stretch:62%;font-size:64px;line-height:1}
+
+.colophon{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px 30px;padding-block:26px 40px;border-top:1px solid var(--ink)}
+.colophon p{margin:0;max-width:60ch;font-size:15px;color:var(--ink-2)}
+.colophon nav{display:flex;gap:18px;flex-wrap:wrap}
+
+/* ---------- Menu spécialités ---------- */
+.nav-sep{flex:none;width:1px;height:18px;background:var(--line);margin:0 6px;align-self:center}
+.spe-btn{all:unset;cursor:pointer;flex:none;display:inline-flex;align-items:center;gap:7px;padding:8px 10px;font-family:var(--grotesk);font-weight:500;font-size:14px;color:var(--ink-2);position:relative;white-space:nowrap}
+.spe-btn::after{content:"";position:absolute;left:10px;right:10px;bottom:2px;height:2px;background:var(--c,var(--ink));transform:scaleX(0);transform-origin:left;transition:transform .35s cubic-bezier(.7,0,.2,1)}
+.spe-btn:hover,.spe-btn.on,.spe-btn[aria-expanded="true"]{color:var(--ink)}
+.spe-btn:hover::after,.spe-btn.on::after{transform:scaleX(1)}
+.spe-btn .dot{display:none} .spe-btn.on .dot{display:inline-block}
+.spe-btn svg{transition:transform .3s ease}
+.spe-btn[aria-expanded="true"] svg{transform:rotate(180deg)}
+.spe-btn:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.spe-menu{position:absolute;top:calc(100% + 8px);z-index:60;background:var(--bg);border:1px solid var(--ink);padding:18px 18px 16px;box-shadow:0 30px 60px -30px rgba(0,0,0,.35)}
+.spe-menu[hidden]{display:none}
+.spe-list{display:grid;border-top:1px solid var(--ink);margin-top:12px}
+.spe-list a{display:grid;grid-template-columns:12px minmax(0,1fr) auto;gap:12px;align-items:center;padding:14px 4px;border-bottom:1px solid var(--line);text-decoration:none;font-family:var(--grotesk);font-weight:600;font-size:16px;line-height:1.2;transition:padding .3s cubic-bezier(.2,.7,.2,1),box-shadow .3s}
+.spe-list a small{display:block;margin-top:5px;font-family:var(--mono);font-weight:400;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.spe-list a .go{color:var(--ink-2);transition:transform .3s}
+.spe-list a:hover,.spe-list a[aria-current="page"]{padding-left:12px;box-shadow:inset 3px 0 0 var(--c)}
+.spe-list a:hover .go{transform:translateX(4px);color:var(--ink)}
+.spe-list a:focus-visible{outline:2px solid var(--focus);outline-offset:-2px}
+.spe-note{margin:12px 0 0;font-family:var(--serif);font-style:italic;font-size:15px;line-height:1.45;color:var(--ink-2)}
+.sub-head{display:flex;justify-content:space-between;align-items:end;gap:14px 40px;flex-wrap:wrap}
+.sub-head p{margin:0 0 8px;max-width:44ch;font-size:17px;line-height:1.45}
+.spe-head{margin-top:90px}
+.tiles-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+/* ---------- QCM faits ---------- */
+.chip.done{color:var(--ink-2);border-style:dashed}
+.chip.done[aria-pressed="true"]{color:var(--bg);border-style:solid}
+.chip .tick{font-size:12px;color:var(--good);width:9px;text-align:center}
+.chip.done[aria-pressed="true"] .tick{color:var(--bg)}
+.vh{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.qcount{margin:14px 0 0}
+.qdone-box{margin-top:30px;padding-top:22px;border-top:1px solid var(--line)}
+.btn.fin{background:var(--good);box-shadow:none;color:var(--bg)}
+.btn.fin span{font-size:15px}
+.qdone-ok{margin:0;font-family:var(--grotesk);font-weight:600;font-size:18px;color:var(--good)}
+.chip.revoir{border-color:color-mix(in srgb,var(--bad) 55%,transparent)}
+.chip.revoir .tick{color:var(--bad)}
+.chip.revoir[aria-pressed="true"] .tick{color:var(--bg)}
+.qdone-ko{margin:0;font-family:var(--grotesk);font-weight:600;font-size:18px;color:var(--bad)}
+.fl a.qrevoir .t::after{content:"QCM à revoir ↺";margin-left:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--bad);white-space:nowrap}
+.fl a.qdone .t::after{content:"QCM fait ✓";margin-left:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--good);white-space:nowrap}
+/* ---------- Répétition espacée ---------- */
+.chip.reviser{border-color:color-mix(in srgb,var(--philo) 70%,transparent)}
+.chip.reviser .tick{color:var(--philo-t)}
+.chip.reviser[aria-pressed="true"] .tick{color:var(--bg)}
+.fl a.qreviser .t::after{content:"QCM à réviser ↻";margin-left:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--philo-t);white-space:nowrap}
+.due-strip{border:1px solid var(--ink);padding:18px 20px;margin:0 0 60px;background:var(--bg)}
+.due-strip > .k{margin:0 0 12px}
+.due-list{display:flex;flex-wrap:wrap;gap:8px}
+.due{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid var(--line);text-decoration:none;font-family:var(--grotesk);font-weight:500;font-size:15px;transition:border-color .25s,padding .3s}
+.due:hover{border-color:var(--ink);padding-left:18px}
+.due.revoir .k{color:var(--bad)} .due.reviser .k{color:var(--philo-t)}
+/* ---------- Lexique ---------- */
+.lx{padding-block:40px 90px}
+.lx-bar{position:sticky;top:calc(env(safe-area-inset-top,0px) + 58px);z-index:5;background:var(--bg);padding:16px 0 14px;border-bottom:1px solid var(--ink)}
+.lx-search{display:flex;align-items:center;gap:14px;color:var(--ink-2)}
+.lx-search input{flex:1;min-width:0;font:inherit;font-family:var(--serif);font-weight:300;font-size:clamp(26px,3.4vw,44px);letter-spacing:-.01em;background:transparent;color:var(--ink);border:0;padding:4px 0;border-radius:0;outline:none}
+.lx-search input::placeholder{color:color-mix(in srgb,var(--ink-2) 70%,transparent);font-style:italic}
+.lx-search:focus-within{color:var(--ink)}
+.lx-search input::-webkit-search-cancel-button{cursor:pointer}
+.lx-filt{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.lx-filt .chip{padding:7px 11px;font-size:13.5px}
+.lx-filt .chip[aria-pressed="true"] .muted{color:color-mix(in srgb,var(--bg) 70%,transparent)}
+.lx-count{margin:10px 0 0}
+.lx-group{display:grid;grid-template-columns:clamp(60px,9vw,140px) minmax(0,1fr);gap:0 clamp(16px,3vw,40px);border-bottom:1px solid var(--line);padding-top:26px}
+.lx-group.flat{grid-template-columns:minmax(0,1fr)}
+.lx-letter{font-family:var(--grotesk);font-weight:800;font-stretch:125%;font-size:clamp(48px,7vw,104px);line-height:.8;letter-spacing:-.04em;position:sticky;top:calc(env(safe-area-inset-top,0px) + 250px);align-self:start;padding-bottom:20px}
+.lx-dl{margin:0}
+.lx-item{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:8px 30px;padding:18px 0 20px;border-top:1px solid var(--line)}
+.lx-item:first-child{border-top:0;padding-top:4px}
+.lx-item dt{font-family:var(--grotesk);font-weight:700;font-stretch:108%;font-size:19px;line-height:1.2;letter-spacing:-.01em}
+.lx-item dd{margin:0}
+.lx-def{margin:0;font-size:18px;line-height:1.5;max-width:62ch}
+.lx-note{margin:8px 0 0;font-style:italic;font-size:15px;color:var(--ink-2);padding-left:12px;border-left:2px solid var(--philo)}
+.lx-src{margin:10px 0 0;display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.lx-src .dot{width:7px;height:7px}
+.lx-src a{color:var(--ink);text-underline-offset:3px}
+.lx mark{background:color-mix(in srgb,var(--c,var(--ses)) 22%,transparent);color:inherit;padding:0 1px}
+.lx-empty{font-size:clamp(20px,2.2vw,28px);max-width:34ch;padding:40px 0}
+.lx-foot{margin:30px 0 0;max-width:70ch;font-size:15px}
+@media (max-width:900px){ .lx-item{grid-template-columns:1fr} .lx-letter{position:static} }
+@media (max-width:560px){ .lx-group{grid-template-columns:1fr} .lx-letter{font-size:44px;padding:0 0 6px} .lx-bar{padding:10px 0} .lx-search input{font-size:24px} .lx-filt{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:calc(var(--gut) * -1);padding-inline:var(--gut)} .lx-filt::-webkit-scrollbar{display:none} .lx-filt .chip{flex:none} .lx-count{margin-top:8px} .due-strip{padding:14px} }
+/* ---------- Barre d'onglets mobile ---------- */
+.tabbar,.sheet-wrap{display:none}
+@media (min-width:1024px) and (max-width:1180px){
+  .links{gap:0} .links a,.spe-btn{padding:8px 7px;font-size:13.5px} .nav-sep{margin:0 3px}
+  .nav .drive span{display:none} .nav-in{gap:12px}
+}
+@media (max-width:1023px){
+  .links,.spe-menu{display:none!important}
+  .nav-in{justify-content:space-between}
+  body{padding-bottom:calc(64px + env(safe-area-inset-bottom,0px))}
+  .tabbar{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));position:fixed;left:0;right:0;bottom:0;z-index:60;padding-inline:max(0px,calc((100vw - 640px) / 2));background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--ink);padding-bottom:env(safe-area-inset-bottom,0px)}
+  .tab{all:unset;box-sizing:border-box;cursor:pointer;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;height:64px;color:var(--ink-2);text-decoration:none;-webkit-tap-highlight-color:transparent}
+  .tab span{font-family:var(--grotesk);font-size:11px;font-weight:500;letter-spacing:0;white-space:nowrap}
+  .tab::before{content:"";position:absolute;top:-1px;left:22%;right:22%;height:3px;background:var(--c,var(--ink));transform:scaleX(0);transition:transform .35s cubic-bezier(.7,0,.2,1)}
+  .tab[aria-current="page"]{color:var(--ink)}
+  .tab[aria-current="page"]::before{transform:scaleX(1)}
+  .tab:active{background:var(--bg-2)}
+  .tab:focus-visible{outline:2px solid var(--focus);outline-offset:-4px}
+  .sheet-wrap{display:block;position:fixed;inset:0;z-index:90}
+  .sheet-wrap[hidden]{display:none}
+  .sheet-bg{position:absolute;inset:0;background:rgba(0,0,0,.42)}
+  .sheet{position:absolute;left:0;right:0;bottom:0;margin-inline:auto;max-width:640px;max-height:86vh;overflow-y:auto;overscroll-behavior:contain;background:var(--bg);border-top:1px solid var(--ink);padding:0 var(--gut) calc(22px + env(safe-area-inset-bottom,0px));outline:none}
+  .sheet-head{position:sticky;top:0;display:flex;justify-content:space-between;align-items:center;padding:16px 0 12px;background:var(--bg);z-index:1}
+  .sheet-head::before{content:"";position:absolute;top:7px;left:50%;width:36px;height:4px;margin-left:-18px;border-radius:2px;background:var(--line)}
+  .sheet-x{all:unset;cursor:pointer;width:40px;height:40px;display:grid;place-items:center;font-size:18px;margin-right:-10px}
+  .sheet-x:focus-visible{outline:2px solid var(--focus)}
+  .sheet-g{margin:18px 0 0}
+  .sheet .spe-list{margin-top:8px}
+  .sheet .spe-list a{padding:15px 4px}
+  .sheet-drive{margin-top:22px;width:100%;justify-content:space-between}
+  html.sheet-open,html.sheet-open body{overflow:hidden}
+}
+/* ---------- Zones tactiles (audit du 23/09) ---------- */
+.wd{display:inline-block;white-space:nowrap}
+.tile-s > .k{white-space:nowrap;flex:none}
+.brand{padding-block:10px}
+.colophon nav a{display:inline-block;padding-block:12px}
+.tree .root{min-height:44px}
+.lx-src a{display:inline-block;padding-block:7px;margin-block:-7px}
+.lx .lx-src{row-gap:14px}
+.nb-check{min-height:40px}
+details.nb-card > summary{padding-block:8px;margin-block:-8px}
+@media (max-width:760px){
+  .nav .drive{min-width:44px;min-height:40px;justify-content:center}
+  .lx-filt .chip{min-height:40px}
+  .lx-filt{mask-image:linear-gradient(90deg,#000 82%,transparent);-webkit-mask-image:linear-gradient(90deg,#000 82%,transparent)}
+}
+/* ---------- Mes notes ---------- */
+.nb{padding-block:40px 90px}
+.nb input,.nb textarea{font:inherit;font-family:var(--grotesk);font-size:16px;background:transparent;color:var(--ink);border:0;border-bottom:1px solid var(--ink);padding:8px 2px;border-radius:0;min-width:0;width:100%}
+.nb input:focus-visible,.nb textarea:focus-visible,.nb select:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.nb select{width:100%}
+.nb textarea{min-height:104px;resize:vertical;border:1px solid var(--line);padding:12px;background:var(--bg);font-family:var(--mono);font-size:12.5px;line-height:1.5;word-break:break-all}
+.nb textarea:focus{border-color:var(--ink)}
+.nb-warn{margin:0 0 24px;padding:14px 16px;border-left:3px solid var(--bad);background:color-mix(in srgb,var(--bad) 8%,transparent)}
+.nb-card{border:1px solid var(--line);padding:20px 22px;background:var(--bg)}
+.nb-card h3{margin:0;font-family:var(--grotesk);font-weight:700;font-stretch:112%;font-size:20px}
+details.nb-card > summary{cursor:pointer;display:flex;justify-content:space-between;gap:10px 20px;flex-wrap:wrap;align-items:baseline;list-style:none}
+details.nb-card > summary::-webkit-details-marker{display:none}
+details.nb-card > summary::after{content:"+";font-family:var(--mono);font-size:18px;line-height:1}
+details.nb-card[open] > summary::after{content:"−"}
+details.nb-card[open] > summary{margin-bottom:20px}
+.nb-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px 26px}
+.nb-opts{display:flex;flex-wrap:wrap;gap:8px}
+.nb-check{display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line);padding:8px 12px;font-family:var(--grotesk);font-size:14px;cursor:pointer}
+.nb-check:has(input:checked){border-color:var(--ink);background:var(--ink);color:var(--bg)}
+.nb .nb-check input{width:auto;accent-color:var(--ink)}
+.nb-sec{border-top:1px solid var(--ink);margin-top:70px;padding-top:40px}
+.nb-add{display:grid;grid-template-columns:minmax(0,2.2fr) repeat(4,minmax(0,1fr)) minmax(0,2.2fr) auto;gap:16px 18px;align-items:end;margin-top:30px;padding:20px 22px;background:var(--bg-2)}
+.nb-kpis{display:flex;gap:30px 60px;flex-wrap:wrap;margin:36px 0 22px}
+.nb-big{font-family:var(--grotesk);font-weight:200;font-stretch:62%;font-size:clamp(64px,8vw,120px);line-height:.85;letter-spacing:-.04em;font-variant-numeric:tabular-nums;margin-top:8px}
+.nb-big small{font-family:var(--serif);font-weight:300;font-style:italic;font-stretch:100%;font-size:.26em;letter-spacing:0;color:var(--ink-2)}
+.nb-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.nb-table{width:100%;border-collapse:collapse;border-top:1px solid var(--ink);font-variant-numeric:tabular-nums}
+.nb-table th{font-family:var(--mono);font-weight:400;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);text-align:right;padding:12px 10px;border-bottom:1px solid var(--line);white-space:nowrap}
+.nb-table th:first-child,.nb-table td:first-child{text-align:left;padding-left:0}
+.nb-table td{padding:13px 10px;border-bottom:1px solid var(--line);text-align:right;font-family:var(--mono);font-size:14px}
+.nb-table td:first-child{font-family:var(--grotesk);font-size:16px;font-weight:500;min-width:170px}
+.nb-table td.avg{font-weight:700;font-size:15px}
+.nb-table td.lo{color:var(--bad)} .nb-table td.hi{color:var(--good)}
+.nb-table tr:has(+ .nb-det) td{border-bottom:0}
+.nb-det td{padding-top:0;text-align:left!important}
+.nb-chips{display:flex;flex-wrap:wrap;gap:6px}
+.nb-chip{display:inline-flex;align-items:center;gap:6px;padding:4px 4px 4px 10px;background:var(--bg-2);font-family:var(--mono);font-size:12px;color:var(--ink)}
+.nb-chip button{all:unset;cursor:pointer;width:22px;height:22px;display:grid;place-items:center;font-size:15px;color:var(--ink-2)}
+.nb-chip button:hover{color:var(--bad)} .nb-chip button:focus-visible{outline:2px solid var(--focus)}
+.nb-proj{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,4fr);gap:36px clamp(28px,4vw,60px);align-items:start}
+.nb-bac{width:100%;border-collapse:collapse;margin-bottom:30px;font-variant-numeric:tabular-nums}
+.nb-bac caption{text-align:left;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;padding-bottom:10px;border-bottom:1px solid var(--ink)}
+.nb-bac td{padding:10px 8px;border-bottom:1px solid var(--line);font-size:16px}
+.nb-bac td:first-child{padding-left:0}
+.nb-bac td.src{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2)}
+.nb-bac td.c{font-family:var(--mono);font-size:13px;color:var(--ink-2);text-align:right}
+.nb-bac td.v{width:96px;text-align:right;font-family:var(--mono);font-size:15px}
+.nb-bac td.v input{text-align:right;font-family:var(--mono);font-size:15px;width:84px;padding:4px 2px}
+.nb-verdict{background:var(--ink);color:var(--bg);padding:28px 28px 30px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 80px)}
+.nb-verdict .nb-big small{color:color-mix(in srgb,var(--bg) 62%,transparent)}
+.nb-scale{position:relative;height:40px;margin:26px 8px 8px;border-bottom:1px solid var(--bg)}
+.nb-scale span{position:absolute;bottom:-22px;transform:translateX(-50%);font-family:var(--mono);font-size:10px;opacity:.7}
+.nb-scale i{position:absolute;bottom:0;width:1px;height:8px;background:var(--bg);opacity:.6}
+.nb-scale b{position:absolute;bottom:0;width:3px;height:34px;background:var(--ses);transform:translateX(-1px);transition:left .8s cubic-bezier(.2,.7,.2,1)}
+.nb-transfer{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.nb-qr{margin-top:16px;width:212px;padding:8px;background:#fff}
+.nb-qr img,.nb-qr canvas{display:block;width:196px;height:196px}
+.nb-in-msg p{margin:14px 0 0}
+.nb-err{color:var(--bad)} .nb-ok{color:var(--good);font-weight:500}
+.tools-s .tile-s b{font-stretch:100%}
+@media (max-width:1100px){ .nb-add{grid-template-columns:repeat(4,minmax(0,1fr))} .nb-add .wide{grid-column:span 2} }
+@media (max-width:900px){ .nb-grid,.nb-proj,.nb-transfer{grid-template-columns:1fr} .nb-verdict{position:static} }
+@media (max-width:560px){ .nb-add{grid-template-columns:repeat(2,minmax(0,1fr));padding:16px} .nb-add .wide,.nb-add .btn{grid-column:1/-1} .nb-card{padding:16px} .nb-bac td.src{display:none} }
+@media (max-width:1100px){ .tiles{grid-template-columns:repeat(2,minmax(0,1fr))} .tile{min-height:380px} .tiles-3 .tile:last-child{grid-column:1/-1;min-height:300px} }
+@media (max-width:900px){
+  .cover-foot,.drive-sec,.dossier,.interro,.seance,.colophon,.shero-foot{grid-template-columns:1fr}
+  .drive-sec{min-height:0}
+  .plate{position:relative;top:0;height:62vh;min-height:380px}
+  .steps-grid,.tiles-small{grid-template-columns:1fr}
+  .tl a{grid-template-columns:minmax(0,1fr) auto}
+  .tl .d{grid-column:1/-1}
+  .manifest{padding-block:80px 70px}
+  .nav .drive span{display:none}
+}
+@media (max-width:560px){ body{font-size:17px} .tiles{grid-template-columns:1fr} .spe-head{margin-top:60px} .tile{min-height:300px} .card .day{font-size:96px} .big-t{white-space:normal} .nav-in{gap:10px} .brand{font-size:13px} }
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+/* Ajustements tactiles de Mes notes (après ses styles de base) */
+.nb-bac td.v input{padding-block:9px}
+.nb-scale span{font-size:11px}
+.nb .nb-check input{width:18px;height:18px}
+</style>
+</head>
+<body>
+<div class="nav">
+  <div class="nav-in g max">
+    <a class="brand" href="#accueil" aria-label="Terminale D, accueil">Terminale <em>D</em></a>
+    <nav class="links" id="links" aria-label="Matières"></nav>
+    <a class="btn drive" href="https://drive.google.com/drive/folders/1BfgnH2luYOf4F3WkCsYZWQNARDiwrsi8" target="_blank" rel="noopener"><span>Le Drive</span>
+      <svg viewBox="0 0 18 18" width="15" height="15" fill="none" aria-hidden="true"><path d="M4 14L14 4M6 4h8v8" stroke="currentColor" stroke-width="1.6"/></svg></a>
+  </div>
+</div>
+<nav class="tabbar" id="tabbar" aria-label="Navigation principale"></nav>
+<div class="sheet-wrap" id="sheet" hidden>
+  <div class="sheet-bg" data-close></div>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-t" tabindex="-1">
+    <div class="sheet-head"><span class="k" id="sheet-t">Matières</span><button type="button" class="sheet-x" data-close aria-label="Fermer">✕</button></div>
+    <div class="sheet-body" id="sheet-body"></div>
+  </div>
+</div>
+<div id="curtain" aria-hidden="true"><span id="curtain-t"></span></div>
+<main id="view" tabindex="-1"></main>
+<footer class="colophon g max">
+  <p><b style="color:var(--ink);font-weight:500">Terminale D</b>, le magazine de révision de la classe. Cours tapés en classe, relus deux fois, fiches vérifiées ; en cas de doute, la parole du professeur prime.</p>
+  <nav aria-label="Liens utiles">
+    <a class="k muted" href="https://docs.google.com/document/d/1-01XoXc3TBBmgmZkVjlQqwadu1qUHWpLWduGNw02vU0/edit" target="_blank" rel="noopener">Emploi du temps ↗</a>
+    <a class="k muted" href="https://drive.google.com/drive/folders/1fIv31mR9uOOJnmrh2MtJyOkmCIGJv8y1" target="_blank" rel="noopener">Fiches de révision ↗</a>
+  </nav>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+const DOC = id => "https://docs.google.com/document/d/" + id + "/edit";
+const FOLDER = id => "https://drive.google.com/drive/folders/" + id;
+const DRIVE_ROOT = "1BfgnH2luYOf4F3WkCsYZWQNARDiwrsi8";
+const FICHES_ROOT = "1fIv31mR9uOOJnmrh2MtJyOkmCIGJv8y1";
+const MAT = {
+  ses:   {nom:"SES", long:"SES (spécialité)", c:"var(--ses)", cours:"1YvR4aIw40NWRPmAq3ereOHbR0liqRTs9", fiches:"1-xQXViJkEHbV8ZatVhJLCamxhuyUbEKe"},
+  hggsp: {nom:"HGGSP", long:"HGGSP (spécialité)", c:"var(--hggsp)", cours:"1L5dt5sIO_tKT3tWYKlCphN6QqUPjcSQX", fiches:"1q6R_aN7mmtWXzGxazkaxKbNvqEOWt80D"},
+  hg:    {nom:"Histoire-Géo", long:"Histoire-Géographie", c:"var(--hg)", cours:"1-Qf6mom5Ah-N0_P5B7Tk8M7_gjD2O4Qb", fiches:"1y7allfAYWP3ZLhAeEYb9AGCDpb6kLGB9"},
+  philo: {nom:"Philosophie", long:"Philosophie", c:"var(--philo)", cours:"1OQfv6A9kV3n4p-eHMJQ3uatBY8jAlSwa", fiches:"1KIlxqeC0SFInTkkrHdzOXYeeNb2OjOUd"},
+  es:    {nom:"Ens. scientifique", long:"Enseignement scientifique", c:"var(--es)", cours:"1M4SV7cwv9O8wW7PJGSXFhKw3yc5Jp75H"},
+  ang:   {nom:"Anglais", long:"LV1 - Anglais", c:"var(--ang)", cours:"11yxZVe__-UfJyM8rW4n9bBYNj5DrlE3b"},
+  droit: {nom:"Droit", long:"Droit (option DGEMC)", c:"var(--droit)", cours:"12F4Dt6jMTLIU1_8rE7es4JdiAFqSvoF6"}
+};
+
+const VOLUMES = [
+  {m:"ses", code:"SES", n:"01", t:"Les analyses de la structure sociale", id:"1ACeppauoU3aSk2zWId5I65HEmPHTfu1UAPA0akXkegA", w:70, h:262, q:"ses1"},
+  {m:"ses", code:"SES", n:"02", t:"Facteurs et évolutions de la structure sociale", id:"1vS44OMiH-MxwP4RwkR41NQHNswbArYWtgzj6ZLEABOQ", w:64, h:262, q:"ses2"},
+  {m:"ses", code:"SES", n:"03", t:"EC1.1, le corrigé", id:"1_ChptLCNx_A8ScEalEqyskGky1V47nFZW_FPkdnmLmo", w:58, h:240, q:"ses3"},
+  {m:"ses", code:"SES", n:"M", t:"Méthodologie du bac", id:"1ZHfZX08gPUt5wqTUusuA_cFGK2g9ianHoil5YXXTol0", w:54, h:228},
+  {m:"ses", code:"SES", n:"P", t:"Programme de l'année", id:"1MVa1B9teMl7gJzxuga_O5yekOX0K3CXOwMaZCougksk", w:40, h:214},
+  {m:"hggsp", code:"HGGSP", n:"01", t:"Environnement, entre exploitation et protection", id:"1gaMWlg_ByvTsu1ezgl7tdmidHAG8y3Sr3fO99lOp1bo", w:84, h:270, q:"hggsp1"},
+  {m:"hggsp", code:"HGGSP", n:"M", t:"Méthodologie du bac", id:"17y4Sf192M_g_H34-NaoX4DzNySR0dOh8GkDV60YVVEQ", w:52, h:228},
+  {m:"hggsp", code:"HGGSP", n:"P", t:"Programme de l'année", id:"1dviXGbJuJtNbArI_yOa1s4zggFRiITI4HhdS7b2bED8", w:38, h:214},
+  {m:"hg", code:"HG", n:"01", t:"Les espaces maritimes, une approche géostratégique", id:"1YgKTKee96cDN6otOcB5dAcaOCzGaBSn0alpW7k7Fgiw", w:62, h:256, q:"hg1"},
+  {m:"hg", code:"HG", n:"02", t:"Lexique des espaces maritimes", id:"1bOQI3JPize5KYSAWIDMzBBuk94bZYfBqLRYvux5tLag", w:48, h:244, q:"hg2"},
+  {m:"hg", code:"HG", n:"M", t:"Méthodologie et conseils", id:"1Y5jGBMmL7jT_ECYiYm77NucVQad0dN2VJ6UyfGT2LF4", w:52, h:228},
+  {m:"philo", code:"PHILO", n:"01", t:"Le bonheur et les plaisirs", id:"1Wys6xgOrZ3Qk49M1fBD8JF9jgA0q5nBb7ISEcNiu7Qc", w:50, h:250, q:"philo1"},
+  {m:"philo", code:"PHILO", n:"02", t:"Le Bonheur", id:"1cPf56X_YPIpZGN4wnc4YAQ6rL0CGWqfJkSOx_FqLJuI", w:44, h:222, q:"philo2"},
+  {m:"philo", code:"PHILO", n:"03", t:"La Raison", id:"1A_8Gy3FUPazYxZkOHsXTPC5k-IDpkD5xYEdOkLbG16A", w:42, h:220, q:"philo3"},
+  {m:"philo", code:"PHILO", n:"M", t:"Méthodologie du bac", id:"1AdTAq1m8dQe_GMl-xb1TctrCT3pyeX6baYi7Im132Jc", w:62, h:236}
+];
+
+const COURS = [
+  ["2026-09-21","hggsp","La forêt française, du legs de Colbert aux défis climatiques (étude de cas Fontainebleau)","1sX1nfujRMEy7F1IbTNuAprAsj9x67rktCph7FUmY0J0"],
+  ["2026-09-21","ses","Les outils de mesure des inégalités de revenu et de patrimoine","1sT8QZcA8WSwMcyJs_7OVl2koy_SUSJoRCwY64gwu4hU"],
+  ["2026-09-18","ses","Les facteurs de hiérarchisation de la structure sociale (PCS et revenu)","11zRoy3Q2it3q_-fQIoARnMGIP54ABySZWIIySli1d5U"],
+  ["2026-09-18","hg","Étude de cas, la façade maritime chinoise (suite)","1_b7jQVCZNXX8C_ReK0yzUqfxv_pCPUVyN55qQfwTp7U"],
+  ["2026-09-17","hggsp","Jalon 1, la forêt française depuis Colbert","1Skklv4yrlouAwIRGeas9fenNXbev9Hs33G6SDiA1YtU"],
+  ["2026-09-16","hg","Étude de cas, les ports chinois et la mondialisation","11ebTrX5EKlyCQwPPNWMZJpeHCfECAzVex7cIsHz0YTo"],
+  ["2026-09-16","hggsp","Axe 1, exploiter, préserver, protéger : les enjeux","1mflToGvq4yHybsyX7PXg4gKRwktZAImmQ1sS5zUOW9g"],
+  ["2026-09-15","hg","Les espaces maritimes, une approche géostratégique","1Vh98Ma41dtBXlzmeTN3HljnxNjFUFRxCqHBtBEKcsA8"],
+  ["2026-09-14","hggsp","La construction sociale des problèmes environnementaux","1T6lfFRbc8JJTO0cdOz95kpK3P_-uOeO9DMW1NAGFZSM"],
+  ["2026-09-14","ses","Synthèse sur la pertinence de l'analyse en classes sociales","16RpY0fv8Ty4lv5NnO1-gpJ_JsZpN8VeWJymDh4XfOms"],
+  ["2026-09-11","ses","La moyennisation de la société française (Trente Glorieuses)","1FmbQtZ2N88jfaXe1XqZ65FgIJYSn-cpe58oG9EXfdIk"],
+  ["2026-09-10","philo","Une vie heureuse est-elle une vie de plaisirs ?","19wdqdH2gD7QlGCqS14u-4irX3Y6xZqeXpqb7IBpw3VY"],
+  ["2026-09-10","ses","Marx et Weber, méthodologie de l'épreuve composée","1K2W-HKPMiGV5zmvTVJ5m0VUVVXliDoqkGVlKt1c5JIM"],
+  ["2026-09-10","hggsp","Greta Thunberg et la politisation de l'environnement","1sP1BbAg5CXk1Rzf9s-iaKmytjp0bqNz-uOQsLlntgvc"],
+  ["2026-09-09","hggsp","Environnement, entre exploitation et protection (Thème 5)","1LBV7t1_gaUZ-DBAQwc-9G7-DzjiiSoOoXluQKjvH6kQ"],
+  ["2026-09-08","philo","La nature a-t-elle besoin de nous ?","1ZRRQS-dFgUi8HnBcybomyRjmgybN79CXWfN75Fc8n-g"],
+  ["2026-09-07","ses","Rentrée","1Gz4R7IkTNMI1FdXRAofgY7D912LcUx5nVebXcvPzLLY"],
+  ["2026-09-07","hggsp","Rentrée","1BsRUzkC8_WBUl5V0voENyJddBYnK0AmTb-4zjLVJkkA"]
+];
+
+/* Banque de QCM : [question, [choix], index de la bonne réponse, ce que dit la fiche] */
+const QCM = {
+  ses1:[
+    ["Selon Marx, qu'est-ce qui définit d'abord une classe sociale ?",["Le prestige social de ses membres","La position dans le mode de production : posséder ou non les moyens de production","Le niveau de diplôme","Le style de vie"],1,"Chez Marx, la classe se définit par sa position dans le mode de production et par une conscience de classe commune."],
+    ["Une classe « pour soi » est une classe qui…",["partage des conditions matérielles sans en avoir conscience","a pris conscience de ses intérêts communs et s'organise (syndicats, partis)","est construite par le sociologue à des fins statistiques","regroupe des individus de même prestige"],1,"La classe en soi partage des conditions matérielles ; elle devient classe pour soi en prenant conscience de ses intérêts et en s'organisant."],
+    ["Chez Weber, un professeur d'université peut avoir un grand prestige sans grande richesse. Cela illustre…",["la lutte des classes","l'indépendance de l'ordre social par rapport à l'ordre économique","la moyennisation","la distance interclasses"],1,"Weber distingue trois ordres indépendants : économique (classes), social (statuts), politique (partis)."],
+    ["L'analyse de Weber est dite…",["réaliste et unidimensionnelle","nominaliste et multidimensionnelle","réaliste et multidimensionnelle","nominaliste et unidimensionnelle"],1,"Marx : réaliste et unidimensionnel. Weber : nominaliste et multidimensionnel."],
+    ["Une hausse de la distance intra-classe…",["renforce la pertinence de l'analyse en classes sociales","affaiblit cette pertinence en fragilisant l'homogénéité des classes","n'a aucun effet sur le débat","est un synonyme de moyennisation"],1,"Une hausse de la distance interclasses renforce la pertinence des classes ; une hausse de la distance intra-classe l'affaiblit."],
+    ["Quelle image Henri Mendras associe-t-il à la société moyennisée ?",["Une pyramide","Une toupie","Un sablier","Une échelle"],1,"Mendras : théorie de la moyennisation, image de la société en toupie plutôt qu'en pyramide."],
+    ["Selon Bourdieu, la position sociale d'un individu dépend de sa dotation en…",["capital économique seulement","capitaux économique, culturel et social","prestige et pouvoir politique","revenus de transfert"],1,"Bourdieu : capitaux économique, culturel et social, dont la dotation globale détermine la position sociale."],
+    ["Pour Monique et Michel Pinçon-Charlot, la bourgeoisie française…",["a disparu avec la moyennisation","reste une classe en soi et pour soi, avec des stratégies de reproduction","n'est qu'une catégorie statistique","s'est fondue dans les classes moyennes"],1,"Rallyes réservés, endogamie sociale, concentration dans l'ouest parisien : la bourgeoisie reste une classe en soi et pour soi."]
+  ],
+  ses2:[
+    ["Les PCS ont été créées par l'Insee en…",["1945","1954","1968","1982"],1,"PCS créées en 1954 par l'Insee, refondues en 1982, révisées en 2003, 2017 et 2020."],
+    ["Au niveau agrégé, la nomenclature des PCS compte…",["six catégories, toutes actives","huit catégories : six actives et deux inactives","dix catégories","cinq catégories"],1,"Huit catégories au niveau agrégé : six actives et deux inactives (retraités, autres sans activité professionnelle)."],
+    ["Qu'est-ce qui distingue le revenu du patrimoine ?",["Le revenu est un stock, le patrimoine un flux","Le revenu est un flux perçu sur une période, le patrimoine un stock détenu à un instant donné","Ce sont deux flux","Le patrimoine ne comprend que l'immobilier"],1,"Revenu : un flux. Patrimoine : un stock d'actifs détenus à un instant donné."],
+    ["Un loyer, un dividende ou un intérêt sont des revenus…",["du travail","du capital","mixtes","de transfert"],1,"Trois revenus primaires : du travail (salaire), du capital (loyer, dividende, intérêt) et mixte (indépendant)."],
+    ["Avec D1 = 1 000 € et D9 = 4 000 €, le rapport interdécile vaut…",["3 000 €","4","3","5 000 €"],1,"Rapport interdécile D9/D1 = 4 000 / 1 000 = 4. L'écart D9 − D1 = 3 000 € est une autre mesure."],
+    ["L'écart interdécile (D9 − D1) est une mesure…",["relative, sous forme de coefficient","absolue, en euros","de la médiane","du patrimoine uniquement"],1,"Écart interdécile : mesure absolue en euros. Rapport interdécile : mesure relative, un coefficient."],
+    ["Plus la courbe de Lorenz s'éloigne de la droite d'équirépartition…",["plus les inégalités sont faibles","plus les inégalités sont fortes","plus le revenu moyen est élevé","plus la médiane augmente"],1,"La droite d'équirépartition représente l'égalité parfaite : plus la courbe s'en éloigne, plus la concentration est forte."],
+    ["Pourquoi les inégalités de patrimoine sont-elles plus fortes que celles de revenu ?",["Le patrimoine n'est pas imposé","Les hauts revenus peuvent épargner et accumuler du patrimoine","Le patrimoine ne se transmet pas","Les revenus de transfert sont élevés"],1,"Les hauts revenus peuvent épargner, donc accumuler du patrimoine."],
+    ["La hausse de la part des emplois dans les services s'appelle…",["la salarisation","la tertiarisation","la féminisation de l'emploi","la massification scolaire"],1,"Salarisation, tertiarisation, féminisation, massification scolaire : quatre évolutions distinctes depuis 1950."]
+  ],
+  ses3:[
+    ["Dans le corrigé de l'EC1.1, « employé administratif contre employé de commerce » illustre…",["la distance intra-classe","la distance interclasses","la moyennisation","l'individualisation"],0,"Distance intra-classe : écart de conditions au sein d'une même classe (employé administratif contre employé de commerce ; ouvrier stable contre intérimaire)."],
+    ["Selon le corrigé, la moyennisation s'est produite pendant…",["les Trente Glorieuses","l'entre-deux-guerres","la crise de 2008","la révolution industrielle"],0,"Moyennisation (Mendras) : constitution d'une vaste classe moyenne pendant les Trente Glorieuses."],
+    ["Lequel de ces facteurs N'est PAS un moteur de la moyennisation d'après le corrigé ?",["La baisse des inégalités de revenu","La consommation de masse","La démocratisation scolaire","La hausse de la part des ouvriers"],3,"Le corrigé cite au contraire le déclin des ouvriers au profit des employés."],
+    ["L'individualisation dissout la conscience de classe notamment via…",["la gestion individualisée du travail et le numérique","la syndicalisation","la hausse des salaires ouvriers","la baisse de la distance intra-classe"],0,"Mérite, évaluation personnalisée, travail en ligne, évaluation par les clients : détachement des appartenances collectives."],
+    ["Dans les catégories supérieures, les femmes se heurtent…",["au plafond de verre, malgré de meilleurs résultats scolaires en moyenne","au cumul de la précarité et du temps partiel","à l'absence d'accès au diplôme","à la moyennisation"],0,"Catégories populaires : cumul des désavantages. Catégories supérieures : plafond de verre."],
+    ["Hausse de la distance intra-classe et baisse de la distance interclasses sont…",["deux mouvements distincts, de sens contraire, qui jouent tous deux contre la pertinence des classes","un seul et même phénomène","deux arguments en faveur de la pertinence des classes","sans lien avec le débat sur les classes"],0,"Deux mouvements distincts et de sens contraire : ne pas les confondre."],
+    ["Pour comparer Marx et Weber, le corrigé propose quatre critères :",["dimension, sphère d'analyse, nature du groupe, type de rapport","revenu, patrimoine, diplôme, PCS","classe, statut, parti, nation","capital économique, culturel, social, symbolique"],0,"Comparer Marx et Weber sur quatre points : dimension, sphère d'analyse, nature du groupe, type de rapport."],
+    ["Chez Marx, les classes sociales…",["existent objectivement (approche réaliste)","sont des catégories construites par le sociologue","n'impliquent jamais de conflit","se définissent par le prestige"],0,"Approche réaliste : les classes existent objectivement et se définissent par le seul critère économique."]
+  ],
+  hggsp1:[
+    ["« Naming, blaming, claiming » désigne…",["les trois étapes de la construction d'un problème public : nommer, accuser, revendiquer","trois formes de pollution","les trois piliers du développement durable","trois textes de l'ONU"],0,"Nommer (rendre visible), accuser (désigner des responsables), revendiquer (réclamer des solutions)."],
+    ["Préserver la nature, c'est…",["la protéger pour elle-même (sanctuarisation)","la protéger tout en continuant de l'utiliser","prélever une ressource pour produire des richesses","la transformer par l'action humaine"],0,"Exploiter : prélever. Conserver : protéger en utilisant. Préserver : protéger la nature pour elle-même."],
+    ["L'agriculture biologique est donnée comme exemple de quelle logique ?",["Conserver","Préserver","Exploiter","Anthropiser"],0,"Conserver, c'est protéger en continuant d'utiliser, par une gestion raisonnée (exemple : l'agriculture biologique)."],
+    ["En mars 2024, l'Anthropocène…",["a été rejeté comme époque géologique officielle, sans que l'impact humain soit nié","a été officiellement reconnu comme époque géologique","a été remplacé par la Grande accélération","a été défini par le rapport Meadows"],0,"L'instance internationale de stratigraphie a voté contre sa reconnaissance officielle ; son statut fait encore débat."],
+    ["L'Ordonnance des eaux et forêts de Colbert date de…",["1669","1789","1827","1945"],0,"1669 : Ordonnance des eaux et forêts, protection de la ressource et bois de marine pour la flotte royale."],
+    ["Le rapport Meadows du Club de Rome (Halte à la croissance ?) paraît en…",["1972","1930","1992","2002"],0,"1972 : rapport Meadows, conception systémique, croissance menaçante si le rythme se poursuit."],
+    ["Une forêt domaniale…",["appartient à l'État et est gérée par l'ONF","appartient à des particuliers","appartient à une commune","est une forêt en monoculture"],0,"Forêt domaniale : l'État, gérée par l'Office national des forêts. Forêt privée : des particuliers."],
+    ["La forêt de Fontainebleau (32 000 ha, plus de 3 millions de visiteurs par an) illustre surtout…",["la multifonctionnalité et les conflits d'usage","la déforestation","la crise frumentaire","le pastoralisme"],0,"Fonctions écologique, paysagère, récréative et patrimoniale : une multifonctionnalité source de conflits d'usage."]
+  ],
+  hg1:[
+    ["La maritimisation désigne…",["la hausse du rôle des mers et océans dans l'économie mondiale","une étendue marine","une embouchure fluviale ennoyée","un ensemble hiérarchisé de ports"],0,"Maritimisation : un processus. Espace maritime : un lieu."],
+    ["Un armateur est…",["une personne ou une entreprise qui possède, arme et exploite commercialement des navires","un port en eau profonde","un marin militaire","un transitaire"],0,"Armateur : possède, arme et exploite commercialement des navires marchands."],
+    ["Qu'est-ce qui fait d'un espace maritime un espace stratégique ?",["Une position remarquable, une forte connectivité, des flux, des fonctions de commandement et des acteurs concentrés","Sa seule superficie","La présence de ressources halieutiques","Son climat"],0,"Un espace maritime n'est stratégique que s'il réunit ces critères."],
+    ["Dans la rangée portuaire chinoise, le trafic est dominé par…",["Shanghai et le delta du Yangzi","le golfe de Bohai","le littoral du Sud-Ouest","la rivière des Perles seule"],0,"Cinq ensembles portuaires, trafic dominé par Shanghai et le delta du Yangzi."],
+    ["La Chine a adhéré à l'Organisation mondiale du commerce en…",["2001","1978","1984","2008"],0,"11 décembre 2001 : étape majeure de l'intégration chinoise à la mondialisation."],
+    ["Un estuaire est…",["une embouchure fluviale ennoyée, stade intermédiaire entre ria et delta","une embouchure où les sédiments progressent sur la mer","une vallée ennoyée sans comblement","un port artificiel"],0,"Estuaire : entre ria (sans le même comblement) et delta (sédiments qui progressent sur la mer)."],
+    ["Laquelle de ces notions désigne un processus ?",["La maritimisation","L'espace maritime","L'estuaire","La rangée portuaire"],0,"Ne pas confondre la maritimisation (un processus) et l'espace maritime (un lieu)."],
+    ["Une rangée portuaire est…",["un ensemble hiérarchisé de ports qui se répartissent le trafic d'une façade maritime","une file de navires en attente","un seul très grand port","une zone économique exclusive"],0,"Exemple chinois : cinq ensembles, du golfe de Bohai au littoral du Sud-Ouest."]
+  ],
+  hg2:[
+    ["Un espace étroit qui relie deux zones stratégiques et concentre des flux intenses s'appelle…",["un corridor","un canal","un delta","une ZEE"],0,"Corridor : espace étroit, terrestre ou maritime, qui relie deux zones stratégiques et concentre des flux (transports, réseaux, marchandises)."],
+    ["Jusqu'où s'étend la zone économique exclusive (ZEE) ?",["200 milles marins, environ 370 km","12 milles marins","50 km","1 000 milles marins"],0,"La ZEE s'étend jusqu'à 200 milles marins des côtes ; les eaux territoriales, elles, s'arrêtent à 12 milles."],
+    ["Dans sa ZEE, l'État côtier…",["est seul à pouvoir exploiter les ressources","exerce la même souveraineté que dans ses eaux territoriales","ne peut rien exploiter","partage les ressources avec ses voisins"],0,"ZEE : droits exclusifs sur les ressources, définis par la convention de Montego Bay (1982)."],
+    ["La littoralisation désigne…",["la concentration des populations, des villes et des activités sur les côtes","la hausse du rôle des mers dans l'économie mondiale","l'érosion des côtes","la construction de ports artificiels"],0,"Ne pas confondre littoralisation (les hommes se concentrent sur les côtes) et maritimisation (le rôle des mers augmente)."],
+    ["L'héliotropisme est…",["l'attraction des régions ensoleillées sur les populations, les retraités et les entreprises","la migration vers les grandes villes","la recherche de ressources marines","le déplacement des ports vers l'aval"],0,"Héliotropisme : attraction des régions ensoleillées sur l'installation des populations et des entreprises."],
+    ["Les dorsales océaniques sont…",["des chaînes de montagnes sous-marines formées par l'écartement des plaques","des routes maritimes","des fosses creusées par l'érosion","des récifs coralliens"],0,"Dorsales : chaînes sous-marines nées de l'écartement des plaques tectoniques."],
+    ["Pourquoi les nodules polymétalliques sont-ils convoités ?",["Ils sont riches en métaux (manganèse, nickel, cobalt, cuivre)","Ils contiennent du pétrole","Ils servent de ports naturels","Ils protègent les côtes"],0,"Roches posées sur les fonds océaniques, riches en métaux convoités."],
+    ["Laquelle de ces affirmations est juste ?",["Tout delta est une embouchure","Toute embouchure est un delta","Un estuaire est un delta","Un canal est une embouchure naturelle"],0,"Tout delta est une embouchure, mais un estuaire en est une autre forme."],
+    ["Une route maritime circumterrestre…",["fait le tour complet de la Terre","relie deux ports d'un même pays","longe une seule côte","traverse uniquement l'océan Atlantique"],0,"Circumterrestre : route qui fait le tour de la Terre en reliant les grands bassins de circulation mondiale."]
+  ],
+  philo1:[
+    ["L'hédonisme fonde le bonheur sur…",["le calcul rationnel des plaisirs et de leurs conséquences","le renoncement à tout plaisir","le devoir moral","la contemplation"],0,"Agir bien revient à maximiser le plaisir et minimiser la souffrance."],
+    ["L'ataraxie désigne…",["l'absence de trouble de l'âme","l'excès de plaisir","le calcul des plaisirs","le bonheur collectif"],0,"État recherché par les épicuriens."],
+    ["L'épicurisme antique recommande…",["des plaisirs simples et la modération des désirs","d'abuser de tout ce qui est bon","de fuir tout plaisir","de maximiser les plaisirs superflus"],0,"Épicure vise l'ataraxie en évitant les désirs superflus."],
+    ["Le carpe diem populaire est…",["une déformation de la pensée d'Épicure","sa continuation fidèle","une objection à l'hédonisme","une forme d'ataraxie"],0,"Le carpe diem, philosophie de l'excès, n'est pas la continuation fidèle de la pensée d'Épicure."],
+    ["L'objection de l'intellectualisation reproche à l'hédonisme…",["de réduire le bonheur, une expérience vécue, à un calcul","de rendre la morale égoïste","d'ignorer la subjectivité du plaisir","d'oublier les autres"],0,"Intellectualisation : le bonheur réduit à un simple calcul rationnel."],
+    ["L'exemple de Dexter illustre quelle objection ?",["La subjectivité du plaisir","L'intellectualisation","La réduction de la morale au calcul d'intérêt","L'ataraxie"],0,"Ce qui procure du plaisir varie d'un individu à l'autre : le plaisir seul ne distingue pas le bien du mal."],
+    ["Agir bien parce que cela procure du plaisir rendrait la morale…",["égoïste plutôt que désintéressée","universelle","impossible à calculer","collective"],0,"Objection : réduction de la morale à un calcul d'intérêt."],
+    ["Quelle question ouverte clôt le cours ?",["Peut-on être heureux quand les autres ne le sont pas ?","La nature a-t-elle besoin de nous ?","Le plaisir est-il un calcul ?","Faut-il fuir les désirs ?"],0,"Elle ouvre sur la dimension collective du bonheur."]
+  ],
+  philo2:[
+    ["Pour Démocrite, l'heureuse disposition de l'âme naît de…",["la quantité de plaisir possédée","la modération du plaisir, non de sa quantité","le renoncement total au plaisir","la richesse matérielle"],1,"L'euthymie naît de la modération du plaisir, non de sa quantité."],
+    ["La comparaison descendante proposée par Démocrite consiste à…",["se comparer aux plus riches","se comparer aux plus malheureux","comparer son plaisir à sa douleur","comparer sa vie passée à sa vie présente"],1,"Elle consiste à se comparer aux plus malheureux plutôt qu'aux plus riches, pour se satisfaire de ce qu'on a."],
+    ["Chez Platon, la loi vise…",["le bonheur exceptionnel des gardiens","le bonheur de la cité tout entière","le bonheur de chaque individu séparément","l'abolition de toute contrainte"],1,"La loi ne vise pas le bonheur exceptionnel d'une classe, mais celui de la cité tout entière."],
+    ["Le repère mobilisé par le texte de Platon est…",["absolu / relatif","obligation / contrainte","idéal / réel","exemple / preuve"],1,"Repère mobilisé : obligation / contrainte, la loi unit les citoyens par la persuasion ou la contrainte."],
+    ["Pour Descartes, le vrai office de la raison est…",["de supprimer toute passion","d'examiner la juste valeur des biens","d'ignorer la fortune","de garantir la réussite de tous nos desseins"],1,"Le vrai office de la raison est d'examiner la juste valeur des biens pour orienter nos efforts vers les plus désirables."],
+    ["Le texte de Descartes est un texte-charnière parce qu'il est classé…",["à la fois sous Bonheur et sous Raison","seulement sous Raison","seulement sous Bonheur","sous aucune des deux notions"],0,"Texte-charnière avec la Raison : classé à la fois sous Bonheur et sous Raison."],
+    ["Pour Pascal, le désir de bonheur est…",["rare et réservé à quelques-uns","universel, partagé par tous les hommes sans exception","propre aux seuls croyants","absent chez les plus pauvres"],1,"Tous les hommes recherchent le bonheur sans exception."],
+    ["Selon Pascal, ce désir universel de bonheur…",["est toujours satisfait par l'expérience","n'est jamais satisfait sans la foi","disparaît avec l'âge","se satisfait par le seul calcul rationnel"],1,"Aucun homme, sans la foi, n'y parvient jamais, malgré l'universalité du désir."],
+    ["Quelle réponse au problème du bonheur fait l'objet d'une fiche séparée ?",["Celle de Démocrite","Celle d'Épicure","Celle de Platon","Celle de Pascal"],1,"La réponse d'Épicure (le calcul hédoniste) fait l'objet de la fiche Philosophie - Le bonheur et les plaisirs."]
+  ],
+  philo3:[
+    ["Pour Maïmonide, la Loi vise deux fins : le bien-être du corps et…",["le bien-être de l'âme","la richesse matérielle","la gloire politique","le plaisir immédiat"],0,"La Loi vise le bien-être du corps, condition nécessaire, puis, seule fin vraiment noble, le bien-être de l'âme."],
+    ["La perfection dernière, chez Maïmonide, consiste à…",["accumuler des richesses","passer de la raison en puissance à la raison en acte","obéir sans réfléchir à la Loi","fuir la vie en société"],1,"Le bien-être de l'âme est le passage de la raison en puissance à la raison en acte."],
+    ["Pour Montaigne, ce que nous prenons pour les lois naturelles de la conscience naît en réalité…",["de la raison pure","de la coutume","de l'expérience scientifique","de la religion"],1,"Ce que nous prenons pour les lois naturelles de la conscience naît en réalité de la coutume."],
+    ["Le repère mobilisé par le texte de Montaigne est…",["absolu / relatif","en acte / en puissance","universel / général / particulier / singulier","objectif / subjectif / intersubjectif"],2,"Repère mobilisé : universel / général / particulier / singulier."],
+    ["Pour Comte, l'esprit humain ne peut pas…",["observer les phénomènes extérieurs","s'observer lui-même en train de penser","utiliser l'observation intersubjective","fonder une science des phénomènes humains"],1,"L'esprit humain ne peut s'observer lui-même en train de penser, l'organe observé et l'organe observateur étant identiques."],
+    ["Comte est un texte-charnière parce qu'il est rapproché…",["de la notion de Bonheur seulement","de la notion de Raison seulement","d'aucune autre notion","de la Raison et du Bonheur à la fois"],3,"Texte-charnière avec le Bonheur, classé sous Raison mais rapproché du Bonheur."],
+    ["Pour Wittgenstein, un fait extraordinaire mais seulement provisoirement inexpliqué par la science est…",["un miracle absolu","un miracle relatif","une preuve de l'existence de Dieu","une erreur de raisonnement"],1,"Le miracle relatif est un fait extraordinaire mais seulement provisoirement inexpliqué."],
+    ["Selon Wittgenstein, la limite de la raison scientifique est…",["une limite de degré, comblée par le progrès","une limite de nature : elle ne rencontre jamais l'absolu","inexistante","propre à chaque science particulière"],1,"Ce n'est pas une limite de degré mais une limite de nature : elle ne rencontre jamais l'absolu."],
+    ["Les quatre obstacles à la raison présentés dans cette fiche sont, dans l'ordre…",["corporel, culturel, logique, catégoriel","culturel, corporel, catégoriel, logique","logique, catégoriel, corporel, culturel","catégoriel, logique, culturel, corporel"],0,"Maïmonide (corporel), Montaigne (culturel), Comte (logique), Wittgenstein (catégoriel)."]
+  ]
+};
+
+
+
+const SUBJ = {
+  ses:{short:"SES", big:"SES", full:"Sciences économiques et sociales", nav:"SES",
+    title:"La structure sociale, <em>sous toutes ses mesures</em>",
+    lead:"De Marx et Weber à la courbe de Lorenz : ce que dit le cours sur les classes sociales, et comment on mesure les inégalités de revenu et de patrimoine.",
+    quote:"Une hausse de la distance intra-classe fragilise l'homogénéité d'une classe.", cite:"Fiche SES 01", plate:"lorenz",
+    cap:["Planche · Courbe de Lorenz", "Exemple du cours : D1 = 1 000 €, D9 = 4 000 €"]},
+  hggsp:{short:"HGGSP", big:"HGGSP", full:"Histoire-géographie, géopolitique et sciences politiques", nav:"HGGSP",
+    title:"L'environnement, <em>entre exploitation et protection</em>",
+    lead:"De l'ordonnance de Colbert en 1669 à la forêt de Fontainebleau : exploiter, conserver, préserver, et les conflits d'usage qui en naissent.",
+    quote:"Perçue comme un espace naturel, la forêt est en réalité consubstantiellement anthropisée.", cite:"Cours du 21 septembre", plate:"foret",
+    cap:["Planche · La forêt depuis Colbert", "Fontainebleau : 32 000 ha, plus de 3 millions de visiteurs par an"]},
+  hg:{short:"Histoire-Géo", big:"Géo", full:"Histoire-Géographie", nav:"Histoire-Géo",
+    title:"Mers et océans, <em>au cœur de la mondialisation</em>",
+    lead:"Espaces stratégiques, maritimisation, armateurs : l'étude de cas des ports chinois et de leur rangée portuaire.",
+    quote:"Un espace maritime n'est stratégique que s'il réunit certains critères.", cite:"Fiche HG 01", plate:"ports",
+    cap:["Planche · La rangée portuaire chinoise", "Cinq ensembles, trafic dominé par Shanghai et le delta du Yangzi"]},
+  philo:{short:"Philosophie", big:"Philo", full:"Philosophie", nav:"Philo",
+    title:"Une vie heureuse est-elle <em>une vie de plaisirs ?</em>",
+    lead:"L'hédonisme et son calcul des plaisirs, Épicure et l'ataraxie, puis trois objections qui fissurent la thèse.",
+    quote:"Peut-on être heureux quand les autres ne le sont pas ?", cite:"Question ouverte du cours", plate:"ataraxie",
+    cap:["Planche · De l'agitation à l'ataraxie", "L'absence de trouble de l'âme, selon les épicuriens"]},
+  es:{short:"Sciences", big:"Sciences", full:"Enseignement scientifique", nav:"Sciences", tile:"ondes"},
+  ang:{short:"Anglais", big:"Anglais", full:"LV1 Anglais", nav:"Anglais", tile:"voix"},
+  droit:{short:"Droit", big:"Droit", full:"Droit et grands enjeux du monde contemporain", nav:"Droit", tile:"balance"}
+};
+const TRONC = ["hg","philo","es","ang"], SPE = ["ses","hggsp","droit"];
+const ORDER = [...TRONC, ...SPE];
+
+/* ---------- utilitaires ---------- */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const el = (tag, attrs = {}, ...kids) => {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === "style") n.style.cssText = v;
+    else if (k === "html") n.innerHTML = v;
+    else if (k.startsWith("on")) n.addEventListener(k.slice(2), v);
+    else if (v !== false && v != null) n.setAttribute(k, v === true ? "" : v);
+  }
+  for (const k of kids.flat()) if (k != null) n.append(k.nodeType ? k : String(k));
+  return n;
+};
+const store = {
+  get(k, d){ try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch { return d; } },
+  set(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch {} }
+};
+const pad = n => String(n).padStart(2, "0");
+const MOIS = ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc."];
+const shuffle = a => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
+const REDUCED = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const G = window.gsap, ST = window.ScrollTrigger;
+if (G && ST) G.registerPlugin(ST);
+const MOTION = !!(G && ST && !REDUCED);
+const svg = html => { const t = document.createElement("template"); t.innerHTML = html.trim(); return t.content.firstChild; };
+const arrow = () => svg('<svg viewBox="0 0 18 18" width="16" height="16" aria-hidden="true"><path d="M4 14L14 4M6 4h8v8" stroke="currentColor" stroke-width="1.6" fill="none"/></svg>');
+const folder = () => svg('<svg class="fold" viewBox="0 0 28 24" aria-hidden="true"><path d="M1 4.5A2.5 2.5 0 0 1 3.5 2h7l3 3h11A2.5 2.5 0 0 1 27 7.5v12a2.5 2.5 0 0 1-2.5 2.5h-21A2.5 2.5 0 0 1 1 19.5z"/></svg>');
+const splitLetters = node => { node.innerHTML = node.textContent.split(" ").map(w => `<span class="wd">${[...w].map(c => `<span class="l">${c}</span>`).join("")}</span>`).join(" "); };
+/* Ajuste la taille des très grands titres pour qu'aucun mot ne soit coupé ni ne dépasse (mesuré avec la vraie police) */
+function wrapWords(node){
+  const tw = document.createTreeWalker(node, NodeFilter.SHOW_TEXT), texts = [];
+  while (tw.nextNode()) texts.push(tw.currentNode);
+  for (const t of texts) {
+    if (t.parentElement.closest(".wd") || !t.textContent.trim()) continue;
+    const frag = document.createDocumentFragment();
+    for (const part of t.textContent.split(/(\s+)/)) { if (!part) continue; frag.append(/^\s+$/.test(part) ? part : el("span", {class:"wd"}, part)); }
+    t.replaceWith(frag);
+  }
+}
+const FIT_SEL = ".mast, .shero h1, .drive-sec h2, .next .wide-t, .big-t";
+function fitType(scope = document){
+  for (const e of $$(FIT_SEL, scope)) {
+    const line = e.matches(".next .wide-t");
+    if (!line && !e.querySelector(".wd")) wrapWords(e);
+    e.style.fontSize = "";
+    const box = line ? e.parentElement : e, cs = getComputedStyle(box);
+    const avail = box.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+    if (!avail) continue;
+    let need;
+    if (line) {
+      const probe = e.cloneNode(true);
+      Object.assign(probe.style, {position:"absolute", visibility:"hidden", whiteSpace:"nowrap", left:"0", top:"0", transform:"none", width:"auto"});
+      box.append(probe); need = probe.offsetWidth; probe.remove();
+    } else need = Math.max(0, ...$$(".wd", e).map(w => w.offsetWidth));
+    if (need > avail) e.style.fontSize = (parseFloat(getComputedStyle(e).fontSize) * avail / need * .97) + "px";
+  }
+}
+let fitW = innerWidth, fitT = 0;
+addEventListener("resize", () => { if (innerWidth === fitW) return; fitW = innerWidth; clearTimeout(fitT); fitT = setTimeout(() => { fitType(); if (ST) ST.refresh(); }, 150); });
+
+/* Couleurs du thème pour les canvas */
+let C = {};
+function readColors(){ const cs = getComputedStyle(document.documentElement); for (const k of ["bg","bg-2","ink","ink-2","line","ses","hggsp","hg","philo","es","ang","droit"]) C[k] = cs.getPropertyValue("--" + k).trim(); }
+readColors();
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", readColors);
+new MutationObserver(readColors).observe(document.documentElement, {attributes:true, attributeFilter:["data-theme"]});
+const hexA = (hex, a) => { const h = (hex || "#000").replace("#", ""); const n = parseInt(h.length === 3 ? h.split("").map(x => x + x).join("") : h, 16); return `rgba(${n >> 16 & 255},${n >> 8 & 255},${n & 255},${a})`; };
+
+/* Canvas animés : chaque vue les enregistre, et les arrête en partant */
+let live = [];
+/* Sur téléphone : moins de pixels et 30 images/s pour les illustrations (mesuré : défilement 30 → ~55 i/s) */
+const LOWP = matchMedia("(pointer: coarse), (max-width: 760px)").matches;
+/* Pendant un défilement au doigt, les illustrations se figent un instant : le défilement reste fluide */
+let scrolling = false, scrollTO = 0;
+if (LOWP) addEventListener("scroll", () => { scrolling = true; clearTimeout(scrollTO); scrollTO = setTimeout(() => { scrolling = false; }, 140); }, {passive:true});
+function canvasLoop(canvas, draw, p0){
+  const ctx = canvas.getContext("2d"); let w = 0, h = 0, vis = false, raf = 0, dead = false, lastT = -1e9, dirty = true; const t0 = performance.now();
+  const state = {p:REDUCED ? 1 : (p0 ?? 0), mx:.5, my:-1, ctx, get w(){ return w; }, get h(){ return h; }};
+  const size = () => { const r = canvas.getBoundingClientRect(); const d = Math.min(devicePixelRatio || 1, LOWP ? 1.25 : 2); w = r.width; h = r.height; canvas.width = Math.max(1, Math.round(w * d)); canvas.height = Math.max(1, Math.round(h * d)); ctx.setTransform(d, 0, 0, d, 0, 0); dirty = true; };
+  const ro = new ResizeObserver(() => { if (dead) return; size(); if (!raf && vis) { dirty = false; draw(state, (performance.now() - t0) / 1000); } }); ro.observe(canvas);
+  const frame = now => { if (dead) return; if (dirty || !LOWP || (!scrolling && now - lastT >= 31)) { dirty = false; lastT = now; draw(state, (now - t0) / 1000); } raf = vis && !REDUCED ? requestAnimationFrame(frame) : 0; };
+  const io = new IntersectionObserver(es => { vis = es[0].isIntersecting; if (vis && !raf && !dead) raf = requestAnimationFrame(frame); }, {rootMargin:"80px"}); io.observe(canvas);
+  size(); /* premier dessin seulement quand l'illustration devient visible */
+  state.dispose = () => { dead = true; ro.disconnect(); io.disconnect(); cancelAnimationFrame(raf); };
+  live.push(state);
+  return state;
+}
+
+const PLATES = {
+  lorenz(s, t){
+    const {ctx, w, h} = s; ctx.clearRect(0, 0, w, h);
+    const m = Math.min(w, h) * .14, x0 = (w - Math.min(w - 2 * m, h - 2 * m)) / 2, sz = Math.min(w - 2 * m, h - 2 * m), y0 = (h - sz) / 2 - 10;
+    const X = u => x0 + u * sz, Y = v => y0 + sz - v * sz;
+    ctx.strokeStyle = C.line; ctx.lineWidth = 1;
+    for (let i = 0; i <= 10; i++) { ctx.beginPath(); ctx.moveTo(X(i / 10), Y(0)); ctx.lineTo(X(i / 10), Y(1)); ctx.moveTo(X(0), Y(i / 10)); ctx.lineTo(X(1), Y(i / 10)); ctx.stroke(); }
+    ctx.strokeStyle = C.ink; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(X(0), Y(0)); ctx.lineTo(X(1), Y(1)); ctx.stroke();
+    const k = 1.6 + 1.6 * s.p + Math.sin(t * .6) * .08, L = u => Math.pow(u, k);
+    ctx.beginPath(); ctx.moveTo(X(0), Y(0));
+    for (let i = 0; i <= 100; i++) { const u = i / 100; ctx.lineTo(X(u), Y(L(u))); }
+    for (let i = 100; i >= 0; i--) { const u = i / 100; ctx.lineTo(X(u), Y(u)); }
+    ctx.fillStyle = hexA(C.ses, .16); ctx.fill();
+    ctx.beginPath(); for (let i = 0; i <= 100; i++) { const u = i / 100; i ? ctx.lineTo(X(u), Y(L(u))) : ctx.moveTo(X(u), Y(L(u))); }
+    ctx.strokeStyle = C.ses; ctx.lineWidth = 2.4; ctx.stroke();
+    for (let i = 1; i <= 9; i++) { const u = i / 10, v = L(u); ctx.beginPath(); ctx.arc(X(u), Y(v), 3.5 + (i === 1 || i === 9 ? 2 : 0), 0, 7); ctx.fillStyle = C.ses; ctx.fill(); }
+    const g = 1 - 2 / (k + 1);
+    ctx.fillStyle = C.ink; ctx.font = `500 ${Math.max(11, sz * .03)}px ${getComputedStyle(document.body).getPropertyValue("--mono") || "monospace"}`;
+    ctx.fillText("D1", X(.1) - 8, Y(L(.1)) - 12); ctx.fillText("D9", X(.9) - 8, Y(L(.9)) - 12);
+    ctx.fillStyle = C["ink-2"]; ctx.fillText("% cumulé de la population →", X(0), Y(0) + 24);
+    ctx.save(); ctx.translate(X(0) - 14, Y(0)); ctx.rotate(-Math.PI / 2); ctx.fillText("% cumulé du revenu →", 0, 0); ctx.restore();
+    ctx.fillStyle = C.ink; ctx.font = `300 ${sz * .16}px Archivo, sans-serif`;
+    ctx.fillText("0," + String(Math.round(g * 100)).padStart(2, "0"), X(.04), Y(.82));
+    ctx.font = `500 ${Math.max(11, sz * .026)}px ${"IBM Plex Mono, monospace"}`; ctx.fillStyle = C["ink-2"];
+    ctx.fillText("INDICE DE GINI (ILLUSTRATIF)", X(.045), Y(.82) + 22);
+  },
+  foret(s, t){
+    const {ctx, w, h} = s; ctx.clearRect(0, 0, w, h);
+    const ground = h * .78, n = Math.floor(w / 22);
+    ctx.strokeStyle = C.line; ctx.lineWidth = 1;
+    for (let i = 0; i < 6; i++) { ctx.beginPath(); ctx.moveTo(0, ground + i * 9); ctx.lineTo(w, ground + i * 9); ctx.stroke(); }
+    for (let i = 0; i < n; i++) {
+      const seed = Math.sin(i * 91.3) * 43758.5 % 1, r = Math.abs(seed);
+      const x = (i + .5) * (w / n) + (r - .5) * 10;
+      const grow = Math.max(0, Math.min(1, s.p * 1.6 - r * .6));
+      const th = (h * .22 + r * h * .34) * (.15 + .85 * grow);
+      const sway = Math.sin(t * .8 + i) * 2.2 * grow;
+      ctx.strokeStyle = hexA(C.ink, .55); ctx.lineWidth = 1 + r * 1.2;
+      ctx.beginPath(); ctx.moveTo(x, ground); ctx.lineTo(x + sway, ground - th); ctx.stroke();
+      const cr = (8 + r * 22) * (.2 + .8 * grow);
+      ctx.beginPath(); ctx.ellipse(x + sway, ground - th, cr * .7, cr, 0, 0, 7);
+      ctx.fillStyle = hexA(C.hggsp, .18 + r * .45); ctx.fill();
+    }
+    const year = Math.round(1669 + (2026 - 1669) * s.p);
+    ctx.fillStyle = C.ink; ctx.font = `200 ${Math.min(w * .26, h * .3)}px Archivo, sans-serif`;
+    ctx.fillText(String(year), w * .06, h * .3);
+    ctx.font = `500 11px IBM Plex Mono, monospace`; ctx.fillStyle = C["ink-2"];
+    ctx.fillText(year < 1700 ? "1669 · ORDONNANCE DES EAUX ET FORÊTS" : year < 2018 ? "EXPLOITER · CONSERVER · PRÉSERVER" : "2018 · SCOT DE FONTAINEBLEAU", w * .06 + 4, h * .3 + 22);
+  },
+  ports(s, t){
+    const {ctx, w, h} = s; ctx.clearRect(0, 0, w, h);
+    const coast = y => w * .66 + Math.sin(y / h * 6.5) * w * .05 + Math.sin(y / h * 17) * w * .012;
+    ctx.beginPath(); ctx.moveTo(w, 0);
+    for (let y = 0; y <= h; y += 8) ctx.lineTo(coast(y), y);
+    ctx.lineTo(w, h); ctx.closePath(); ctx.fillStyle = hexA(C.ink, .06); ctx.fill();
+    ctx.strokeStyle = C.ink; ctx.lineWidth = 1.2; ctx.beginPath(); for (let y = 0; y <= h; y += 8) y ? ctx.lineTo(coast(y), y) : ctx.moveTo(coast(y), y); ctx.stroke();
+    const P = [["BOHAI", .16, 9], ["YANGZI · SHANGHAI", .4, 22], ["SUD-EST", .58, 8], ["RIVIÈRE DES PERLES", .74, 13], ["SUD-OUEST", .9, 6]];
+    ctx.strokeStyle = hexA(C.hg, .18); ctx.lineWidth = 1;
+    for (let r = 0; r < 12; r++) { ctx.beginPath(); for (let x = 0; x < w * .62; x += 10) { const y = h * (r + .5) / 12 + Math.sin(x * .02 + t * .5 + r) * 4; x ? ctx.lineTo(x, y) : ctx.moveTo(x, y); } ctx.stroke(); }
+    P.forEach(([name, fy, size], j) => {
+      const py = h * fy, px = coast(py) + 4;
+      for (let k = 0; k < 7; k++) {
+        const sy = h * ((k * 37 + j * 13) % 100) / 100, prog = ((t * (.05 + size * .004) + k / 7 + j * .13) % 1);
+        const e = prog * prog * (3 - 2 * prog), cx = -20 + (px - -20) * e, cy = sy + (py - sy) * Math.pow(e, 1.6);
+        const a = s.p > .05 ? Math.min(1, s.p * 2) : .35;
+        ctx.fillStyle = hexA(C.hg, .8 * a); ctx.fillRect(cx - 4, cy - 1.5, 8, 3);
+      }
+      const rr = size * (.5 + .5 * Math.min(1, s.p * 1.5));
+      ctx.beginPath(); ctx.arc(px, py, rr, 0, 7); ctx.fillStyle = hexA(C.hg, j === 1 ? .9 : .55); ctx.fill();
+      ctx.font = `500 ${w < 500 ? 9.5 : 11}px IBM Plex Mono, monospace`; ctx.fillStyle = C.ink;
+      const tw = ctx.measureText(name).width; ctx.fillText(name, Math.min(px + rr + 8, w - tw - 8), py + 4);
+    });
+  },
+  ataraxie(s, t){
+    const {ctx, w, h} = s; ctx.clearRect(0, 0, w, h);
+    const agit = 1 - s.p * .92, cx = w * .5, cy = h * .46;
+    for (let i = 0; i < 26; i++) {
+      const r = 14 + i * Math.min(w, h) * .022 + ((t * 18) % (Math.min(w, h) * .022));
+      ctx.beginPath();
+      for (let a = 0; a <= Math.PI * 2 + .05; a += .05) {
+        const n = Math.sin(a * 5 + t * 1.3 + i * .4) * 9 * agit + Math.sin(a * 11 - t * 2 + i) * 4 * agit;
+        const x = cx + Math.cos(a) * (r + n), y = cy + Math.sin(a) * (r + n) * .42;
+        a ? ctx.lineTo(x, y) : ctx.moveTo(x, y);
+      }
+      ctx.strokeStyle = hexA(i % 5 === 0 ? C.philo : C.ink, i % 5 === 0 ? .8 : .18 + .2 * (1 - i / 26)); ctx.lineWidth = i % 5 === 0 ? 1.6 : 1; ctx.stroke();
+    }
+    ctx.font = `300 italic ${Math.min(w * .09, 64)}px Newsreader, serif`; ctx.fillStyle = C.ink;
+    const word = s.p < .5 ? "agitation" : "ataraxie"; const tw = ctx.measureText(word).width;
+    ctx.fillText(word, (w - tw) / 2, h * .82);
+  },
+  ondes(s, t){
+    const {ctx, w, h} = s; ctx.clearRect(0, 0, w, h);
+    const n = 9, amp = .35 + .65 * s.p;
+    for (let j = 0; j < n; j++) {
+      const y0 = h * (.18 + j * .065), k = (1.2 + j * .55) * Math.PI * 2 / w, A = h * .032 * (1 - j / n * .45) * amp, hot = j === 4;
+      ctx.beginPath();
+      for (let x = 0; x <= w; x += 4) { const y = y0 + Math.sin(x * k + t * (.6 + j * .12)) * A; x ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }
+      ctx.strokeStyle = hexA(hot ? C.es : C.ink, hot ? .95 : .12 + .1 * (j % 3)); ctx.lineWidth = hot ? 2.2 : 1; ctx.stroke();
+      if (hot) { const x = (t * 46) % w, y = y0 + Math.sin(x * k + t * (.6 + j * .12)) * A; ctx.beginPath(); ctx.arc(x, y, 5, 0, 7); ctx.fillStyle = C.es; ctx.fill(); }
+    }
+  },
+  voix(s, t){
+    const {ctx, w, h} = s; ctx.clearRect(0, 0, w, h);
+    const step = 9, n = Math.floor(w / step), cy = h * .46;
+    for (let i = 0; i < n; i++) {
+      const u = (i + .5) / n, env = Math.sin(Math.PI * u);
+      const a = (Math.abs(Math.sin(i * .37 + t * 2.1)) * .6 + Math.abs(Math.sin(i * .11 - t * 1.3)) * .4) * env * (.3 + .7 * s.p);
+      const bh = Math.max(1.5, a * h * .26), hot = i % 6 === 0;
+      ctx.fillStyle = hexA(hot ? C.ang : C.ink, hot ? .85 : .2); ctx.fillRect(i * step + 3, cy - bh, 3, bh * 2);
+    }
+  },
+  balance(s, t){
+    const {ctx, w, h} = s; ctx.clearRect(0, 0, w, h);
+    const cx = w * .5, top = h * .26, L = Math.min(w * .34, h * .36), base = h * .72, ang = Math.sin(t * .7) * .13 * (1 - s.p * .6);
+    ctx.strokeStyle = C.ink; ctx.lineWidth = 1.4;
+    ctx.beginPath(); ctx.moveTo(cx, top); ctx.lineTo(cx, base); ctx.moveTo(cx - L * .32, base); ctx.lineTo(cx + L * .32, base); ctx.stroke();
+    const ex = Math.cos(ang) * L, ey = Math.sin(ang) * L;
+    ctx.beginPath(); ctx.moveTo(cx - ex, top - ey); ctx.lineTo(cx + ex, top + ey); ctx.stroke();
+    ctx.beginPath(); ctx.arc(cx, top, 4, 0, 7); ctx.fillStyle = C.ink; ctx.fill();
+    for (const sg of [-1, 1]) {
+      const px = cx + sg * ex, py = top + sg * ey, ch = h * .2;
+      ctx.strokeStyle = hexA(C.ink, .45); ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(px - L * .2, py + ch); ctx.moveTo(px, py); ctx.lineTo(px + L * .2, py + ch); ctx.stroke();
+      ctx.beginPath(); ctx.ellipse(px, py + ch, L * .23, L * .06, 0, 0, Math.PI); ctx.closePath(); ctx.fillStyle = hexA(C.droit, .3); ctx.fill(); ctx.strokeStyle = C.droit; ctx.lineWidth = 1.4; ctx.stroke();
+    }
+  }
+};
+
+
+function ribbons(s, t){
+  const {ctx, w, h} = s; ctx.clearRect(0, 0, w, h);
+  const cols = [C.ses, C.hggsp, C.hg, C.philo], per = w < 600 ? 7 : 11;
+  for (let b = 0; b < 4; b++) {
+    const baseY = h * (.28 + b * .14) + s.p * h * .08 * (b - 1.5);
+    for (let i = 0; i < per; i++) {
+      ctx.beginPath(); ctx.strokeStyle = hexA(cols[b], .08 + .32 * (i / per)); ctx.lineWidth = 1;
+      const off = i * (w < 600 ? 3 : 4.2);
+      for (let x = -20; x <= w + 20; x += 14) {
+        const u = x / w, dx = u - s.mx, dy = (baseY / h) - s.my;
+        const pull = Math.exp(-(dx * dx * 9 + dy * dy * 14)) * 38;
+        const y = baseY + off + Math.sin(u * 5.2 + t * .35 + b * 1.7 + i * .06) * (22 + b * 6) + Math.sin(u * 13 + t * .6 + b) * 5 - pull * Math.sign(dy || 1);
+        x === -20 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+    }
+  }
+}
+
+/* ---------- Navigation ---------- */
+const links = $("#links");
+for (const k of TRONC) links.append(el("a", {href:"#" + k, "data-r":k, style:`--c:var(--${k})`}, el("span", {class:"dot", style:`--c:var(--${k})`}), SUBJ[k].nav));
+const speBtn = el("button", {type:"button", class:"spe-btn", id:"spe-btn", "aria-expanded":"false", "aria-controls":"spe-menu"},
+  el("span", {class:"dot"}), el("span", {id:"spe-lbl"}, "Spécialités"),
+  svg('<svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true"><path d="M2 4.5l4 4 4-4" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>'));
+links.append(el("span", {class:"nav-sep", "aria-hidden":"true"}), speBtn, el("span", {class:"nav-sep", "aria-hidden":"true"}));
+links.append(el("a", {href:"#lexique", "data-r":"lexique"}, "Lexique"));
+links.append(el("a", {href:"#seance", "data-r":"seance"}, "Séance"));
+links.append(el("a", {href:"#notes", "data-r":"notes"}, "Mes notes"));
+const countsOf = m => ({c:COURS.filter(x => x[1] === m).length, f:VOLUMES.filter(v => v.m === m).length});
+const speMenu = el("div", {class:"spe-menu", id:"spe-menu", role:"region", "aria-label":"Spécialités et option", hidden:true},
+  el("p", {class:"k muted", style:"margin:0"}, "Spécialités & option"),
+  el("div", {class:"spe-list"}, SPE.map(k => { const n = countsOf(k);
+    return el("a", {href:"#" + k, "data-r":k, style:`--c:var(--${k})`}, el("span", {class:"dot"}),
+      el("span", {class:"nm"}, SUBJ[k].full, el("small", {}, (k === "droit" ? "Option" : "Spécialité") + " · " + (n.c || n.f ? n.c + " cours · " + n.f + " fiches" : "dossier prêt"))),
+      el("span", {class:"go"}, "→")); })),
+  el("p", {class:"spe-note"}, "Pour ceux qui les suivent. Les autres spécialités de la classe ne sont pas couvertes par ce Drive."));
+$(".nav").append(speMenu);
+function placeSpe(){ const b = speBtn.getBoundingClientRect(), w = Math.min(380, innerWidth - 32); speMenu.style.width = w + "px"; speMenu.style.left = Math.min(Math.max(16, b.left), innerWidth - 16 - w) + "px"; }
+function openSpe(open){
+  if (open === !speMenu.hidden) return;
+  speMenu.hidden = !open; speBtn.setAttribute("aria-expanded", String(open));
+  if (open) { placeSpe(); if (MOTION) G.fromTo(speMenu, {y:-10, opacity:0}, {y:0, opacity:1, duration:.35, ease:"power3.out"}); if (MOTION) G.from($$(".spe-list a", speMenu), {x:-14, opacity:0, duration:.4, stagger:.05, ease:"power3.out"}); }
+}
+speBtn.addEventListener("click", () => openSpe(speMenu.hidden));
+speMenu.addEventListener("click", e => { if (e.target.closest("a")) openSpe(false); });
+document.addEventListener("click", e => { if (!speMenu.hidden && !speMenu.contains(e.target) && !speBtn.contains(e.target)) openSpe(false); });
+document.addEventListener("keydown", e => { if (e.key === "Escape" && !speMenu.hidden) { openSpe(false); speBtn.focus(); } });
+addEventListener("resize", () => { if (!speMenu.hidden) placeSpe(); });
+links.addEventListener("scroll", () => { if (!speMenu.hidden) placeSpe(); }, {passive:true});
+
+
+/* ---------- Navigation mobile : barre d'onglets + feuille des matières ---------- */
+const ICONS = {
+  accueil:'<path d="M3 10.5L11 4l8 6.5V19a1 1 0 0 1-1 1h-4.5v-5.5h-5V20H4a1 1 0 0 1-1-1z"/>',
+  matieres:'<rect x="3.5" y="4" width="6" height="15" rx=".5"/><rect x="12.5" y="4" width="6" height="15" rx=".5"/><path d="M5.5 8h2M14.5 8h2"/>',
+  lexique:'<circle cx="10" cy="10" r="5.5"/><path d="M14 14l5 5"/>',
+  seance:'<circle cx="11" cy="12.5" r="6.5"/><path d="M11 9v3.8l2.4 1.6M9 3.5h4"/>',
+  notes:'<path d="M4 19V11M9.5 19V6M15 19v-5.5M3 19.5h16"/>'
+};
+const tabIcon = k => svg(`<svg viewBox="0 0 22 22" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[k]}</svg>`);
+const tabbar = $("#tabbar"), sheet = $("#sheet");
+const TABS = [["accueil", "Accueil", "#accueil"], ["matieres", "Matières", null], ["lexique", "Lexique", "#lexique"], ["seance", "Séance", "#seance"], ["notes", "Mes notes", "#notes"]];
+for (const [k, l, href] of TABS) tabbar.append(href
+  ? el("a", {href, class:"tab", "data-t":k}, tabIcon(k), el("span", {}, l))
+  : el("button", {type:"button", class:"tab", "data-t":k, "aria-haspopup":"dialog", "aria-controls":"sheet", onclick:() => openSheet(true)}, tabIcon(k), el("span", {}, l)));
+{
+  const row = k => { const n = countsOf(k); return el("a", {href:"#" + k, "data-r":k, style:`--c:var(--${k})`}, el("span", {class:"dot"}),
+    el("span", {class:"nm"}, SUBJ[k].full, el("small", {}, n.c || n.f ? n.c + " cours · " + n.f + " fiches" : "Dossier prêt")), el("span", {class:"go", "aria-hidden":"true"}, "→")); };
+  $("#sheet-body").append(
+    el("p", {class:"k muted sheet-g"}, "Le tronc commun"), el("div", {class:"spe-list"}, TRONC.map(row)),
+    el("p", {class:"k muted sheet-g"}, "Spécialités & option"), el("div", {class:"spe-list"}, SPE.map(row)),
+    el("p", {class:"spe-note"}, "Pour ceux qui les suivent. Les autres spécialités de la classe ne sont pas couvertes par ce Drive."),
+    el("a", {class:"btn sheet-drive", href:FOLDER(DRIVE_ROOT), target:"_blank", rel:"noopener"}, "Ouvrir le Drive", arrow()));
+}
+let sheetOpener = null;
+function openSheet(open){
+  if (open === !sheet.hidden) return;
+  const panel = $(".sheet", sheet), bg = $(".sheet-bg", sheet);
+  if (open) {
+    sheetOpener = document.activeElement; sheet.hidden = false; document.documentElement.classList.add("sheet-open");
+    if (MOTION) { G.fromTo(panel, {yPercent:100}, {yPercent:0, duration:.5, ease:"expo.out"}); G.fromTo(bg, {opacity:0}, {opacity:1, duration:.3}); }
+    panel.focus({preventScroll:true});
+  } else {
+    const done = () => { sheet.hidden = true; document.documentElement.classList.remove("sheet-open"); };
+    if (MOTION) { G.to(bg, {opacity:0, duration:.25}); G.to(panel, {yPercent:100, duration:.35, ease:"power3.in", onComplete:done}); } else done();
+    if (sheetOpener && sheetOpener.focus) sheetOpener.focus({preventScroll:true});
+  }
+}
+sheet.addEventListener("click", e => { if (e.target.closest("[data-close]")) openSheet(false); else if (e.target.closest("a[href^='#']")) { sheetOpener = null; openSheet(false); } });
+document.addEventListener("keydown", e => {
+  if (sheet.hidden) return;
+  if (e.key === "Escape") openSheet(false);
+  if (e.key === "Tab") { const f = $$("a,button", $(".sheet", sheet)); const first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); } else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); } }
+});
+function markTabs(k){
+  const t = k === "accueil" ? "accueil" : ORDER.includes(k) ? "matieres" : k;
+  $$(".tab", tabbar).forEach(b => b.dataset.t === t ? b.setAttribute("aria-current", "page") : b.removeAttribute("aria-current"));
+  tabbar.style.setProperty("--c", ORDER.includes(k) ? `var(--${k})` : "var(--ink)");
+  $$("#sheet-body a[data-r]").forEach(a => a.dataset.r === k ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"));
+}
+
+/* ---------- QCM déjà faits (enregistrés dans le navigateur) ---------- */
+const QDONE_KEY = "td.qcm.fait.v1";
+const qDone = () => { const d = store.get(QDONE_KEY, {}); return d && typeof d === "object" ? d : {}; };
+const setQDone = (q, v) => { const d = qDone(); if (v) d[q] = v; else delete d[q]; store.set(QDONE_KEY, d); };
+const cleanQDone = d => { const o = {}; if (d && typeof d === "object") for (const [k, v] of Object.entries(d)) if (QCM[k] && v && typeof v.d === "string" && v.s >= 0 && v.n > 0) o[k] = {d:v.d.slice(0, 10), s:+v.s, n:+v.n, ...(v.st === "revoir" ? {st:"revoir"} : {}), ...(v.lvl >= 1 && v.lvl <= 4 ? {lvl:Math.round(v.lvl)} : {}), ...(typeof v.due === "string" ? {due:v.due.slice(0, 10)} : {})}; return o; };
+const QSEUIL = 12, QINTERVALLES = [3, 10, 30, 60];
+const isoDay = dt => dt.getFullYear() + "-" + pad(dt.getMonth() + 1) + "-" + pad(dt.getDate());
+const todayISO = () => isoDay(new Date());
+const addDays = (iso, k) => { const [y, m, d] = iso.split("-").map(Number); return isoDay(new Date(y, m - 1, d + k)); };
+const qDue = e => e.due || addDays(e.d, QINTERVALLES[0]);
+/* null = à faire · revoir = raté · reviser = réussi mais l'échéance est passée · fait = réussi, à jour */
+const qState = (D, q) => { const e = D[q]; if (!e) return null; if (e.st === "revoir") return "revoir"; return qDue(e) <= todayISO() ? "reviser" : "fait"; };
+const fmtDay = iso => { const [y, m, d] = iso.split("-"); return +d + " " + MOIS[+m - 1]; };
+function markFiches(){ const D = qDone(); $$(".fl a[data-q]").forEach(a => { const st = qState(D, a.dataset.q); a.classList.toggle("qdone", st === "fait"); a.classList.toggle("qrevoir", st === "revoir"); a.classList.toggle("qreviser", st === "reviser"); }); }
+
+/* ---------- Composant : interro ---------- */
+function mountQuiz(host, vols){
+  let run = null, quiet = true;
+  const chips = el("div", {class:"chips", role:"group", "aria-label":"Choisir une fiche"});
+  const qcount = el("p", {class:"k muted qcount"});
+  const qb = el("div", {class:"qbox", "aria-live":"polite"});
+  host.querySelector(".qcol").append(chips, qcount); host.append(qb);
+  const renderChips = () => {
+    const D = qDone(); chips.textContent = "";
+    const rank = v => ({revoir:0, reviser:1, fait:3})[qState(D, v.q)] ?? 2;
+    const ICON = {fait:"✓", revoir:"↺", reviser:"↻"}, CLS = {fait:" done", revoir:" revoir", reviser:" reviser"}, SR = {fait:" (déjà fait)", revoir:" (à revoir)", reviser:" (à réviser)"};
+    for (const v of [...vols].sort((a, b) => rank(a) - rank(b))) { const st = qState(D, v.q);
+      chips.append(el("button", {class:"chip" + (CLS[st] || ""), type:"button", "aria-pressed":String(run?.v === v), onclick:() => start(v)},
+        st ? el("span", {class:"tick", "aria-hidden":"true"}, ICON[st]) : el("span", {class:"dot", style:`--c:${MAT[v.m].c}`}),
+        v.code + " " + v.n + " · " + v.t, st ? el("span", {class:"vh"}, SR[st]) : null)); }
+    const c = st => vols.filter(v => qState(D, v.q) === st).length, n = c("fait") + c("reviser"), rv = c("reviser"), r = c("revoir");
+    qcount.textContent = (n === vols.length && !rv ? `Tous les QCM sont à jour (${n} / ${vols.length})` : `${n} / ${vols.length} QCM faits`) + (rv ? ` · ${rv} à réviser` : "") + (r ? ` · ${r} à revoir` : "");
+  };
+  const box = () => { qb.textContent = ""; qb.style.setProperty("--c", MAT[run.v.m].c); return qb; };
+  const head = right => qb.append(el("div", {class:"qhead"}, el("span", {class:"k"}, run.v.code + " " + run.v.n + " · " + run.v.t), el("span", {class:"k muted"}, right)));
+  function start(v){ const qs = shuffle(QCM[v.q]).map(([q, opts, ok, why]) => { const o = shuffle(opts.map((_, i) => i)); return {q, opts:o.map(i => opts[i]), ok:o.indexOf(ok), why}; }); run = {v, qs, i:0, answers:[]}; renderChips(); renderQ(); }
+  function renderQ(){
+    box(); const cur = run.qs[run.i]; head("Question " + (run.i + 1) + " / " + run.qs.length);
+    qb.append(el("div", {class:"qprog"}, el("i", {style:`width:${run.i / run.qs.length * 100}%`})));
+    const qEl = el("p", {class:"q"}, cur.q); qb.append(qEl);
+    const opts = el("div", {class:"opts"});
+    cur.opts.forEach((o, i) => opts.append(el("button", {class:"opt", type:"button", onclick:() => answer(i)}, el("span", {class:"l"}, "abcd"[i] + ")"), el("span", {}, o), el("span", {class:"m", "aria-hidden":"true"}))));
+    qb.append(opts);
+    if (MOTION && !quiet) G.from([qEl, ...opts.children], {y:18, duration:.55, stagger:.05, ease:"power3.out"});
+    if (!quiet) opts.firstChild.focus({preventScroll:true});
+  }
+  function answer(i){
+    const cur = run.qs[run.i]; if (run.answers.length > run.i) return;
+    const good = i === cur.ok; run.answers.push(good);
+    $$(".opt", qb).forEach((b, j) => { b.disabled = true; if (j === cur.ok) { b.classList.add("ok"); $(".m", b).textContent = "✓"; } else if (j === i) { b.classList.add("ko"); $(".m", b).textContent = "✕"; } });
+    $(".qprog i", qb).style.width = ((run.i + 1) / run.qs.length * 100) + "%";
+    const last = run.i === run.qs.length - 1;
+    const expl = el("p", {class:"expl"}, el("b", {}, good ? "Juste" : "Non"), "D'après la fiche : " + cur.why);
+    const next = el("button", {class:"btn", type:"button", onclick:() => { if (last) end(); else { run.i++; renderQ(); } }}, last ? "Voir la note" : "Question suivante", arrow());
+    qb.append(expl, el("div", {class:"row-actions"}, next));
+    if (MOTION) G.from(expl, {y:10, duration:.4, ease:"power2.out"});
+    next.focus({preventScroll:true});
+  }
+  function end(){
+    box(); const good = run.answers.filter(Boolean).length, n = run.qs.length, sur20 = Math.round(good / n * 40) / 2;
+    head(good + " / " + n + " justes");
+    const sc = el("p", {class:"score"}, el("span", {}, "0"), el("small", {}, " / 20")); qb.append(sc);
+    qb.append(el("p", {style:"font-style:italic;font-size:22px;margin:14px 0 0"}, sur20 >= 16 ? "Fiche maîtrisée." : sur20 >= 12 ? "Solide, quelques points à revoir." : sur20 >= 8 ? "À relire avant le prochain cours." : "Reprends la fiche depuis le début."));
+    qb.append(el("div", {class:"pips", "aria-hidden":"true"}, run.answers.map(a => el("i", {class:a ? "y" : "n"}))));
+    const pass = sur20 >= QSEUIL, today = todayISO();
+    if (!pass && qState(qDone(), run.v.q) !== "fait") { setQDone(run.v.q, {d:today, s:good, n, st:"revoir"}); renderChips(); markFiches(); }
+    const doneBox = el("div", {class:"qdone-box"});
+    const renderDone = () => {
+      doneBox.textContent = ""; const all = qDone(), D = all[run.v.q], st = qState(all, run.v.q);
+      if (st === "revoir" && !pass) {
+        doneBox.append(el("p", {class:"qdone-ko"}, el("span", {"aria-hidden":"true"}, "↺ "), "Classé « à revoir »"),
+          el("p", {class:"muted", style:"margin:6px 0 0;max-width:52ch"}, `Il faut au moins ${QSEUIL}/20 pour marquer ce QCM comme fait. Relis la fiche, puis recommence : il restera en haut de la liste d'ici là.`));
+      } else if (st === "fait") {
+        const nextV = vols.find(v => v !== run.v && qState(qDone(), v.q) !== "fait");
+        doneBox.append(el("p", {class:"qdone-ok"}, el("span", {"aria-hidden":"true"}, "✓ "), `Classé comme fait le ${fmtDay(D.d)} (${D.s} / ${D.n})`),
+          el("p", {class:"muted", style:"margin:6px 0 0"}, `Il reviendra « à réviser » le ${fmtDay(qDue(D))}, pour ne pas l'oublier.`),
+          el("div", {class:"row-actions", style:"margin-top:14px"},
+            nextV ? el("button", {class:"btn", type:"button", onclick:() => start(nextV)}, "QCM suivant", arrow()) : null,
+            el("button", {class:"btn ghost", type:"button", onclick:() => { setQDone(run.v.q, null); renderDone(); renderChips(); markFiches(); }}, "Remettre à faire")));
+      } else doneBox.append(el("button", {class:"btn fin", type:"button", onclick:() => {
+          const prev = qDone()[run.v.q], was = qState(qDone(), run.v.q);
+          const lvl = was === "reviser" ? Math.min((prev.lvl || 1) + 1, QINTERVALLES.length) : 1;
+          setQDone(run.v.q, {d:today, s:good, n, lvl, due:addDays(today, QINTERVALLES[lvl - 1])}); renderDone(); renderChips(); markFiches();
+          if (MOTION) G.from(doneBox.firstChild, {y:10, opacity:0, duration:.4, ease:"power3.out"});
+        }}, "J'ai fini", el("span", {"aria-hidden":"true"}, "✓")));
+    };
+    renderDone(); qb.append(doneBox);
+    qb.append(el("div", {class:"row-actions"}, el("button", {class:pass ? "btn ghost" : "btn", type:"button", onclick:() => start(run.v)}, "Recommencer", arrow()), el("a", {class:"btn ghost", href:DOC(run.v.id), target:"_blank", rel:"noopener"}, "Relire la fiche", arrow())));
+    const span = sc.firstChild, fmt = v => String(Math.round(v * 2) / 2).replace(".", ",");
+    if (MOTION) { const o = {v:0}; G.to(o, {v:sur20, duration:1.2, ease:"power3.out", onUpdate:() => span.textContent = fmt(o.v)}); } else span.textContent = fmt(sur20);
+  }
+  { const D = qDone(); start(vols.find(v => qState(D, v.q) === "revoir") || vols.find(v => qState(D, v.q) === "reviser") || vols.find(v => !D[v.q]) || vols[0]); } quiet = false;
+}
+
+/* ---------- Vue : accueil ---------- */
+function viewHome(root){
+  const nCours = COURS.length, nFiches = VOLUMES.length, nQ = Object.values(QCM).reduce((a, q) => a + q.length, 0);
+  const coverCv = el("canvas", {"aria-hidden":"true"});
+  const mast = el("h1", {class:"wide-t mast", "aria-label":"Terminale D"}, el("span", {class:"w", "aria-hidden":"true"}, "Terminale"), " ", el("em", {"aria-hidden":"true"}, "D"));
+  root.append(el("header", {class:"cover g"}, coverCv,
+    el("div", {class:"issue max", style:"width:100%"}, el("span", {class:"k"}, "N° 03 · Septembre 2026"), el("span", {class:"k muted"}, "Lycée Français International Mhamed Driss · Sousse"), el("span", {class:"k muted"}, "Mis à jour le 23.09 (soir)")),
+    el("div", {class:"max", style:"width:100%;align-self:center"}, mast),
+    el("div", {class:"cover-foot max", style:"width:100%"},
+      el("p", {}, "Tous les cours de la classe, relus et rangés dans un Drive, avec des fiches de révision et de quoi s'entraîner, matière par matière."),
+      el("div", {class:"scrollhint"}, el("i"), el("span", {class:"k"}, "Découvrir")))));
+  splitLetters($(".w", mast));
+  const cover = canvasLoop(coverCv, ribbons);
+  const hdr = $(".cover", root);
+  hdr.addEventListener("pointermove", e => { const r = hdr.getBoundingClientRect(); cover.mx = (e.clientX - r.left) / r.width; cover.my = (e.clientY - r.top) / r.height; });
+  hdr.addEventListener("pointerleave", () => { cover.my = -1; });
+
+  /* Manifeste, mot à mot */
+  const man = el("p", {});
+  const words = "Chaque cours tapé en classe est relu deux fois, | corrigé sans rien inventer, | rangé dans le Drive | puis condensé en fiche. | Ce site est la porte d'entrée.".split(" ");
+  for (const w of words) { if (w === "|") continue; man.append(el("span", {class:"w"}, w), " "); }
+  $$(".w", man).forEach(s => { if (["Drive", "fiche.", "d'entrée."].includes(s.textContent)) s.innerHTML = "<em>" + s.textContent + "</em>"; });
+  root.append(el("section", {class:"manifest g max", "aria-label":"Présentation"}, man));
+  if (!MOTION) $$(".w", man).forEach(s => s.style.opacity = 1);
+
+  /* Le Drive */
+  const counts = m => ({c:COURS.filter(x => x[1] === m).length, f:VOLUMES.filter(v => v.m === m).length});
+  const tree = el("div", {class:"tree"}, el("span", {class:"trunk", "aria-hidden":"true"}),
+    el("a", {class:"root", href:FOLDER(DRIVE_ROOT), target:"_blank", rel:"noopener", style:"--c:var(--ink)"}, folder(), "terminale", el("span", {class:"k muted", style:"font-weight:400"}, "Drive partagé ↗")));
+  for (const k of ORDER) {
+    const n = counts(k);
+    tree.append(el("a", {class:"row", href:FOLDER(MAT[k].cours), target:"_blank", rel:"noopener", style:`--c:var(--${k})`},
+      el("span", {class:"br", "aria-hidden":"true"}), folder(),
+      el("span", {class:"nm"}, MAT[k].long),
+      el("span", {class:"ct"}, n.c ? n.c + " cours" + (n.f ? " · " + n.f + " fiches" : "") : "à venir")));
+  }
+  tree.append(el("a", {class:"row sub", href:FOLDER(FICHES_ROOT), target:"_blank", rel:"noopener", style:"--c:var(--ink-2)"}, el("span", {class:"br", "aria-hidden":"true"}), folder(), el("span", {class:"nm"}, "Fiches de révision"), el("span", {class:"ct"}, nFiches + " fiches")));
+  tree.append(el("a", {class:"row sub", href:DOC("1-01XoXc3TBBmgmZkVjlQqwadu1qUHWpLWduGNw02vU0"), target:"_blank", rel:"noopener", style:"--c:var(--ink-2)"}, el("span", {class:"br", "aria-hidden":"true"}), folder(), el("span", {class:"nm"}, "Emploi du temps de la semaine"), el("span", {class:"ct"}, "document")));
+  const stats = el("div", {class:"stats"}, [[nCours, "cours numérisés"], [nFiches, "fiches de révision"], [ORDER.length, "matières"], [nQ, "questions de QCM"]].map(([v, l]) =>
+    el("div", {class:"stat"}, el("b", {"data-n":v}, String(v)), el("span", {class:"k muted"}, l))));
+  const drive = el("section", {class:"drive-sec g max", id:"drive", "aria-labelledby":"h-drive"},
+    el("div", {}, el("p", {class:"k", style:"margin:0 0 18px"}, "Le Drive de la classe"),
+      el("h2", {class:"wide-t", id:"h-drive"}, "Tout est ", el("em", {}, "dans le Drive")),
+      el("p", {class:"lead"}, "Un dossier par matière, un fichier par cours, daté et titré, et un dossier de fiches de révision. Le lien est partagé avec toute la classe."),
+      el("a", {class:"btn xl", href:FOLDER(DRIVE_ROOT), target:"_blank", rel:"noopener"}, "Ouvrir le Drive", arrow()),
+      stats),
+    tree);
+  root.append(drive);
+
+  /* Comment ça marche : trois étapes réelles */
+  const steps = [["En classe", "Les cours sont tapés en direct, pendant l'heure, puis enregistrés le jour même."], ["Le soir", "Chaque cours est relu deux fois, corrigé sans rien ajouter, et rangé dans le Drive avec sa date et son titre."], ["Les fiches", "Les notions, auteurs, dates et pièges sont condensés en fiches, puis transformés en QCM pour s'entraîner."]];
+  root.append(el("section", {class:"steps g max", "aria-labelledby":"h-steps"},
+    el("h2", {class:"serif-t", id:"h-steps", html:"Du cours <em>à la fiche</em>"}),
+    el("div", {class:"steps-grid"}, el("div", {class:"steps-line", "aria-hidden":"true"}, el("i")),
+      steps.map(([t, p], i) => el("div", {class:"step"}, el("div", {class:"n"}, pad(i + 1)), el("h3", {}, t), el("p", {}, p))))));
+
+  /* Les matières */
+  const tile = k => {
+    const cv = el("canvas", {"aria-hidden":"true"}), n = counts(k);
+    const a = el("a", {class:"tile", href:"#" + k, style:`--c:var(--${k})`}, cv,
+      el("div", {class:"head"}, el("span", {class:"k", style:"display:flex;gap:8px;align-items:center"}, el("span", {class:"dot", style:`--c:var(--${k})`}), SUBJ[k].full)),
+      el("div", {class:"foot"}, el("h3", {}, SUBJ[k].big), el("span", {class:"k muted"}, n.c || n.f ? n.f + " fiches · " + n.c + " cours" : "Dossier prêt")));
+    const st = canvasLoop(cv, PLATES[SUBJ[k].plate || SUBJ[k].tile], .65); st.p = .65;
+    return a;
+  };
+  const Dq = qDone(), dues = VOLUMES.filter(v => v.q && ["revoir", "reviser"].includes(qState(Dq, v.q)));
+  root.append(el("section", {class:"subjects g max", "aria-labelledby":"h-subj"},
+    dues.length ? el("div", {class:"due-strip"}, el("p", {class:"k"}, el("span", {"aria-hidden":"true"}, "↻ "), dues.length + " QCM à reprendre aujourd'hui"),
+      el("div", {class:"due-list"}, dues.map(v => { const st = qState(Dq, v.q); return el("a", {href:"#" + v.m, class:"due " + st, style:`--c:var(--${v.m})`},
+        el("span", {class:"dot"}), v.code + " " + v.n + " · " + v.t, el("span", {class:"k muted"}, st === "revoir" ? "à revoir" : "à réviser")); }))) : null,
+    el("div", {class:"sub-head"}, el("h2", {class:"serif-t", id:"h-subj", html:"Le tronc <em>commun</em>"}), el("p", {class:"muted"}, "Les matières que toute la classe suit.")),
+    el("div", {class:"tiles"}, TRONC.map(tile)),
+    el("div", {class:"sub-head spe-head"}, el("h2", {class:"serif-t", id:"h-spe", html:"Spécialités <em>& option</em>"}), el("p", {class:"muted"}, "SES, HGGSP et l'option droit, pour ceux qui les suivent. Les autres spécialités de la classe ne sont pas couvertes par ce Drive.")),
+    el("div", {class:"tiles tiles-3"}, SPE.map(tile)),
+    el("div", {class:"tiles-small tools-s"},
+      el("a", {class:"tile-s", href:"#notes"}, el("b", {}, "Mes notes et projection bac"), el("span", {class:"k muted"}, "Privé →")),
+      el("a", {class:"tile-s", href:"#seance"}, el("b", {}, "Minuteur de séance"), el("span", {class:"k muted"}, "Ouvrir →")),
+      el("a", {class:"tile-s", href:"#lexique"}, el("b", {}, "Lexique des notions"), el("span", {class:"k muted"}, LEX.length + " notions →")))));
+
+  /* Vient de paraître */
+  const track = el("div", {class:"track"});
+  for (const [dt, m, t, id] of COURS) { const [y, mo, d] = dt.split("-");
+    track.append(el("a", {class:"card", href:DOC(id), target:"_blank", rel:"noopener", style:`--c:var(--${m})`},
+      el("div", {}, el("div", {class:"day"}, d), el("div", {class:"k muted", style:"margin-top:8px"}, MOIS[+mo - 1] + " " + y)),
+      el("div", {class:"ct"}, t),
+      el("div", {class:"meta"}, el("span", {class:"k", style:"display:flex;gap:8px;align-items:center"}, el("span", {class:"dot", style:`--c:var(--${m})`}), MAT[m].nom), el("span", {class:"k muted"}, "Lire ↗")))); }
+  const paru = el("section", {class:"paru", id:"paru", "aria-labelledby":"h-paru"},
+    el("div", {class:"paru-head g max"}, el("h2", {class:"wide-t big-t", id:"h-paru", html:"Vient de <em>paraître</em>"}), el("p", {class:"k muted", style:"margin:0"}, nCours + " cours depuis la rentrée")), track,
+    COURS.length > 6 ? el("div", {class:"paru-more g"}, el("button", {class:"btn ghost", type:"button", onclick:() => { paru.classList.add("all"); if (ST) ST.refresh(); }}, `Voir les ${COURS.length - 6} autres cours`, el("span", {"aria-hidden":"true"}, "↓"))) : null);
+  root.append(paru);
+
+  return () => {
+    if (!MOTION) { paru.classList.add("stack"); return; }
+    G.from($$(".mast .l", root), {yPercent:24, rotate:4, duration:1.3, ease:"expo.out", stagger:.035});
+    G.from($(".mast em", root), {xPercent:40, rotate:-10, duration:1.5, ease:"expo.out", delay:.2});
+    G.from($(".cover-foot", root), {y:30, duration:1.2, ease:"power3.out", delay:.3});
+    G.to($(".mast", root), {yPercent:-20, scale:.9, transformOrigin:"left bottom", ease:"none", scrollTrigger:{trigger:hdr, start:"top top", end:"bottom top", scrub:true}});
+    ST.create({trigger:hdr, start:"top top", end:"bottom top", scrub:true, onUpdate:s => cover.p = s.progress});
+    G.to($$(".manifest .w", root), {opacity:1, stagger:.08, ease:"none", scrollTrigger:{trigger:".manifest", start:"top 78%", end:"bottom 45%", scrub:true}});
+    const mm = G.matchMedia();
+    mm.add("(min-width: 901px)", () => {
+      const bs = $$(".stat b", drive); bs.forEach(b => b.textContent = "0");
+      const tl = G.timeline({scrollTrigger:{trigger:drive, start:"top 58px", end:"+=110%", pin:true, scrub:.7, anticipatePin:1}});
+      const o = {p:0};
+      tl.fromTo($(".trunk", drive), {scaleY:0}, {scaleY:1, duration:1, ease:"none"}, 0)
+        .from($$(".tree .row", drive), {x:60, duration:.5, stagger:.06, ease:"power2.out"}, .05)
+        .fromTo($$(".tree .br", drive), {scaleX:0}, {scaleX:1, duration:.3, stagger:.06}, .05)
+        .to(o, {p:1, duration:1, ease:"none", onUpdate:() => bs.forEach(b => b.textContent = Math.round(+b.dataset.n * o.p))}, 0)
+        .from($("h2", drive), {x:40, duration:1, ease:"none"}, 0);
+      G.fromTo(".big-t", {xPercent:6}, {xPercent:-14, ease:"none", scrollTrigger:{trigger:"#paru", start:"top bottom", end:"bottom top", scrub:true}});
+      const tw = G.to($("#paru .track"), {x:() => -Math.max(0, $("#paru .track").scrollWidth - innerWidth), ease:"none", scrollTrigger:{trigger:"#paru", start:"top 58px", end:() => "+=" + Math.max(0, $("#paru .track").scrollWidth - innerWidth), pin:true, scrub:.8, invalidateOnRefresh:true}});
+      G.from($$("#paru .card"), {rotate:2, y:30, duration:.9, ease:"power3.out", stagger:.04, scrollTrigger:{trigger:"#paru", start:"top 70%"}});
+    });
+    mm.add("(max-width: 900px)", () => {
+      paru.classList.add("stack");
+      G.from($$(".tree .row", drive), {x:40, duration:.8, stagger:.05, ease:"power3.out", scrollTrigger:{trigger:drive, start:"top 70%"}});
+      G.fromTo($(".trunk", drive), {scaleY:0}, {scaleY:1, duration:1.2, ease:"power2.out", scrollTrigger:{trigger:drive, start:"top 70%"}});
+      const o = {p:0}; G.to(o, {p:1, duration:1.4, ease:"power2.out", scrollTrigger:{trigger:".stats", start:"top 85%"}, onUpdate:() => $$(".stat b", drive).forEach(b => b.textContent = Math.round(+b.dataset.n * o.p))});
+      return () => paru.classList.remove("stack");
+    });
+    G.fromTo($(".steps-line i", root), {scaleX:0}, {scaleX:1, ease:"none", scrollTrigger:{trigger:".steps-grid", start:"top 80%", end:"bottom 60%", scrub:true}});
+    G.from($$(".step", root), {y:50, duration:1, ease:"power3.out", stagger:.12, scrollTrigger:{trigger:".steps-grid", start:"top 80%"}});
+    $$(".tiles", root).forEach(g => G.from($$(".tile", g), {y:80, rotate:1.5, duration:1.1, ease:"expo.out", stagger:.08, scrollTrigger:{trigger:g, start:"top 85%"}}));
+    $$(".serif-t", root).forEach(t => G.from(t, {x:-50, duration:1.1, ease:"expo.out", scrollTrigger:{trigger:t, start:"top 88%"}}));
+    return mm;
+  };
+}
+
+/* ---------- Vue : matière ---------- */
+function viewSubject(root, k){
+  const S = SUBJ[k], m = MAT[k];
+  const vols = VOLUMES.filter(v => v.m === k), cours = COURS.filter(c => c[1] === k), qvols = vols.filter(v => v.q);
+  root.style.setProperty("--c", `var(--${k})`);
+  root.style.setProperty("--ct", k === "philo" ? "var(--philo-t)" : `var(--${k})`);
+  const h1 = el("h1", {class:"wide-t"}, S.big);
+  root.append(el("header", {class:"shero g"}, el("span", {class:"band", "aria-hidden":"true"}),
+    el("div", {class:"max"},
+      el("div", {class:"top"}, el("span", {class:"k"}, k === "droit" ? "Option · si tu la suis" : SPE.includes(k) ? "Spécialité · si tu la suis" : "Tronc commun"), el("span", {class:"k muted"}, "Terminale D · 2026–2027")),
+      h1, el("p", {class:"full"}, S.full),
+      el("div", {class:"shero-foot"},
+        (vols.length || cours.length) ? el("div", {class:"nums"}, [[vols.length, "fiches"], [cours.length, "cours"], [qvols.reduce((a, v) => a + QCM[v.q].length, 0), "questions"]].map(([v, l]) => el("div", {}, el("b", {"data-n":v}, String(v)), el("span", {class:"k muted"}, l)))) : el("span", {class:"k muted"}, "Dossier prêt dans le Drive"),
+        el("div", {class:"btns"},
+          el("a", {class:"btn", href:FOLDER(m.cours), target:"_blank", rel:"noopener"}, "Cours dans le Drive", arrow()),
+          m.fiches ? el("a", {class:"btn ghost", href:FOLDER(m.fiches), target:"_blank", rel:"noopener"}, "Fiches dans le Drive", arrow()) : null)))));
+  splitLetters(h1);
+
+  let plateState = null;
+  if (!cours.length && !vols.length) {
+    root.append(el("section", {class:"empty g max"}, el("p", {}, "Aucun cours n'a encore été numérisé dans cette matière. Le dossier est prêt dans le Drive : les premiers cours y arriveront au fil de l'année."),
+      el("a", {class:"btn", href:FOLDER(m.cours), target:"_blank", rel:"noopener"}, "Voir le dossier " + S.short, arrow())));
+  } else {
+    if (S.plate) {
+      const cv = el("canvas", {"aria-hidden":"true"});
+      root.append(el("section", {class:"dossier g max", "aria-labelledby":"h-dos"},
+        el("figure", {class:"plate"}, cv, el("figcaption", {}, el("span", {class:"k"}, S.cap[0]), el("span", {class:"k muted"}, S.cap[1]))),
+        el("div", {class:"dtext"},
+          el("span", {class:"k", style:"display:flex;gap:10px;align-items:center"}, el("span", {class:"dot", style:`--c:var(--${k})`}), "Le dossier"),
+          el("h2", {class:"serif-t dtitle", id:"h-dos", html:S.title}),
+          el("p", {class:"lead"}, S.lead),
+          el("blockquote", {class:"quote"}, el("span", {class:"qt"}, S.quote), el("cite", {}, S.cite)),
+          el("div", {class:"blk"}, el("h3", {}, "Les fiches de révision"),
+            el("ul", {class:"fl"}, vols.map(v => el("li", {}, el("a", {href:DOC(v.id), target:"_blank", rel:"noopener", "data-q":v.q || null},
+              el("span", {class:"n"}, v.n === "M" ? "Méth." : v.n === "P" ? "Prog." : "N° " + v.n), el("span", {class:"t"}, v.t), el("span", {class:"go"}, arrow())))))))));
+      plateState = canvasLoop(cv, PLATES[S.plate]);
+    }
+    if (cours.length) {
+      root.append(el("section", {class:"timeline g max", "aria-labelledby":"h-tl"},
+        el("h2", {class:"serif-t", id:"h-tl", html:"Tous les <em>cours</em>"}),
+        el("div", {class:"tl"}, el("span", {class:"tl-line", "aria-hidden":"true"}, el("i")),
+          cours.map(([dt, , t, id]) => { const [y, mo, d] = dt.split("-");
+            return el("a", {href:DOC(id), target:"_blank", rel:"noopener"}, el("span", {class:"d"}, d, el("small", {}, MOIS[+mo - 1] + " " + y)), el("span", {class:"t"}, t), el("span", {class:"go"}, arrow())); }))));
+    }
+    if (qvols.length) {
+      const q = el("section", {class:"interro g max", "aria-labelledby":"h-q"},
+        el("div", {class:"qcol"}, el("h2", {class:"serif-t", id:"h-q", html:"L'interro <em>surprise</em>"}),
+          el("p", {class:"muted", style:"margin:18px 0 0;max-width:34ch"}, "Huit questions par fiche, rédigées à partir des fiches. Chaque réponse cite ce que dit la fiche. Un QCM réussi revient « à réviser » après 3 jours, puis 10, puis 30 : c'est ce qui fixe une notion dans la durée.")));
+      root.append(q); mountQuiz(q, qvols); markFiches();
+    }
+  }
+  const nk = ORDER[(ORDER.indexOf(k) + 1) % ORDER.length];
+  root.append(el("a", {class:"next g", href:"#" + nk, style:`--c:var(--${nk})`}, el("div", {class:"max"}, el("span", {class:"k muted", style:"display:block;margin-bottom:14px"}, "Matière suivante"), el("span", {class:"wide-t"}, SUBJ[nk].big, " ", el("em", {style:`color:var(--${nk})`}, "→")))));
+
+  return () => {
+    if (!MOTION) return;
+    G.from($(".shero .band", root), {scaleX:0, duration:1.1, ease:"expo.inOut"});
+    G.from($$(".shero h1 .l", root), {yPercent:30, rotate:5, duration:1.2, ease:"expo.out", stagger:.05, delay:.15});
+    G.from($(".shero .full", root), {y:24, duration:1, ease:"power3.out", delay:.35});
+    $$(".nums b", root).forEach(b => { const o = {v:0}, n = +b.dataset.n; G.to(o, {v:n, duration:1.4, delay:.4, ease:"power3.out", onUpdate:() => b.textContent = Math.round(o.v)}); });
+    G.to($(".shero h1", root), {xPercent:-8, ease:"none", scrollTrigger:{trigger:".shero", start:"top top", end:"bottom top", scrub:true}});
+    const dos = $(".dossier", root);
+    if (dos && plateState) {
+      ST.create({trigger:dos, start:"top 75%", end:"bottom 60%", scrub:.6, onUpdate:s => plateState.p = s.progress});
+      G.from($$(".dtext > *", dos), {y:40, duration:1, ease:"power3.out", stagger:.08, scrollTrigger:{trigger:dos, start:"top 80%"}});
+    }
+    const tl = $(".tl", root);
+    if (tl) {
+      G.fromTo($(".tl-line i", tl), {scaleY:0}, {scaleY:1, ease:"none", scrollTrigger:{trigger:tl, start:"top 75%", end:"bottom 60%", scrub:true}});
+      G.from($$("a", tl), {x:50, duration:.9, ease:"power3.out", stagger:.06, scrollTrigger:{trigger:tl, start:"top 80%"}});
+    }
+    $$(".serif-t:not(.dtitle)", root).forEach(t => G.from(t, {x:-50, duration:1.1, ease:"expo.out", scrollTrigger:{trigger:t, start:"top 88%"}}));
+    G.from($(".next .wide-t", root), {x:40, opacity:.25, ease:"none", scrollTrigger:{trigger:".next", start:"top bottom", end:"bottom bottom", scrub:true}});
+  };
+}
+
+/* ---------- Vue : séance ---------- */
+let tick = null;
+function viewSeance(root){
+  root.append(el("header", {class:"shero g", style:"--c:var(--ink)"}, el("span", {class:"band", "aria-hidden":"true"}),
+    el("div", {class:"max"}, el("div", {class:"top"}, el("span", {class:"k"}, "Outil"), el("span", {class:"k muted"}, "Travailler par blocs")),
+      el("h1", {class:"wide-t"}, "Séance"), el("p", {class:"full", style:"color:var(--ink-2)"}, "Un minuteur pour réviser par blocs de 25 ou 50 minutes, avec une pause entre deux."))));
+  const sec = el("section", {class:"seance g max"},
+    el("div", {},
+      el("div", {class:"ctrls"}, el("label", {class:"f", for:"t-mat"}, el("span", {}, "Matière"), el("select", {id:"t-mat"})),
+        el("div", {class:"seg", role:"group", "aria-label":"Durée", id:"modes"}, el("button", {type:"button", "data-min":"25", "aria-pressed":"true"}, "25 min"), el("button", {type:"button", "data-min":"50", "aria-pressed":"false"}, "50 min"), el("button", {type:"button", "data-min":"5", "data-pause":"1", "aria-pressed":"false"}, "Pause"))),
+      el("div", {class:"clock", id:"clock", role:"timer"}, "25:00"),
+      el("div", {class:"ribbon", "aria-hidden":"true"}, el("i", {id:"bar"})),
+      el("div", {class:"row-actions", style:"margin-top:0"}, el("button", {class:"btn", id:"t-go", type:"button"}, "Commencer"), el("button", {class:"btn ghost", id:"t-reset", type:"button"}, "Remettre à zéro")),
+      el("p", {class:"k muted", id:"t-status", style:"margin-top:16px"}, "Prêt")),
+    el("div", {}, el("p", {class:"k muted", style:"margin:0 0 10px"}, "Tes séances, sur cet appareil"), el("div", {class:"log", id:"log"}), el("div", {class:"total"}, el("span", {class:"k muted"}, "Total"), el("b", {id:"log-total"}, "0 h 00"))));
+  root.append(sec);
+  const tMat = $("#t-mat", sec);
+  for (const [k, mm] of Object.entries(MAT)) tMat.append(el("option", {value:k}, mm.long));
+  tMat.value = store.get("td.mat", "ses");
+  const setC = () => sec.style.setProperty("--c", MAT[tMat.value].c);
+  tMat.addEventListener("change", () => { store.set("td.mat", tMat.value); setC(); }); setC();
+  let mins = 25, isPause = false, endAt = null, remain = 25 * 60000;
+  const paint = () => { const s = Math.max(0, Math.round(remain / 1000)); $("#clock").textContent = pad(Math.floor(s / 60)) + ":" + pad(s % 60); $("#bar").style.width = (100 - remain / (mins * 600)) + "%"; };
+  $$("#modes button", sec).forEach(b => b.addEventListener("click", () => { if (endAt) return; $$("#modes button", sec).forEach(x => x.setAttribute("aria-pressed", String(x === b))); mins = +b.dataset.min; isPause = !!b.dataset.pause; remain = mins * 60000; paint(); $("#t-status").textContent = isPause ? "Pause" : "Prêt"; }));
+  const beep = () => { try { const ctx = new (window.AudioContext || window.webkitAudioContext)(); [0, .25, .5].forEach(t => { const o = ctx.createOscillator(), g = ctx.createGain(); o.frequency.value = 660; g.gain.setValueAtTime(.12, ctx.currentTime + t); g.gain.exponentialRampToValueAtTime(.0001, ctx.currentTime + t + .2); o.connect(g).connect(ctx.destination); o.start(ctx.currentTime + t); o.stop(ctx.currentTime + t + .22); }); } catch {} };
+  const renderLog = () => { const log = store.get("td.slip", []), box = $("#log"); box.textContent = "";
+    if (!log.length) box.append(el("p", {class:"muted", style:"font-style:italic;margin:14px 0"}, "Aucune séance pour l'instant. Lance un premier bloc de 25 minutes."));
+    for (const r of log.slice(0, 8)) { const d = new Date(r.d); box.append(el("div", {class:"log-row"}, el("span", {class:"d"}, pad(d.getDate()) + "." + pad(d.getMonth() + 1)), el("span", {}, MAT[r.m]?.long || r.m), el("span", {class:"m"}, r.min + " min"))); }
+    const tot = log.reduce((a, r) => a + r.min, 0); $("#log-total").textContent = Math.floor(tot / 60) + " h " + pad(tot % 60); };
+  const finish = () => { clearInterval(tick); tick = null; endAt = null; remain = 0; paint(); $("#t-go").textContent = "Commencer";
+    if (!isPause) { const log = store.get("td.slip", []); log.unshift({d:new Date().toISOString(), m:tMat.value, min:mins}); store.set("td.slip", log.slice(0, 200)); renderLog(); $("#t-status").textContent = "Séance enregistrée. Prends ta pause."; } else $("#t-status").textContent = "Pause terminée.";
+    beep(); setTimeout(() => { if (!document.contains($("#clock"))) return; remain = mins * 60000; paint(); }, 1500); };
+  $("#t-go").addEventListener("click", () => {
+    if (endAt) { remain = endAt - Date.now(); endAt = null; clearInterval(tick); tick = null; $("#t-go").textContent = "Reprendre"; $("#t-status").textContent = "En pause"; return; }
+    if (remain <= 0) remain = mins * 60000;
+    endAt = Date.now() + remain; $("#t-go").textContent = "Suspendre"; $("#t-status").textContent = isPause ? "Pause en cours" : "En cours · " + MAT[tMat.value].long;
+    tick = setInterval(() => { if (!document.contains($("#clock"))) { clearInterval(tick); tick = null; return; } remain = endAt - Date.now(); if (remain <= 0) finish(); else paint(); }, 250);
+  });
+  $("#t-reset").addEventListener("click", () => { clearInterval(tick); tick = null; endAt = null; remain = mins * 60000; paint(); $("#t-go").textContent = "Commencer"; $("#t-status").textContent = "Prêt"; });
+  paint(); renderLog();
+  return () => { if (!MOTION) return; G.from($(".shero .band", root), {scaleX:0, duration:1.1, ease:"expo.inOut"}); G.from($(".shero h1", root), {yPercent:30, duration:1.2, ease:"expo.out"}); G.from($("#clock"), {y:40, duration:1.2, ease:"expo.out", delay:.2}); };
+}
+
+/* ---------- Vue : mes notes (stockées dans le navigateur de chacun) ---------- */
+const SPECIALITES = ["SES","HGGSP","Mathématiques","Physique-chimie","SVT","NSI","HLP","LLCER Anglais","LLCER Espagnol","LLCA","Sciences de l'ingénieur","Arts","EPPCS"];
+const OPTIONS = [["dgemc","DGEMC (droit)"],["mcomp","Maths complémentaires"],["mexp","Maths expertes"],["lca","Latin ou grec (LCA)"],["lv3","LV3"],["arts","Arts (option)"],["epsopt","EPS (option)"]];
+const BUL_KEY = "td.bulletin.v1";
+const blankBul = () => ({v:1, profil:{spe1:"SES", spe2:"HGGSP", speAb:"", lva:"Anglais", lvb:"Arabe", options:["dgemc"], periodes:3}, notes:[], saisie:{}});
+function loadBul(){ try { const r = localStorage.getItem(BUL_KEY); if (!r) return blankBul(); const d = JSON.parse(r); return normBul(d); } catch { return blankBul(); } }
+function normBul(d){ const b = blankBul(); return {v:1, profil:{...b.profil, ...(d && d.profil || {})}, notes:Array.isArray(d && d.notes) ? d.notes : [], saisie:(d && d.saisie) || {}}; }
+let storageOk = true;
+function saveBul(B){ try { localStorage.setItem(BUL_KEY, JSON.stringify(B)); storageOk = true; } catch { storageOk = false; } }
+
+/* Matières du bulletin selon le profil */
+function bulMatieres(P){
+  const list = [["philo","Philosophie"],["spe1",P.spe1],["spe2",P.spe2],["hg","Histoire-Géographie"],["es","Enseignement scientifique"],["lva",P.lva || "LVA"],["lvb",P.lvb || "LVB"],["eps","EPS"],["emc","EMC"]];
+  for (const o of OPTIONS) if (P.options.includes(o[0])) list.push(["opt:" + o[0], o[1]]);
+  return list;
+}
+
+/* Le QR code n'est chargé que sur la page Mes notes */
+let qrP = null;
+const loadQR = () => window.QRCode ? Promise.resolve() : (qrP ||= new Promise((res, rej) => { const sc = document.createElement("script"); sc.src = "https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"; sc.onload = res; sc.onerror = () => { qrP = null; rej(); }; document.head.append(sc); }));
+/* Code de transfert : JSON compressé puis encodé, préfixé TD1- */
+const b64u = bytes => { let s = ""; for (let i = 0; i < bytes.length; i++) s += String.fromCharCode(bytes[i]); return btoa(s).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, ""); };
+const unb64u = str => { const s = atob(str.replace(/-/g, "+").replace(/_/g, "/")); const a = new Uint8Array(s.length); for (let i = 0; i < s.length; i++) a[i] = s.charCodeAt(i); return a; };
+async function pipe(bytes, stream){ return new Uint8Array(await new Response(new Blob([bytes]).stream().pipeThrough(stream)).arrayBuffer()); }
+async function encodeBul(B){
+  const json = new TextEncoder().encode(JSON.stringify({...B, qcm:qDone()}));
+  if (window.CompressionStream) { try { return "TD1-" + b64u(await pipe(json, new CompressionStream("deflate-raw"))); } catch {} }
+  return "TD0-" + b64u(json);
+}
+async function decodeBul(code){
+  const c = code.replace(/\s+/g, "");
+  const m = /^(TD[01])-([A-Za-z0-9_-]+)$/.exec(c); if (!m) throw new Error("format");
+  let bytes = unb64u(m[2]);
+  if (m[1] === "TD1") { if (!window.DecompressionStream) throw new Error("navigateur"); bytes = await pipe(bytes, new DecompressionStream("deflate-raw")); }
+  const d = JSON.parse(new TextDecoder().decode(bytes));
+  if (!d || typeof d !== "object" || !d.profil) throw new Error("contenu");
+  const b = normBul(d); b._qcm = cleanQDone(d.qcm); return b;
+}
+
+function viewNotes(root){
+  let B = loadBul();
+  const frn = (x, d = 2) => x == null || isNaN(x) ? "—" : x.toFixed(d).replace(".", ",");
+  const perLabel = p => (B.profil.periodes === 3 ? "T" : "S") + p;
+  const perAvg = (m, p) => { const ns = B.notes.filter(n => n.m === m && n.per === p); const w = ns.reduce((a, n) => a + n.coef, 0); return w ? ns.reduce((a, n) => a + n.val / n.sur * 20 * n.coef, 0) / w : null; };
+  const yearAvg = m => { const ps = []; for (let p = 1; p <= B.profil.periodes; p++) { const a = perAvg(m, p); if (a != null) ps.push(a); } return ps.length ? ps.reduce((a, b) => a + b, 0) / ps.length : null; };
+  const curPer = () => Math.min(B.notes.reduce((a, n) => Math.max(a, n.per), 1), B.profil.periodes);
+  let codeT = null;
+  const persist = () => { saveBul(B); $("#nb-store", root).hidden = storageOk; clearTimeout(codeT); codeT = setTimeout(() => makeCode(), 400); };
+
+  root.style.setProperty("--c", "var(--ses)");
+  root.append(el("header", {class:"shero g", style:"--c:var(--ink)"}, el("span", {class:"band", "aria-hidden":"true"}),
+    el("div", {class:"max"},
+      el("div", {class:"top"}, el("span", {class:"k"}, "Outil"), el("span", {class:"k muted"}, "Privé · enregistré sur cet appareil")),
+      el("h1", {class:"wide-t"}, "Mes notes"),
+      el("p", {class:"full", style:"color:var(--ink-2)"}, "Ton relevé de notes et une estimation de ta note au bac 2027. Personne d'autre ne voit tes notes : elles restent dans ton navigateur."))));
+
+  const sec = el("div", {class:"g max nb"}); root.append(sec);
+  sec.append(el("p", {class:"nb-warn", id:"nb-store", hidden:true}, "Ton navigateur bloque l'enregistrement (navigation privée ?). Tes notes seront perdues en fermant la page : utilise le code de transfert plus bas pour les garder."));
+
+  /* Profil */
+  const P = B.profil;
+  const speSel = id => { const s = el("select", {id}); for (const x of SPECIALITES) s.append(el("option", {value:x}, x)); return s; };
+  const s1 = speSel("nb-spe1"), s2 = speSel("nb-spe2");
+  const ab = el("input", {id:"nb-speab", type:"text", maxlength:"40", placeholder:"ex : Mathématiques"});
+  const lva = el("input", {id:"nb-lva", type:"text", maxlength:"30"}), lvb = el("input", {id:"nb-lvb", type:"text", maxlength:"30"});
+  const opts = el("div", {class:"nb-opts"}, OPTIONS.map(([k, l]) => el("label", {class:"nb-check"}, el("input", {type:"checkbox", value:k, id:"nb-o-" + k}), l)));
+  const perSeg = el("div", {class:"seg", role:"group", "aria-label":"Découpage de l'année"}, el("button", {type:"button", "data-p":"3"}, "Trimestres"), el("button", {type:"button", "data-p":"2"}, "Semestres"));
+  const profil = el("details", {class:"nb-card", id:"nb-profil"},
+    el("summary", {}, el("span", {class:"k"}, "Mon profil"), el("span", {class:"muted", id:"nb-profil-sum"})),
+    el("div", {class:"nb-grid"},
+      el("label", {class:"f"}, el("span", {}, "Spécialité 1"), s1),
+      el("label", {class:"f"}, el("span", {}, "Spécialité 2"), s2),
+      el("label", {class:"f"}, el("span", {}, "Spécialité abandonnée en Première"), ab),
+      el("label", {class:"f"}, el("span", {}, "Langue A (LVA)"), lva),
+      el("label", {class:"f"}, el("span", {}, "Langue B (LVB)"), lvb),
+      el("div", {class:"f"}, el("span", {}, "Découpage de l'année"), perSeg)),
+    el("div", {class:"f", style:"margin-top:18px"}, el("span", {}, "Options suivies en Terminale (coefficient 2 chacune, en plus des 100)"), opts));
+  sec.append(profil);
+  const fillProfil = () => {
+    s1.value = P.spe1; s2.value = P.spe2; ab.value = P.speAb; lva.value = P.lva; lvb.value = P.lvb;
+    $$("input[type=checkbox]", opts).forEach(c => c.checked = P.options.includes(c.value));
+    $$("button", perSeg).forEach(b => b.setAttribute("aria-pressed", String(+b.dataset.p === P.periodes)));
+    $("#nb-profil-sum", root).textContent = P.spe1 + " · " + P.spe2 + (P.options.length ? " · " + P.options.length + " option" + (P.options.length > 1 ? "s" : "") : "");
+  };
+  const onProfil = () => {
+    P.spe1 = s1.value; P.spe2 = s2.value; if (P.spe2 === P.spe1) P.spe2 = SPECIALITES.find(x => x !== P.spe1); P.speAb = ab.value.trim(); P.lva = lva.value.trim() || "LVA"; P.lvb = lvb.value.trim() || "LVB";
+    P.options = $$("input[type=checkbox]", opts).filter(c => c.checked).map(c => c.value);
+    persist(); fillProfil(); renderAll();
+  };
+  [s1, s2].forEach(x => x.addEventListener("change", onProfil));
+  [ab, lva, lvb].forEach(x => x.addEventListener("change", onProfil));
+  opts.addEventListener("change", onProfil);
+  $$("button", perSeg).forEach(b => b.addEventListener("click", () => { const p = +b.dataset.p; if (p === P.periodes) return; P.periodes = p; B.notes.forEach(n => { if (n.per > p) n.per = p; }); persist(); fillProfil(); renderAll(); }));
+
+  /* Saisie */
+  const fm = el("select", {id:"nb-mat"}), fv = el("input", {id:"nb-val", type:"number", step:"0.25", min:"0", inputmode:"decimal", required:true}),
+    fs = el("input", {id:"nb-sur", type:"number", step:"1", min:"1", value:"20", required:true}), fc = el("input", {id:"nb-coef", type:"number", step:"0.5", min:"0.5", value:"1", required:true}),
+    fp = el("select", {id:"nb-per"}), fl = el("input", {id:"nb-lib", type:"text", maxlength:"60", placeholder:"ex : Contrôle chapitre 1"});
+  const form = el("form", {class:"nb-add", autocomplete:"off"},
+    el("label", {class:"f wide"}, el("span", {}, "Matière"), fm), el("label", {class:"f"}, el("span", {}, "Note"), fv), el("label", {class:"f"}, el("span", {}, "Sur"), fs),
+    el("label", {class:"f"}, el("span", {}, "Coef."), fc), el("label", {class:"f"}, el("span", {}, "Période"), fp), el("label", {class:"f wide"}, el("span", {}, "Intitulé (facultatif)"), fl),
+    el("button", {class:"btn", type:"submit"}, "Ajouter"));
+  form.addEventListener("submit", e => {
+    e.preventDefault();
+    const val = parseFloat(String(fv.value).replace(",", ".")), sur = parseFloat(fs.value), coef = parseFloat(fc.value);
+    if (!(sur > 0) || !(val >= 0) || val > sur || !(coef > 0)) { fv.setCustomValidity("La note doit être comprise entre 0 et " + (sur || 20)); fv.reportValidity(); return; }
+    fv.setCustomValidity("");
+    B.notes.push({id:Date.now().toString(36) + Math.random().toString(36).slice(2, 6), m:fm.value, val, sur, coef, per:+fp.value, lib:fl.value.trim().slice(0, 60), date:new Date().toISOString().slice(0, 10)});
+    persist(); renderAll(); fv.value = ""; fl.value = ""; fv.focus();
+  });
+  fv.addEventListener("input", () => fv.setCustomValidity(""));
+  const kpis = el("div", {class:"nb-kpis"},
+    el("div", {}, el("span", {class:"k muted"}, "Moyenne générale · ", el("span", {id:"nb-kper"})), el("div", {class:"nb-big", id:"nb-gen"}, "—")),
+    el("div", {}, el("span", {class:"k muted"}, "Notes saisies"), el("div", {class:"nb-big", id:"nb-count"}, "0")));
+  const table = el("table", {class:"nb-table"});
+  sec.append(el("section", {class:"nb-sec", "aria-labelledby":"h-rel"}, el("h2", {class:"serif-t", id:"h-rel", html:"Relevé <em>de notes</em>"}), form, kpis, el("div", {class:"nb-scroll"}, table),
+    el("p", {class:"k muted", style:"margin-top:12px"}, "Moyenne de période : pondérée par les coefficients, ramenée sur 20. Moyenne annuelle : moyenne des périodes, comme au bac.")));
+
+  /* Projection */
+  const bacBox = el("div", {class:"nb-scroll"});
+  const verdict = el("aside", {class:"nb-verdict", "aria-live":"polite"},
+    el("span", {class:"k"}, "Note finale estimée"), el("div", {class:"nb-big", id:"nb-note"}, "—"),
+    el("p", {id:"nb-mention", style:"margin:8px 0 0;font-style:italic"}, ""),
+    el("div", {class:"nb-scale", id:"nb-scale", "aria-hidden":"true"}), el("p", {class:"k", id:"nb-cov", style:"margin-top:34px;opacity:.75"}));
+  sec.append(el("section", {class:"nb-sec", "aria-labelledby":"h-bac"},
+    el("h2", {class:"serif-t", id:"h-bac", html:"Projection <em>bac 2027</em>"}),
+    el("p", {class:"muted", style:"max-width:60ch;margin:14px 0 26px"}, "Coefficients officiels de la session 2027. Tes spécialités et ta philo sont estimées avec tes moyennes de Terminale : c'est une boussole, pas une prédiction."),
+    el("div", {class:"nb-proj"}, bacBox, verdict)));
+  const sc = $("#nb-scale", verdict);
+  for (const v of [0, 8, 10, 12, 14, 16, 18, 20]) sc.append(el("i", {style:`left:${v * 5}%`}), el("span", {style:`left:${v * 5}%`}, String(v)));
+  sc.append(el("b", {id:"nb-cursor", style:"display:none"}));
+  const bacRows = () => {
+    const P = B.profil, rows = [
+      {g:"Épreuves finales", l:"Philosophie", c:8, src:"term", m:"philo"},
+      {g:"Épreuves finales", l:"Spécialité " + P.spe1, c:16, src:"term", m:"spe1"},
+      {g:"Épreuves finales", l:"Spécialité " + P.spe2, c:16, src:"term", m:"spe2"},
+      {g:"Épreuves finales", l:"Grand oral", c:8, src:"est", k:"go"},
+      {g:"Épreuves finales", l:"Français écrit (Première)", c:5, src:"prem", k:"frE"},
+      {g:"Épreuves finales", l:"Français oral (Première)", c:5, src:"prem", k:"frO"},
+      {g:"Épreuves finales", l:"Maths, épreuve anticipée", c:2, src:"prem", k:"maths"},
+      {g:"Contrôle continu", l:"Histoire-Géographie, Première", c:3, src:"prem", k:"hg1"},
+      {g:"Contrôle continu", l:"Histoire-Géographie, Terminale", c:3, src:"term", m:"hg"},
+      {g:"Contrôle continu", l:P.lva + " (LVA), Première", c:3, src:"prem", k:"lva1"},
+      {g:"Contrôle continu", l:P.lva + " (LVA), Terminale", c:3, src:"term", m:"lva"},
+      {g:"Contrôle continu", l:P.lvb + " (LVB), Première", c:3, src:"prem", k:"lvb1"},
+      {g:"Contrôle continu", l:P.lvb + " (LVB), Terminale", c:3, src:"term", m:"lvb"},
+      {g:"Contrôle continu", l:"Ens. scientifique, Première", c:3, src:"prem", k:"es1"},
+      {g:"Contrôle continu", l:"Ens. scientifique, Terminale", c:3, src:"term", m:"es"},
+      {g:"Contrôle continu", l:"EPS, Terminale", c:6, src:"term", m:"eps"},
+      {g:"Contrôle continu", l:"EMC, Première", c:1, src:"prem", k:"emc1"},
+      {g:"Contrôle continu", l:"EMC, Terminale", c:1, src:"term", m:"emc"},
+      {g:"Contrôle continu", l:"Spécialité abandonnée" + (P.speAb ? " (" + P.speAb + ")" : "") + ", Première", c:8, src:"prem", k:"spe1ab"}
+    ];
+    for (const o of OPTIONS) if (P.options.includes(o[0])) rows.push({g:"Options", l:o[1] + ", Terminale", c:2, src:"term", m:"opt:" + o[0]});
+    rows.push({g:"Options", l:"Option suivie en Première (facultatif)", c:2, src:"prem", k:"opt1", optional:true});
+    return rows;
+  };
+  const SRCL = {term:"Terminale", prem:"Première", est:"Estimation"};
+  const inputs = {};
+  const buildBac = () => {
+    bacBox.textContent = ""; for (const k in inputs) delete inputs[k];
+    const rows = bacRows(); const groups = [...new Set(rows.map(r => r.g))];
+    for (const g of groups) {
+      const rs = rows.filter(r => r.g === g), tb = el("tbody");
+      for (const r of rs) {
+        let cell;
+        if (r.src === "term") cell = el("span", {"data-m":r.m}, "—");
+        else {
+          const inp = el("input", {id:"nb-i-" + r.k, type:"number", step:"0.01", min:"0", max:"20", inputmode:"decimal", placeholder:"—", "aria-label":r.l + ", note sur 20"});
+          let t; inp.addEventListener("input", () => { clearTimeout(t); const v = parseFloat(String(inp.value).replace(",", ".")); if (inp.value === "") delete B.saisie[r.k]; else if (v >= 0 && v <= 20) B.saisie[r.k] = v; else return; updateBac(); t = setTimeout(persist, 500); });
+          inputs[r.k] = inp; cell = inp;
+        }
+        tb.append(el("tr", {}, el("td", {}, r.l), el("td", {class:"src"}, SRCL[r.src]), el("td", {class:"c"}, "×" + r.c), el("td", {class:"v"}, cell)));
+      }
+      bacBox.append(el("table", {class:"nb-bac"}, el("caption", {}, g + " · coef. " + rs.filter(r => !r.optional).reduce((a, r) => a + r.c, 0)), tb));
+    }
+    updateBac();
+  };
+  const updateBac = () => {
+    let pts = 0, cs = 0, total = 0;
+    for (const r of bacRows()) {
+      let v = null;
+      if (r.src === "term") { v = yearAvg(r.m); const s = bacBox.querySelector(`[data-m="${r.m}"]`); if (s) s.textContent = frn(v); }
+      else { v = B.saisie[r.k] ?? null; const inp = inputs[r.k]; if (inp && document.activeElement !== inp) inp.value = v == null ? "" : v; }
+      if (!r.optional || v != null) total += r.c;
+      if (v != null) { pts += v * r.c; cs += r.c; }
+    }
+    const note = cs ? pts / cs : null;
+    const nEl = $("#nb-note", verdict); nEl.textContent = ""; nEl.append(note == null ? "—" : frn(note), el("small", {}, " / 20"));
+    $("#nb-mention", verdict).textContent = note == null ? "Saisis quelques notes pour voir une estimation." : note >= 18 ? "Mention très bien avec les félicitations du jury." : note >= 16 ? "Mention très bien." : note >= 14 ? "Mention bien." : note >= 12 ? "Mention assez bien." : note >= 10 ? "Admis, sans mention." : note >= 8 ? "Second groupe d'épreuves (oral de rattrapage)." : "Sous la barre des 8 : ajourné à ce stade.";
+    const cur = $("#nb-cursor", verdict); cur.style.display = note == null ? "none" : "block"; if (note != null) cur.style.left = (note * 5) + "%";
+    $("#nb-cov", verdict).textContent = cs ? `Calculé sur ${cs} coefficients renseignés sur ${total}.` : `0 coefficient renseigné sur ${total}.`;
+  };
+
+  const renderGrades = () => {
+    const mats = bulMatieres(B.profil);
+    const keep = fm.value; fm.textContent = ""; for (const [k, l] of mats) fm.append(el("option", {value:k}, l)); if (mats.some(m => m[0] === keep)) fm.value = keep;
+    const kp = fp.value; fp.textContent = ""; for (let p = 1; p <= B.profil.periodes; p++) fp.append(el("option", {value:p}, perLabel(p))); fp.value = kp && +kp <= B.profil.periodes ? kp : String(curPer());
+    table.textContent = "";
+    const head = el("tr", {}, el("th", {scope:"col"}, "Matière")); for (let p = 1; p <= B.profil.periodes; p++) head.append(el("th", {scope:"col"}, perLabel(p)));
+    head.append(el("th", {scope:"col"}, "Année"), el("th", {scope:"col"}, "Notes")); table.append(el("thead", {}, head));
+    const body = el("tbody");
+    for (const [k, l] of mats) {
+      const ns = B.notes.filter(n => n.m === k), y = yearAvg(k);
+      const tr = el("tr", {}, el("td", {}, l));
+      for (let p = 1; p <= B.profil.periodes; p++) { const a = perAvg(k, p); tr.append(el("td", {class:a == null ? "muted" : a < 10 ? "lo" : ""}, frn(a))); }
+      tr.append(el("td", {class:"avg " + (y == null ? "muted" : y < 10 ? "lo" : y >= 14 ? "hi" : "")}, frn(y)), el("td", {class:"muted"}, ns.length || "—"));
+      body.append(tr);
+      if (ns.length) body.append(el("tr", {class:"nb-det"}, el("td", {colspan:String(B.profil.periodes + 3)}, el("div", {class:"nb-chips"},
+        ns.slice().sort((a, b) => a.per - b.per || a.date.localeCompare(b.date)).map(n => el("span", {class:"nb-chip"},
+          `${perLabel(n.per)} · ${frn(n.val, n.val % 1 ? 2 : 0)}/${n.sur}` + (n.coef !== 1 ? ` ×${String(n.coef).replace(".", ",")}` : "") + (n.lib ? ` · ${n.lib}` : ""),
+          el("button", {type:"button", "aria-label":"Supprimer cette note", onclick:() => { B.notes = B.notes.filter(x => x.id !== n.id); persist(); renderAll(); }}, "×")))))));
+    }
+    table.append(body);
+    const cp = curPer(), avgs = mats.map(([k]) => perAvg(k, cp)).filter(a => a != null);
+    $("#nb-kper", root).textContent = perLabel(cp);
+    const g = $("#nb-gen", root); g.textContent = ""; g.append(avgs.length ? frn(avgs.reduce((a, b) => a + b, 0) / avgs.length) : "—", el("small", {}, " / 20"));
+    $("#nb-count", root).textContent = B.notes.length;
+  };
+  function renderAll(){ renderGrades(); buildBac(); }
+
+  /* Transfert entre appareils */
+  const codeOut = el("textarea", {id:"nb-code-out", readonly:true, rows:"4", "aria-label":"Ton code de transfert"});
+  const qr = el("div", {class:"nb-qr", "aria-hidden":"true"});
+  const outMsg = el("p", {class:"k muted", style:"margin:10px 0 0"});
+  const codeIn = el("textarea", {id:"nb-code-in", rows:"4", placeholder:"Colle ici ton code TD1-…", "aria-label":"Code à importer"});
+  const inMsg = el("div", {class:"nb-in-msg", "aria-live":"polite"});
+  const makeCode = async () => {
+    const code = await encodeBul(B); codeOut.value = code;
+    try { await loadQR(); } catch {}
+    qr.textContent = "";
+    if (window.QRCode && code.length <= 1800) { try { new QRCode(qr, {text:code, width:196, height:196, correctLevel:QRCode.CorrectLevel.L}); qr.hidden = false; } catch { qr.hidden = true; } }
+    else qr.hidden = true;
+    outMsg.textContent = code.length + " caractères · " + B.notes.length + " note" + (B.notes.length > 1 ? "s" : "") + " · généré à " + pad(new Date().getHours()) + "h" + pad(new Date().getMinutes());
+    return code;
+  };
+  const copyBtn = el("button", {class:"btn", type:"button", onclick:async () => {
+    const code = await makeCode();
+    try { await navigator.clipboard.writeText(code); copyBtn.firstChild.textContent = "Code copié"; setTimeout(() => copyBtn.firstChild.textContent = "Copier mon code", 2000); }
+    catch { codeOut.focus(); codeOut.select(); outMsg.textContent = "Copie automatique impossible ici : le code est sélectionné, copie-le à la main."; }
+  }}, el("span", {}, "Copier mon code"));
+  const doImport = async () => {
+    inMsg.textContent = "";
+    let data; try { data = await decodeBul(codeIn.value); }
+    catch (e) { inMsg.append(el("p", {class:"nb-err"}, e?.message === "navigateur" ? "Ton navigateur est trop ancien pour lire ce code. Mets-le à jour ou utilise un autre navigateur." : "Ce code n'est pas valide. Vérifie qu'il commence par TD1- et qu'il a été copié en entier.")); return; }
+    inMsg.append(el("p", {}, `Ce code contient ${data.notes.length} note${data.notes.length > 1 ? "s" : ""} et ${Object.values(data._qcm).filter(v => v.st !== "revoir").length} QCM fait${Object.values(data._qcm).filter(v => v.st !== "revoir").length > 1 ? "s" : ""}, profil ${data.profil.spe1} et ${data.profil.spe2}. Il remplacera ce qui est enregistré sur cet appareil (${B.notes.length} note${B.notes.length > 1 ? "s" : ""}).`),
+      el("div", {class:"row-actions", style:"margin-top:12px"},
+        el("button", {class:"btn", type:"button", onclick:() => { store.set(QDONE_KEY, data._qcm); delete data._qcm; B = data; Object.assign(P, B.profil); B.profil = P; persist(); fillProfil(); renderAll(); makeCode(); codeIn.value = ""; inMsg.textContent = ""; inMsg.append(el("p", {class:"nb-ok"}, "C'est fait : tes notes et tes QCM faits sont sur cet appareil.")); }}, "Remplacer mes données"),
+        el("button", {class:"btn ghost", type:"button", onclick:() => { inMsg.textContent = ""; }}, "Annuler")));
+  };
+  sec.append(el("section", {class:"nb-sec", "aria-labelledby":"h-tr"},
+    el("h2", {class:"serif-t", id:"h-tr", html:"Changer <em>d'appareil</em>"}),
+    el("p", {class:"muted", style:"max-width:62ch;margin:14px 0 26px"}, "Tes notes et tes QCM faits sont enregistrés dans ce navigateur uniquement. Pour les retrouver sur ton téléphone ou ton ordinateur, copie ton code ici, envoie-le-toi (message, mail, notes), puis colle-le sur l'autre appareil. Garde aussi ce code comme sauvegarde."),
+    el("div", {class:"nb-transfer"},
+      el("div", {class:"nb-card"}, el("h3", {}, "1. Sur cet appareil"), el("p", {class:"muted", style:"margin:4px 0 14px"}, "Copie ton code de transfert."), codeOut, el("div", {class:"row-actions", style:"margin-top:12px"}, copyBtn), outMsg, qr,
+        el("p", {class:"k muted", style:"margin-top:10px"}, "Ou scanne le QR code avec ton téléphone, puis copie le texte obtenu.")),
+      el("div", {class:"nb-card"}, el("h3", {}, "2. Sur l'autre appareil"), el("p", {class:"muted", style:"margin:4px 0 14px"}, "Ouvre cette page, colle le code et valide."), codeIn,
+        el("div", {class:"row-actions", style:"margin-top:12px"}, el("button", {class:"btn", type:"button", onclick:doImport}, "Importer")), inMsg))));
+
+  fillProfil(); renderAll(); persist();
+  if (!B.notes.length) profil.open = true;
+  return () => { if (!MOTION) return; G.from($(".shero .band", root), {scaleX:0, duration:1.1, ease:"expo.inOut"}); G.from($(".shero h1", root), {yPercent:30, duration:1.2, ease:"expo.out"}); $$(".nb-sec", root).forEach(s => G.from(s, {y:40, duration:1, ease:"power3.out", scrollTrigger:{trigger:s, start:"top 85%"}})); };
+}
+
+/* ---------- Lexique : notions reprises des fiches (rien d'ajouté) ---------- */
+const GEN = "Définition générale de géographie, à confronter au cours.";
+const LEX = [
+  /* SES */
+  {t:"Structure sociale", m:"ses", s:["01"], d:"Répartition hiérarchisée des individus au sein d'un espace social propre à chaque société."},
+  {t:"Stratification sociale", m:"ses", s:["01"], d:"Différenciation sociale fondée sur la distribution inégale des ressources valorisées, au-delà de la simple opposition riches/pauvres."},
+  {t:"Classe sociale (Marx)", m:"ses", s:["01","03"], d:"Groupe défini par sa position dans le mode de production (possession ou non des moyens de production) et par une conscience de classe commune. Rapport d'exploitation entre la bourgeoisie, qui détient le capital, et le prolétariat, qui ne possède que sa force de travail."},
+  {t:"Classe en soi, classe pour soi", m:"ses", s:["01","03"], d:"La classe en soi partage des conditions matérielles sans nécessairement en avoir conscience. Elle devient classe pour soi quand ses membres prennent conscience de leurs intérêts communs et s'organisent (syndicats, partis). Condition de la lutte des classes."},
+  {t:"Lutte des classes", m:"ses", s:["01"], d:"Confrontation entre bourgeoisie et prolétariat, moteur du changement social selon Marx."},
+  {t:"Groupe de statut (Weber)", m:"ses", s:["01","03"], d:"Individus partageant le même prestige social (diplôme, profession, naissance, style de vie). L'ordre social est autonome de l'ordre économique : un professeur d'université ou un membre du clergé peut avoir un grand prestige sans grande richesse."},
+  {t:"Réalisme et nominalisme (Marx, Weber)", m:"ses", s:["01","03"], d:"Marx a une analyse unidimensionnelle et réaliste : il ne retient que le critère économique, les classes existant objectivement. Weber a une analyse multidimensionnelle et nominaliste : il distingue trois ordres indépendants, économique (classes), social (statuts) et politique (partis) ; pour lui les classes sont des catégories construites par le sociologue, pas des groupes qui existent en soi."},
+  {t:"Distance interclasses", m:"ses", s:["01","03"], d:"Écart statistique et culturel entre classes sociales différentes."},
+  {t:"Distance intra-classe", m:"ses", s:["01","03"], d:"Écart de conditions de vie, de revenus et de comportements au sein d'une même classe. Sa hausse fragilise l'homogénéité d'une classe."},
+  {t:"Moyennisation", m:"ses", s:["01","03"], d:"Constitution d'une vaste classe moyenne aux modes de vie uniformisés, qui réduit la distance interclasses. Théorie d'Henri Mendras : une société en toupie plutôt qu'en pyramide."},
+  {t:"Individualisation", m:"ses", s:["01","03"], d:"Détachement de l'individu de ses appartenances collectives, via la personnalisation du travail (rémunération au mérite, entretiens individuels) et le numérique (travail en ligne, évaluation par les clients), qui affaiblit la conscience de classe."},
+  {t:"Capitaux (Bourdieu)", m:"ses", s:["01"], d:"Capital économique (patrimoine, revenus), capital culturel (diplômes, biens et dispositions culturelles) et capital social (réseau de relations mobilisable), dont la dotation globale détermine la position sociale d'un individu."},
+  {t:"Rapports sociaux de genre", m:"ses", s:["01","03"], d:"Hiérarchisation entre hommes et femmes, qui s'articule avec les rapports de classe sans les remplacer."},
+  {t:"Catégorie socioprofessionnelle (PCS)", m:"ses", s:["02"], d:"Catégorie statistique créée par l'Insee en 1954, selon le statut d'emploi, la qualification et le secteur d'activité. Huit catégories au niveau agrégé : six actives (agriculteurs exploitants, artisans-commerçants-chefs d'entreprise, cadres et professions intellectuelles supérieures, professions intermédiaires, employés, ouvriers) et deux inactives (retraités, autres sans activité professionnelle)."},
+  {t:"Revenu", m:"ses", s:["02"], d:"Somme dépensable sans réduire le patrimoine. Trois types primaires : revenu du travail (salaire), du capital (loyer, dividende, intérêt) et mixte (indépendant). S'y ajoutent les revenus de transfert (chômage, retraite, minima sociaux). Le revenu disponible est ce qui reste après prélèvements obligatoires."},
+  {t:"Patrimoine", m:"ses", s:["02"], d:"Stock d'actifs détenus à un instant donné. Les inégalités de patrimoine sont plus fortes que celles de revenu, car les hauts revenus peuvent épargner et accumuler du patrimoine."},
+  {t:"Déciles", m:"ses", s:["02"], d:"Outils de classement des revenus ou patrimoines, du plus pauvre au plus riche, de D1 à D9."},
+  {t:"Écart interdéciles", m:"ses", s:["02"], d:"D9 moins D1 : mesure absolue, en euros."},
+  {t:"Rapport interdéciles", m:"ses", s:["02"], d:"D9 sur D1 : mesure relative, sous forme de coefficient."},
+  {t:"Courbe de Lorenz, indice de Gini", m:"ses", s:["02"], d:"Représentent la concentration des revenus ou du patrimoine par comparaison à une égalité parfaite (la droite d'équirépartition) ; l'indice de Gini résume cet écart en un seul chiffre."},
+  {t:"Capital humain", m:"ses", s:["02"], d:"Connaissances et compétences d'un individu, déterminées en partie par le diplôme, et corrélées à la PCS et au revenu."},
+  {t:"Ménage", m:"ses", s:["02"], d:"Occupants d'une résidence, avec ou sans lien de parenté, partageant un budget commun."},
+  {t:"Cycle de vie", m:"ses", s:["02"], d:"Étapes de la vie (célibat, couple, famille, veuvage) et modes de vie qui y sont associés."},
+  {t:"Génération", m:"ses", s:["02"], d:"Individus nés la même décennie, partageant des événements communs."},
+  {t:"Salarisation, tertiarisation, féminisation, massification scolaire", m:"ses", s:["02"], d:"Quatre évolutions distinctes de la population active depuis 1950 : hausse de la part des salariés, du secteur tertiaire, des femmes dans l'emploi, et du niveau de diplôme."},
+
+  /* HGGSP */
+  {t:"Environnement", m:"hggsp", s:["01"], d:"Espace productif définissant le rapport entre l'homme et la nature, enjeu planétaire entre exploitation et protection."},
+  {t:"Anthropocène", m:"hggsp", s:["01"], d:"L'action humaine est devenue une force majeure de transformation de la Terre (artificialisation des sols, exploitation des terres rares).", note:"Terme proposé au début des années 2000 ; en mars 2024, l'instance internationale de stratigraphie a voté contre sa reconnaissance comme époque géologique officielle."},
+  {t:"Problème environnemental", m:"hggsp", s:["01"], d:"Une construction sociale : le fait matériel existe indépendamment (par exemple des sacs plastiques dans l'océan), mais il ne devient un problème que lorsque des acteurs le jugent inacceptable."},
+  {t:"Problème public", m:"hggsp", s:["01"], d:"Situation banale du quotidien qui devient un sujet de débat exigeant une réaction collective."},
+  {t:"Naming, blaming, claiming", m:"hggsp", s:["01"], d:"Trois étapes de la construction d'un problème public : nommer (rendre visible), accuser (désigner des responsables), revendiquer (réclamer des solutions)."},
+  {t:"Expertise, construction médiatique", m:"hggsp", s:["01"], d:"L'expertise scientifique ou technique légitime la reconnaissance d'un problème ; la construction médiatique désigne le rôle des médias (angles, mots, images) dans la perception d'un problème.", note:"Concepts standards, à confronter au cours."},
+  {t:"Conflit d'usage", m:"hggsp", s:["01"], d:"Désaccord entre acteurs sur l'utilisation concurrente d'un espace ou d'une ressource (exemple : une ressource en eau disputée entre agriculture, tourisme, industrie et habitants en période de sécheresse).", note:GEN},
+  {t:"Pensée déterministe", m:"hggsp", s:["01"], d:"L'inégalité des ressources en fonction de l'endroit sur Terre.", note:"Formulation du cours ; le lien avec le déterminisme environnemental reste à confirmer avec le professeur."},
+  {t:"Déterminisme géographique (Ratzel)", m:"hggsp", s:["01"], d:"Le milieu déterminerait les sociétés. Aujourd'hui critiqué par la géographie contemporaine."},
+  {t:"Possibilisme (Vidal de la Blache)", m:"hggsp", s:["01"], d:"Les sociétés choisissent parmi les possibilités offertes par leur milieu."},
+  {t:"Crise frumentaire", m:"hggsp", s:["01"], d:"Crise liée au manque de grain, associée au grand hiver de 1788-1789 et à la Révolution française."},
+  {t:"Biosphère", m:"hggsp", s:["01"], d:"Espaces où la vie est possible."},
+  {t:"Hydrosphère", m:"hggsp", s:["01"], d:"Ensemble des eaux de la planète."},
+  {t:"Atmosphère", m:"hggsp", s:["01"], d:"Enveloppe gazeuse de la Terre."},
+  {t:"Lithosphère", m:"hggsp", s:["01"], d:"Couche rocheuse superficielle de la Terre."},
+  {t:"Écologie", m:"hggsp", s:["01"], d:"Science développée à partir des années 1930, fondée sur la notion d'écosystème."},
+  {t:"Empreinte écologique", m:"hggsp", s:["01"], d:"Consommation humaine des ressources naturelles renouvelables, mesurée en hectares globaux."},
+  {t:"Jour du dépassement", m:"hggsp", s:["01"], d:"Date de l'année, calculée par Global Footprint Network, à partir de laquelle l'humanité a consommé les ressources renouvelables produites en un an."},
+  {t:"Exploiter, conserver, préserver", m:"hggsp", s:["01"], d:"Trois logiques face à l'environnement. Exploiter, c'est prélever une ressource pour produire des richesses (risque de surexploitation). Conserver, c'est protéger en continuant d'utiliser, par une gestion raisonnée (exemple : l'agriculture biologique). Préserver, c'est protéger la nature pour elle-même (sanctuarisation)."},
+  {t:"Anthropisation", m:"hggsp", s:["01"], d:"Transformation des milieux naturels par l'action humaine."},
+  {t:"Grande accélération", m:"hggsp", s:["01"], d:"Hausse brutale et simultanée, depuis le milieu du vingtième siècle, de nombreux indicateurs de l'activité humaine et de ses impacts (population, PIB, énergie, CO2)."},
+  {t:"Pastoralisme", m:"hggsp", s:["01"], d:"Élevage nomade ou itinérant adapté aux espaces contraignants. Estive ou remue : mobilité verticale en montagne. Transhumance : mobilité horizontale longue distance. Agropastoralisme : associé à l'agriculture.", note:GEN},
+  {t:"Forêt domaniale, forêt privée", m:"hggsp", s:["01"], d:"La forêt domaniale appartient à l'État et est gérée par l'Office national des forêts (ONF) ; la forêt privée appartient à des particuliers."},
+  {t:"Sylviculture", m:"hggsp", s:["01"], d:"Culture et exploitation raisonnée de la forêt en vue de la production de bois."},
+  {t:"Bois d'œuvre", m:"hggsp", s:["01"], d:"Bois destiné à la construction ou à la fabrication d'objets, par opposition au bois de chauffage."},
+  {t:"Reboisement, déforestation", m:"hggsp", s:["01"], d:"Le reboisement désigne la plantation de nouveaux arbres, la déforestation la disparition du couvert forestier ; ce sont deux processus opposés."},
+  {t:"Monoculture forestière", m:"hggsp", s:["01"], d:"Plantation d'une seule essence d'arbre sur une surface donnée, par opposition à une forêt diversifiée."},
+  {t:"Multifonctionnalité", m:"hggsp", s:["01"], d:"Capacité d'un espace, ici la forêt, à remplir plusieurs fonctions à la fois (écologique, paysagère, récréative, patrimoniale), source de tensions entre usages."},
+  {t:"Vulnérabilité, résilience", m:"hggsp", s:["01"], d:"Appliquées à la forêt : la vulnérabilité désigne sa sensibilité face à un risque comme le changement climatique, la résilience sa capacité à s'en remettre."},
+
+  /* Histoire-Géo */
+  {t:"Mondialisation", m:"hg", s:["01"], d:"Intensification et multiplication des flux (marchandises, capitaux, informations, personnes) à l'échelle planétaire, entraînant une interdépendance des territoires."},
+  {t:"Espace stratégique", m:"hg", s:["01"], d:"Zone dont la localisation, les ressources ou les points de passage offrent un avantage géopolitique, économique ou militaire. Il se caractérise par une position remarquable, une forte connectivité, une concentration de flux, des fonctions de commandement et une concentration d'acteurs et d'armateurs."},
+  {t:"Armateur", m:"hg", s:["01"], d:"Personne ou entreprise qui possède, arme et exploite commercialement des navires marchands."},
+  {t:"Maritimisation", m:"hg", s:["01"], d:"Hausse du rôle des mers et océans dans l'économie mondiale (flux maritimes, exploitation des ressources marines). C'est un processus, à ne pas confondre avec l'espace maritime, qui est un lieu."},
+  {t:"Espace maritime", m:"hg", s:["01"], d:"Étendue marine (mer, océan, façade, zone économique exclusive) considérée sous l'angle de ses usages économiques, stratégiques ou politiques."},
+  {t:"Estuaire", m:"hg", s:["01"], d:"Embouchure fluviale ennoyée, stade intermédiaire entre ria et delta. Interface environnementale, d'échange et productive, créant des tensions (les installations portuaires migrent vers l'aval, ce qui accroît la pression sur les zones humides).", note:GEN},
+  {t:"Rangée portuaire", m:"hg", s:["01"], d:"Ensemble hiérarchisé de ports se répartissant le trafic d'une façade maritime. Exemple chinois : cinq ensembles (golfe de Bohai, delta du Yangzi, littoral du Sud-Est, rivière des Perles, littoral du Sud-Ouest), trafic dominé par Shanghai et le delta du Yangzi."},
+  {t:"Corridor", m:"hg", s:["02"], d:"Espace étroit, terrestre ou maritime, qui relie deux zones stratégiques et concentre des flux intenses (transports, réseaux, marchandises)."},
+  {t:"Canal", m:"hg", s:["02"], d:"Voie d'eau artificielle aménagée pour la navigation, qui raccourcit les distances ou relie deux mers ou océans."},
+  {t:"Embouchure", m:"hg", s:["02"], d:"Endroit où un cours d'eau se jette dans une mer, un océan ou un lac."},
+  {t:"Delta", m:"hg", s:["02"], d:"Embouchure divisée en plusieurs bras, où les sédiments se déposent et progressent sur la mer, souvent en forme de triangle."},
+  {t:"Circumterrestre", m:"hg", s:["02"], d:"Qualifie une route maritime qui fait le tour complet de la Terre en reliant les grands bassins de circulation mondiale."},
+  {t:"Dorsales océaniques", m:"hg", s:["02"], d:"Chaînes de montagnes sous-marines formées par l'écartement des plaques tectoniques."},
+  {t:"Nodules polymétalliques", m:"hg", s:["02"], d:"Roches posées sur les fonds océaniques, riches en métaux convoités (manganèse, nickel, cobalt, cuivre)."},
+  {t:"Littoralisation", m:"hg", s:["02"], d:"Concentration progressive des populations, des grandes villes et des activités économiques sur les côtes."},
+  {t:"Héliotropisme", m:"hg", s:["02"], d:"Attraction des régions ensoleillées sur l'installation des populations, des retraités et des entreprises."},
+  {t:"ZEE (zone économique exclusive)", m:"hg", s:["02"], d:"Espace maritime qui s'étend jusqu'à 200 milles marins (environ 370 km) des côtes, où l'État côtier est seul à pouvoir exploiter les ressources. Définie par la convention de Montego Bay (1982). À ne pas confondre avec les eaux territoriales (12 milles, pleine souveraineté de l'État)."},
+
+  /* Philosophie */
+  {t:"Hédonisme", m:"philo", s:["01"], d:"Théorie du bonheur fondée sur le calcul rationnel des plaisirs et de leurs conséquences. Agir bien revient à maximiser le plaisir et minimiser la souffrance."},
+  {t:"Épicurisme populaire (carpe diem)", m:"philo", s:["01"], d:"Philosophie de l'excès selon laquelle tout ce qui est bon mériterait d'être abusé. C'est une déformation de la pensée d'Épicure, pas sa continuation fidèle."},
+  {t:"Épicurisme antique", m:"philo", s:["01"], d:"Doctrine d'Épicure qui vise l'ataraxie par des plaisirs simples et la modération des désirs, en évitant les désirs superflus."},
+  {t:"Ataraxie", m:"philo", s:["01"], d:"Absence de trouble de l'âme, état recherché par les épicuriens."},
+  {t:"Euthymie", m:"philo", s:["02"], d:"Heureuse disposition de l'âme, obtenue selon Démocrite par la modération du plaisir, non par sa quantité."},
+  {t:"Comparaison descendante et ascendante", m:"philo", s:["02"], d:"Méthode de Démocrite pour être heureux : se comparer aux plus malheureux (comparaison descendante) plutôt qu'aux plus riches (comparaison ascendante, source d'envie et de désir sans fin)."},
+  {t:"Perfection première et perfection dernière", m:"philo", s:["03"], d:"Chez Maïmonide, les deux degrés de l'accomplissement humain : la perfection première, la santé du corps, et la perfection dernière, la raison en acte, la plus noble."},
+  {t:"Miracle absolu et miracle relatif", m:"philo", s:["03"], d:"Chez Wittgenstein, le miracle relatif est un fait extraordinaire seulement provisoirement inexpliqué par la science ; le miracle absolu, hors de portée par principe de toute explication scientifique, ne se rencontre jamais dans les faits."}
+];
+
+/* ---------- Vue : lexique ---------- */
+const norm = x => x.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/œ/g, "oe").replace(/æ/g, "ae");
+const LEX_M = ["ses","hggsp","hg","philo"];
+function viewLexique(root){
+  const entries = LEX.map(e => ({...e, key:norm(e.t), hay:norm(e.t + " " + e.d + " " + (e.note || ""))}))
+    .sort((a, b) => a.key.localeCompare(b.key, "fr"));
+  root.append(el("header", {class:"shero g", style:"--c:var(--ink)"}, el("span", {class:"band", "aria-hidden":"true"}),
+    el("div", {class:"max"},
+      el("div", {class:"top"}, el("span", {class:"k"}, "Outil"), el("span", {class:"k muted"}, entries.length + " notions, toutes tirées des fiches")),
+      el("h1", {class:"wide-t"}, "Lexique"),
+      el("p", {class:"full", style:"color:var(--ink-2)"}, "Toutes les notions définies dans les fiches de révision, à chercher en un mot."))));
+
+  const sec = el("section", {class:"lx g max"}); root.append(sec);
+  const input = el("input", {type:"search", id:"lx-q", placeholder:innerWidth < 520 ? "Cherche une notion…" : "Cherche une notion : ataraxie, ZEE, Gini…", autocomplete:"off", spellcheck:"false", "aria-label":"Chercher une notion", enterkeyhint:"search"});
+  const filt = el("div", {class:"lx-filt", role:"group", "aria-label":"Filtrer par matière"});
+  const count = el("p", {class:"k muted lx-count", "aria-live":"polite"});
+  const list = el("div", {class:"lx-list"});
+  sec.append(el("div", {class:"lx-bar"}, el("label", {class:"lx-search"}, svg('<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M15.5 15.5L21 21" stroke="currentColor" stroke-width="1.6"/></svg>'), input), filt, count), list,
+    el("p", {class:"muted lx-foot"}, "Les définitions sont reprises des fiches, sans ajout. Celles marquées d'une note sont des définitions générales ou à confirmer : en cas de doute, la parole du professeur prime."));
+
+  let mat = "all";
+  const renderFilt = () => {
+    filt.textContent = "";
+    const mk = (k, label, n) => el("button", {type:"button", class:"chip", "aria-pressed":String(mat === k), onclick:() => { mat = k; renderFilt(); render(); }},
+      k !== "all" ? el("span", {class:"dot", style:`--c:var(--${k})`}) : null, label, el("span", {class:"muted"}, " " + n));
+    filt.append(mk("all", "Toutes", entries.length));
+    for (const k of LEX_M) filt.append(mk(k, SUBJ[k].short, entries.filter(e => e.m === k).length));
+  };
+  /* Surligne les termes cherchés sans toucher au HTML */
+  const hl = (text, terms) => {
+    if (!terms.length) return [text];
+    let n = ""; const pos = [];
+    for (let i = 0; i < text.length; i++) for (const ch of norm(text[i])) { n += ch; pos.push(i); }
+    const marks = new Array(text.length).fill(false);
+    for (const t of terms) { let i = n.indexOf(t); while (i !== -1) { for (let j = i; j < i + t.length; j++) marks[pos[j]] = true; i = n.indexOf(t, i + t.length); } }
+    const out = []; let buf = "", on = false;
+    for (let i = 0; i < text.length; i++) { if (marks[i] !== on) { if (buf) out.push(on ? el("mark", {}, buf) : buf); buf = ""; on = marks[i]; } buf += text[i]; }
+    if (buf) out.push(on ? el("mark", {}, buf) : buf);
+    return out;
+  };
+  const volOf = (m, n) => VOLUMES.find(v => v.m === m && v.n === n);
+  const render = () => {
+    const terms = norm(input.value.trim()).split(/\s+/).filter(Boolean);
+    let res = entries.filter(e => (mat === "all" || e.m === mat) && terms.every(t => e.hay.includes(t)));
+    if (terms.length) res.sort((a, b) => (terms.every(t => b.key.includes(t)) - terms.every(t => a.key.includes(t))) || a.key.localeCompare(b.key, "fr"));
+    list.textContent = "";
+    count.textContent = res.length === entries.length ? `${res.length} notions` : `${res.length} notion${res.length > 1 ? "s" : ""} sur ${entries.length}`;
+    if (!res.length) { list.append(el("p", {class:"lx-empty"}, "Aucune notion trouvée. Elle n'est peut-être pas encore dans une fiche : regarde dans les cours du Drive.")); return; }
+    const groups = terms.length ? [["", res]] : [...new Set(res.map(e => e.key[0].toUpperCase()))].map(L => [L, res.filter(e => e.key[0].toUpperCase() === L)]);
+    for (const [L, es] of groups) {
+      const g = el("div", {class:"lx-group" + (L ? "" : " flat")});
+      if (L) g.append(el("div", {class:"lx-letter", "aria-hidden":"true"}, L));
+      g.append(el("dl", {class:"lx-dl"}, es.map(e => el("div", {class:"lx-item", style:`--c:var(--${e.m})`},
+        el("dt", {}, hl(e.t, terms)),
+        el("dd", {},
+          el("p", {class:"lx-def"}, hl(e.d, terms)),
+          e.note ? el("p", {class:"lx-note"}, e.note) : null,
+          el("p", {class:"lx-src"}, el("span", {class:"dot"}), SUBJ[e.m].short, " · ",
+            e.s.flatMap((n, i) => { const v = volOf(e.m, n); return [i ? ", " : "", v ? el("a", {href:DOC(v.id), target:"_blank", rel:"noopener"}, "Fiche " + v.code + " " + v.n + " ↗") : "Fiche " + n]; })))))));
+      list.append(g);
+    }
+  };
+  let t; input.addEventListener("input", () => { clearTimeout(t); t = setTimeout(render, 80); });
+  input.addEventListener("keydown", e => { if (e.key === "Escape" && input.value) { input.value = ""; render(); } });
+  const slash = e => { if (e.key === "/" && document.activeElement !== input && !/INPUT|TEXTAREA|SELECT/.test(document.activeElement?.tagName || "")) { e.preventDefault(); input.focus(); } };
+  document.addEventListener("keydown", slash);
+  lxCleanup = () => document.removeEventListener("keydown", slash);
+  renderFilt(); render();
+  return () => { if (!MOTION) return; G.from($(".shero .band", root), {scaleX:0, duration:1.1, ease:"expo.inOut"}); G.from($(".shero h1", root), {yPercent:30, duration:1.2, ease:"expo.out"}); G.from($(".lx-bar", root), {y:30, duration:1, ease:"power3.out", delay:.2}); };
+}
+let lxCleanup = null;
+
+/* ---------- Routeur avec transition ---------- */
+const view = $("#view");
+let ctx = null, mmCtx = null, first = true;
+function routeKey(){ const h = location.hash.replace("#", ""); return ORDER.includes(h) || ["seance", "notes", "lexique"].includes(h) ? h : "accueil"; }
+function build(k){
+  if (ctx) { ctx.revert(); ctx = null; } if (mmCtx) { mmCtx.revert(); mmCtx = null; }
+  if (ST) ST.getAll().forEach(t => t.kill());
+  live.forEach(s => s.dispose()); live = [];
+  clearInterval(tick); tick = null;
+  if (lxCleanup) { lxCleanup(); lxCleanup = null; }
+  view.textContent = ""; view.removeAttribute("style");
+  const animate = (() => { const a = k === "accueil" ? viewHome(view) : k === "seance" ? viewSeance(view) : k === "notes" ? viewNotes(view) : k === "lexique" ? viewLexique(view) : viewSubject(view, k); fitType(view); return a; })();
+  $$("#links a").forEach(a => a.getAttribute("data-r") === k ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"));
+  const onSpe = SPE.includes(k);
+  speBtn.classList.toggle("on", onSpe); speBtn.style.setProperty("--c", onSpe ? `var(--${k})` : "var(--ink)");
+  $$("#spe-menu a").forEach(a => a.getAttribute("data-r") === k ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"));
+  openSpe(false); markTabs(k); openSheet(false);
+  const cur = $(`#links a[data-r="${k}"]`) || (onSpe ? speBtn : null); if (cur) cur.scrollIntoView({block:"nearest", inline:"center"});
+  document.title = k === "accueil" ? "Terminale D" : (k === "seance" ? "Séance" : k === "notes" ? "Mes notes" : k === "lexique" ? "Lexique" : SUBJ[k].short) + " · Terminale D";
+  if (MOTION) { ctx = G.context(() => { const r = animate(); if (r && r.revert) mmCtx = r; }); requestAnimationFrame(() => ST.refresh()); }
+  else animate();
+}
+function go(){
+  const k = routeKey();
+  if (first || !MOTION) { first = false; build(k); window.scrollTo(0, 0); return; }
+  const c = $("#curtain"), label = $("#curtain-t");
+  c.style.setProperty("--c", k === "accueil" || k === "seance" || k === "notes" || k === "lexique" ? "var(--ink)" : `var(--${k})`);
+  label.textContent = k === "accueil" ? "Terminale D" : k === "seance" ? "Séance" : k === "notes" ? "Mes notes" : k === "lexique" ? "Lexique" : SUBJ[k].big;
+  G.timeline()
+    .set(c, {transformOrigin:"bottom"})
+    .to(c, {scaleY:1, duration:.55, ease:"expo.inOut"})
+    .to(label, {opacity:1, duration:.2}, "-=.15")
+    .add(() => { build(k); window.scrollTo(0, 0); view.focus({preventScroll:true}); })
+    .set(c, {transformOrigin:"top"})
+    .to(label, {opacity:0, duration:.2}, "+=.15")
+    .to(c, {scaleY:0, duration:.65, ease:"expo.inOut"}, "-=.05");
+}
+addEventListener("hashchange", go);
+go();
+addEventListener("load", () => ST && ST.refresh());
+document.fonts?.ready.then(() => { fitType(); if (ST) ST.refresh(); });
+</script>
+</body>
+</html>
