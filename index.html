@@ -484,6 +484,43 @@ details.nb-card[open] > summary{margin-bottom:20px}
 .nb-bac td.v input{padding-block:9px}
 .nb-scale span{font-size:11px}
 .nb .nb-check input{width:18px;height:18px}
+/* Par chapitre */
+.bychap{border-top:1px solid var(--ink);padding-block:70px}
+.bychap-h{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,36ch);gap:18px 40px;align-items:end;margin-bottom:34px}
+.bychap-h p{margin:0}
+.chaps{border-top:1px solid var(--ink)}
+.chap{border-bottom:1px solid var(--line)}
+.chap-h{list-style:none;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"n i" "t i" "m i";gap:6px 20px;padding:24px 0;align-items:center}
+.chap-h::-webkit-details-marker{display:none}
+.chap-h:focus-visible{outline:2px solid var(--focus);outline-offset:4px}
+.chap-n{grid-area:n;color:var(--ct,var(--c,var(--ink)))}
+.chap-t{grid-area:t;font-family:var(--serif);font-size:clamp(24px,2.6vw,38px);line-height:1.12;letter-spacing:-.01em;text-wrap:balance}
+.chap-m{grid-area:m}
+.chap-i{grid-area:i;width:34px;height:34px;border:1px solid var(--ink);position:relative;flex:none;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
+.chap-i::before,.chap-i::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:1.5px;background:var(--ink);transform:translate(-50%,-50%)}
+.chap-i::after{transform:translate(-50%,-50%) rotate(90deg);transition:transform .35s}
+.chap[open] .chap-i::after{transform:translate(-50%,-50%) rotate(0)}
+.chap-h:hover .chap-i{background:var(--ink)}
+.chap-h:hover .chap-i::before,.chap-h:hover .chap-i::after{background:var(--bg)}
+.chap.meth .chap-t{font-size:clamp(20px,2vw,28px);color:var(--ink-2)}
+.chap-b{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:28px clamp(28px,4vw,64px);padding:4px 0 36px}
+.chap-col h4{margin:0 0 10px;font-weight:400}
+.chap .part{margin:22px 0 8px;color:var(--ct,var(--c,var(--ink)))}
+.chap .part:first-of-type{margin-top:0}
+.cl{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
+.cl a{display:grid;grid-template-columns:72px minmax(0,1fr) auto;gap:14px;align-items:baseline;padding:13px 0;border-bottom:1px solid var(--line);text-decoration:none;transition:padding .3s cubic-bezier(.2,.7,.2,1)}
+.cl a:hover{padding-left:8px}
+.cl .d{font-family:var(--mono);font-size:12.5px;color:var(--ink-2);white-space:nowrap}
+.cl .t{font-size:18px;line-height:1.3}
+.cl .go{color:var(--ink-2)}
+.rev-h{border-top:1px solid var(--ink);padding-block:60px 0;display:flex;justify-content:space-between;align-items:end;gap:20px 40px;flex-wrap:wrap}
+.rev-h .btns{display:flex;gap:10px;flex-wrap:wrap}
+#t-rev .bychap{border-top:0;padding-top:36px}
+.seg button:disabled{cursor:not-allowed;opacity:.45}
+.seg button[aria-pressed="true"]:disabled{opacity:1}
+select:disabled{opacity:.55;cursor:not-allowed}
+@media (max-width:900px){ .chap-b,.bychap-h{grid-template-columns:1fr} }
+@media (max-width:560px){ .chap-h{padding:18px 0} .chap-i{width:28px;height:28px} .cl a{grid-template-columns:58px minmax(0,1fr) auto;gap:10px} .cl .t{font-size:17px} .rev-h{padding-top:44px} }
 </style>
 </head>
 <body>
@@ -531,46 +568,65 @@ const MAT = {
 };
 
 const VOLUMES = [
-  {m:"ses", code:"SES", n:"01", t:"Les analyses de la structure sociale", id:"1ACeppauoU3aSk2zWId5I65HEmPHTfu1UAPA0akXkegA", w:70, h:262, q:"ses1"},
-  {m:"ses", code:"SES", n:"02", t:"Facteurs et évolutions de la structure sociale", id:"1DChO8u-wU-R2knb6oG7-8gj_dxhuTOECrxlavePfvEo", w:64, h:262, q:"ses2"},
-  {m:"ses", code:"SES", n:"03", t:"EC1.1, le corrigé", id:"1_ChptLCNx_A8ScEalEqyskGky1V47nFZW_FPkdnmLmo", w:58, h:240, q:"ses3"},
-  {m:"ses", code:"SES", n:"M", t:"Méthodologie du bac", id:"1ZHfZX08gPUt5wqTUusuA_cFGK2g9ianHoil5YXXTol0", w:54, h:228},
-  {m:"ses", code:"SES", n:"P", t:"Programme de l'année", id:"1MVa1B9teMl7gJzxuga_O5yekOX0K3CXOwMaZCougksk", w:40, h:214},
-  {m:"hggsp", code:"HGGSP", n:"01", t:"Environnement, entre exploitation et protection", id:"1pQu0DYhwBwF27OJNLD8gnEqw-c2dsZ-I4gY8Kbkd1hE", w:84, h:270, q:"hggsp1"},
-  {m:"hggsp", code:"HGGSP", n:"M", t:"Méthodologie du bac", id:"17y4Sf192M_g_H34-NaoX4DzNySR0dOh8GkDV60YVVEQ", w:52, h:228},
-  {m:"hggsp", code:"HGGSP", n:"P", t:"Programme de l'année", id:"1dviXGbJuJtNbArI_yOa1s4zggFRiITI4HhdS7b2bED8", w:38, h:214},
-  {m:"hg", code:"HG", n:"01", t:"Les espaces maritimes, une approche géostratégique", id:"1YgKTKee96cDN6otOcB5dAcaOCzGaBSn0alpW7k7Fgiw", w:62, h:256, q:"hg1"},
-  {m:"hg", code:"HG", n:"02", t:"Lexique des espaces maritimes", id:"1bOQI3JPize5KYSAWIDMzBBuk94bZYfBqLRYvux5tLag", w:48, h:244, q:"hg2"},
-  {m:"hg", code:"HG", n:"M", t:"Méthodologie et conseils", id:"1Y5jGBMmL7jT_ECYiYm77NucVQad0dN2VJ6UyfGT2LF4", w:52, h:228},
-  {m:"philo", code:"PHILO", n:"01", t:"Le bonheur et les plaisirs", id:"1Wys6xgOrZ3Qk49M1fBD8JF9jgA0q5nBb7ISEcNiu7Qc", w:50, h:250, q:"philo1"},
-  {m:"philo", code:"PHILO", n:"02", t:"Le Bonheur", id:"1cPf56X_YPIpZGN4wnc4YAQ6rL0CGWqfJkSOx_FqLJuI", w:44, h:222, q:"philo2"},
-  {m:"philo", code:"PHILO", n:"03", t:"La Raison", id:"1A_8Gy3FUPazYxZkOHsXTPC5k-IDpkD5xYEdOkLbG16A", w:42, h:220, q:"philo3"},
-  {m:"philo", code:"PHILO", n:"M", t:"Méthodologie du bac", id:"1AdTAq1m8dQe_GMl-xb1TctrCT3pyeX6baYi7Im132Jc", w:62, h:236}
+  {m:"ses", code:"SES", n:"01", t:"Les analyses de la structure sociale", ch:"ses1", id:"1ACeppauoU3aSk2zWId5I65HEmPHTfu1UAPA0akXkegA", w:70, h:262, q:"ses1"},
+  {m:"ses", code:"SES", n:"02", t:"Facteurs et évolutions de la structure sociale", ch:"ses1", id:"1DChO8u-wU-R2knb6oG7-8gj_dxhuTOECrxlavePfvEo", w:64, h:262, q:"ses2"},
+  {m:"ses", code:"SES", n:"03", t:"EC1.1, le corrigé", ch:"ses1", id:"1_ChptLCNx_A8ScEalEqyskGky1V47nFZW_FPkdnmLmo", w:58, h:240, q:"ses3"},
+  {m:"ses", code:"SES", n:"M", t:"Méthodologie du bac", ch:"sesM", id:"1ZHfZX08gPUt5wqTUusuA_cFGK2g9ianHoil5YXXTol0", w:54, h:228},
+  {m:"ses", code:"SES", n:"P", t:"Programme de l'année", ch:"sesM", id:"1MVa1B9teMl7gJzxuga_O5yekOX0K3CXOwMaZCougksk", w:40, h:214},
+  {m:"hggsp", code:"HGGSP", n:"01", t:"Environnement, entre exploitation et protection", ch:"hggsp5", id:"1pQu0DYhwBwF27OJNLD8gnEqw-c2dsZ-I4gY8Kbkd1hE", w:84, h:270, q:"hggsp1"},
+  {m:"hggsp", code:"HGGSP", n:"M", t:"Méthodologie du bac", ch:"hggspM", id:"17y4Sf192M_g_H34-NaoX4DzNySR0dOh8GkDV60YVVEQ", w:52, h:228},
+  {m:"hggsp", code:"HGGSP", n:"P", t:"Programme de l'année", ch:"hggspM", id:"1dviXGbJuJtNbArI_yOa1s4zggFRiITI4HhdS7b2bED8", w:38, h:214},
+  {m:"hg", code:"HG", n:"01", t:"Les espaces maritimes, une approche géostratégique", ch:"hgG1", id:"1YgKTKee96cDN6otOcB5dAcaOCzGaBSn0alpW7k7Fgiw", w:62, h:256, q:"hg1"},
+  {m:"hg", code:"HG", n:"02", t:"Lexique des espaces maritimes", ch:"hgG1", id:"1bOQI3JPize5KYSAWIDMzBBuk94bZYfBqLRYvux5tLag", w:48, h:244, q:"hg2"},
+  {m:"hg", code:"HG", n:"M", t:"Méthodologie et conseils", ch:"hgM", id:"1Y5jGBMmL7jT_ECYiYm77NucVQad0dN2VJ6UyfGT2LF4", w:52, h:228},
+  {m:"philo", code:"PHILO", n:"01", t:"Le bonheur et les plaisirs", ch:"philoBonheur", id:"1Wys6xgOrZ3Qk49M1fBD8JF9jgA0q5nBb7ISEcNiu7Qc", w:50, h:250, q:"philo1"},
+  {m:"philo", code:"PHILO", n:"02", t:"Le Bonheur", ch:"philoBonheur", id:"1cPf56X_YPIpZGN4wnc4YAQ6rL0CGWqfJkSOx_FqLJuI", w:44, h:222, q:"philo2"},
+  {m:"philo", code:"PHILO", n:"03", t:"La Raison", ch:"philoRaison", id:"1A_8Gy3FUPazYxZkOHsXTPC5k-IDpkD5xYEdOkLbG16A", w:42, h:220, q:"philo3"},
+  {m:"philo", code:"PHILO", n:"M", t:"Méthodologie du bac", ch:"philoM", id:"1AdTAq1m8dQe_GMl-xb1TctrCT3pyeX6baYi7Im132Jc", w:62, h:236}
 ];
 
 const COURS = [
-  ["2026-09-24","ses","Méthodologie de l'épreuve composée, l'étude d'un document","1mXS0hfIWU6mKpOOvEDeCo64bat8wL9qJgdvZ2wiyPfg"],
-  ["2026-09-24","philo","Une représentation moderne du mythe de la caverne de Platon","1gAwUoXIB5PIwV5vRGwH7r9smFouEZHgSXU_yi-POznU"],
-  ["2026-09-23","hggsp","Jalon 1, la forêt française depuis Colbert (suite : le bois au service de la puissance, XIXe siècle)","10wUVftdR1YbQLxcByd_0HBoMhOEkouU9RqOhLqE6uOo"],
-  ["2026-09-21","hggsp","La forêt française, du legs de Colbert aux défis climatiques (étude de cas Fontainebleau)","1sX1nfujRMEy7F1IbTNuAprAsj9x67rktCph7FUmY0J0"],
-  ["2026-09-21","ses","Les outils de mesure des inégalités de revenu et de patrimoine","1sT8QZcA8WSwMcyJs_7OVl2koy_SUSJoRCwY64gwu4hU"],
-  ["2026-09-18","ses","Les facteurs de hiérarchisation de la structure sociale (PCS et revenu)","11zRoy3Q2it3q_-fQIoARnMGIP54ABySZWIIySli1d5U"],
-  ["2026-09-18","hg","Étude de cas, la façade maritime chinoise (suite)","1_b7jQVCZNXX8C_ReK0yzUqfxv_pCPUVyN55qQfwTp7U"],
-  ["2026-09-17","hggsp","Jalon 1, la forêt française depuis Colbert","1Skklv4yrlouAwIRGeas9fenNXbev9Hs33G6SDiA1YtU"],
-  ["2026-09-16","hg","Étude de cas, les ports chinois et la mondialisation","11ebTrX5EKlyCQwPPNWMZJpeHCfECAzVex7cIsHz0YTo"],
-  ["2026-09-16","hggsp","Axe 1, exploiter, préserver, protéger : les enjeux","1mflToGvq4yHybsyX7PXg4gKRwktZAImmQ1sS5zUOW9g"],
-  ["2026-09-15","hg","Les espaces maritimes, une approche géostratégique","1Vh98Ma41dtBXlzmeTN3HljnxNjFUFRxCqHBtBEKcsA8"],
-  ["2026-09-14","hggsp","La construction sociale des problèmes environnementaux","1T6lfFRbc8JJTO0cdOz95kpK3P_-uOeO9DMW1NAGFZSM"],
-  ["2026-09-14","ses","Synthèse sur la pertinence de l'analyse en classes sociales","16RpY0fv8Ty4lv5NnO1-gpJ_JsZpN8VeWJymDh4XfOms"],
-  ["2026-09-11","ses","La moyennisation de la société française (Trente Glorieuses)","1FmbQtZ2N88jfaXe1XqZ65FgIJYSn-cpe58oG9EXfdIk"],
-  ["2026-09-10","philo","Une vie heureuse est-elle une vie de plaisirs ?","19wdqdH2gD7QlGCqS14u-4irX3Y6xZqeXpqb7IBpw3VY"],
-  ["2026-09-10","ses","Marx et Weber, méthodologie de l'épreuve composée","1K2W-HKPMiGV5zmvTVJ5m0VUVVXliDoqkGVlKt1c5JIM"],
-  ["2026-09-10","hggsp","Greta Thunberg et la politisation de l'environnement","1sP1BbAg5CXk1Rzf9s-iaKmytjp0bqNz-uOQsLlntgvc"],
-  ["2026-09-09","hggsp","Environnement, entre exploitation et protection (Thème 5)","1LBV7t1_gaUZ-DBAQwc-9G7-DzjiiSoOoXluQKjvH6kQ"],
-  ["2026-09-08","philo","La nature a-t-elle besoin de nous ?","1ZRRQS-dFgUi8HnBcybomyRjmgybN79CXWfN75Fc8n-g"],
-  ["2026-09-07","ses","Rentrée","1Gz4R7IkTNMI1FdXRAofgY7D912LcUx5nVebXcvPzLLY"],
-  ["2026-09-07","hggsp","Rentrée","1BsRUzkC8_WBUl5V0voENyJddBYnK0AmTb-4zjLVJkkA"]
+  ["2026-09-24","ses","Méthodologie de l'épreuve composée, l'étude d'un document","1mXS0hfIWU6mKpOOvEDeCo64bat8wL9qJgdvZ2wiyPfg","sesM"],
+  ["2026-09-24","philo","Une représentation moderne du mythe de la caverne de Platon","1gAwUoXIB5PIwV5vRGwH7r9smFouEZHgSXU_yi-POznU","philoAutre"],
+  ["2026-09-23","hggsp","Jalon 1, la forêt française depuis Colbert (suite : le bois au service de la puissance, XIXe siècle)","10wUVftdR1YbQLxcByd_0HBoMhOEkouU9RqOhLqE6uOo","hggsp5:axe1"],
+  ["2026-09-21","hggsp","La forêt française, du legs de Colbert aux défis climatiques (étude de cas Fontainebleau)","1sX1nfujRMEy7F1IbTNuAprAsj9x67rktCph7FUmY0J0","hggsp5:axe1"],
+  ["2026-09-21","ses","Les outils de mesure des inégalités de revenu et de patrimoine","1sT8QZcA8WSwMcyJs_7OVl2koy_SUSJoRCwY64gwu4hU","ses1"],
+  ["2026-09-18","ses","Les facteurs de hiérarchisation de la structure sociale (PCS et revenu)","11zRoy3Q2it3q_-fQIoARnMGIP54ABySZWIIySli1d5U","ses1"],
+  ["2026-09-18","hg","Étude de cas, la façade maritime chinoise (suite)","1_b7jQVCZNXX8C_ReK0yzUqfxv_pCPUVyN55qQfwTp7U","hgG1"],
+  ["2026-09-17","hggsp","Jalon 1, la forêt française depuis Colbert","1Skklv4yrlouAwIRGeas9fenNXbev9Hs33G6SDiA1YtU","hggsp5:axe1"],
+  ["2026-09-16","hg","Étude de cas, les ports chinois et la mondialisation","11ebTrX5EKlyCQwPPNWMZJpeHCfECAzVex7cIsHz0YTo","hgG1"],
+  ["2026-09-16","hggsp","Axe 1, exploiter, préserver, protéger : les enjeux","1mflToGvq4yHybsyX7PXg4gKRwktZAImmQ1sS5zUOW9g","hggsp5:axe1"],
+  ["2026-09-15","hg","Les espaces maritimes, une approche géostratégique","1Vh98Ma41dtBXlzmeTN3HljnxNjFUFRxCqHBtBEKcsA8","hgG1"],
+  ["2026-09-14","hggsp","La construction sociale des problèmes environnementaux","1T6lfFRbc8JJTO0cdOz95kpK3P_-uOeO9DMW1NAGFZSM","hggsp5:intro"],
+  ["2026-09-14","ses","Synthèse sur la pertinence de l'analyse en classes sociales","16RpY0fv8Ty4lv5NnO1-gpJ_JsZpN8VeWJymDh4XfOms","ses1"],
+  ["2026-09-11","ses","La moyennisation de la société française (Trente Glorieuses)","1FmbQtZ2N88jfaXe1XqZ65FgIJYSn-cpe58oG9EXfdIk","ses1"],
+  ["2026-09-10","philo","Une vie heureuse est-elle une vie de plaisirs ?","19wdqdH2gD7QlGCqS14u-4irX3Y6xZqeXpqb7IBpw3VY","philoBonheur"],
+  ["2026-09-10","ses","Marx et Weber, méthodologie de l'épreuve composée","1K2W-HKPMiGV5zmvTVJ5m0VUVVXliDoqkGVlKt1c5JIM","ses1"],
+  ["2026-09-10","hggsp","Greta Thunberg et la politisation de l'environnement","1sP1BbAg5CXk1Rzf9s-iaKmytjp0bqNz-uOQsLlntgvc","hggsp5:intro"],
+  ["2026-09-09","hggsp","Environnement, entre exploitation et protection (Thème 5)","1LBV7t1_gaUZ-DBAQwc-9G7-DzjiiSoOoXluQKjvH6kQ","hggsp5:intro"],
+  ["2026-09-08","philo","La nature a-t-elle besoin de nous ?","1ZRRQS-dFgUi8HnBcybomyRjmgybN79CXWfN75Fc8n-g","philoNature"],
+  ["2026-09-07","ses","Rentrée","1Gz4R7IkTNMI1FdXRAofgY7D912LcUx5nVebXcvPzLLY","sesM"],
+  ["2026-09-07","hggsp","Rentrée","1BsRUzkC8_WBUl5V0voENyJddBYnK0AmTb-4zjLVJkkA","hggspM"]
 ];
+
+/* Chapitres : l'ordre du programme. Chaque fiche (ch) et chaque cours (5e champ, "chapitre:partie") y est rangé. */
+const CHAPITRES = {
+  ses:[
+    {k:"ses1", n:"Chapitre 1", sub:"Sociologie", t:"Comment est structurée la société française actuelle ?"},
+    {k:"sesM", n:"Méthode", t:"Méthode du bac, programme et rentrée"}],
+  hggsp:[
+    {k:"hggsp5", n:"Thème 5", t:"L'environnement, entre exploitation et protection : un enjeu planétaire", parts:[["intro", "Introduction"], ["axe1", "Axe 1 · Exploiter, préserver et protéger"]]},
+    {k:"hggspM", n:"Méthode", t:"Méthode du bac, programme et rentrée"}],
+  hg:[
+    {k:"hgG1", n:"Géographie · Thème 1", t:"Mers et océans : au cœur de la mondialisation"},
+    {k:"hgM", n:"Méthode", t:"Méthode et conseils"}],
+  philo:[
+    {k:"philoNature", n:"Notion", t:"La nature"},
+    {k:"philoBonheur", n:"Notion", t:"Le bonheur"},
+    {k:"philoRaison", n:"Notion", t:"La raison"},
+    {k:"philoAutre", n:"À classer", t:"Cours dont la notion reste à confirmer", aside:true},
+    {k:"philoM", n:"Méthode", t:"Méthode du bac"}]
+};
 
 /* Banque de QCM : [question, [choix], index de la bonne réponse, ce que dit la fiche] */
 const QCM = {
@@ -1113,6 +1169,7 @@ function mountQuiz(host, vols){
     if (MOTION) { const o = {v:0}; G.to(o, {v:sur20, duration:1.2, ease:"power3.out", onUpdate:() => span.textContent = fmt(o.v)}); } else span.textContent = fmt(sur20);
   }
   { const D = qDone(); start(vols.find(v => qState(D, v.q) === "revoir") || vols.find(v => qState(D, v.q) === "reviser") || vols.find(v => !D[v.q]) || vols[0]); } quiet = false;
+  return {start:v => { if (vols.includes(v)) start(v); }};
 }
 
 /* ---------- Vue : accueil ---------- */
@@ -1250,6 +1307,46 @@ function viewHome(root){
 }
 
 /* ---------- Vue : matière ---------- */
+/* ---------- Rangement par chapitre ---------- */
+function chaptersOf(k){
+  const defs = [...(CHAPITRES[k] || [])], known = new Set(defs.map(c => c.k));
+  const vols = VOLUMES.filter(v => v.m === k), cours = COURS.filter(c => c[1] === k);
+  const chOf = c => (c[4] || "").split(":")[0];
+  if (vols.some(v => !known.has(v.ch)) || cours.some(c => !known.has(chOf(c)))) defs.push({k:"_autre", n:"Divers", t:"Autres documents"});
+  const out = defs.map(c => {
+    const vs = vols.filter(v => (known.has(v.ch) ? v.ch : "_autre") === c.k);
+    const cs = cours.filter(x => (known.has(chOf(x)) ? chOf(x) : "_autre") === c.k).sort((a, b) => a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0);
+    const groups = c.parts ? [...c.parts.map(([pk, pt]) => ({t:pt, cours:cs.filter(x => (x[4] || "").split(":")[1] === pk)})), {t:"Autres cours du thème", cours:cs.filter(x => !c.parts.some(([pk]) => (x[4] || "").split(":")[1] === pk))}].filter(g => g.cours.length) : [{t:null, cours:cs}];
+    const last = cs.length ? cs[cs.length - 1][0] : "";
+    return {...c, vols:vs, cours:cs, groups, qvols:vs.filter(v => v.q && QCM[v.q]), last, meth:/M$/.test(c.k)};
+  }).filter(c => c.vols.length || c.cours.length);
+  const latest = out.filter(c => !c.meth && !c.aside).reduce((a, c) => c.last > (a ? a.last : "") ? c : a, null);
+  out.forEach(c => c.open = c === latest);
+  return out;
+}
+function renderChapters(k, onQuiz){
+  const chs = chaptersOf(k);
+  return el("div", {class:"chaps"}, chs.map((c, i) => {
+    const nq = c.qvols.reduce((a, v) => a + QCM[v.q].length, 0);
+    const meta = [c.vols.length ? c.vols.length + (c.vols.length > 1 ? " fiches" : " fiche") : null, c.cours.length ? c.cours.length + " cours" : null, nq ? nq + " questions" : null].filter(Boolean).join(" · ");
+    return el("details", {class:"chap" + (c.meth ? " meth" : ""), open:c.open || null},
+      el("summary", {class:"chap-h"},
+        el("span", {class:"chap-n k"}, c.n + (c.sub ? " · " + c.sub : "")),
+        el("span", {class:"chap-t"}, c.t),
+        el("span", {class:"chap-m k muted"}, meta),
+        el("span", {class:"chap-i", "aria-hidden":"true"})),
+      el("div", {class:"chap-b"},
+        c.vols.length ? el("div", {class:"chap-col"}, el("h4", {class:"k muted"}, "Fiches de révision"),
+          el("ul", {class:"fl"}, c.vols.map(v => el("li", {}, el("a", {href:DOC(v.id), target:"_blank", rel:"noopener", "data-q":v.q || null},
+            el("span", {class:"n"}, v.n === "M" ? "Méth." : v.n === "P" ? "Prog." : "N° " + v.n), el("span", {class:"t"}, v.t), el("span", {class:"go"}, arrow()))))),
+          onQuiz && c.qvols.length ? el("div", {class:"row-actions", style:"margin-top:18px"}, el("button", {class:"btn", type:"button", onclick:() => onQuiz(c.qvols)}, "QCM du chapitre", arrow())) : null) : null,
+        c.cours.length ? el("div", {class:"chap-col"}, el("h4", {class:"k muted"}, "Les cours, dans l'ordre"),
+          c.groups.flatMap(g => [g.t ? el("p", {class:"part k"}, g.t) : null,
+            el("ol", {class:"cl"}, g.cours.map(([dt, , t, id]) => { const [, mo, d] = dt.split("-");
+              return el("li", {}, el("a", {href:DOC(id), target:"_blank", rel:"noopener"}, el("span", {class:"d"}, +d + " " + MOIS[+mo - 1]), el("span", {class:"t"}, t), el("span", {class:"go"}, arrow()))); }))])) : null));
+  }));
+}
+
 function viewSubject(root, k){
   const S = SUBJ[k], m = MAT[k];
   const vols = VOLUMES.filter(v => v.m === k), cours = COURS.filter(c => c[1] === k), qvols = vols.filter(v => v.q);
@@ -1281,24 +1378,22 @@ function viewSubject(root, k){
           el("h2", {class:"serif-t dtitle", id:"h-dos", html:S.title}),
           el("p", {class:"lead"}, S.lead),
           el("blockquote", {class:"quote"}, el("span", {class:"qt"}, S.quote), el("cite", {}, S.cite)),
-          el("div", {class:"blk"}, el("h3", {}, "Les fiches de révision"),
-            el("ul", {class:"fl"}, vols.map(v => el("li", {}, el("a", {href:DOC(v.id), target:"_blank", rel:"noopener", "data-q":v.q || null},
-              el("span", {class:"n"}, v.n === "M" ? "Méth." : v.n === "P" ? "Prog." : "N° " + v.n), el("span", {class:"t"}, v.t), el("span", {class:"go"}, arrow())))))))));
+          el("a", {class:"btn ghost", href:"#h-ch", onclick:e => { e.preventDefault(); $("#h-ch", root)?.scrollIntoView({behavior:MOTION ? "smooth" : "auto"}); }}, "Voir les chapitres", el("span", {"aria-hidden":"true"}, "↓")))));
       plateState = canvasLoop(cv, PLATES[S.plate]);
     }
-    if (cours.length) {
-      root.append(el("section", {class:"timeline g max", "aria-labelledby":"h-tl"},
-        el("h2", {class:"serif-t", id:"h-tl", html:"Tous les <em>cours</em>"}),
-        el("div", {class:"tl"}, el("span", {class:"tl-line", "aria-hidden":"true"}, el("i")),
-          cours.map(([dt, , t, id]) => { const [y, mo, d] = dt.split("-");
-            return el("a", {href:DOC(id), target:"_blank", rel:"noopener"}, el("span", {class:"d"}, d, el("small", {}, MOIS[+mo - 1] + " " + y)), el("span", {class:"t"}, t), el("span", {class:"go"}, arrow())); }))));
-    }
+    let quiz = null;
+    const toQuiz = qv => { if (!quiz) return; quiz.start(qv.find(v => qState(qDone(), v.q) !== "fait") || qv[0]); $("#h-q", root).scrollIntoView({behavior:MOTION ? "smooth" : "auto"}); };
+    root.append(el("section", {class:"bychap g max", "aria-labelledby":"h-ch"},
+      el("div", {class:"bychap-h"}, el("h2", {class:"serif-t", id:"h-ch", html:"Par <em>chapitre</em>"}),
+        el("p", {class:"muted"}, "Fiches, cours et QCM rangés chapitre par chapitre, dans l'ordre du programme. Le chapitre en cours est ouvert ; clique sur un titre pour ouvrir les autres.")),
+      renderChapters(k, qvols.length ? toQuiz : null)));
     if (qvols.length) {
       const q = el("section", {class:"interro g max", "aria-labelledby":"h-q"},
         el("div", {class:"qcol"}, el("h2", {class:"serif-t", id:"h-q", html:"L'interro <em>surprise</em>"}),
           el("p", {class:"muted", style:"margin:18px 0 0;max-width:34ch"}, "Huit questions par fiche, rédigées à partir des fiches. Chaque réponse cite ce que dit la fiche. Un QCM réussi revient « à réviser » après 3 jours, puis 10, puis 30 : c'est ce qui fixe une notion dans la durée.")));
-      root.append(q); mountQuiz(q, qvols); markFiches();
+      root.append(q); quiz = mountQuiz(q, qvols);
     }
+    markFiches();
   }
   const nk = ORDER[(ORDER.indexOf(k) + 1) % ORDER.length];
   root.append(el("a", {class:"next g", href:"#" + nk, style:`--c:var(--${nk})`}, el("div", {class:"max"}, el("span", {class:"k muted", style:"display:block;margin-bottom:14px"}, "Matière suivante"), el("span", {class:"wide-t"}, SUBJ[nk].big, " ", el("em", {style:`color:var(--${nk})`}, "→")))));
@@ -1315,11 +1410,8 @@ function viewSubject(root, k){
       ST.create({trigger:dos, start:"top 75%", end:"bottom 60%", scrub:.6, onUpdate:s => plateState.p = s.progress});
       G.from($$(".dtext > *", dos), {y:40, duration:1, ease:"power3.out", stagger:.08, scrollTrigger:{trigger:dos, start:"top 80%"}});
     }
-    const tl = $(".tl", root);
-    if (tl) {
-      G.fromTo($(".tl-line i", tl), {scaleY:0}, {scaleY:1, ease:"none", scrollTrigger:{trigger:tl, start:"top 75%", end:"bottom 60%", scrub:true}});
-      G.from($$("a", tl), {x:50, duration:.9, ease:"power3.out", stagger:.06, scrollTrigger:{trigger:tl, start:"top 80%"}});
-    }
+    const chs = $(".chaps", root);
+    if (chs) G.from($$(".chap", chs), {y:40, opacity:0, duration:.9, ease:"power3.out", stagger:.08, scrollTrigger:{trigger:chs, start:"top 85%"}});
     $$(".serif-t:not(.dtitle)", root).forEach(t => G.from(t, {x:-50, duration:1.1, ease:"expo.out", scrollTrigger:{trigger:t, start:"top 88%"}}));
     G.from($(".next .wide-t", root), {x:40, opacity:.25, ease:"none", scrollTrigger:{trigger:".next", start:"top bottom", end:"bottom bottom", scrub:true}});
   };
@@ -1327,45 +1419,103 @@ function viewSubject(root, k){
 
 /* ---------- Vue : séance ---------- */
 let tick = null;
+const TIMER_KEY = "td.timer.v1", ACTIVE = ["ses","hggsp","hg","philo"];
+let actx = null;
 function viewSeance(root){
   root.append(el("header", {class:"shero g", style:"--c:var(--ink)"}, el("span", {class:"band", "aria-hidden":"true"}),
     el("div", {class:"max"}, el("div", {class:"top"}, el("span", {class:"k"}, "Outil"), el("span", {class:"k muted"}, "Travailler par blocs")),
-      el("h1", {class:"wide-t"}, "Séance"), el("p", {class:"full", style:"color:var(--ink-2)"}, "Un minuteur pour réviser par blocs de 25 ou 50 minutes, avec une pause entre deux."))));
+      el("h1", {class:"wide-t"}, "Séance"), el("p", {class:"full", style:"color:var(--ink-2)"}, "Choisis une matière : son minuteur, ses fiches, ses cours et ses QCM, rangés par chapitre, au même endroit."))));
   const sec = el("section", {class:"seance g max"},
     el("div", {},
       el("div", {class:"ctrls"}, el("label", {class:"f", for:"t-mat"}, el("span", {}, "Matière"), el("select", {id:"t-mat"})),
         el("div", {class:"seg", role:"group", "aria-label":"Durée", id:"modes"}, el("button", {type:"button", "data-min":"25", "aria-pressed":"true"}, "25 min"), el("button", {type:"button", "data-min":"50", "aria-pressed":"false"}, "50 min"), el("button", {type:"button", "data-min":"5", "data-pause":"1", "aria-pressed":"false"}, "Pause"))),
-      el("div", {class:"clock", id:"clock", role:"timer"}, "25:00"),
+      el("div", {class:"clock", id:"clock", role:"timer", "aria-live":"off"}, "25:00"),
       el("div", {class:"ribbon", "aria-hidden":"true"}, el("i", {id:"bar"})),
       el("div", {class:"row-actions", style:"margin-top:0"}, el("button", {class:"btn", id:"t-go", type:"button"}, "Commencer"), el("button", {class:"btn ghost", id:"t-reset", type:"button"}, "Remettre à zéro")),
-      el("p", {class:"k muted", id:"t-status", style:"margin-top:16px"}, "Prêt")),
+      el("p", {class:"k muted", id:"t-status", style:"margin-top:16px", "aria-live":"polite"}, "Prêt")),
     el("div", {}, el("p", {class:"k muted", style:"margin:0 0 10px"}, "Tes séances, sur cet appareil"), el("div", {class:"log", id:"log"}), el("div", {class:"total"}, el("span", {class:"k muted"}, "Total"), el("b", {id:"log-total"}, "0 h 00"))));
-  root.append(sec);
-  const tMat = $("#t-mat", sec);
-  for (const [k, mm] of Object.entries(MAT)) tMat.append(el("option", {value:k}, mm.long));
-  tMat.value = store.get("td.mat", "ses");
-  const setC = () => sec.style.setProperty("--c", MAT[tMat.value].c);
-  tMat.addEventListener("change", () => { store.set("td.mat", tMat.value); setC(); }); setC();
-  let mins = 25, isPause = false, endAt = null, remain = 25 * 60000;
-  const paint = () => { const s = Math.max(0, Math.round(remain / 1000)); $("#clock").textContent = pad(Math.floor(s / 60)) + ":" + pad(s % 60); $("#bar").style.width = (100 - remain / (mins * 600)) + "%"; };
-  $$("#modes button", sec).forEach(b => b.addEventListener("click", () => { if (endAt) return; $$("#modes button", sec).forEach(x => x.setAttribute("aria-pressed", String(x === b))); mins = +b.dataset.min; isPause = !!b.dataset.pause; remain = mins * 60000; paint(); $("#t-status").textContent = isPause ? "Pause" : "Prêt"; }));
-  const beep = () => { try { const ctx = new (window.AudioContext || window.webkitAudioContext)(); [0, .25, .5].forEach(t => { const o = ctx.createOscillator(), g = ctx.createGain(); o.frequency.value = 660; g.gain.setValueAtTime(.12, ctx.currentTime + t); g.gain.exponentialRampToValueAtTime(.0001, ctx.currentTime + t + .2); o.connect(g).connect(ctx.destination); o.start(ctx.currentTime + t); o.stop(ctx.currentTime + t + .22); }); } catch {} };
-  const renderLog = () => { const log = store.get("td.slip", []), box = $("#log"); box.textContent = "";
-    if (!log.length) box.append(el("p", {class:"muted", style:"font-style:italic;margin:14px 0"}, "Aucune séance pour l'instant. Lance un premier bloc de 25 minutes."));
-    for (const r of log.slice(0, 8)) { const d = new Date(r.d); box.append(el("div", {class:"log-row"}, el("span", {class:"d"}, pad(d.getDate()) + "." + pad(d.getMonth() + 1)), el("span", {}, MAT[r.m]?.long || r.m), el("span", {class:"m"}, r.min + " min"))); }
-    const tot = log.reduce((a, r) => a + r.min, 0); $("#log-total").textContent = Math.floor(tot / 60) + " h " + pad(tot % 60); };
-  const finish = () => { clearInterval(tick); tick = null; endAt = null; remain = 0; paint(); $("#t-go").textContent = "Commencer";
-    if (!isPause) { const log = store.get("td.slip", []); log.unshift({d:new Date().toISOString(), m:tMat.value, min:mins}); store.set("td.slip", log.slice(0, 200)); renderLog(); $("#t-status").textContent = "Séance enregistrée. Prends ta pause."; } else $("#t-status").textContent = "Pause terminée.";
-    beep(); setTimeout(() => { if (!document.contains($("#clock"))) return; remain = mins * 60000; paint(); }, 1500); };
-  $("#t-go").addEventListener("click", () => {
-    if (endAt) { remain = endAt - Date.now(); endAt = null; clearInterval(tick); tick = null; $("#t-go").textContent = "Reprendre"; $("#t-status").textContent = "En pause"; return; }
+  const rev = el("div", {id:"t-rev"});
+  root.append(sec, rev);
+  const tMat = $("#t-mat", sec), goB = $("#t-go", sec), status = $("#t-status", sec), clock = $("#clock", sec), bar = $("#bar", sec);
+  const modeBtns = $$("#modes button", sec);
+  for (const k of [...ACTIVE, ...Object.keys(MAT).filter(k => !ACTIVE.includes(k))]) tMat.append(el("option", {value:k}, MAT[k].long));
+
+  /* état : survit à un changement de page ou à un rechargement */
+  const saved = store.get(TIMER_KEY, null) || {};
+  let mins = [25, 50, 5].includes(saved.mins) ? saved.mins : 25, isPause = !!saved.pause && mins === 5;
+  let endAt = typeof saved.endAt === "number" ? saved.endAt : null;
+  let remain = typeof saved.remain === "number" && saved.remain > 0 && saved.remain <= mins * 60000 ? saved.remain : mins * 60000;
+  let runMat = MAT[saved.mat] ? saved.mat : null;
+  const pref = store.get("td.mat", "ses");
+  tMat.value = runMat || (MAT[pref] ? pref : "ses");
+  const save = () => store.set(TIMER_KEY, {mins, pause:isPause, endAt, remain, mat:runMat});
+  const inSession = () => endAt !== null || remain < mins * 60000;
+
+  const setC = () => { sec.style.setProperty("--c", MAT[tMat.value].c); rev.style.setProperty("--c", MAT[tMat.value].c); };
+  const fmt = ms => { const s = Math.max(0, Math.ceil(ms / 1000)); return pad(Math.floor(s / 60)) + ":" + pad(s % 60); };
+  const paint = () => {
+    clock.textContent = fmt(remain);
+    bar.style.width = Math.min(100, Math.max(0, 100 - remain / (mins * 600))) + "%";
+    document.title = endAt ? fmt(remain) + " · " + (isPause ? "Pause" : MAT[tMat.value].nom) + " · Terminale D" : "Séance · Terminale D";
+  };
+  const lock = () => { const on = inSession(); tMat.disabled = on; modeBtns.forEach(b => { b.disabled = on; b.setAttribute("aria-pressed", String(+b.dataset.min === mins && !!b.dataset.pause === isPause)); }); };
+  const beep = () => { try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); if (actx.state === "suspended") actx.resume(); [0, .25, .5].forEach(t => { const o = actx.createOscillator(), g = actx.createGain(); o.frequency.value = 660; g.gain.setValueAtTime(.12, actx.currentTime + t); g.gain.exponentialRampToValueAtTime(.0001, actx.currentTime + t + .2); o.connect(g).connect(actx.destination); o.start(actx.currentTime + t); o.stop(actx.currentTime + t + .22); }); } catch {} };
+  const renderLog = () => { const log = store.get("td.slip", []), box = $("#log", sec); box.textContent = "";
+    const rows = Array.isArray(log) ? log.filter(r => r && r.d && r.min > 0) : [];
+    if (!rows.length) box.append(el("p", {class:"muted", style:"font-style:italic;margin:14px 0"}, "Aucune séance pour l'instant. Lance un premier bloc de 25 minutes."));
+    for (const r of rows.slice(0, 8)) { const d = new Date(r.d); box.append(el("div", {class:"log-row"}, el("span", {class:"d"}, pad(d.getDate()) + "." + pad(d.getMonth() + 1)), el("span", {}, MAT[r.m]?.long || r.m), el("span", {class:"m"}, r.min + " min"))); }
+    const tot = rows.reduce((a, r) => a + r.min, 0); $("#log-total", sec).textContent = Math.floor(tot / 60) + " h " + pad(tot % 60); };
+  const stop = () => { clearInterval(tick); tick = null; };
+  const finish = (away) => {
+    stop(); endAt = null; remain = 0; paint();
+    if (!isPause) { const log = store.get("td.slip", []); const l = Array.isArray(log) ? log : []; l.unshift({d:new Date().toISOString(), m:runMat || tMat.value, min:mins}); store.set("td.slip", l.slice(0, 200)); renderLog(); status.textContent = away ? "Ton bloc s'est terminé pendant ton absence : séance enregistrée." : "Séance enregistrée. Prends ta pause."; }
+    else status.textContent = "Pause terminée.";
+    if (!away) beep();
+    runMat = null; remain = mins * 60000; goB.textContent = "Commencer"; save(); lock();
+    setTimeout(() => { if (document.contains(clock) && !endAt) paint(); }, 1200);
+  };
+  const run = () => { stop(); tick = setInterval(() => { if (!document.contains(clock)) { stop(); return; } remain = endAt - Date.now(); if (remain <= 0) finish(false); else paint(); }, 250); };
+
+  modeBtns.forEach(b => b.addEventListener("click", () => { if (inSession()) return; mins = +b.dataset.min; isPause = !!b.dataset.pause; remain = mins * 60000; save(); paint(); lock(); status.textContent = isPause ? "Pause de 5 minutes, prête." : "Prêt"; }));
+  goB.addEventListener("click", () => {
+    try { actx = actx || new (window.AudioContext || window.webkitAudioContext)(); if (actx.state === "suspended") actx.resume(); } catch {}
+    if (endAt) { remain = Math.max(0, endAt - Date.now()); endAt = null; stop(); goB.textContent = "Reprendre"; status.textContent = "En pause · " + fmt(remain) + " restantes"; save(); paint(); return; }
     if (remain <= 0) remain = mins * 60000;
-    endAt = Date.now() + remain; $("#t-go").textContent = "Suspendre"; $("#t-status").textContent = isPause ? "Pause en cours" : "En cours · " + MAT[tMat.value].long;
-    tick = setInterval(() => { if (!document.contains($("#clock"))) { clearInterval(tick); tick = null; return; } remain = endAt - Date.now(); if (remain <= 0) finish(); else paint(); }, 250);
+    if (!runMat) runMat = tMat.value;
+    endAt = Date.now() + remain; goB.textContent = "Suspendre"; status.textContent = isPause ? "Pause en cours" : "En cours · " + MAT[runMat].long;
+    save(); lock(); paint(); run();
   });
-  $("#t-reset").addEventListener("click", () => { clearInterval(tick); tick = null; endAt = null; remain = mins * 60000; paint(); $("#t-go").textContent = "Commencer"; $("#t-status").textContent = "Prêt"; });
-  paint(); renderLog();
-  return () => { if (!MOTION) return; G.from($(".shero .band", root), {scaleX:0, duration:1.1, ease:"expo.inOut"}); G.from($(".shero h1", root), {yPercent:30, duration:1.2, ease:"expo.out"}); G.from($("#clock"), {y:40, duration:1.2, ease:"expo.out", delay:.2}); };
+  $("#t-reset", sec).addEventListener("click", () => { stop(); endAt = null; runMat = null; remain = mins * 60000; save(); paint(); lock(); goB.textContent = "Commencer"; status.textContent = "Prêt"; });
+
+  /* la matière choisie affiche, en dessous, tout ce qu'il faut pour la réviser */
+  const renderRev = () => {
+    const k = tMat.value, S = SUBJ[k], m = MAT[k]; rev.textContent = "";
+    const chs = chaptersOf(k);
+    const head = el("section", {class:"rev-h g max"},
+      el("h2", {class:"serif-t", html:"Réviser <em>" + (S ? S.short : m.nom) + "</em>"}),
+      el("div", {class:"btns"}, el("a", {class:"btn ghost", href:FOLDER(m.cours), target:"_blank", rel:"noopener"}, "Cours dans le Drive", arrow()), m.fiches ? el("a", {class:"btn ghost", href:FOLDER(m.fiches), target:"_blank", rel:"noopener"}, "Fiches dans le Drive", arrow()) : null));
+    rev.append(head);
+    if (!chs.length) { rev.append(el("section", {class:"empty g max"}, el("p", {}, "Rien n'a encore été numérisé dans cette matière : le minuteur marche quand même, et le dossier est prêt dans le Drive."))); return; }
+    const qvols = VOLUMES.filter(v => v.m === k && v.q && QCM[v.q]);
+    let quiz = null;
+    const toQuiz = qv => { if (!quiz) return; quiz.start(qv.find(v => qState(qDone(), v.q) !== "fait") || qv[0]); $(".interro", rev).scrollIntoView({behavior:MOTION ? "smooth" : "auto"}); };
+    rev.append(el("section", {class:"bychap g max"}, renderChapters(k, qvols.length ? toQuiz : null)));
+    if (qvols.length) {
+      const q = el("section", {class:"interro g max", "aria-label":"QCM " + (S ? S.short : m.nom)},
+        el("div", {class:"qcol"}, el("h2", {class:"serif-t", html:"Les <em>QCM</em>"}),
+          el("p", {class:"muted", style:"margin:18px 0 0;max-width:34ch"}, "Choisis une fiche : ceux à revoir ou à réviser passent en premier.")));
+      rev.append(q); quiz = mountQuiz(q, qvols);
+    }
+    markFiches();
+  };
+  tMat.addEventListener("change", () => { if (!MAT[tMat.value]) tMat.value = "ses"; store.set("td.mat", tMat.value); setC(); paint(); renderRev(); });
+
+  setC(); renderLog(); renderRev(); lock();
+  if (endAt) {
+    if (endAt <= Date.now()) finish(true);
+    else { remain = endAt - Date.now(); goB.textContent = "Suspendre"; status.textContent = isPause ? "Pause en cours" : "En cours · " + MAT[runMat || tMat.value].long; paint(); run(); }
+  } else { paint(); if (remain < mins * 60000) { goB.textContent = "Reprendre"; status.textContent = "En pause · " + fmt(remain) + " restantes"; } }
+  return () => { if (!MOTION) return; G.from($(".shero .band", root), {scaleX:0, duration:1.1, ease:"expo.inOut"}); G.from($(".shero h1", root), {yPercent:30, duration:1.2, ease:"expo.out"}); G.from(clock, {y:40, duration:1.2, ease:"expo.out", delay:.2}); };
 }
 
 /* ---------- Vue : mes notes (stockées dans le navigateur de chacun) ---------- */
@@ -1804,7 +1954,7 @@ let ctx = null, mmCtx = null, first = true;
 function routeKey(){ const h = location.hash.replace("#", ""); return ORDER.includes(h) || ["seance", "notes", "lexique"].includes(h) ? h : "accueil"; }
 function build(k){
   if (ctx) { ctx.revert(); ctx = null; } if (mmCtx) { mmCtx.revert(); mmCtx = null; }
-  if (ST) ST.getAll().forEach(t => t.kill());
+  if (ST) { ST.getAll().forEach(t => t.kill()); ST.clearScrollMemory(); }
   live.forEach(s => s.dispose()); live = [];
   clearInterval(tick); tick = null;
   if (lxCleanup) { lxCleanup(); lxCleanup = null; }
@@ -1817,7 +1967,7 @@ function build(k){
   openSpe(false); markTabs(k); openSheet(false);
   const cur = $(`#links a[data-r="${k}"]`) || (onSpe ? speBtn : null); if (cur) cur.scrollIntoView({block:"nearest", inline:"center"});
   document.title = k === "accueil" ? "Terminale D" : (k === "seance" ? "Séance" : k === "notes" ? "Mes notes" : k === "lexique" ? "Lexique" : SUBJ[k].short) + " · Terminale D";
-  if (MOTION) { ctx = G.context(() => { const r = animate(); if (r && r.revert) mmCtx = r; }); requestAnimationFrame(() => ST.refresh()); }
+  if (MOTION) { ctx = G.context(() => { const r = animate(); if (r && r.revert) mmCtx = r; }); ST.clearScrollMemory(); requestAnimationFrame(() => { ST.clearScrollMemory(); ST.refresh(); window.scrollTo(0, 0); ST.update(); }); }
   else animate();
 }
 function go(){
