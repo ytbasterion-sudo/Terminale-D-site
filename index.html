@@ -563,7 +563,7 @@ const MAT = {
   hg:    {nom:"Histoire-Géo", long:"Histoire-Géographie", c:"var(--hg)", cours:"1-Qf6mom5Ah-N0_P5B7Tk8M7_gjD2O4Qb", fiches:"1y7allfAYWP3ZLhAeEYb9AGCDpb6kLGB9"},
   philo: {nom:"Philosophie", long:"Philosophie", c:"var(--philo)", cours:"1OQfv6A9kV3n4p-eHMJQ3uatBY8jAlSwa", fiches:"1KIlxqeC0SFInTkkrHdzOXYeeNb2OjOUd"},
   es:    {nom:"Ens. scientifique", long:"Enseignement scientifique", c:"var(--es)", cours:"1M4SV7cwv9O8wW7PJGSXFhKw3yc5Jp75H"},
-  ang:   {nom:"Anglais", long:"LV1 - Anglais", c:"var(--ang)", cours:"11yxZVe__-UfJyM8rW4n9bBYNj5DrlE3b"},
+  ang:   {nom:"Anglais", long:"LV1 - Anglais", c:"var(--ang)", cours:"11yxZVe__-UfJyM8rW4n9bBYNj5DrlE3b", fiches:"1QDuIX12Wsp39JeLaYF3It0gzeu5Q0-HU"},
   droit: {nom:"Droit", long:"Droit (option DGEMC)", c:"var(--droit)", cours:"12F4Dt6jMTLIU1_8rE7es4JdiAFqSvoF6"}
 };
 
@@ -582,6 +582,9 @@ const VOLUMES = [
   {m:"philo", code:"PHILO", n:"01", t:"Le bonheur et les plaisirs", ch:"philoBonheur", id:"1Wys6xgOrZ3Qk49M1fBD8JF9jgA0q5nBb7ISEcNiu7Qc", w:50, h:250, q:"philo1"},
   {m:"philo", code:"PHILO", n:"02", t:"Le Bonheur", ch:"philoBonheur", id:"1cPf56X_YPIpZGN4wnc4YAQ6rL0CGWqfJkSOx_FqLJuI", w:44, h:222, q:"philo2"},
   {m:"philo", code:"PHILO", n:"03", t:"La Raison", ch:"philoRaison", id:"1A_8Gy3FUPazYxZkOHsXTPC5k-IDpkD5xYEdOkLbG16A", w:42, h:220, q:"philo3"},
+  {m:"ang", code:"ANG", n:"01", t:"Tradwives and the Women's Liberation Movement", ch:"ang1", id:"1D80q_o5JFtdUpadDDWyCVWGxxuPXV7NqbTekQx14MqU", w:58, h:246, q:"ang1"},
+  {m:"ang", code:"ANG", n:"T", t:"From Liberation to “Tradwife” : le texte du chapitre", ch:"ang1", id:"1FsjelMJ3bVwkYtHWUlfKTXIZUlAuGBOoKwwYSv-bGbs", w:44, h:230},
+  {m:"ang", code:"ANG", n:"M", t:"Méthodologie et conseils", ch:"angM", id:"1MX68UlBY1YKCNgs75oliMgDuHrY1bI_ucHj9uw-rCjs", w:52, h:228},
   {m:"philo", code:"PHILO", n:"M", t:"Méthodologie du bac", ch:"philoM", id:"1AdTAq1m8dQe_GMl-xb1TctrCT3pyeX6baYi7Im132Jc", w:62, h:236}
 ];
 
@@ -625,7 +628,10 @@ const CHAPITRES = {
     {k:"philoBonheur", n:"Notion", t:"Le bonheur"},
     {k:"philoRaison", n:"Notion", t:"La raison"},
     {k:"philoAutre", n:"À classer", t:"Cours dont la notion reste à confirmer", aside:true},
-    {k:"philoM", n:"Méthode", t:"Méthode du bac"}]
+    {k:"philoM", n:"Méthode", t:"Méthode du bac"}],
+  ang:[
+    {k:"ang1", n:"Chapter 1", t:"Tradwives in the USA and the Women's Liberation Movement"},
+    {k:"angM", n:"Méthode", t:"Méthodologie et conseils"}]
 };
 
 /* Banque de QCM : [question, [choix], index de la bonne réponse, ce que dit la fiche] */
@@ -712,6 +718,16 @@ const QCM = {
     ["Pour Pascal, le désir de bonheur est…",["rare et réservé à quelques-uns","universel, partagé par tous les hommes sans exception","propre aux seuls croyants","absent chez les plus pauvres"],1,"Tous les hommes recherchent le bonheur sans exception."],
     ["Selon Pascal, ce désir universel de bonheur…",["est toujours satisfait par l'expérience","n'est jamais satisfait sans la foi","disparaît avec l'âge","se satisfait par le seul calcul rationnel"],1,"Aucun homme, sans la foi, n'y parvient jamais, malgré l'universalité du désir."],
     ["Quelle réponse au problème du bonheur fait l'objet d'une fiche séparée ?",["Celle de Démocrite","Celle d'Épicure","Celle de Platon","Celle de Pascal"],1,"La réponse d'Épicure (le calcul hédoniste) fait l'objet de la fiche Philosophie - Le bonheur et les plaisirs."]
+  ],
+  ang1:[
+    ["Le mot « tradwife » est l'abréviation de…",["traditional wife","trading wife","traditional worker","tradition of women"],0,"Tradwife est l'abréviation de traditional wife."],
+    ["Les tradwives présentent comme le centre de leur vie…",["leur carrière professionnelle","le foyer, le mariage et la maternité","l'engagement politique","les voyages"],1,"Elles présentent le foyer, le mariage et la maternité comme le centre de leur vie, dans des vidéos très soignées sur les réseaux sociaux."],
+    ["Le Women's Liberation Movement est surtout influent…",["dans les années 1920","dans les années 1950","dans les années 1970","dans les années 2000"],2,"Le mouvement naît dans les années 1960 et devient surtout influent dans les années 1970."],
+    ["Parmi ces revendications, laquelle n'était PAS celle du Women's Liberation Movement ?",["l'égalité dans l'éducation et l'emploi","les droits reproductifs","l'indépendance économique","l'abolition de la famille"],3,"Le mouvement voulait ouvrir des choix au-delà des rôles assignés, pas abolir la famille."],
+    ["Dans le modèle d'après-guerre, le « breadwinner » est…",["la femme au foyer","l'homme qui fait vivre le foyer","l'enfant aîné","l'État"],1,"L'homme est le breadwinner, celui qui fait vivre le foyer ; la femme s'occupe de la maison et des enfants."],
+    ["L'image de la « suburban housewife » était…",["la réalité de toutes les familles américaines","un idéal culturel puissant, pas la réalité de toutes les familles","une invention des tradwives","un modèle rejeté dès les années 1950"],1,"La fiche précise que c'était un idéal culturel puissant, pas la réalité de toutes les familles."],
+    ["Selon le texte, la vraie question n'est pas ce qu'une femme choisit, mais…",["si elle a la liberté et les ressources de choisir","si son choix plaît aux réseaux sociaux","si elle travaille ou non","si elle suit le féminisme dominant"],0,"La vraie question est de savoir si elle a la liberté et les ressources de choisir."],
+    ["Pourquoi rester à la maison n'est-il pas toujours un choix libre ?",["parce que c'est interdit par la loi","parce que cela peut venir d'une contrainte : garde d'enfants trop chère, pas d'emploi, pression du conjoint","parce que toutes les tradwives sont soumises","parce que le texte condamne la vie de famille"],1,"Le même comportement peut être un choix financé par un revenu suffisant ou une contrainte (garde d'enfants trop chère, pas d'emploi, pression du conjoint)."]
   ],
   philo3:[
     ["Pour Maïmonide, la Loi vise deux fins : le bien-être du corps et…",["le bien-être de l'âme","la richesse matérielle","la gloire politique","le plaisir immédiat"],0,"La Loi vise le bien-être du corps, condition nécessaire, puis, seule fin vraiment noble, le bien-être de l'âme."],
@@ -1003,7 +1019,7 @@ links.append(el("span", {class:"nav-sep", "aria-hidden":"true"}), speBtn, el("sp
 links.append(el("a", {href:"#lexique", "data-r":"lexique"}, "Lexique"));
 links.append(el("a", {href:"#seance", "data-r":"seance"}, "Séance"));
 links.append(el("a", {href:"#notes", "data-r":"notes"}, "Mes notes"));
-const countsOf = m => ({c:COURS.filter(x => x[1] === m).length, f:VOLUMES.filter(v => v.m === m).length});
+const countsOf = m => ({c:COURS.filter(x => x[1] === m).length + VOLUMES.filter(v => v.m === m && v.n === "T").length, f:VOLUMES.filter(v => v.m === m && v.n !== "T").length});
 const speMenu = el("div", {class:"spe-menu", id:"spe-menu", role:"region", "aria-label":"Spécialités et option", hidden:true},
   el("p", {class:"k muted", style:"margin:0"}, "Spécialités & option"),
   el("div", {class:"spe-list"}, SPE.map(k => { const n = countsOf(k);
@@ -1174,11 +1190,11 @@ function mountQuiz(host, vols){
 
 /* ---------- Vue : accueil ---------- */
 function viewHome(root){
-  const nCours = COURS.length, nFiches = VOLUMES.length, nQ = Object.values(QCM).reduce((a, q) => a + q.length, 0);
+  const nCours = COURS.length + VOLUMES.filter(v => v.n === "T").length, nFiches = VOLUMES.filter(v => v.n !== "T").length, nQ = Object.values(QCM).reduce((a, q) => a + q.length, 0);
   const coverCv = el("canvas", {"aria-hidden":"true"});
   const mast = el("h1", {class:"wide-t mast", "aria-label":"Terminale D"}, el("span", {class:"w", "aria-hidden":"true"}, "Terminale"), " ", el("em", {"aria-hidden":"true"}, "D"));
   root.append(el("header", {class:"cover g"}, coverCv,
-    el("div", {class:"issue max", style:"width:100%"}, el("span", {class:"k"}, "N° 03 · Septembre 2026"), el("span", {class:"k muted"}, "Lycée Français International Mhamed Driss · Sousse"), el("span", {class:"k muted"}, "Mis à jour le 24.09 (soir)")),
+    el("div", {class:"issue max", style:"width:100%"}, el("span", {class:"k"}, "N° 03 · Septembre 2026"), el("span", {class:"k muted"}, "Lycée Français International Mhamed Driss · Sousse"), el("span", {class:"k muted"}, "Mis à jour le 25.09")),
     el("div", {class:"max", style:"width:100%;align-self:center"}, mast),
     el("div", {class:"byline max", style:"width:100%", "aria-label":"Un projet d'Adam et Kenza, délégués de la Terminale D, 2026-2027"},
       el("div", {class:"by-k l", "aria-hidden":"true"}, el("span", {class:"k"}, "Un projet"), el("span", {class:"k muted"}, "de vos délégués")),
@@ -1202,7 +1218,7 @@ function viewHome(root){
   if (!MOTION) $$(".w", man).forEach(s => s.style.opacity = 1);
 
   /* Le Drive */
-  const counts = m => ({c:COURS.filter(x => x[1] === m).length, f:VOLUMES.filter(v => v.m === m).length});
+  const counts = countsOf;
   const tree = el("div", {class:"tree"}, el("span", {class:"trunk", "aria-hidden":"true"}),
     el("a", {class:"root", href:FOLDER(DRIVE_ROOT), target:"_blank", rel:"noopener", style:"--c:var(--ink)"}, folder(), "terminale", el("span", {class:"k muted", style:"font-weight:400"}, "Drive partagé ↗")));
   for (const k of ORDER) {
@@ -1314,21 +1330,22 @@ function chaptersOf(k){
   const chOf = c => (c[4] || "").split(":")[0];
   if (vols.some(v => !known.has(v.ch)) || cours.some(c => !known.has(chOf(c)))) defs.push({k:"_autre", n:"Divers", t:"Autres documents"});
   const out = defs.map(c => {
-    const vs = vols.filter(v => (known.has(v.ch) ? v.ch : "_autre") === c.k);
+    const all = vols.filter(v => (known.has(v.ch) ? v.ch : "_autre") === c.k), vs = all.filter(v => v.n !== "T"), ts = all.filter(v => v.n === "T");
     const cs = cours.filter(x => (known.has(chOf(x)) ? chOf(x) : "_autre") === c.k).sort((a, b) => a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0);
     const groups = c.parts ? [...c.parts.map(([pk, pt]) => ({t:pt, cours:cs.filter(x => (x[4] || "").split(":")[1] === pk)})), {t:"Autres cours du thème", cours:cs.filter(x => !c.parts.some(([pk]) => (x[4] || "").split(":")[1] === pk))}].filter(g => g.cours.length) : [{t:null, cours:cs}];
     const last = cs.length ? cs[cs.length - 1][0] : "";
-    return {...c, vols:vs, cours:cs, groups, qvols:vs.filter(v => v.q && QCM[v.q]), last, meth:/M$/.test(c.k)};
-  }).filter(c => c.vols.length || c.cours.length);
+    return {...c, vols:vs, texts:ts, cours:cs, groups, qvols:vs.filter(v => v.q && QCM[v.q]), last, meth:/M$/.test(c.k)};
+  }).filter(c => c.vols.length || c.cours.length || c.texts.length);
   const latest = out.filter(c => !c.meth && !c.aside).reduce((a, c) => c.last > (a ? a.last : "") ? c : a, null);
-  out.forEach(c => c.open = c === latest);
+  const opened = latest || out.find(c => !c.meth && !c.aside) || null;
+  out.forEach(c => c.open = c === opened);
   return out;
 }
 function renderChapters(k, onQuiz){
   const chs = chaptersOf(k);
   return el("div", {class:"chaps"}, chs.map((c, i) => {
     const nq = c.qvols.reduce((a, v) => a + QCM[v.q].length, 0);
-    const meta = [c.vols.length ? c.vols.length + (c.vols.length > 1 ? " fiches" : " fiche") : null, c.cours.length ? c.cours.length + " cours" : null, nq ? nq + " questions" : null].filter(Boolean).join(" · ");
+    const meta = [c.vols.length ? c.vols.length + (c.vols.length > 1 ? " fiches" : " fiche") : null, c.cours.length + c.texts.length ? c.cours.length + c.texts.length + " cours" : null, nq ? nq + " questions" : null].filter(Boolean).join(" · ");
     return el("details", {class:"chap" + (c.meth ? " meth" : ""), open:c.open || null},
       el("summary", {class:"chap-h"},
         el("span", {class:"chap-n k"}, c.n + (c.sub ? " · " + c.sub : "")),
@@ -1340,16 +1357,17 @@ function renderChapters(k, onQuiz){
           el("ul", {class:"fl"}, c.vols.map(v => el("li", {}, el("a", {href:DOC(v.id), target:"_blank", rel:"noopener", "data-q":v.q || null},
             el("span", {class:"n"}, v.n === "M" ? "Méth." : v.n === "P" ? "Prog." : "N° " + v.n), el("span", {class:"t"}, v.t), el("span", {class:"go"}, arrow()))))),
           onQuiz && c.qvols.length ? el("div", {class:"row-actions", style:"margin-top:18px"}, el("button", {class:"btn", type:"button", onclick:() => onQuiz(c.qvols)}, "QCM du chapitre", arrow())) : null) : null,
-        c.cours.length ? el("div", {class:"chap-col"}, el("h4", {class:"k muted"}, "Les cours, dans l'ordre"),
-          c.groups.flatMap(g => [g.t ? el("p", {class:"part k"}, g.t) : null,
+        c.cours.length || c.texts.length ? el("div", {class:"chap-col"}, el("h4", {class:"k muted"}, "Les cours, dans l'ordre"),
+          c.texts.length ? el("ol", {class:"cl"}, c.texts.map(v => el("li", {}, el("a", {href:DOC(v.id), target:"_blank", rel:"noopener"}, el("span", {class:"d"}, "Texte"), el("span", {class:"t"}, v.t), el("span", {class:"go"}, arrow()))))) : null,
+          c.cours.length ? c.groups.flatMap(g => [g.t ? el("p", {class:"part k"}, g.t) : null,
             el("ol", {class:"cl"}, g.cours.map(([dt, , t, id]) => { const [, mo, d] = dt.split("-");
-              return el("li", {}, el("a", {href:DOC(id), target:"_blank", rel:"noopener"}, el("span", {class:"d"}, +d + " " + MOIS[+mo - 1]), el("span", {class:"t"}, t), el("span", {class:"go"}, arrow()))); }))])) : null));
+              return el("li", {}, el("a", {href:DOC(id), target:"_blank", rel:"noopener"}, el("span", {class:"d"}, +d + " " + MOIS[+mo - 1]), el("span", {class:"t"}, t), el("span", {class:"go"}, arrow()))); }))]) : null) : null));
   }));
 }
 
 function viewSubject(root, k){
   const S = SUBJ[k], m = MAT[k];
-  const vols = VOLUMES.filter(v => v.m === k), cours = COURS.filter(c => c[1] === k), qvols = vols.filter(v => v.q);
+  const vols = VOLUMES.filter(v => v.m === k && v.n !== "T"), cours = [...COURS.filter(c => c[1] === k), ...VOLUMES.filter(v => v.m === k && v.n === "T")], qvols = vols.filter(v => v.q);
   root.style.setProperty("--c", `var(--${k})`);
   root.style.setProperty("--ct", k === "philo" ? "var(--philo-t)" : `var(--${k})`);
   const h1 = el("h1", {class:"wide-t"}, S.big);
@@ -1419,7 +1437,7 @@ function viewSubject(root, k){
 
 /* ---------- Vue : séance ---------- */
 let tick = null;
-const TIMER_KEY = "td.timer.v1", ACTIVE = ["ses","hggsp","hg","philo"];
+const TIMER_KEY = "td.timer.v1", ACTIVE = ["ses","hggsp","hg","philo","ang"];
 let actx = null;
 function viewSeance(root){
   root.append(el("header", {class:"shero g", style:"--c:var(--ink)"}, el("span", {class:"band", "aria-hidden":"true"}),
@@ -1846,6 +1864,15 @@ const LEX = [
   {t:"Code forestier de 1827", m:"hggsp", s:["01"], d:"Texte qui, au dix-neuvième siècle, consolide une conception de protection de la forêt et renforce son administration ; la gestion de la forêt y devient technique, et non plus seulement administrative."},
   {t:"Fonds forestier national (FFN)", m:"hggsp", s:["01"], d:"Organisme créé pour soutenir massivement le reboisement (les plantations) en France, notamment après de grands épisodes d'incendie dans les Landes.", note:"Le cours date sa création de 1949 ; les sources historiques usuelles retiennent 1946 : écart à vérifier avec le professeur."},
 
+  /* Anglais */
+  {t:"Tradwife", m:"ang", s:["01"], d:"Short for traditional wife : femme, souvent influenceuse américaine, qui présente le foyer, le mariage et la maternité comme le centre de sa vie, à travers des vidéos très soignées sur les réseaux sociaux."},
+  {t:"Women's Liberation Movement", m:"ang", s:["01"], d:"Mouvement féministe américain né dans les années 1960, surtout influent dans les années 1970. Il a combattu les inégalités sociales, économiques et politiques : égalité dans l'éducation et l'emploi, droits reproductifs, indépendance économique, fin des discriminations."},
+  {t:"Traditional gender roles", m:"ang", s:["01"], d:"Le modèle d'après-guerre : l'homme est le breadwinner (celui qui fait vivre le foyer), la femme s'occupe de la maison et des enfants. L'image de la suburban housewife était un idéal culturel puissant, pas la réalité de toutes les familles."},
+  {t:"Unpaid domestic labour", m:"ang", s:["01"], d:"Le travail domestique non rémunéré, que les militantes considéraient comme un vrai travail."},
+  {t:"Choice, autonomy, agency", m:"ang", s:["01"], d:"Les notions centrales du texte. La vraie question n'est pas ce qu'une femme choisit, mais si elle a la liberté et les ressources de choisir."},
+  {t:"Coercion, privilege", m:"ang", s:["01"], d:"La coercition est une pression sociale ou économique qui force un choix ; le privilège désigne les avantages, surtout économiques, qui rendent un mode de vie possible."},
+  {t:"Gender hierarchy", m:"ang", s:["01"], d:"L'idée, défendue par certaines influenceuses, d'une autorité masculine et d'une soumission féminine présentées comme naturelles."},
+
   /* Histoire-Géo */
   {t:"Mondialisation", m:"hg", s:["01"], d:"Intensification et multiplication des flux (marchandises, capitaux, informations, personnes) à l'échelle planétaire, entraînant une interdépendance des territoires."},
   {t:"Espace stratégique", m:"hg", s:["01"], d:"Zone dont la localisation, les ressources ou les points de passage offrent un avantage géopolitique, économique ou militaire. Il se caractérise par une position remarquable, une forte connectivité, une concentration de flux, des fonctions de commandement et une concentration d'acteurs et d'armateurs."},
@@ -1878,7 +1905,7 @@ const LEX = [
 
 /* ---------- Vue : lexique ---------- */
 const norm = x => x.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/œ/g, "oe").replace(/æ/g, "ae");
-const LEX_M = ["ses","hggsp","hg","philo"];
+const LEX_M = ["ses","hggsp","hg","philo","ang"];
 function viewLexique(root){
   const entries = LEX.map(e => ({...e, key:norm(e.t), hay:norm(e.t + " " + e.d + " " + (e.note || ""))}))
     .sort((a, b) => a.key.localeCompare(b.key, "fr"));
