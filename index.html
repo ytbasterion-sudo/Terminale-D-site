@@ -532,11 +532,11 @@ const MAT = {
 
 const VOLUMES = [
   {m:"ses", code:"SES", n:"01", t:"Les analyses de la structure sociale", id:"1ACeppauoU3aSk2zWId5I65HEmPHTfu1UAPA0akXkegA", w:70, h:262, q:"ses1"},
-  {m:"ses", code:"SES", n:"02", t:"Facteurs et évolutions de la structure sociale", id:"1vS44OMiH-MxwP4RwkR41NQHNswbArYWtgzj6ZLEABOQ", w:64, h:262, q:"ses2"},
+  {m:"ses", code:"SES", n:"02", t:"Facteurs et évolutions de la structure sociale", id:"1DChO8u-wU-R2knb6oG7-8gj_dxhuTOECrxlavePfvEo", w:64, h:262, q:"ses2"},
   {m:"ses", code:"SES", n:"03", t:"EC1.1, le corrigé", id:"1_ChptLCNx_A8ScEalEqyskGky1V47nFZW_FPkdnmLmo", w:58, h:240, q:"ses3"},
   {m:"ses", code:"SES", n:"M", t:"Méthodologie du bac", id:"1ZHfZX08gPUt5wqTUusuA_cFGK2g9ianHoil5YXXTol0", w:54, h:228},
   {m:"ses", code:"SES", n:"P", t:"Programme de l'année", id:"1MVa1B9teMl7gJzxuga_O5yekOX0K3CXOwMaZCougksk", w:40, h:214},
-  {m:"hggsp", code:"HGGSP", n:"01", t:"Environnement, entre exploitation et protection", id:"1gaMWlg_ByvTsu1ezgl7tdmidHAG8y3Sr3fO99lOp1bo", w:84, h:270, q:"hggsp1"},
+  {m:"hggsp", code:"HGGSP", n:"01", t:"Environnement, entre exploitation et protection", id:"1pQu0DYhwBwF27OJNLD8gnEqw-c2dsZ-I4gY8Kbkd1hE", w:84, h:270, q:"hggsp1"},
   {m:"hggsp", code:"HGGSP", n:"M", t:"Méthodologie du bac", id:"17y4Sf192M_g_H34-NaoX4DzNySR0dOh8GkDV60YVVEQ", w:52, h:228},
   {m:"hggsp", code:"HGGSP", n:"P", t:"Programme de l'année", id:"1dviXGbJuJtNbArI_yOa1s4zggFRiITI4HhdS7b2bED8", w:38, h:214},
   {m:"hg", code:"HG", n:"01", t:"Les espaces maritimes, une approche géostratégique", id:"1YgKTKee96cDN6otOcB5dAcaOCzGaBSn0alpW7k7Fgiw", w:62, h:256, q:"hg1"},
@@ -549,6 +549,8 @@ const VOLUMES = [
 ];
 
 const COURS = [
+  ["2026-09-24","ses","Méthodologie de l'épreuve composée, l'étude d'un document","1mXS0hfIWU6mKpOOvEDeCo64bat8wL9qJgdvZ2wiyPfg"],
+  ["2026-09-24","philo","Une représentation moderne du mythe de la caverne de Platon","1gAwUoXIB5PIwV5vRGwH7r9smFouEZHgSXU_yi-POznU"],
   ["2026-09-23","hggsp","Jalon 1, la forêt française depuis Colbert (suite : le bois au service de la puissance, XIXe siècle)","10wUVftdR1YbQLxcByd_0HBoMhOEkouU9RqOhLqE6uOo"],
   ["2026-09-21","hggsp","La forêt française, du legs de Colbert aux défis climatiques (étude de cas Fontainebleau)","1sX1nfujRMEy7F1IbTNuAprAsj9x67rktCph7FUmY0J0"],
   ["2026-09-21","ses","Les outils de mesure des inégalités de revenu et de patrimoine","1sT8QZcA8WSwMcyJs_7OVl2koy_SUSJoRCwY64gwu4hU"],
@@ -1119,7 +1121,7 @@ function viewHome(root){
   const coverCv = el("canvas", {"aria-hidden":"true"});
   const mast = el("h1", {class:"wide-t mast", "aria-label":"Terminale D"}, el("span", {class:"w", "aria-hidden":"true"}, "Terminale"), " ", el("em", {"aria-hidden":"true"}, "D"));
   root.append(el("header", {class:"cover g"}, coverCv,
-    el("div", {class:"issue max", style:"width:100%"}, el("span", {class:"k"}, "N° 03 · Septembre 2026"), el("span", {class:"k muted"}, "Lycée Français International Mhamed Driss · Sousse"), el("span", {class:"k muted"}, "Mis à jour le 23.09 (soir)")),
+    el("div", {class:"issue max", style:"width:100%"}, el("span", {class:"k"}, "N° 03 · Septembre 2026"), el("span", {class:"k muted"}, "Lycée Français International Mhamed Driss · Sousse"), el("span", {class:"k muted"}, "Mis à jour le 24.09 (soir)")),
     el("div", {class:"max", style:"width:100%;align-self:center"}, mast),
     el("div", {class:"byline max", style:"width:100%", "aria-label":"Un projet d'Adam et Kenza, délégués de la Terminale D, 2026-2027"},
       el("div", {class:"by-k l", "aria-hidden":"true"}, el("span", {class:"k"}, "Un projet"), el("span", {class:"k muted"}, "de vos délégués")),
@@ -1653,7 +1655,7 @@ const LEX = [
   {t:"Déciles", m:"ses", s:["02"], d:"Outils de classement des revenus ou patrimoines, du plus pauvre au plus riche, de D1 à D9."},
   {t:"Écart interdéciles", m:"ses", s:["02"], d:"D9 moins D1 : mesure absolue, en euros."},
   {t:"Rapport interdéciles", m:"ses", s:["02"], d:"D9 sur D1 : mesure relative, sous forme de coefficient."},
-  {t:"Courbe de Lorenz, indice de Gini", m:"ses", s:["02"], d:"Représentent la concentration des revenus ou du patrimoine par comparaison à une égalité parfaite (la droite d'équirépartition) ; l'indice de Gini résume cet écart en un seul chiffre."},
+  {t:"Courbe de Lorenz, indice de Gini", m:"ses", s:["02"], d:"Représentent la concentration des revenus ou du patrimoine par comparaison à une égalité parfaite (la droite d'équirépartition) ; l'indice de Gini résume cet écart en un seul chiffre, compris entre 0 (égalité parfaite) et 1 (inégalité maximale)."},
   {t:"Capital humain", m:"ses", s:["02"], d:"Connaissances et compétences d'un individu, déterminées en partie par le diplôme, et corrélées à la PCS et au revenu."},
   {t:"Ménage", m:"ses", s:["02"], d:"Occupants d'une résidence, avec ou sans lien de parenté, partageant un budget commun."},
   {t:"Cycle de vie", m:"ses", s:["02"], d:"Étapes de la vie (célibat, couple, famille, veuvage) et modes de vie qui y sont associés."},
@@ -1690,6 +1692,9 @@ const LEX = [
   {t:"Monoculture forestière", m:"hggsp", s:["01"], d:"Plantation d'une seule essence d'arbre sur une surface donnée, par opposition à une forêt diversifiée."},
   {t:"Multifonctionnalité", m:"hggsp", s:["01"], d:"Capacité d'un espace, ici la forêt, à remplir plusieurs fonctions à la fois (écologique, paysagère, récréative, patrimoniale), source de tensions entre usages."},
   {t:"Vulnérabilité, résilience", m:"hggsp", s:["01"], d:"Appliquées à la forêt : la vulnérabilité désigne sa sensibilité face à un risque comme le changement climatique, la résilience sa capacité à s'en remettre."},
+  {t:"Censier", m:"hggsp", s:["01"], d:"Registre administratif médiéval dans lequel est consigné l'ensemble de ce qui se passe dans la forêt (droits d'usage, redevances)."},
+  {t:"Code forestier de 1827", m:"hggsp", s:["01"], d:"Texte qui, au dix-neuvième siècle, consolide une conception de protection de la forêt et renforce son administration ; la gestion de la forêt y devient technique, et non plus seulement administrative."},
+  {t:"Fonds forestier national (FFN)", m:"hggsp", s:["01"], d:"Organisme créé pour soutenir massivement le reboisement (les plantations) en France, notamment après de grands épisodes d'incendie dans les Landes.", note:"Le cours date sa création de 1949 ; les sources historiques usuelles retiennent 1946 : écart à vérifier avec le professeur."},
 
   /* Histoire-Géo */
   {t:"Mondialisation", m:"hg", s:["01"], d:"Intensification et multiplication des flux (marchandises, capitaux, informations, personnes) à l'échelle planétaire, entraînant une interdépendance des territoires."},
