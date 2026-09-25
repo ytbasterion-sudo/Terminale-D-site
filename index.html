@@ -521,6 +521,272 @@ details.nb-card[open] > summary{margin-bottom:20px}
 select:disabled{opacity:.55;cursor:not-allowed}
 @media (max-width:900px){ .chap-b,.bychap-h{grid-template-columns:1fr} }
 @media (max-width:560px){ .chap-h{padding:18px 0} .chap-i{width:28px;height:28px} .cl a{grid-template-columns:58px minmax(0,1fr) auto;gap:10px} .cl .t{font-size:17px} .rev-h{padding-top:44px} }
+/* ================= Téléphone (760 px et moins) ================= */
+.m-cover,.m-sec,.m-how,.nb-tabs,.m-intro,.m-log{display:none}
+@media (max-width:760px){
+  /* Accueil compact */
+  .m-cover{display:grid;gap:14px;padding-block:22px 0;position:relative}
+  .m-issue{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--ink);padding-bottom:10px}
+  .m-mast{margin:6px 0 0;font-family:var(--grotesk);font-weight:800;font-stretch:125%;text-transform:uppercase;font-size:clamp(34px,11.2vw,60px);line-height:.9;letter-spacing:-.04em;white-space:nowrap}
+  .m-mast em{font-family:var(--serif);font-style:italic;font-weight:300;text-transform:none;font-stretch:100%;color:var(--ses);font-size:1.2em;letter-spacing:0;margin-left:.12em}
+  .m-by{display:grid;gap:4px;border-top:1px solid var(--line);padding-top:12px}
+  .m-by .by-names{margin:0;font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(36px,11vw,52px);line-height:1;letter-spacing:-.02em}
+  .m-by .amp{font-family:var(--grotesk);font-style:normal;font-weight:800;font-stretch:125%;font-size:.74em;color:var(--ses);margin:0 .12em;display:inline-block}
+  .m-lead{margin:0;font-size:18px;line-height:1.45;max-width:34ch}
+  .m-ribbon{height:84px;margin-inline:calc(var(--gut) * -1);position:relative;border-bottom:1px solid var(--ink)}
+  .m-ribbon canvas{position:absolute;inset:0;width:100%;height:100%}
+  .m-sec{display:block;padding-block:30px 6px}
+  .m-h{margin:0 0 14px;font-family:var(--serif);font-weight:300;font-size:32px;line-height:1;letter-spacing:-.02em}
+  .m-sub{margin:18px 0 6px}
+  .m-ok{margin:0 0 14px;color:var(--ink-2)}
+  .m-due{margin-bottom:14px}
+  .m-due > .k{margin:0 0 6px}
+  .m-rows,.m-mats{border-top:1px solid var(--ink)}
+  .m-row,.m-mat{display:grid;grid-template-columns:10px minmax(0,1fr) auto;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);text-decoration:none}
+  .m-mat{grid-template-columns:10px minmax(0,1fr) auto 14px}
+  .m-row .t,.m-mat .t{font-size:17px;line-height:1.25}
+  .m-mat .t{font-family:var(--grotesk);font-weight:600;font-size:16.5px}
+  .m-mat .go{color:var(--ink-2)}
+  .m-row .dot,.m-mat .dot,.m-last .dot,.m-paru .dot{width:9px;height:9px;border-radius:50%;background:var(--c);display:inline-block;flex:none}
+  .m-last{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 12px;align-items:end;padding:16px;background:var(--bg-2);text-decoration:none;border-top:4px solid var(--c)}
+  .m-last .k{grid-column:1/-1;display:flex;gap:8px;align-items:center}
+  .m-last .t{font-size:19px;line-height:1.28}
+  .m-last .go{color:var(--ink-2)}
+  .m-go{margin-top:12px;width:100%;justify-content:space-between}
+  .m-paru a{grid-template-columns:62px minmax(0,1fr) auto}
+  .m-paru .t{display:flex;gap:9px;align-items:baseline}
+  .m-paru .t .dot{transform:translateY(-1px)}
+  .m-more{margin-top:12px;width:100%;justify-content:space-between}
+  .m-txt{margin:0 0 14px;font-size:17px;color:var(--ink-2)}
+  .m-links{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center}
+  .m-link{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);text-underline-offset:3px}
+  .m-how{display:block;margin-top:30px;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+  .m-how summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 0;cursor:pointer}
+  .m-how summary::-webkit-details-marker{display:none}
+  .m-how summary .m-h{margin:0;font-size:26px}
+  .m-how-b{display:grid;gap:14px;padding-bottom:22px}
+  .m-man{margin:0;font-family:var(--serif);font-size:21px;line-height:1.3}
+  .m-step p{margin:4px 0 0;color:var(--ink-2);font-size:16px}
+  .m-log .chap-i,.m-how .chap-i,.m-intro .chap-i{grid-area:auto}
+  .m-how[open] .chap-i::after,.m-intro[open] .chap-i::after,.m-log[open] .chap-i::after{transform:translate(-50%,-50%) rotate(0)}
+
+  /* En-têtes des pages : moitié moins hauts */
+  .shero{padding-block:22px 22px}
+  .shero .band{height:6px}
+  .shero .top{padding-top:10px}
+  .shero h1{font-size:clamp(48px,15vw,64px);margin-top:18px}
+  .shero .full{font-size:19px;line-height:1.25;margin-top:8px;max-width:30ch}
+  .shero-foot{margin-top:18px;gap:14px}
+  .nums{gap:22px}
+  .nums div b{font-size:40px}
+  .btns{gap:8px}
+  .btns .btn,.rev-h .btn{padding:10px 13px;font-size:13.5px;gap:8px}
+
+  /* Pages matières : illustration en bandeau, intro repliée */
+  .dossier{padding-block:24px 8px;gap:16px}
+  .plate{height:120px !important;min-height:0 !important}
+  .plate figcaption{display:none}
+  .dtext{gap:12px}
+  .dtext > .k{display:none}
+  .dtitle{font-size:28px !important}
+  .m-intro{display:block;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .m-intro summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0;cursor:pointer;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+  .m-intro summary::-webkit-details-marker{display:none}
+  .m-intro .chap-i{width:26px;height:26px}
+  .m-intro .lead{font-size:17px;margin:4px 0 12px}
+  .m-intro .quote{font-size:19px;margin:0 0 14px}
+  .bychap{padding-block:34px}
+  .bychap-h{margin-bottom:18px;gap:8px}
+  .bychap-h .serif-t,.interro .serif-t,.rev-h .serif-t{font-size:36px}
+  .bychap-h p{font-size:15px}
+  .interro{padding-block:34px;gap:16px}
+  .interro .qcol > p.muted{display:none}
+  .chips.as-sel{margin-top:14px}
+  .chips.as-sel .f{width:100%}
+  .q-sel{width:100%;font-size:16px}
+  .qbox{min-height:0}
+  .qhead{margin-bottom:16px}
+  .next{padding-block:26px 30px}
+  .next .wide-t{font-size:48px}
+
+  /* Séance */
+  .seance{padding-block:24px 10px;gap:18px}
+  .ctrls{margin-top:6px;gap:12px}
+  .ctrls .f{width:100%}
+  .ctrls select{width:100%}
+  .seg{width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+  .seg button{text-align:center}
+  .clock{font-size:clamp(88px,27vw,120px);margin:18px 0 6px}
+  .m-log{display:block;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+  .m-log summary{list-style:none;display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:14px;align-items:center;padding:12px 0;cursor:pointer}
+  .m-log summary::-webkit-details-marker{display:none}
+  .m-log summary b{font-family:var(--grotesk);font-weight:300;font-stretch:62%;font-size:30px;line-height:1}
+  .m-log .chap-i{width:26px;height:26px}
+  .m-log .log{border-top:1px solid var(--line)}
+  .rev-h{padding-block:30px 0;gap:12px}
+  #t-rev .bychap{padding-top:18px}
+
+  /* Lexique : les mots d'abord, la définition au toucher */
+  .lx-item{padding:13px 0;gap:6px}
+  .lx-item dt{font-size:17.5px;display:flex;justify-content:space-between;gap:12px;align-items:baseline;cursor:pointer}
+  .lx-item dt::after{content:"+";font-family:var(--mono);font-weight:400;font-size:16px;color:var(--ink-2);flex:none}
+  .lx-item.open dt::after{content:"−"}
+  .lx-item dd{display:none}
+  .lx-item.open dd{display:block}
+  .lx-def{font-size:16.5px}
+  .lx-group{padding-top:16px}
+  .lx-letter{font-size:34px !important;padding-bottom:2px !important}
+  .lx-search input{font-size:22px}
+
+  /* Mes notes : une partie à la fois */
+  .nb-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));position:sticky;top:calc(env(safe-area-inset-top,0px) + 58px);z-index:6;background:var(--bg);margin:0 calc(var(--gut) * -1) 18px;padding:10px var(--gut);border-bottom:1px solid var(--ink)}
+  .nb-tabs button{all:unset;cursor:pointer;text-align:center;padding:9px 2px;font-family:var(--grotesk);font-size:13.5px;font-weight:600;box-shadow:inset 0 0 0 1px var(--line)}
+  .nb-tabs button[aria-selected="true"]{background:var(--ink);color:var(--bg);box-shadow:none}
+  .nb-tabs button:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+  .nb-sec{padding-top:0 !important;border-top:0 !important;margin-top:0 !important}
+  .nb-sec > .serif-t{font-size:34px}
+
+  /* iPhone : pas de zoom automatique quand on touche un champ */
+  .nb textarea,.nb-bac td.v input,.nb input,.nb select{font-size:16px}
+  .sheet{max-height:86svh}
+}
+/* ---------- Choix de l'affichage ---------- */
+.modesw{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:6px}
+.modesw .k{margin-right:6px}
+.modesw button{all:unset;cursor:pointer;padding:7px 11px;font-family:var(--grotesk);font-size:13px;font-weight:600;box-shadow:inset 0 0 0 1px var(--line)}
+.modesw button[aria-pressed="true"]{background:var(--ink);color:var(--bg);box-shadow:none}
+.modesw button:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+html.mp-open{overflow:hidden}
+.mp{position:fixed;inset:0;z-index:200;background:var(--bg);display:grid;place-items:center;padding:calc(env(safe-area-inset-top,0px) + 24px) 20px calc(env(safe-area-inset-bottom,0px) + 24px);overflow:auto}
+.mp-in{width:min(560px,100%);display:grid;gap:18px}
+.mp h2{margin:0;font-family:var(--grotesk);font-weight:800;font-stretch:125%;text-transform:uppercase;font-size:clamp(40px,11vw,76px);line-height:.9;letter-spacing:-.04em}
+.mp h2 em{font-family:var(--serif);font-weight:300;font-style:italic;text-transform:none;font-stretch:100%;letter-spacing:-.01em;color:var(--ses)}
+.mp-lead{margin:0;font-size:18px;line-height:1.45;color:var(--ink-2);max-width:40ch}
+.mp-opts{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mp-opt{all:unset;cursor:pointer;display:grid;gap:8px;align-content:start;padding:18px;border:1px solid var(--ink);min-height:150px;transition:background .2s,color .2s}
+.mp-opt:hover,.mp-opt:focus-visible{background:var(--ink);color:var(--bg)}
+.mp-opt:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+.mp-t{font-family:var(--grotesk);font-weight:700;font-size:21px}
+.mp-d{font-size:15px;line-height:1.35;opacity:.75}
+.mp-rec{color:var(--ses);margin-top:auto}
+.mp-opt:hover .mp-rec,.mp-opt:focus-visible .mp-rec{color:inherit}
+@media (max-width:420px){ .mp-opts{grid-template-columns:1fr} .mp-opt{min-height:0} }
+/* Mode téléphone choisi sur un grand écran : le site tient dans une colonne de téléphone */
+html.mode-m.mode-wide{--gut:20px}
+html.mode-m.mode-wide body{max-width:430px;margin-inline:auto;box-shadow:0 0 0 1px var(--line)}
+html.mode-m.mode-wide .tabbar{left:50% !important;right:auto !important;width:430px;transform:translateX(-50%);padding-inline:0 !important}
+/* ================= Téléphone : respiration (espacements plus généreux) ================= */
+@media (max-width:760px){
+  :root{--gut:22px}
+  body{line-height:1.6}
+  .k{letter-spacing:.11em}
+
+  /* Accueil */
+  .m-cover{gap:18px;padding-block:28px 0}
+  .m-issue{padding-bottom:12px}
+  .m-by{gap:8px;padding-top:16px}
+  .m-lead{line-height:1.55}
+  .m-ribbon{height:96px;margin-top:6px}
+  .m-sec{padding-block:44px 8px}
+  .m-sec + .m-sec{border-top:1px solid var(--line);margin-top:28px}
+  .m-h{margin-bottom:20px;font-size:34px}
+  .m-sub{margin:26px 0 10px}
+  .m-ok{margin-bottom:20px;font-size:17px}
+  .m-due{margin-bottom:22px}
+  .m-due > .k{margin-bottom:10px}
+  .m-row,.m-mat{padding:18px 0;gap:14px}
+  .m-last{padding:20px;gap:10px 14px}
+  .m-go{margin-top:18px;padding-block:17px}
+  .m-paru a{padding-block:17px}
+  .m-more{margin-top:18px}
+  .m-txt{margin-bottom:20px;line-height:1.55}
+  .m-links{gap:16px 22px}
+  .m-how{margin-top:44px}
+  .m-how summary{padding:22px 0}
+  .m-how-b{gap:20px;padding-bottom:30px}
+
+  /* En-têtes des pages */
+  .shero{padding-block:28px 30px}
+  .shero .top{gap:8px 20px}
+  .shero h1{margin-top:22px}
+  .shero .full{margin-top:12px;line-height:1.3}
+  .shero-foot{margin-top:24px;gap:20px}
+  .nums{gap:28px}
+  .nums .k{margin-top:6px;display:block}
+  .btns{gap:10px}
+
+  /* Pages matières */
+  .dossier{padding-block:30px 12px;gap:20px}
+  .dtext{gap:18px}
+  .m-intro summary{padding:16px 0}
+  .m-intro .lead{margin:6px 0 16px;line-height:1.55}
+  .bychap{padding-block:44px 20px}
+  .bychap-h{margin-bottom:26px;gap:12px}
+  .chap-h{padding:26px 0;gap:8px 18px}
+  .chap-b{gap:34px;padding:8px 0 40px}
+  .chap-col h4{margin-bottom:14px}
+  .chap .part{margin:28px 0 12px}
+  .fl a{padding:18px 0;gap:16px}
+  .cl a{padding:17px 0;gap:14px}
+  .interro{padding-block:44px 30px;gap:22px}
+  .chips.as-sel{margin-top:18px}
+  .qcount{margin-top:14px}
+  .qhead{margin-bottom:22px;padding-bottom:14px;gap:8px}
+  .q{font-size:25px;line-height:1.25;margin-bottom:24px}
+  .opt{padding:18px 2px;gap:12px;font-size:18px;line-height:1.4}
+  .expl{margin-top:22px;line-height:1.55}
+  .row-actions{gap:12px;margin-top:24px}
+  .next{padding-block:34px 40px}
+
+  /* Séance */
+  .seance{padding-block:30px 20px;gap:26px}
+  .ctrls{gap:16px}
+  .seg button{padding:13px 10px}
+  .clock{margin:26px 0 12px}
+  .ribbon{margin:16px 0 26px}
+  #t-status{margin-top:20px !important}
+  .m-log summary{padding:18px 0}
+  .log-row{padding:15px 0}
+  .rev-h{padding-block:40px 0;gap:16px}
+  #t-rev .bychap{padding-top:26px}
+
+  /* Lexique */
+  .lx-bar{padding:18px 0 16px}
+  .lx-filt{gap:8px;margin-top:16px}
+  .lx-count{margin-top:14px}
+  .lx-group{padding-top:24px}
+  .lx-item{padding:17px 0}
+  .lx-item.open dd{padding:6px 0 4px}
+  .lx-src{margin-top:14px}
+  .lx-foot{margin-top:36px}
+
+  /* Mes notes */
+  .nb-tabs{gap:8px;padding-block:12px;margin-bottom:28px}
+  .nb-tabs button{padding:11px 2px}
+  .nb-sec > .serif-t{margin-bottom:6px}
+  .nb-add{gap:20px 16px;padding:22px 18px;margin-top:22px}
+  .nb-kpis{margin:40px 0 26px;gap:26px 40px}
+  .nb-table td{padding-block:16px}
+  .nb-card{padding:22px 18px}
+  .nb-grid{gap:22px}
+  .nb-transfer{gap:22px}
+
+  /* Pied de page */
+  .colophon{padding-block:36px 44px;gap:20px}
+  .modesw{gap:8px;margin-top:10px}
+  .modesw button{padding:10px 13px}
+}
+@media (max-width:760px){
+  .m-issue .k{letter-spacing:.06em}
+  .m-mat{grid-template-columns:10px minmax(0,1fr) 16px;grid-template-areas:"d t g" "d c g";gap:4px 14px;align-items:center}
+  .m-mat .dot{grid-area:d}
+  .m-mat .t{grid-area:t}
+  .m-mat .k{grid-area:c;letter-spacing:.08em}
+  .m-mat .go{grid-area:g;text-align:right}
+  .modesw{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+  .modesw .k{grid-column:1/-1;margin:0 0 2px}
+  .modesw button{text-align:center}
+}
 </style>
 </head>
 <body>
@@ -548,6 +814,12 @@ select:disabled{opacity:.55;cursor:not-allowed}
     <a class="k muted" href="https://docs.google.com/document/d/1-01XoXc3TBBmgmZkVjlQqwadu1qUHWpLWduGNw02vU0/edit" target="_blank" rel="noopener">Emploi du temps ↗</a>
     <a class="k muted" href="https://drive.google.com/drive/folders/1fIv31mR9uOOJnmrh2MtJyOkmCIGJv8y1" target="_blank" rel="noopener">Fiches de révision ↗</a>
   </nav>
+  <div class="modesw" role="group" aria-label="Affichage">
+    <span class="k muted">Affichage</span>
+    <button type="button" data-mode="m" aria-pressed="false">Téléphone</button>
+    <button type="button" data-mode="d" aria-pressed="false">Ordinateur</button>
+    <button type="button" data-mode="" aria-pressed="false">Auto</button>
+  </div>
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -844,6 +1116,61 @@ const hexA = (hex, a) => { const h = (hex || "#000").replace("#", ""); const n =
 /* Canvas animés : chaque vue les enregistre, et les arrête en partant */
 let live = [];
 /* Sur téléphone : moins de pixels et 30 images/s pour les illustrations (mesuré : défilement 30 → ~55 i/s) */
+/* ---------- Affichage : téléphone ou ordinateur, au choix du visiteur ---------- */
+const MODE_KEY = "td.mode", NARROW = matchMedia("(max-width: 760px)");
+let MODE = (() => { try { const m = localStorage.getItem(MODE_KEY); return m === "m" || m === "d" ? m : null; } catch { return null; } })();
+const MOB = {get matches(){ return MODE ? MODE === "m" : NARROW.matches; }};
+const MEDIA0 = new WeakMap();
+const widthOk = (txt, W) => { /* évalue une règle @media qui ne porte que sur la largeur ; null si elle porte sur autre chose */
+  let any = false;
+  for (const part of txt.split(",")) {
+    let ok = true;
+    for (const c of part.split(/\s+and\s+/i)) { const m = c.trim().match(/^\(\s*(min|max)-width\s*:\s*(\d+(?:\.\d+)?)px\s*\)$/i); if (!m) return null; const v = +m[2]; if (m[1].toLowerCase() === "min" ? W < v : W > v) ok = false; }
+    if (ok) any = true;
+  }
+  return any;
+};
+const IN_FRAME = (() => { try { return window.self !== window.top; } catch { return true; } })();
+function applyMode(){
+  const W = MODE === "m" ? 390 : MODE === "d" ? 1280 : null, root = document.documentElement;
+  for (const sh of document.styleSheets) { let rules; try { rules = sh.cssRules; } catch { continue; }
+    for (const r of rules) { if (!r.media || r.type !== 4) continue;
+      if (!MEDIA0.has(r)) MEDIA0.set(r, r.media.mediaText);
+      const t = MEDIA0.get(r), ok = W == null ? null : widthOk(t, W);
+      r.media.mediaText = ok === null ? t : ok ? "all" : "not all"; } }
+  root.classList.toggle("mode-m", MODE === "m"); root.classList.toggle("mode-d", MODE === "d"); root.classList.toggle("mode-wide", MODE === "m" && innerWidth >= 600);
+  /* Ordinateur sur un petit écran : on montre la page à 1 280 px de large, dézoomée */
+  const vp = document.querySelector('meta[name="viewport"]'), small = screen.width < 900 || innerWidth < 900;
+  if (vp && !IN_FRAME) vp.setAttribute("content", MODE === "d" && small ? "width=1280" : "width=device-width, initial-scale=1.0");
+  const zoom = MODE === "d" && IN_FRAME && innerWidth < 1100 ? innerWidth / 1280 : 1;
+  document.body.style.zoom = zoom === 1 ? "" : String(zoom); root.classList.toggle("mode-zoom", zoom !== 1);
+}
+applyMode();
+NARROW.addEventListener("change", () => { if (!MODE && !first) build(routeKey()); });
+addEventListener("resize", () => { if (MODE === "d" && IN_FRAME) applyMode(); else document.documentElement.classList.toggle("mode-wide", MODE === "m" && innerWidth >= 600); });
+function setMode(m){
+  MODE = m; try { if (m) localStorage.setItem(MODE_KEY, m); else localStorage.removeItem(MODE_KEY); } catch {}
+  applyMode(); markMode(); build(routeKey()); window.scrollTo(0, 0);
+}
+function markMode(){ $$("[data-mode]").forEach(b => b.setAttribute("aria-pressed", String((MODE || "") === b.dataset.mode))); }
+function modePicker(){
+  if (MODE) return;
+  const rec = NARROW.matches ? "m" : "d";
+  const phone = '<svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><rect x="9" y="3" width="14" height="26" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M14 25h4" stroke="currentColor" stroke-width="1.6"/></svg>';
+  const pc = '<svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><rect x="3" y="6" width="26" height="16" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M11 27h10M16 22v5" stroke="currentColor" stroke-width="1.6"/></svg>';
+  const opt = (m, icon, t, d) => el("button", {type:"button", class:"mp-opt" + (m === rec ? " rec" : ""), onclick:() => { box.remove(); document.documentElement.classList.remove("mp-open"); setMode(m); }},
+    svg(icon), el("span", {class:"mp-t"}, t), el("span", {class:"mp-d"}, d), m === rec ? el("span", {class:"k mp-rec"}, "Conseillé pour cet écran") : null);
+  const box = el("div", {class:"mp", role:"dialog", "aria-modal":"true", "aria-labelledby":"mp-h"},
+    el("div", {class:"mp-in"},
+      el("p", {class:"k"}, "Terminale D · 2026–2027"),
+      el("h2", {id:"mp-h"}, "Tu es sur ", el("em", {}, "quoi ?")),
+      el("p", {class:"mp-lead"}, "Le site s'adapte : une colonne claire sur téléphone, la mise en page complète sur ordinateur."),
+      el("div", {class:"mp-opts"}, opt("m", phone, "Téléphone", "Compact, une chose à la fois"), opt("d", pc, "Ordinateur", "Mise en page complète")),
+      el("p", {class:"k muted"}, "Tu pourras changer en bas de chaque page.")));
+  document.documentElement.classList.add("mp-open");
+  document.body.append(box);
+  $(".mp-opt.rec", box).focus({preventScroll:true});
+}
 const LOWP = matchMedia("(pointer: coarse), (max-width: 760px)").matches;
 /* Pendant un défilement au doigt, les illustrations se figent un instant : le défilement reste fluide */
 let scrolling = false, scrollTO = 0;
@@ -1117,12 +1444,20 @@ function mountQuiz(host, vols){
   host.querySelector(".qcol").append(chips, qcount); host.append(qb);
   const renderChips = () => {
     const D = qDone(); chips.textContent = "";
+    if (MOB.matches) {
+      const LBL = {fait:" ✓ fait", revoir:" ↺ à revoir", reviser:" ↻ à réviser"};
+      const rk = v => ({revoir:0, reviser:1, fait:3})[qState(D, v.q)] ?? 2;
+      const sel = el("select", {class:"q-sel", "aria-label":"Choisir une fiche"}, [...vols].sort((a, b) => rk(a) - rk(b)).map(v => el("option", {value:v.q, selected:run?.v === v || null}, v.code + " " + v.n + " · " + v.t + (LBL[qState(D, v.q)] || ""))));
+      sel.addEventListener("change", () => { const v = vols.find(x => x.q === sel.value); if (v) start(v); });
+      chips.classList.add("as-sel"); chips.append(el("label", {class:"f"}, el("span", {}, "Fiche"), sel));
+    } else {
     const rank = v => ({revoir:0, reviser:1, fait:3})[qState(D, v.q)] ?? 2;
     const ICON = {fait:"✓", revoir:"↺", reviser:"↻"}, CLS = {fait:" done", revoir:" revoir", reviser:" reviser"}, SR = {fait:" (déjà fait)", revoir:" (à revoir)", reviser:" (à réviser)"};
     for (const v of [...vols].sort((a, b) => rank(a) - rank(b))) { const st = qState(D, v.q);
       chips.append(el("button", {class:"chip" + (CLS[st] || ""), type:"button", "aria-pressed":String(run?.v === v), onclick:() => start(v)},
         st ? el("span", {class:"tick", "aria-hidden":"true"}, ICON[st]) : el("span", {class:"dot", style:`--c:${MAT[v.m].c}`}),
         v.code + " " + v.n + " · " + v.t, st ? el("span", {class:"vh"}, SR[st]) : null)); }
+    }
     const c = st => vols.filter(v => qState(D, v.q) === st).length, n = c("fait") + c("reviser"), rv = c("reviser"), r = c("revoir");
     qcount.textContent = (n === vols.length && !rv ? `Tous les QCM sont à jour (${n} / ${vols.length})` : `${n} / ${vols.length} QCM faits`) + (rv ? ` · ${rv} à réviser` : "") + (r ? ` · ${r} à revoir` : "");
   };
@@ -1190,6 +1525,7 @@ function mountQuiz(host, vols){
 
 /* ---------- Vue : accueil ---------- */
 function viewHome(root){
+  if (MOB.matches) return viewHomeM(root);
   const nCours = COURS.length + VOLUMES.filter(v => v.n === "T").length, nFiches = VOLUMES.filter(v => v.n !== "T").length, nQ = Object.values(QCM).reduce((a, q) => a + q.length, 0);
   const coverCv = el("canvas", {"aria-hidden":"true"});
   const mast = el("h1", {class:"wide-t mast", "aria-label":"Terminale D"}, el("span", {class:"w", "aria-hidden":"true"}, "Terminale"), " ", el("em", {"aria-hidden":"true"}, "D"));
@@ -1322,6 +1658,75 @@ function viewHome(root){
   };
 }
 
+/* ---------- Vue : accueil, version téléphone ---------- */
+const MNAME = {hg:"Histoire-Géographie", philo:"Philosophie", es:"Enseignement scientifique", ang:"Anglais", ses:"SES", hggsp:"HGGSP", droit:"Droit (DGEMC)"};
+function viewHomeM(root){
+  const nCours = COURS.length + VOLUMES.filter(v => v.n === "T").length, nFiches = VOLUMES.filter(v => v.n !== "T").length, nQ = Object.values(QCM).reduce((a, q) => a + q.length, 0);
+  const cv = el("canvas", {"aria-hidden":"true"});
+  root.append(el("header", {class:"m-cover g"},
+    el("div", {class:"m-issue"}, el("span", {class:"k"}, "N° 03 · Sept. 2026"), el("span", {class:"k muted"}, "Mis à jour le 25.09")),
+    el("h1", {class:"m-mast", "aria-label":"Terminale D"}, "Terminale", el("em", {"aria-hidden":"true"}, "D")),
+    el("div", {class:"m-by"},
+      el("span", {class:"k muted"}, "Un projet de vos délégués · 2026–2027"),
+      el("p", {class:"by-names"}, "Adam", el("span", {class:"amp"}, "&"), "Kenza")),
+    el("p", {class:"m-lead"}, "Les cours de la classe, relus et rangés dans le Drive, avec des fiches et des QCM pour s'entraîner."),
+    el("div", {class:"m-ribbon", "aria-hidden":"true"}, cv)));
+  const cover = canvasLoop(cv, ribbons, .3); cover.p = .3;
+
+  /* Aujourd'hui : ce qu'on vient chercher sur un téléphone */
+  const Dq = qDone(), qv = VOLUMES.filter(v => v.q && QCM[v.q]);
+  const dues = qv.filter(v => ["revoir", "reviser"].includes(qState(Dq, v.q))), todo = qv.filter(v => !Dq[v.q]).length;
+  const last = COURS[0];
+  root.append(el("section", {class:"m-sec m-today g", "aria-labelledby":"m-h-today"},
+    el("h2", {class:"m-h", id:"m-h-today"}, "Aujourd'hui"),
+    dues.length
+      ? el("div", {class:"m-due"}, el("p", {class:"k", style:"color:var(--bad)"}, "↻ " + dues.length + " QCM à reprendre"),
+          el("div", {class:"m-rows"}, dues.slice(0, 3).map(v => el("a", {class:"m-row", href:"#" + v.m, style:`--c:var(--${v.m})`}, el("span", {class:"dot"}), el("span", {class:"t"}, v.code + " " + v.n + " · " + v.t), el("span", {class:"k muted"}, qState(Dq, v.q) === "revoir" ? "à revoir" : "à réviser")))))
+      : el("p", {class:"m-ok"}, todo ? `${todo} QCM pas encore faits sur ${qv.length}.` : "Tous tes QCM sont à jour."),
+    last ? el("a", {class:"m-last", href:DOC(last[3]), target:"_blank", rel:"noopener", style:`--c:var(--${last[1]})`},
+      el("span", {class:"k"}, el("span", {class:"dot"}), "Dernier cours · " + MAT[last[1]].nom + " · " + fmtDay(last[0])),
+      el("span", {class:"t"}, last[2]), el("span", {class:"go"}, arrow())) : null,
+    el("a", {class:"btn m-go", href:"#seance"}, "Lancer une séance de révision", arrow())));
+
+  /* Les matières, en liste */
+  const row = k => { const n = countsOf(k);
+    return el("a", {class:"m-mat", href:"#" + k, style:`--c:var(--${k})`}, el("span", {class:"dot"}), el("span", {class:"t"}, MNAME[k]),
+      el("span", {class:"k muted"}, n.c || n.f ? n.f + " fiche" + (n.f > 1 ? "s" : "") + " · " + n.c + " cours" : "bientôt"), el("span", {class:"go", "aria-hidden":"true"}, "→")); };
+  root.append(el("section", {class:"m-sec g", "aria-labelledby":"m-h-mat"},
+    el("h2", {class:"m-h", id:"m-h-mat"}, "Les matières"),
+    el("p", {class:"k muted m-sub"}, "Tronc commun"), el("div", {class:"m-mats"}, TRONC.map(row)),
+    el("p", {class:"k muted m-sub"}, "Spécialités & option"), el("div", {class:"m-mats"}, SPE.map(row))));
+
+  /* Vient de paraître */
+  const list = el("ol", {class:"cl m-paru"}, COURS.map(([dt, m, t, id], i) => el("li", {hidden:i >= 3 || null},
+    el("a", {href:DOC(id), target:"_blank", rel:"noopener", style:`--c:var(--${m})`}, el("span", {class:"d"}, fmtDay(dt)), el("span", {class:"t"}, el("span", {class:"dot"}), t), el("span", {class:"go"}, arrow())))));
+  const more = COURS.length > 3 ? el("button", {class:"btn ghost m-more", type:"button", onclick:() => { $$("li[hidden]", list).forEach(li => li.hidden = false); more.remove(); }}, `Voir les ${COURS.length} cours`, el("span", {"aria-hidden":"true"}, "↓")) : null;
+  root.append(el("section", {class:"m-sec g", "aria-labelledby":"m-h-paru"}, el("h2", {class:"m-h", id:"m-h-paru"}, "Vient de paraître"), list, more));
+
+  /* Le Drive, en un bloc */
+  root.append(el("section", {class:"m-sec g", "aria-labelledby":"m-h-drive"},
+    el("h2", {class:"m-h", id:"m-h-drive"}, "Le Drive de la classe"),
+    el("p", {class:"m-txt"}, `${nCours} cours, ${nFiches} fiches de révision et ${nQ} questions de QCM, rangés par matière.`),
+    el("div", {class:"m-links"},
+      el("a", {class:"btn", href:FOLDER(DRIVE_ROOT), target:"_blank", rel:"noopener"}, "Ouvrir le Drive", arrow()),
+      el("a", {class:"m-link", href:FOLDER(FICHES_ROOT), target:"_blank", rel:"noopener"}, "Fiches de révision ↗"),
+      el("a", {class:"m-link", href:DOC("1-01XoXc3TBBmgmZkVjlQqwadu1qUHWpLWduGNw02vU0"), target:"_blank", rel:"noopener"}, "Emploi du temps ↗"))));
+
+  /* Comment ça marche, replié */
+  const steps = [["En classe", "Les cours sont tapés en direct, pendant l'heure, puis enregistrés le jour même."], ["Le soir", "Chaque cours est relu deux fois, corrigé sans rien ajouter, et rangé dans le Drive avec sa date et son titre."], ["Les fiches", "Les notions, auteurs, dates et pièges sont condensés en fiches, puis transformés en QCM pour s'entraîner."]];
+  root.append(el("details", {class:"m-how g"},
+    el("summary", {}, el("span", {class:"m-h"}, "Comment ça marche"), el("span", {class:"chap-i", "aria-hidden":"true"})),
+    el("div", {class:"m-how-b"},
+      el("p", {class:"m-man"}, "Chaque cours tapé en classe est relu deux fois, corrigé sans rien inventer, rangé dans le Drive puis condensé en ", el("em", {}, "fiche"), "."),
+      steps.map(([t, p], i) => el("div", {class:"m-step"}, el("span", {class:"k"}, pad(i + 1) + " · " + t), el("p", {}, p))))));
+
+  return () => {
+    if (!MOTION) return;
+    G.from($$(".m-cover > *", root), {y:18, opacity:0, duration:.8, ease:"power3.out", stagger:.06});
+    G.from($(".m-cover .amp", root), {rotate:-25, scale:.4, duration:1.2, ease:"expo.out", delay:.3});
+  };
+}
+
 /* ---------- Vue : matière ---------- */
 /* ---------- Rangement par chapitre ---------- */
 function chaptersOf(k){
@@ -1394,9 +1799,10 @@ function viewSubject(root, k){
         el("div", {class:"dtext"},
           el("span", {class:"k", style:"display:flex;gap:10px;align-items:center"}, el("span", {class:"dot", style:`--c:var(--${k})`}), "Le dossier"),
           el("h2", {class:"serif-t dtitle", id:"h-dos", html:S.title}),
-          el("p", {class:"lead"}, S.lead),
-          el("blockquote", {class:"quote"}, el("span", {class:"qt"}, S.quote), el("cite", {}, S.cite)),
-          el("a", {class:"btn ghost", href:"#h-ch", onclick:e => { e.preventDefault(); $("#h-ch", root)?.scrollIntoView({behavior:MOTION ? "smooth" : "auto"}); }}, "Voir les chapitres", el("span", {"aria-hidden":"true"}, "↓")))));
+          MOB.matches ? el("details", {class:"m-intro"}, el("summary", {}, "Lire l'intro du dossier", el("span", {class:"chap-i", "aria-hidden":"true"})), el("p", {class:"lead"}, S.lead), el("blockquote", {class:"quote"}, el("span", {class:"qt"}, S.quote), el("cite", {}, S.cite))) : null,
+          MOB.matches ? null : el("p", {class:"lead"}, S.lead),
+          MOB.matches ? null : el("blockquote", {class:"quote"}, el("span", {class:"qt"}, S.quote), el("cite", {}, S.cite)),
+          MOB.matches ? null : el("a", {class:"btn ghost", href:"#h-ch", onclick:e => { e.preventDefault(); $("#h-ch", root)?.scrollIntoView({behavior:MOTION ? "smooth" : "auto"}); }}, "Voir les chapitres", el("span", {"aria-hidden":"true"}, "↓")))));
       plateState = canvasLoop(cv, PLATES[S.plate]);
     }
     let quiz = null;
@@ -1451,7 +1857,9 @@ function viewSeance(root){
       el("div", {class:"ribbon", "aria-hidden":"true"}, el("i", {id:"bar"})),
       el("div", {class:"row-actions", style:"margin-top:0"}, el("button", {class:"btn", id:"t-go", type:"button"}, "Commencer"), el("button", {class:"btn ghost", id:"t-reset", type:"button"}, "Remettre à zéro")),
       el("p", {class:"k muted", id:"t-status", style:"margin-top:16px", "aria-live":"polite"}, "Prêt")),
-    el("div", {}, el("p", {class:"k muted", style:"margin:0 0 10px"}, "Tes séances, sur cet appareil"), el("div", {class:"log", id:"log"}), el("div", {class:"total"}, el("span", {class:"k muted"}, "Total"), el("b", {id:"log-total"}, "0 h 00"))));
+    MOB.matches
+      ? el("details", {class:"m-log"}, el("summary", {}, el("span", {class:"k muted"}, "Tes séances"), el("b", {id:"log-total"}, "0 h 00"), el("span", {class:"chap-i", "aria-hidden":"true"})), el("div", {class:"log", id:"log"}))
+      : el("div", {}, el("p", {class:"k muted", style:"margin:0 0 10px"}, "Tes séances, sur cet appareil"), el("div", {class:"log", id:"log"}), el("div", {class:"total"}, el("span", {class:"k muted"}, "Total"), el("b", {id:"log-total"}, "0 h 00"))));
   const rev = el("div", {id:"t-rev"});
   root.append(sec, rev);
   const tMat = $("#t-mat", sec), goB = $("#t-go", sec), status = $("#t-status", sec), clock = $("#clock", sec), bar = $("#bar", sec);
@@ -1797,6 +2205,15 @@ function viewNotes(root){
 
   fillProfil(); renderAll(); persist();
   if (!B.notes.length) profil.open = true;
+  if (MOB.matches) {
+    const panes = {rel:$("#h-rel", sec).closest("section"), bac:$("#h-bac", sec).closest("section"), prof:$("#nb-profil", sec), tr:$("#h-tr", sec).closest("section")};
+    const names = [["rel", "Relevé"], ["bac", "Projection"], ["prof", "Profil"], ["tr", "Transfert"]];
+    const bar = el("div", {class:"nb-tabs", role:"tablist", "aria-label":"Parties de la page"});
+    const show = k => { store.set("td.nbtab", k); for (const [n] of names) { panes[n].hidden = n !== k; $(`[data-t="${n}"]`, bar).setAttribute("aria-selected", String(n === k)); } if (k === "prof") panes.prof.open = true; };
+    for (const [n, l] of names) bar.append(el("button", {type:"button", role:"tab", "data-t":n, onclick:() => { show(n); bar.scrollIntoView({block:"start", behavior:MOTION ? "smooth" : "auto"}); }}, l));
+    sec.prepend(bar);
+    const t0 = store.get("td.nbtab", "rel"); show(panes[t0] ? t0 : "rel");
+  }
   return () => { if (!MOTION) return; G.from($(".shero .band", root), {scaleX:0, duration:1.1, ease:"expo.inOut"}); G.from($(".shero h1", root), {yPercent:30, duration:1.2, ease:"expo.out"}); $$(".nb-sec", root).forEach(s => G.from(s, {y:40, duration:1, ease:"power3.out", scrollTrigger:{trigger:s, start:"top 85%"}})); };
 }
 
@@ -1906,6 +2323,7 @@ const LEX = [
 /* ---------- Vue : lexique ---------- */
 const norm = x => x.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/œ/g, "oe").replace(/æ/g, "ae");
 const LEX_M = ["ses","hggsp","hg","philo","ang"];
+const lxToggle = dt => { const it = dt.parentElement, o = it.classList.toggle("open"); dt.setAttribute("aria-expanded", String(o)); };
 function viewLexique(root){
   const entries = LEX.map(e => ({...e, key:norm(e.t), hay:norm(e.t + " " + e.d + " " + (e.note || ""))}))
     .sort((a, b) => a.key.localeCompare(b.key, "fr"));
@@ -1955,8 +2373,9 @@ function viewLexique(root){
     for (const [L, es] of groups) {
       const g = el("div", {class:"lx-group" + (L ? "" : " flat")});
       if (L) g.append(el("div", {class:"lx-letter", "aria-hidden":"true"}, L));
-      g.append(el("dl", {class:"lx-dl"}, es.map(e => el("div", {class:"lx-item", style:`--c:var(--${e.m})`},
-        el("dt", {}, hl(e.t, terms)),
+      const openAll = terms.length && res.length <= 8;
+      g.append(el("dl", {class:"lx-dl"}, es.map(e => el("div", {class:"lx-item" + (openAll ? " open" : ""), style:`--c:var(--${e.m})`},
+        el("dt", MOB.matches ? {role:"button", tabindex:"0", "aria-expanded":String(!!openAll), onclick:ev => lxToggle(ev.currentTarget), onkeydown:ev => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); lxToggle(ev.currentTarget); } }} : {}, hl(e.t, terms)),
         el("dd", {},
           el("p", {class:"lx-def"}, hl(e.d, terms)),
           e.note ? el("p", {class:"lx-note"}, e.note) : null,
@@ -2005,15 +2424,18 @@ function go(){
   label.textContent = k === "accueil" ? "Terminale D" : k === "seance" ? "Séance" : k === "notes" ? "Mes notes" : k === "lexique" ? "Lexique" : SUBJ[k].big;
   G.timeline()
     .set(c, {transformOrigin:"bottom"})
-    .to(c, {scaleY:1, duration:.55, ease:"expo.inOut"})
-    .to(label, {opacity:1, duration:.2}, "-=.15")
+    .to(c, {scaleY:1, duration:MOB.matches ? .28 : .55, ease:"expo.inOut"})
+    .to(label, {opacity:1, duration:MOB.matches ? .1 : .2}, "-=.15")
     .add(() => { build(k); window.scrollTo(0, 0); view.focus({preventScroll:true}); })
     .set(c, {transformOrigin:"top"})
-    .to(label, {opacity:0, duration:.2}, "+=.15")
-    .to(c, {scaleY:0, duration:.65, ease:"expo.inOut"}, "-=.05");
+    .to(label, {opacity:0, duration:MOB.matches ? .1 : .2}, MOB.matches ? "+=.02" : "+=.15")
+    .to(c, {scaleY:0, duration:MOB.matches ? .3 : .65, ease:"expo.inOut"}, "-=.05");
 }
 addEventListener("hashchange", go);
+$$(".modesw [data-mode]").forEach(b => b.addEventListener("click", () => setMode(b.dataset.mode || null)));
+markMode();
 go();
+modePicker();
 addEventListener("load", () => ST && ST.refresh());
 document.fonts?.ready.then(() => { fitType(); if (ST) ST.refresh(); });
 </script>
