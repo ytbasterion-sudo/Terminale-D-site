@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Terminale D</title>
+<script>try{var t=localStorage.getItem("td.theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <meta name="description" content="Terminale D — le projet des délégués Adam et Kenza pour la Terminale D 2026-2027, le magazine de révision de la classe : cours tapés en classe, fiches de révision vérifiées, pour SES, HGGSP, Histoire-Géo, Philosophie et Anglais.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://tdlfi.space/">
@@ -135,6 +136,13 @@ a{color:inherit}
 
 /* Tuiles matières */
 .subjects{border-top:1px solid var(--ink);padding-block:90px}
+.ask{border-top:1px solid var(--ink);padding-block:80px 90px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:28px clamp(28px,4vw,64px);align-items:end}
+.ask-l .k{margin:0 0 14px}.ask-l h2{margin:0}
+.ask-lead{font-family:var(--serif);font-size:clamp(19px,1.6vw,23px);line-height:1.45;margin:0 0 26px;max-width:36em}
+.ask-act{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center}
+.wa-num{text-decoration:none;letter-spacing:.06em}.wa-num:hover{color:var(--ink)}
+.btn.wa svg{flex:none}
+@media (max-width:900px){ .ask{grid-template-columns:1fr;align-items:start;padding-block:60px 70px} }
 .tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:44px}
 .tile{position:relative;min-height:460px;background:var(--bg-2);text-decoration:none;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:20px;isolation:isolate}
 .tile canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-1;opacity:.55;transition:transform .8s cubic-bezier(.2,.7,.2,1),opacity .6s}
@@ -505,6 +513,7 @@ details.nb-card[open] > summary{margin-bottom:20px}
 .chap.meth .chap-t{font-size:clamp(20px,2vw,28px);color:var(--ink-2)}
 .chap-b{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:28px clamp(28px,4vw,64px);padding:4px 0 36px}
 .chap-col h4{margin:0 0 10px;font-weight:400}
+.chap-dir{grid-column:1/-1;margin:0}.chap-dir a{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}.chap-dir a:hover{color:var(--ink)}
 .chap .part{margin:22px 0 8px;color:var(--ct,var(--c,var(--ink)))}
 .chap .part:first-of-type{margin-top:0}
 .cl{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
@@ -787,6 +796,20 @@ html.mode-m.mode-wide .tabbar{left:50% !important;right:auto !important;width:43
   .modesw .k{grid-column:1/-1;margin:0 0 2px}
   .modesw button{text-align:center}
 }
+/* Les très grands chiffres/titres débordent de leur ligne : ils ne doivent jamais capter les clics des boutons voisins */
+.clock,.shero h1,.mast,.m-mast,.total b,.nb-big,.nums b,.m-log summary b{pointer-events:none}
+.ctrls,.seance .row-actions{position:relative;z-index:2}
+/* ---------- Bouton clair / sombre ---------- */
+.theme-btn{all:unset;cursor:pointer;flex:none;margin-left:auto;display:inline-grid;place-items:center;width:38px;height:38px;color:var(--ink);box-shadow:inset 0 0 0 1px var(--line);transition:box-shadow .2s,background .2s}
+.theme-btn:hover{box-shadow:inset 0 0 0 1px var(--ink)}
+.theme-btn:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.theme-btn svg{grid-area:1/1;transition:transform .45s cubic-bezier(.2,.7,.2,1),opacity .3s}
+.theme-btn .i-sun{opacity:0;transform:rotate(-90deg) scale(.6)}
+.theme-btn[aria-pressed="true"] .i-sun{opacity:1;transform:none}
+.theme-btn[aria-pressed="true"] .i-moon{opacity:0;transform:rotate(90deg) scale(.6)}
+html.theme-anim,html.theme-anim *{transition:background-color .35s ease,color .35s ease,border-color .35s ease,box-shadow .35s ease !important}
+.themesw{margin-top:6px}
+@media (prefers-reduced-motion:reduce){ html.theme-anim,html.theme-anim *{transition:none !important} }
 </style>
 </head>
 <body>
@@ -794,6 +817,10 @@ html.mode-m.mode-wide .tabbar{left:50% !important;right:auto !important;width:43
   <div class="nav-in g max">
     <a class="brand" href="#accueil" aria-label="Terminale D, accueil">Terminale <em>D</em></a>
     <nav class="links" id="links" aria-label="Matières"></nav>
+    <button class="theme-btn" id="theme-btn" type="button" aria-label="Passer en mode sombre" title="Mode sombre">
+      <svg class="i-moon" viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><path d="M16.5 12.6A7 7 0 0 1 7.4 3.5a7 7 0 1 0 9.1 9.1z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+      <svg class="i-sun" viewBox="0 0 20 20" width="18" height="18" aria-hidden="true"><circle cx="10" cy="10" r="3.6" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M10 1.5v2.2M10 16.3v2.2M1.5 10h2.2M16.3 10h2.2M4 4l1.5 1.5M14.5 14.5 16 16M4 16l1.5-1.5M14.5 5.5 16 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+    </button>
     <a class="btn drive" href="https://drive.google.com/drive/folders/1BfgnH2luYOf4F3WkCsYZWQNARDiwrsi8" target="_blank" rel="noopener"><span>Le Drive</span>
       <svg viewBox="0 0 18 18" width="15" height="15" fill="none" aria-hidden="true"><path d="M4 14L14 4M6 4h8v8" stroke="currentColor" stroke-width="1.6"/></svg></a>
   </div>
@@ -812,8 +839,14 @@ html.mode-m.mode-wide .tabbar{left:50% !important;right:auto !important;width:43
   <p><b style="color:var(--ink);font-weight:500">Terminale D</b>, le magazine de révision de la classe, un projet d'Adam et Kenza, délégués 2026–2027. Cours tapés en classe, relus deux fois, fiches vérifiées ; en cas de doute, la parole du professeur prime.</p>
   <nav aria-label="Liens utiles">
     <a class="k muted" href="https://docs.google.com/document/d/1-01XoXc3TBBmgmZkVjlQqwadu1qUHWpLWduGNw02vU0/edit" target="_blank" rel="noopener">Emploi du temps ↗</a>
-    <a class="k muted" href="https://drive.google.com/drive/folders/1fIv31mR9uOOJnmrh2MtJyOkmCIGJv8y1" target="_blank" rel="noopener">Fiches de révision ↗</a>
+    <a class="k muted" href="https://drive.google.com/drive/folders/1BfgnH2luYOf4F3WkCsYZWQNARDiwrsi8" target="_blank" rel="noopener">Le Drive ↗</a>
   </nav>
+  <div class="modesw themesw" role="group" aria-label="Thème">
+    <span class="k muted">Thème</span>
+    <button type="button" data-theme-set="light" aria-pressed="false">Clair</button>
+    <button type="button" data-theme-set="dark" aria-pressed="false">Sombre</button>
+    <button type="button" data-theme-set="" aria-pressed="false">Auto</button>
+  </div>
   <div class="modesw" role="group" aria-label="Affichage">
     <span class="k muted">Affichage</span>
     <button type="button" data-mode="m" aria-pressed="false">Téléphone</button>
@@ -828,14 +861,13 @@ html.mode-m.mode-wide .tabbar{left:50% !important;right:auto !important;width:43
 const DOC = id => "https://docs.google.com/document/d/" + id + "/edit";
 const FOLDER = id => "https://drive.google.com/drive/folders/" + id;
 const DRIVE_ROOT = "1BfgnH2luYOf4F3WkCsYZWQNARDiwrsi8";
-const FICHES_ROOT = "1fIv31mR9uOOJnmrh2MtJyOkmCIGJv8y1";
 const MAT = {
-  ses:   {nom:"SES", long:"SES (spécialité)", c:"var(--ses)", cours:"1YvR4aIw40NWRPmAq3ereOHbR0liqRTs9", fiches:"1-xQXViJkEHbV8ZatVhJLCamxhuyUbEKe"},
-  hggsp: {nom:"HGGSP", long:"HGGSP (spécialité)", c:"var(--hggsp)", cours:"1L5dt5sIO_tKT3tWYKlCphN6QqUPjcSQX", fiches:"1q6R_aN7mmtWXzGxazkaxKbNvqEOWt80D"},
-  hg:    {nom:"Histoire-Géo", long:"Histoire-Géographie", c:"var(--hg)", cours:"1-Qf6mom5Ah-N0_P5B7Tk8M7_gjD2O4Qb", fiches:"1y7allfAYWP3ZLhAeEYb9AGCDpb6kLGB9"},
-  philo: {nom:"Philosophie", long:"Philosophie", c:"var(--philo)", cours:"1OQfv6A9kV3n4p-eHMJQ3uatBY8jAlSwa", fiches:"1KIlxqeC0SFInTkkrHdzOXYeeNb2OjOUd"},
+  ses:   {nom:"SES", long:"SES (spécialité)", c:"var(--ses)", cours:"1YvR4aIw40NWRPmAq3ereOHbR0liqRTs9"},
+  hggsp: {nom:"HGGSP", long:"HGGSP (spécialité)", c:"var(--hggsp)", cours:"1L5dt5sIO_tKT3tWYKlCphN6QqUPjcSQX"},
+  hg:    {nom:"Histoire-Géo", long:"Histoire-Géographie", c:"var(--hg)", cours:"1-Qf6mom5Ah-N0_P5B7Tk8M7_gjD2O4Qb"},
+  philo: {nom:"Philosophie", long:"Philosophie", c:"var(--philo)", cours:"1OQfv6A9kV3n4p-eHMJQ3uatBY8jAlSwa"},
   es:    {nom:"Ens. scientifique", long:"Enseignement scientifique", c:"var(--es)", cours:"1M4SV7cwv9O8wW7PJGSXFhKw3yc5Jp75H"},
-  ang:   {nom:"Anglais", long:"LV1 - Anglais", c:"var(--ang)", cours:"11yxZVe__-UfJyM8rW4n9bBYNj5DrlE3b", fiches:"1QDuIX12Wsp39JeLaYF3It0gzeu5Q0-HU"},
+  ang:   {nom:"Anglais", long:"LV1 - Anglais", c:"var(--ang)", cours:"11yxZVe__-UfJyM8rW4n9bBYNj5DrlE3b"},
   droit: {nom:"Droit", long:"Droit (option DGEMC)", c:"var(--droit)", cours:"12F4Dt6jMTLIU1_8rE7es4JdiAFqSvoF6"}
 };
 
@@ -887,23 +919,23 @@ const COURS = [
 /* Chapitres : l'ordre du programme. Chaque fiche (ch) et chaque cours (5e champ, "chapitre:partie") y est rangé. */
 const CHAPITRES = {
   ses:[
-    {k:"ses1", n:"Chapitre 1", sub:"Sociologie", t:"Comment est structurée la société française actuelle ?"},
-    {k:"sesM", n:"Méthode", t:"Méthode du bac, programme et rentrée"}],
+    {k:"ses1", dir:"1EfwKZw5swvBA2Ga7eDqh7vB-4iYvjhM9", n:"Chapitre 1", sub:"Sociologie", t:"Comment est structurée la société française actuelle ?"},
+    {k:"sesM", dir:"1yzhs8aHQa3i9A74BX8CIDabuo8Y9Hqpn", n:"Méthode", t:"Méthode du bac, programme et rentrée"}],
   hggsp:[
-    {k:"hggsp5", n:"Thème 5", t:"L'environnement, entre exploitation et protection : un enjeu planétaire", parts:[["intro", "Introduction"], ["axe1", "Axe 1 · Exploiter, préserver et protéger"]]},
-    {k:"hggspM", n:"Méthode", t:"Méthode du bac, programme et rentrée"}],
+    {k:"hggsp5", dir:"1L6T1fjnZrR_AgNWQCNaltUhY8-uFf3Y7", n:"Thème 5", t:"L'environnement, entre exploitation et protection : un enjeu planétaire", parts:[["intro", "Introduction"], ["axe1", "Axe 1 · Exploiter, préserver et protéger"]]},
+    {k:"hggspM", dir:"1cNpZBl1MD1biVUHt0dOdfEIbdpn04IlC", n:"Méthode", t:"Méthode du bac, programme et rentrée"}],
   hg:[
-    {k:"hgG1", n:"Géographie · Thème 1", t:"Mers et océans : au cœur de la mondialisation"},
-    {k:"hgM", n:"Méthode", t:"Méthode et conseils"}],
+    {k:"hgG1", dir:"1vFGJgo_GiN9voUqgrPJtPad5zC9y4UTn", n:"Géographie · Thème 1", t:"Mers et océans : au cœur de la mondialisation"},
+    {k:"hgM", dir:"1rB2-yXJ5i1pQVbvFALswuJBAr1izl49e", n:"Méthode", t:"Méthode et conseils"}],
   philo:[
-    {k:"philoNature", n:"Notion", t:"La nature"},
-    {k:"philoBonheur", n:"Notion", t:"Le bonheur"},
-    {k:"philoRaison", n:"Notion", t:"La raison"},
-    {k:"philoAutre", n:"À classer", t:"Cours dont la notion reste à confirmer", aside:true},
-    {k:"philoM", n:"Méthode", t:"Méthode du bac"}],
+    {k:"philoNature", dir:"13eSGIagnSL7DG6gzWMI1apNad4UXW3vw", n:"Notion", t:"La nature"},
+    {k:"philoBonheur", dir:"1FcRlvoQ3OnlQWVwCeILR5lNgN88jtLgi", n:"Notion", t:"Le bonheur"},
+    {k:"philoRaison", dir:"1IgDDRzYD_4KIXR2Kz8cuOHuEZgI3HPD-", n:"Notion", t:"La raison"},
+    {k:"philoAutre", dir:"1rYOOnrhIzkuJxSsTiL2pztY6jqPZUCeK", n:"À classer", t:"Cours dont la notion reste à confirmer", aside:true},
+    {k:"philoM", dir:"1p3Ihbp1FshJQJnF1rMTmetZtA1MVISaG", n:"Méthode", t:"Méthode du bac"}],
   ang:[
-    {k:"ang1", n:"Chapter 1", t:"Tradwives in the USA and the Women's Liberation Movement"},
-    {k:"angM", n:"Méthode", t:"Méthodologie et conseils"}]
+    {k:"ang1", dir:"1Q9MsHbQ7ZYHJ27KcXvrjUoX8eHR-CqCx", n:"Chapter 1", t:"Tradwives in the USA and the Women's Liberation Movement"},
+    {k:"angM", dir:"1QJqm2ZDfmPmZ0SfPVVu55vG7uklfGIFc", n:"Méthode", t:"Méthodologie et conseils"}]
 };
 
 /* Banque de QCM : [question, [choix], index de la bonne réponse, ce que dit la fiche] */
@@ -1152,6 +1184,24 @@ function setMode(m){
   MODE = m; try { if (m) localStorage.setItem(MODE_KEY, m); else localStorage.removeItem(MODE_KEY); } catch {}
   applyMode(); markMode(); build(routeKey()); window.scrollTo(0, 0);
 }
+/* ---------- Thème clair / sombre, au choix ---------- */
+const THEME_KEY = "td.theme", DARKQ = matchMedia("(prefers-color-scheme: dark)");
+const themePref = () => { try { const t = localStorage.getItem(THEME_KEY); return t === "dark" || t === "light" ? t : null; } catch { return null; } };
+const isDark = () => { const t = document.documentElement.getAttribute("data-theme"); return t ? t === "dark" : DARKQ.matches; };
+function markTheme(){
+  const d = isDark(), pref = themePref(), b = $("#theme-btn");
+  if (b) { b.setAttribute("aria-label", d ? "Passer en mode clair" : "Passer en mode sombre"); b.title = d ? "Mode clair" : "Mode sombre"; b.setAttribute("aria-pressed", String(d)); }
+  $$("[data-theme-set]").forEach(x => x.setAttribute("aria-pressed", String((pref || "") === x.dataset.themeSet)));
+  const m = document.querySelector('meta[name="theme-color"]'); if (m) m.setAttribute("content", d ? "#0F0F11" : "#F4F3EF");
+}
+function setTheme(t){
+  const root = document.documentElement;
+  root.classList.add("theme-anim"); clearTimeout(setTheme.t); setTheme.t = setTimeout(() => root.classList.remove("theme-anim"), 450);
+  if (t) root.setAttribute("data-theme", t); else root.removeAttribute("data-theme");
+  try { if (t) localStorage.setItem(THEME_KEY, t); else localStorage.removeItem(THEME_KEY); } catch {}
+  markTheme();
+}
+DARKQ.addEventListener("change", markTheme);
 function markMode(){ $$("[data-mode]").forEach(b => b.setAttribute("aria-pressed", String((MODE || "") === b.dataset.mode))); }
 function modePicker(){
   if (MODE) return;
@@ -1564,7 +1614,6 @@ function viewHome(root){
       el("span", {class:"nm"}, MAT[k].long),
       el("span", {class:"ct"}, n.c ? n.c + " cours" + (n.f ? " · " + n.f + " fiches" : "") : "à venir")));
   }
-  tree.append(el("a", {class:"row sub", href:FOLDER(FICHES_ROOT), target:"_blank", rel:"noopener", style:"--c:var(--ink-2)"}, el("span", {class:"br", "aria-hidden":"true"}), folder(), el("span", {class:"nm"}, "Fiches de révision"), el("span", {class:"ct"}, nFiches + " fiches")));
   tree.append(el("a", {class:"row sub", href:DOC("1-01XoXc3TBBmgmZkVjlQqwadu1qUHWpLWduGNw02vU0"), target:"_blank", rel:"noopener", style:"--c:var(--ink-2)"}, el("span", {class:"br", "aria-hidden":"true"}), folder(), el("span", {class:"nm"}, "Emploi du temps de la semaine"), el("span", {class:"ct"}, "document")));
   const stats = el("div", {class:"stats"}, [[nCours, "cours numérisés"], [nFiches, "fiches de révision"], [ORDER.length, "matières"], [nQ, "questions de QCM"]].map(([v, l]) =>
     el("div", {class:"stat"}, el("b", {"data-n":v}, String(v)), el("span", {class:"k muted"}, l))));
@@ -1618,6 +1667,7 @@ function viewHome(root){
     el("div", {class:"paru-head g max"}, el("h2", {class:"wide-t big-t", id:"h-paru", html:"Vient de <em>paraître</em>"}), el("p", {class:"k muted", style:"margin:0"}, nCours + " cours depuis la rentrée")), track,
     COURS.length > 6 ? el("div", {class:"paru-more g"}, el("button", {class:"btn ghost", type:"button", onclick:() => { paru.classList.add("all"); if (ST) ST.refresh(); }}, `Voir les ${COURS.length - 6} autres cours`, el("span", {"aria-hidden":"true"}, "↓"))) : null);
   root.append(paru);
+  root.append(askSection(false));
 
   return () => {
     if (!MOTION) { paru.classList.add("stack"); return; }
@@ -1656,6 +1706,22 @@ function viewHome(root){
     $$(".serif-t", root).forEach(t => G.from(t, {x:-50, duration:1.1, ease:"expo.out", scrollTrigger:{trigger:t, start:"top 88%"}}));
     return mm;
   };
+}
+
+/* ---------- Section « Une demande ? » (WhatsApp) ---------- */
+const WA_NUM = "33661449345", WA_SHOW = "+33 6 61 44 93 45";
+const WA_URL = "https://wa.me/" + WA_NUM + "?text=" + encodeURIComponent("Salut Adam, j'ai une demande pour le site Terminale D : ");
+function waIcon(){ const s = document.createElementNS("http://www.w3.org/2000/svg", "svg"); s.setAttribute("viewBox", "0 0 24 24"); s.setAttribute("width", "18"); s.setAttribute("height", "18"); s.setAttribute("aria-hidden", "true");
+  s.innerHTML = '<path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M4 20l1.2-3.6A8 8 0 1 1 8 19z"/><path fill="currentColor" d="M9.2 8.3c.2-.4.5-.4.7-.4h.5c.2 0 .4 0 .5.4l.7 1.6c.1.2 0 .4-.1.6l-.5.6c.6 1.1 1.5 2 2.6 2.6l.6-.6c.2-.2.4-.2.6-.1l1.6.7c.3.1.4.3.4.5v.5c0 .3-.1.6-.5.8-.5.3-1.3.5-2.3.1a9 9 0 0 1-4.7-4.7c-.4-1-.2-1.8.1-2.3z"/>'; return s; }
+function askSection(mobile){
+  const lead = "Un cours qui manque, une erreur dans une fiche, une notion à ajouter au lexique, une idée pour le site : écris-moi directement.";
+  const btn = el("a", {class:"btn wa", href:WA_URL, target:"_blank", rel:"noopener"}, waIcon(), "Écrire sur WhatsApp");
+  const num = el("a", {class:"k muted wa-num", href:"tel:+" + WA_NUM}, WA_SHOW);
+  if (mobile) return el("section", {class:"m-sec m-ask g", "aria-labelledby":"m-h-ask"},
+    el("h2", {class:"m-h", id:"m-h-ask"}, "Une demande ?"), el("p", {class:"m-txt"}, lead), el("div", {class:"m-links"}, btn, num));
+  return el("section", {class:"ask g max", "aria-labelledby":"h-ask"},
+    el("div", {class:"ask-l"}, el("p", {class:"k muted"}, "Contact · Adam"), el("h2", {class:"serif-t", id:"h-ask", html:"Une <em>demande</em> ?"})),
+    el("div", {class:"ask-r"}, el("p", {class:"ask-lead"}, lead), el("div", {class:"ask-act"}, btn, num)));
 }
 
 /* ---------- Vue : accueil, version téléphone ---------- */
@@ -1709,8 +1775,9 @@ function viewHomeM(root){
     el("p", {class:"m-txt"}, `${nCours} cours, ${nFiches} fiches de révision et ${nQ} questions de QCM, rangés par matière.`),
     el("div", {class:"m-links"},
       el("a", {class:"btn", href:FOLDER(DRIVE_ROOT), target:"_blank", rel:"noopener"}, "Ouvrir le Drive", arrow()),
-      el("a", {class:"m-link", href:FOLDER(FICHES_ROOT), target:"_blank", rel:"noopener"}, "Fiches de révision ↗"),
       el("a", {class:"m-link", href:DOC("1-01XoXc3TBBmgmZkVjlQqwadu1qUHWpLWduGNw02vU0"), target:"_blank", rel:"noopener"}, "Emploi du temps ↗"))));
+
+  root.append(askSection(true));
 
   /* Comment ça marche, replié */
   const steps = [["En classe", "Les cours sont tapés en direct, pendant l'heure, puis enregistrés le jour même."], ["Le soir", "Chaque cours est relu deux fois, corrigé sans rien ajouter, et rangé dans le Drive avec sa date et son titre."], ["Les fiches", "Les notions, auteurs, dates et pièges sont condensés en fiches, puis transformés en QCM pour s'entraîner."]];
@@ -1766,7 +1833,8 @@ function renderChapters(k, onQuiz){
           c.texts.length ? el("ol", {class:"cl"}, c.texts.map(v => el("li", {}, el("a", {href:DOC(v.id), target:"_blank", rel:"noopener"}, el("span", {class:"d"}, "Texte"), el("span", {class:"t"}, v.t), el("span", {class:"go"}, arrow()))))) : null,
           c.cours.length ? c.groups.flatMap(g => [g.t ? el("p", {class:"part k"}, g.t) : null,
             el("ol", {class:"cl"}, g.cours.map(([dt, , t, id]) => { const [, mo, d] = dt.split("-");
-              return el("li", {}, el("a", {href:DOC(id), target:"_blank", rel:"noopener"}, el("span", {class:"d"}, +d + " " + MOIS[+mo - 1]), el("span", {class:"t"}, t), el("span", {class:"go"}, arrow()))); }))]) : null) : null));
+              return el("li", {}, el("a", {href:DOC(id), target:"_blank", rel:"noopener"}, el("span", {class:"d"}, +d + " " + MOIS[+mo - 1]), el("span", {class:"t"}, t), el("span", {class:"go"}, arrow()))); }))]) : null) : null,
+        c.dir ? el("p", {class:"chap-dir"}, el("a", {class:"k muted", href:FOLDER(c.dir), target:"_blank", rel:"noopener"}, "Ouvrir le dossier du chapitre dans le Drive ↗")) : null));
   }));
 }
 
@@ -1783,8 +1851,7 @@ function viewSubject(root, k){
       el("div", {class:"shero-foot"},
         (vols.length || cours.length) ? el("div", {class:"nums"}, [[vols.length, "fiches"], [cours.length, "cours"], [qvols.reduce((a, v) => a + QCM[v.q].length, 0), "questions"]].map(([v, l]) => el("div", {}, el("b", {"data-n":v}, String(v)), el("span", {class:"k muted"}, l)))) : el("span", {class:"k muted"}, "Dossier prêt dans le Drive"),
         el("div", {class:"btns"},
-          el("a", {class:"btn", href:FOLDER(m.cours), target:"_blank", rel:"noopener"}, "Cours dans le Drive", arrow()),
-          m.fiches ? el("a", {class:"btn ghost", href:FOLDER(m.fiches), target:"_blank", rel:"noopener"}, "Fiches dans le Drive", arrow()) : null)))));
+          el("a", {class:"btn", href:FOLDER(m.cours), target:"_blank", rel:"noopener"}, "Dossier dans le Drive", arrow()))))));
   splitLetters(h1);
 
   let plateState = null;
@@ -1919,7 +1986,7 @@ function viewSeance(root){
     const chs = chaptersOf(k);
     const head = el("section", {class:"rev-h g max"},
       el("h2", {class:"serif-t", html:"Réviser <em>" + (S ? S.short : m.nom) + "</em>"}),
-      el("div", {class:"btns"}, el("a", {class:"btn ghost", href:FOLDER(m.cours), target:"_blank", rel:"noopener"}, "Cours dans le Drive", arrow()), m.fiches ? el("a", {class:"btn ghost", href:FOLDER(m.fiches), target:"_blank", rel:"noopener"}, "Fiches dans le Drive", arrow()) : null));
+      el("div", {class:"btns"}, el("a", {class:"btn ghost", href:FOLDER(m.cours), target:"_blank", rel:"noopener"}, "Dossier dans le Drive", arrow())));
     rev.append(head);
     if (!chs.length) { rev.append(el("section", {class:"empty g max"}, el("p", {}, "Rien n'a encore été numérisé dans cette matière : le minuteur marche quand même, et le dossier est prêt dans le Drive."))); return; }
     const qvols = VOLUMES.filter(v => v.m === k && v.q && QCM[v.q]);
@@ -2433,6 +2500,9 @@ function go(){
 }
 addEventListener("hashchange", go);
 $$(".modesw [data-mode]").forEach(b => b.addEventListener("click", () => setMode(b.dataset.mode || null)));
+$$("[data-theme-set]").forEach(b => b.addEventListener("click", () => setTheme(b.dataset.themeSet || null)));
+$("#theme-btn").addEventListener("click", () => setTheme(isDark() ? "light" : "dark"));
+markTheme();
 markMode();
 go();
 modePicker();
