@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Terminale D</title>
 <script>try{var t=localStorage.getItem("td.theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
-<meta name="description" content="Terminale D — le projet des délégués Adam et Kenza pour la Terminale D 2026-2027, le magazine de révision de la classe : cours tapés en classe, fiches de révision vérifiées, pour SES, HGGSP, Histoire-Géo, Philosophie et Anglais.">
+<meta name="description" content="Terminale D — le projet des délégués Adam et Kenza pour la Terminale D 2026-2027, le magazine de révision de la classe : cours tapés en classe, fiches de révision vérifiées, pour SES, HGGSP, Histoire-Géo, Philosophie, Anglais et Droit (DGEMC).">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://tdlfi.space/">
 <meta property="og:title" content="Terminale D">
@@ -889,7 +889,12 @@ const VOLUMES = [
   {m:"ang", code:"ANG", n:"01", t:"Tradwives and the Women's Liberation Movement", ch:"ang1", id:"1D80q_o5JFtdUpadDDWyCVWGxxuPXV7NqbTekQx14MqU", w:58, h:246, q:"ang1"},
   {m:"ang", code:"ANG", n:"T", t:"From Liberation to “Tradwife” : le texte du chapitre", ch:"ang1", id:"1FsjelMJ3bVwkYtHWUlfKTXIZUlAuGBOoKwwYSv-bGbs", w:44, h:230},
   {m:"ang", code:"ANG", n:"M", t:"Méthodologie et conseils", ch:"angM", id:"1MX68UlBY1YKCNgs75oliMgDuHrY1bI_ucHj9uw-rCjs", w:52, h:228},
-  {m:"philo", code:"PHILO", n:"M", t:"Méthodologie du bac", ch:"philoM", id:"1AdTAq1m8dQe_GMl-xb1TctrCT3pyeX6baYi7Im132Jc", w:62, h:236}
+  {m:"philo", code:"PHILO", n:"M", t:"Méthodologie du bac", ch:"philoM", id:"1AdTAq1m8dQe_GMl-xb1TctrCT3pyeX6baYi7Im132Jc", w:62, h:236},
+  {m:"droit", code:"DROIT", n:"01", t:"Qu'est-ce que le droit ?", ch:"droitI", id:"1XvLtjtlXgp-yRufG-cr87xN8GyvcmwVH1PDNm227uPI", w:62, h:254, q:"droit1"},
+  {m:"droit", code:"DROIT", n:"02", t:"Le droit et ses fonctions", ch:"droitI", id:"19LgpT-VhyAs6SNJevMqa7DxqVqEXrZbSaDFa12Da43E", w:68, h:260, q:"droit2"},
+  {m:"droit", code:"DROIT", n:"T", t:"Leçon 1 : qu'est-ce que le droit ? (poly du professeur)", ch:"droitI", id:"1dtYcp8heMN4iHcDQPoR2DlbLo3cYqU1f_zWs6R257cQ", w:44, h:230},
+  {m:"droit", code:"DROIT", n:"T", t:"Le droit et ses fonctions (dossier documentaire)", ch:"droitI", id:"1XuijB5nYe4td_SWApIHXUYbsnN2vcfBH9-2n63oU7O8", w:44, h:230},
+  {m:"droit", code:"DROIT", n:"M", t:"Méthodologie et conseils", ch:"droitM", id:"1RoChNgaiBkfmTQ8CrTC5WByPe8Myo5IY670SqVPCpAE", w:52, h:228}
 ];
 
 const COURS = [
@@ -935,7 +940,10 @@ const CHAPITRES = {
     {k:"philoM", dir:"1p3Ihbp1FshJQJnF1rMTmetZtA1MVISaG", n:"Méthode", t:"Méthode du bac"}],
   ang:[
     {k:"ang1", dir:"1Q9MsHbQ7ZYHJ27KcXvrjUoX8eHR-CqCx", n:"Chapter 1", t:"Tradwives in the USA and the Women's Liberation Movement"},
-    {k:"angM", dir:"1QJqm2ZDfmPmZ0SfPVVu55vG7uklfGIFc", n:"Méthode", t:"Méthodologie et conseils"}]
+    {k:"angM", dir:"1QJqm2ZDfmPmZ0SfPVVu55vG7uklfGIFc", n:"Méthode", t:"Méthodologie et conseils"}],
+  droit:[
+    {k:"droitI", dir:"12RtqxtrULJEFUYQmdMUtUzcHGEHthROk", n:"Introduction générale", t:"Qu'est-ce que le droit ? Le droit et ses fonctions"},
+    {k:"droitM", dir:"1vDtetf0dLyDunKfREico8Vmq0FGDnUNX", n:"Méthode", t:"Méthodologie et conseils"}]
 };
 
 /* Banque de QCM : [question, [choix], index de la bonne réponse, ce que dit la fiche] */
@@ -1033,6 +1041,28 @@ const QCM = {
     ["Selon le texte, la vraie question n'est pas ce qu'une femme choisit, mais…",["si elle a la liberté et les ressources de choisir","si son choix plaît aux réseaux sociaux","si elle travaille ou non","si elle suit le féminisme dominant"],0,"La vraie question est de savoir si elle a la liberté et les ressources de choisir."],
     ["Pourquoi rester à la maison n'est-il pas toujours un choix libre ?",["parce que c'est interdit par la loi","parce que cela peut venir d'une contrainte : garde d'enfants trop chère, pas d'emploi, pression du conjoint","parce que toutes les tradwives sont soumises","parce que le texte condamne la vie de famille"],1,"Le même comportement peut être un choix financé par un revenu suffisant ou une contrainte (garde d'enfants trop chère, pas d'emploi, pression du conjoint)."]
   ],
+  droit1:[
+    ["D'où vient le mot « droit » ?",["du latin directum : la règle, la droite ligne","du grec dikê : la vengeance","du latin dominus : le maître","de l'ancien français droiture : la richesse"],0,"Directum renvoie à la règle, à la droite ligne, à la rectitude : la « conduite à tenir »."],
+    ["Le Digeste de Justinien qualifie le droit d'…",["« art du bon et de l'équitable »","« ensemble des lois du prince »","« science du bien et du mal »","« volonté du plus fort »"],0,"Formule du juriste Celse, citée au début du Digeste (530-533)."],
+    ["Ce qui distingue une règle de politesse d'une règle de droit, c'est que…",["elle n'est sanctionnée que de façon informelle (mise à l'écart)","elle est écrite dans un code","elle s'applique à tous","elle est plus ancienne"],0,"Les normes sociales ont des sanctions informelles ; le droit est sanctionné par ses instances."],
+    ["Le droit objectif (le Droit), c'est…",["l'ensemble des règles qui régissent la vie en société","les prérogatives d'une personne","le droit tel qu'on le ressent","la morale d'une société"],0,"Le droit objectif est le système juridique dans son ensemble (ex. : le droit français)."],
+    ["Le droit administratif appartient…",["au droit privé","au droit public","au droit international privé","au droit processuel"],1,"Le droit public règle les relations impliquant une personne publique : constitutionnel, administratif, budgétaire."],
+    ["Pourquoi le droit pénal est-il dit « mixte » ?",["il sanctionne des individus, mais c'est la société, via le procureur, qui poursuit","il s'applique en France et à l'étranger","il mélange morale et religion","il n'a pas de code"],0,"La justice pénale n'oppose pas victime et criminel : le procureur de la République poursuit au nom de la société."],
+    ["La distinction droit privé / droit public remonte à…",["la loi de 1905","la loi des 16 et 24 août 1790","la DDHC de 1789","la Constitution de 1958"],1,"Loi des 16-24 août 1790 : « les fonctions judiciaires sont distinctes et demeureront toujours séparées des fonctions administratives »."],
+    ["Le Code de procédure civile relève…",["du droit substantiel","du droit processuel","du droit international public","de la déontologie"],1,"Le droit processuel organise la procédure qui permet d'appliquer les règles de fond."],
+    ["« Qualifier » juridiquement des faits, c'est…",["les juger moralement","les traduire dans les termes du droit","les résumer","les prouver"],1,"Ex. du cours : des menaces sur la carrière contre des avances = harcèlement sexuel."]
+  ],
+  droit2:[
+    ["Pour Boris Starck, ce qui caractérise la règle de droit, c'est que…",["son respect est assuré par l'autorité publique","elle est juste","elle est ancienne","elle est acceptée par tous"],0,"« Ensemble des règles de conduite […] dont le respect est assuré par l'autorité publique »."],
+    ["La transgression d'une règle morale est sanctionnée…",["par le juge","par la police","par notre propre conscience","par le Parlement"],2,"Document 1 : le droit est sanctionné par l'autorité publique, la morale par la conscience."],
+    ["Sans droit, selon le dossier, s'instaure…",["la paix sociale","la loi du plus fort","l'ordre public","la laïcité"],1,"Le droit organise nos rapports et évite la loi du plus fort."],
+    ["Le Parlement est une autorité légitime pour voter la loi parce que…",["il est élu par le peuple souverain","il est nommé par le président","il est composé de juges","il existe depuis 1789"],0,"Le peuple confère au Parlement (Assemblée nationale et Sénat) le soin de voter les lois."],
+    ["Selon Malinvaud, le droit…",["ignore les mœurs","consacre ce qui se fait et, parfois, érige en règle ce qui devrait se faire","ne change jamais","n'exprime que la morale"],1,"Double rôle : il suit les mœurs et, plus modestement, les devance au nom de la justice."],
+    ["« La liberté consiste à pouvoir faire tout ce qui ne nuit pas à autrui » : c'est…",["l'article 1 de la DDHC","l'article 4 de la DDHC","l'article 10 de la DDHC","la loi de 1905"],1,"Article 4 : les bornes de la liberté ne peuvent être déterminées que par la loi."],
+    ["« Libres et égaux en droits » désigne une égalité…",["sociale : mêmes revenus","juridique et politique : mêmes droits","de talents","de patrimoine"],1,"Égalité politique et non sociale (document 3)."],
+    ["Une aide de solidarité comme l'Aspa…",["exige une contrepartie en travail","est accordée sans contrepartie, sous condition de ressources","est versée à tous","est une charité privée"],1,"Aucune contrepartie, mais des conditions de ressources et de besoin."],
+    ["La neutralité religieuse s'impose…",["à tous les citoyens partout","à l'État, aux collectivités et aux services publics","uniquement aux religions","à personne"],1,"Neutralité de l'État et des services publics, non de leurs usagers (document 5)."]
+  ],
   philo3:[
     ["Pour Maïmonide, la Loi vise deux fins : le bien-être du corps et…",["le bien-être de l'âme","la richesse matérielle","la gloire politique","le plaisir immédiat"],0,"La Loi vise le bien-être du corps, condition nécessaire, puis, seule fin vraiment noble, le bien-être de l'âme."],
     ["La perfection dernière, chez Maïmonide, consiste à…",["accumuler des richesses","passer de la raison en puissance à la raison en acte","obéir sans réfléchir à la Loi","fuir la vie en société"],1,"Le bien-être de l'âme est le passage de la raison en puissance à la raison en acte."],
@@ -1071,7 +1101,11 @@ const SUBJ = {
     cap:["Planche · De l'agitation à l'ataraxie", "L'absence de trouble de l'âme, selon les épicuriens"]},
   es:{short:"Sciences", big:"Sciences", full:"Enseignement scientifique", nav:"Sciences", tile:"ondes"},
   ang:{short:"Anglais", big:"Anglais", full:"LV1 Anglais", nav:"Anglais", tile:"voix"},
-  droit:{short:"Droit", big:"Droit", full:"Droit et grands enjeux du monde contemporain", nav:"Droit", tile:"balance"}
+  droit:{short:"Droit", big:"Droit", full:"Droit et grands enjeux du monde contemporain", nav:"Droit", tile:"balance",
+    title:"Qu'est-ce que <em>le droit ?</em>",
+    lead:"Du « directum » romain à la loi de 1905 : ce qui distingue le droit de la morale, ses grandes branches, et à quoi il sert (ordre public, paix sociale, liberté, égalité, solidarité, laïcité).",
+    quote:"Si je ne sais guère ce qu'est le droit, en revanche je sais ce que serait une société sans droit.", cite:"Georges Vedel, 1990 · Leçon 1", plate:"directum",
+    cap:["Planche · Droit et morale", "Deux systèmes normatifs, une seule sanction publique"]}
 };
 const TRONC = ["hg","philo","es","ang"], SPE = ["ses","hggsp","droit"];
 const ORDER = [...TRONC, ...SPE];
@@ -1347,6 +1381,37 @@ const PLATES = {
       const a = (Math.abs(Math.sin(i * .37 + t * 2.1)) * .6 + Math.abs(Math.sin(i * .11 - t * 1.3)) * .4) * env * (.3 + .7 * s.p);
       const bh = Math.max(1.5, a * h * .26), hot = i % 6 === 0;
       ctx.fillStyle = hexA(hot ? C.ang : C.ink, hot ? .85 : .2); ctx.fillRect(i * step + 3, cy - bh, 3, bh * 2);
+    }
+  },
+  directum(s, t){
+    const {ctx, w, h} = s; ctx.clearRect(0, 0, w, h);
+    const mono = "IBM Plex Mono, monospace", small = w < 420, band = h < 300;
+    /* Titre : l'étymologie (en bandeau, à gauche de la balance) */
+    const ty = band ? h * .45 : h * .2;
+    ctx.fillStyle = C.ink; ctx.font = `200 ${band ? Math.min(w * .1, h * .24) : Math.min(w * .15, h * .15)}px Archivo, sans-serif`;
+    ctx.fillText("directum", w * .06, ty);
+    ctx.font = `500 ${small ? 9 : 11}px ${mono}`; ctx.fillStyle = C["ink-2"];
+    if (band) { ctx.fillText("RÈGLE · DROITE LIGNE", w * .06 + 2, ty + 18); ctx.fillText("· RECTITUDE", w * .06 + 2, ty + 32); }
+    else ctx.fillText("RÈGLE · DROITE LIGNE · RECTITUDE", w * .06 + 3, ty + 22);
+    /* La balance : le droit pèse plus lourd, il a la sanction publique */
+    const cx = band ? w * .72 : w * .5, top = band ? h * .3 : h * .42, L = band ? Math.min(w * .17, h * .42) : Math.min(w * .3, h * .34), base = band ? h * .88 : h * .9;
+    const tilt = .16 * Math.min(1, s.p * 1.4) + Math.sin(t * .8) * .02;
+    ctx.strokeStyle = C.ink; ctx.lineWidth = 1.4;
+    ctx.beginPath(); ctx.moveTo(cx, top); ctx.lineTo(cx, base); ctx.moveTo(cx - L * .3, base); ctx.lineTo(cx + L * .3, base); ctx.stroke();
+    const ex = Math.cos(tilt) * L, ey = Math.sin(tilt) * L;
+    ctx.beginPath(); ctx.moveTo(cx - ex, top + ey); ctx.lineTo(cx + ex, top - ey); ctx.stroke();
+    ctx.beginPath(); ctx.arc(cx, top, 4, 0, 7); ctx.fillStyle = C.ink; ctx.fill();
+    const pans = [[-1, "DROIT", "sanction : l'autorité publique", true], [1, "MORALE", "sanction : la conscience", false]];
+    for (const [sg, name, sub, strong] of pans) {
+      const px = cx + sg * ex, py = top - sg * ey, ch = band ? h * .22 : h * .16;
+      ctx.strokeStyle = hexA(C.ink, .45); ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(px - L * .22, py + ch); ctx.moveTo(px, py); ctx.lineTo(px + L * .22, py + ch); ctx.stroke();
+      ctx.beginPath(); ctx.ellipse(px, py + ch, L * .25, L * .065, 0, 0, Math.PI); ctx.closePath();
+      ctx.fillStyle = hexA(C.droit, strong ? .45 : .14); ctx.fill(); ctx.strokeStyle = C.droit; ctx.lineWidth = 1.4; ctx.stroke();
+      ctx.textAlign = "center"; ctx.fillStyle = C.ink; ctx.font = `600 ${small ? 11 : 13}px ${mono}`;
+      ctx.fillText(name, px, py + ch + L * .065 + (band ? 14 : 20));
+      if (!small && !band) { ctx.font = `400 11px ${mono}`; ctx.fillStyle = C["ink-2"]; ctx.fillText(sub, px, py + ch + L * .065 + 38); }
+      ctx.textAlign = "start";
     }
   },
   balance(s, t){
@@ -1639,7 +1704,7 @@ function viewHome(root){
     const a = el("a", {class:"tile", href:"#" + k, style:`--c:var(--${k})`}, cv,
       el("div", {class:"head"}, el("span", {class:"k", style:"display:flex;gap:8px;align-items:center"}, el("span", {class:"dot", style:`--c:var(--${k})`}), SUBJ[k].full)),
       el("div", {class:"foot"}, el("h3", {}, SUBJ[k].big), el("span", {class:"k muted"}, n.c || n.f ? n.f + " fiches · " + n.c + " cours" : "Dossier prêt")));
-    const st = canvasLoop(cv, PLATES[SUBJ[k].plate || SUBJ[k].tile], .65); st.p = .65;
+    const st = canvasLoop(cv, PLATES[SUBJ[k].tile || SUBJ[k].plate], .65); st.p = .65;
     return a;
   };
   const Dq = qDone(), dues = VOLUMES.filter(v => v.q && ["revoir", "reviser"].includes(qState(Dq, v.q)));
@@ -2384,12 +2449,26 @@ const LEX = [
   {t:"Euthymie", m:"philo", s:["02"], d:"Heureuse disposition de l'âme, obtenue selon Démocrite par la modération du plaisir, non par sa quantité."},
   {t:"Comparaison descendante et ascendante", m:"philo", s:["02"], d:"Méthode de Démocrite pour être heureux : se comparer aux plus malheureux (comparaison descendante) plutôt qu'aux plus riches (comparaison ascendante, source d'envie et de désir sans fin)."},
   {t:"Perfection première et perfection dernière", m:"philo", s:["03"], d:"Chez Maïmonide, les deux degrés de l'accomplissement humain : la perfection première, la santé du corps, et la perfection dernière, la raison en acte, la plus noble."},
-  {t:"Miracle absolu et miracle relatif", m:"philo", s:["03"], d:"Chez Wittgenstein, le miracle relatif est un fait extraordinaire seulement provisoirement inexpliqué par la science ; le miracle absolu, hors de portée par principe de toute explication scientifique, ne se rencontre jamais dans les faits."}
+  {t:"Miracle absolu et miracle relatif", m:"philo", s:["03"], d:"Chez Wittgenstein, le miracle relatif est un fait extraordinaire seulement provisoirement inexpliqué par la science ; le miracle absolu, hors de portée par principe de toute explication scientifique, ne se rencontre jamais dans les faits."},
+  {t:"Système normatif", m:"droit", s:["01"], d:"Ensemble de règles qui poussent les individus à adopter des conduites jugées justes, sous peine de sanctions : le droit, mais aussi la morale, les normes sociales, la religion, l'éthique."},
+  {t:"Morale", m:"droit", s:["01","02"], d:"« Science du bien et du mal », qui exprime les valeurs d'une société à un moment donné ; sa transgression n'est sanctionnée que par la conscience, pas par un tribunal."},
+  {t:"Droit objectif", m:"droit", s:["01"], d:"Le Droit, avec une majuscule : l'ensemble des règles qui régissent la vie en société dans un pays donné (ex. : le droit français)."},
+  {t:"Droits subjectifs", m:"droit", s:["01","02"], d:"Les prérogatives que le droit objectif reconnaît à une personne et que la puissance publique garantit (droit de propriété, droit à l'image).", note:"Définition générale : la leçon cite la notion sans la développer."},
+  {t:"Droit privé et droit public", m:"droit", s:["01"], d:"Le droit privé règle les relations entre personnes privées (droit civil, commercial) ; le droit public, celles où intervient une personne publique (droit constitutionnel, administratif, budgétaire)."},
+  {t:"Droit international privé et public", m:"droit", s:["01"], d:"Le droit international privé règle les situations entre particuliers touchant plusieurs pays (loi applicable, juge compétent) ; le droit international public règle les relations entre États."},
+  {t:"Droit substantiel et droit processuel", m:"droit", s:["01"], d:"Le droit substantiel pose les règles de fond ; le droit processuel organise la procédure pour les appliquer (codes de procédure civile et pénale)."},
+  {t:"Qualification juridique", m:"droit", s:["01"], d:"Traduire des faits dans les termes du droit : le droit est un « devoir être » général, le fait est la situation concrète."},
+  {t:"Ordre public", m:"droit", s:["02"], d:"État social idéal fait de bon ordre, de sécurité, de salubrité et de tranquillité publiques, que l'État doit garantir.", note:"Composantes posées par l'article L2212-2 du CGCT ; le Conseil d'État y a ajouté la dignité humaine (1995)."},
+  {t:"Paix sociale", m:"droit", s:["02"], d:"État de concorde où les conflits se règlent par des règles communes et par le juge, non par la violence.", note:"Définition générale, à confronter à celle du cours."},
+  {t:"Égalité en droits", m:"droit", s:["02"], d:"Tous ont les mêmes droits dès la naissance (DDHC 1789, DUDH 1948) : égalité juridique et politique, pas égalité des conditions sociales."},
+  {t:"Solidarité", m:"droit", s:["02"], d:"Devoir de la société de porter secours à ceux qui manquent de ressources, sans contrepartie mais sous conditions de ressources (ex. : l'Aspa)."},
+  {t:"Laïcité", m:"droit", s:["02"], d:"Principe qui repose sur la liberté de conscience, la séparation des institutions publiques et des religions, et l'égalité de tous devant la loi quelles que soient les convictions."},
+  {t:"Neutralité", m:"droit", s:["02"], d:"Obligation qui pèse sur l'État, les collectivités et les services publics, et non sur leurs usagers."}
 ];
 
 /* ---------- Vue : lexique ---------- */
 const norm = x => x.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/œ/g, "oe").replace(/æ/g, "ae");
-const LEX_M = ["ses","hggsp","hg","philo","ang"];
+const LEX_M = ["ses","hggsp","hg","philo","ang","droit"];
 const lxToggle = dt => { const it = dt.parentElement, o = it.classList.toggle("open"); dt.setAttribute("aria-expanded", String(o)); };
 function viewLexique(root){
   const entries = LEX.map(e => ({...e, key:norm(e.t), hay:norm(e.t + " " + e.d + " " + (e.note || ""))}))
