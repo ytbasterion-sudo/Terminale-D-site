@@ -495,13 +495,18 @@ details.nb-card[open] > summary{margin-bottom:20px}
 /* Petite section à part : pense-bête pour une trace écrite précise */
 .memo{border-top:1px solid var(--ink);padding-block:56px}
 .memo-h{max-width:70ch;margin-bottom:24px}
-.memo-h .k{color:var(--c)}
-.memo-h h2{margin:8px 0 10px}
+.memo-h .k{color:var(--c);font-size:15px;font-weight:600;letter-spacing:.08em}
+.memo-h h2{margin:10px 0 10px}
 .memo-h p{margin:0;max-width:62ch}
 .memo-lead{max-width:66ch;margin:0 0 18px;font-size:18px;line-height:1.5}
 .memo-dl{border-top:1px solid var(--line)}
-.memo-dl .lx-item{grid-template-columns:minmax(0,3fr) minmax(0,9fr)}
-@media (max-width:900px){ .memo-dl .lx-item{grid-template-columns:1fr} }
+.memo-dl .lx-item{display:block;padding:20px 0}
+.memo-dl .lx-item dt{cursor:pointer;display:flex;justify-content:space-between;align-items:baseline;gap:16px;font-size:20px}
+.memo-dl .lx-item dt::after{content:"+";font-family:var(--mono);font-weight:400;font-size:18px;color:var(--ink-2);flex:none}
+.memo-dl .lx-item.open dt::after{content:"−"}
+.memo-dl .lx-item dd{display:none;margin-top:12px}
+.memo-dl .lx-item.open dd{display:block}
+@media (max-width:900px){ .memo-dl .lx-item dt{font-size:18px} }
 
 /* Par chapitre */
 .bychap{border-top:1px solid var(--ink);padding-block:70px}
@@ -678,8 +683,6 @@ select:disabled{opacity:.55;cursor:not-allowed}
   .lx-item.open dt::after{content:"−"}
   .lx-item dd{display:none}
   .lx-item.open dd{display:block}
-  .memo-dl .lx-item dt{cursor:default}
-  .memo-dl .lx-item dt::after{content:none}
   .lx-def{font-size:16.5px}
   .lx-group{padding-top:16px}
   .lx-letter{font-size:34px !important;padding-bottom:2px !important}
@@ -2068,7 +2071,9 @@ function renderChapters(k, onQuiz){
    Ne fait pas partie du système chapitre/fiche habituel : juste des conseils de révision
    et des moyens mémotechniques, à côté du cours lui-même (fiche HG 01). */
 function hgMemo(){
-  const item = (t, d, note) => el("div", {class:"lx-item open"}, el("dt", {}, t), el("dd", {}, el("p", {class:"lx-def"}, d), note ? el("p", {class:"lx-note"}, note) : null));
+  const item = (t, d, note) => el("div", {class:"lx-item"},
+    el("dt", {role:"button", tabindex:"0", "aria-expanded":"false", onclick:ev => lxToggle(ev.currentTarget), onkeydown:ev => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); lxToggle(ev.currentTarget); } }}, t),
+    el("dd", {}, el("p", {class:"lx-def"}, d), note ? el("p", {class:"lx-note"}, note) : null));
   return el("section", {class:"memo g max", "aria-labelledby":"h-memo"},
     el("div", {class:"memo-h"},
       el("span", {class:"k"}, "À apprendre pour mardi"),
