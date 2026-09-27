@@ -497,6 +497,27 @@ details.nb-card[open] > summary{margin-bottom:20px}
 .bychap-h{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,36ch);gap:18px 40px;align-items:end;margin-bottom:34px}
 .bychap-h p{margin:0}
 .chaps{border-top:1px solid var(--ink)}
+.chap{scroll-margin-top:84px}
+.chap-tools{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;margin:0 0 18px}
+.chap-q{flex:1 1 280px;min-width:0;font:inherit;font-size:17px;color:var(--ink);background:var(--bg);border:1px solid var(--ink);padding:12px 14px;border-radius:0;-webkit-appearance:none;appearance:none}
+.chap-q::placeholder{color:var(--ink-2)}
+.chap-q:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.chap-btns{display:flex;gap:8px}
+.chap-b1{all:unset;box-sizing:border-box;cursor:pointer;padding:10px 12px;border:1px solid var(--line);color:var(--ink)}
+.chap-b1:hover{border-color:var(--ink)}
+.chap-b1:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.chap-idx{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin:0 0 26px}
+.chap-chip{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;gap:6px;padding:14px 16px;border:1px solid var(--line);border-left:3px solid var(--ct,var(--c,var(--ink)));background:var(--bg);min-width:0;transition:border-color .2s ease,background .2s ease}
+.chap-chip:hover{border-color:var(--ink);background:var(--bg-2)}
+.chap-chip:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.chap-chip .k:first-child{color:var(--ct,var(--c,var(--ink)))}
+.chap-chip .cc-t{font-family:var(--serif);font-size:17px;line-height:1.25;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.chap-chip.meth{border-left-color:var(--line)}
+.chap-chip.cur{background:var(--bg-2)}
+.chap-cur{display:inline-block;margin-left:10px;padding:2px 7px;border:1px solid currentColor;font-size:10px;letter-spacing:.08em;vertical-align:1px}
+.chap-empty{margin:0 0 20px}
+.card-ch{margin:-6px 0 12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.m-ch{display:block;margin-top:4px;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
 .chap{border-bottom:1px solid var(--line)}
 .chap-h{list-style:none;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"n i" "t i" "m i";gap:6px 20px;padding:24px 0;align-items:center}
 .chap-h::-webkit-details-marker{display:none}
@@ -873,7 +894,7 @@ const MAT = {
 
 const VOLUMES = [
   {m:"ses", code:"SES", n:"01", t:"Les analyses de la structure sociale", ch:"ses1", id:"1ACeppauoU3aSk2zWId5I65HEmPHTfu1UAPA0akXkegA", w:70, h:262, q:"ses1"},
-  {m:"ses", code:"SES", n:"02", t:"Facteurs et évolutions de la structure sociale", ch:"ses1", id:"1DChO8u-wU-R2knb6oG7-8gj_dxhuTOECrxlavePfvEo", w:64, h:262, q:"ses2"},
+  {m:"ses", code:"SES", n:"02", t:"Facteurs et évolutions de la structure sociale", ch:"ses1", id:"1IYMFk6SkzYJz15iANfXsoS1Tk-aW1ZOpZPKTn7FMXCc", w:64, h:262, q:"ses2"},
   {m:"ses", code:"SES", n:"03", t:"EC1.1, le corrigé", ch:"ses1", id:"1_ChptLCNx_A8ScEalEqyskGky1V47nFZW_FPkdnmLmo", w:58, h:240, q:"ses3"},
   {m:"ses", code:"SES", n:"M", t:"Méthodologie du bac", ch:"sesM", id:"1ZHfZX08gPUt5wqTUusuA_cFGK2g9ianHoil5YXXTol0", w:54, h:228},
   {m:"ses", code:"SES", n:"P", t:"Programme de l'année", ch:"sesM", id:"1MVa1B9teMl7gJzxuga_O5yekOX0K3CXOwMaZCougksk", w:40, h:214},
@@ -890,6 +911,9 @@ const VOLUMES = [
   {m:"ang", code:"ANG", n:"T", t:"From Liberation to “Tradwife” : le texte du chapitre", ch:"ang1", id:"1FsjelMJ3bVwkYtHWUlfKTXIZUlAuGBOoKwwYSv-bGbs", w:44, h:230},
   {m:"ang", code:"ANG", n:"M", t:"Méthodologie et conseils", ch:"angM", id:"1MX68UlBY1YKCNgs75oliMgDuHrY1bI_ucHj9uw-rCjs", w:52, h:228},
   {m:"philo", code:"PHILO", n:"M", t:"Méthodologie du bac", ch:"philoM", id:"1AdTAq1m8dQe_GMl-xb1TctrCT3pyeX6baYi7Im132Jc", w:62, h:236},
+  {m:"hg", code:"HG", n:"03", t:"Mers et océans, des réserves de ressources", ch:"hgG1", id:"1JgN_HnLEbwlA7MzfnHbV6IB31kQPjVlvXGjfismhLQw", w:56, h:250, q:"hg3"},
+  {m:"es", code:"SCI", n:"01", t:"L'alternateur", ch:"es2a", id:"1pMahzoxQERFBPmBitIdrIyXmbs5aJfw-ff9UKp26rUU", w:52, h:246, q:"es1"},
+  {m:"es", code:"SCI", n:"M", t:"Méthodologie et conseils", ch:"esM", id:"10A8cVoYyGas_24sLK-CGt7k9_49p5avraBzbHpMoVSk", w:50, h:226},
   {m:"droit", code:"DROIT", n:"01", t:"Qu'est-ce que le droit ?", ch:"droitI", id:"1XvLtjtlXgp-yRufG-cr87xN8GyvcmwVH1PDNm227uPI", w:62, h:254, q:"droit1"},
   {m:"droit", code:"DROIT", n:"02", t:"Le droit et ses fonctions", ch:"droitI", id:"19LgpT-VhyAs6SNJevMqa7DxqVqEXrZbSaDFa12Da43E", w:68, h:260, q:"droit2"},
   {m:"droit", code:"DROIT", n:"T", t:"Leçon 1 : qu'est-ce que le droit ? (poly du professeur)", ch:"droitI", id:"1dtYcp8heMN4iHcDQPoR2DlbLo3cYqU1f_zWs6R257cQ", w:44, h:230},
@@ -898,22 +922,25 @@ const VOLUMES = [
 ];
 
 const COURS = [
+  ["2026-09-25","es","L'alternateur, rotor, stator et induction","1xK0iA0gH36z573QyT7DP3SDOWDJBRJ3EEdstVSta3Ds","es2a"],
+  ["2026-09-25","ses","Les facteurs sociodémographiques de la stratification sociale","1UDlqxuIRANEOI9BZkrtEqpFjdPFX4r-bMMQ9NGe8yv4","ses1:p2"],
+  ["2026-09-25","hg","Les mers, réserves de ressources : les ressources halieutiques","1KNrHhaW6r2dMylCf6vou5pdD9StvmrEjR7PFjHfKwGs","hgG1:p2"],
   ["2026-09-24","ses","Méthodologie de l'épreuve composée, l'étude d'un document","1mXS0hfIWU6mKpOOvEDeCo64bat8wL9qJgdvZ2wiyPfg","sesM"],
   ["2026-09-24","philo","Une représentation moderne du mythe de la caverne de Platon","1gAwUoXIB5PIwV5vRGwH7r9smFouEZHgSXU_yi-POznU","philoAutre"],
   ["2026-09-23","hggsp","Jalon 1, la forêt française depuis Colbert (suite : le bois au service de la puissance, XIXe siècle)","10wUVftdR1YbQLxcByd_0HBoMhOEkouU9RqOhLqE6uOo","hggsp5:axe1"],
   ["2026-09-21","hggsp","La forêt française, du legs de Colbert aux défis climatiques (étude de cas Fontainebleau)","1sX1nfujRMEy7F1IbTNuAprAsj9x67rktCph7FUmY0J0","hggsp5:axe1"],
-  ["2026-09-21","ses","Les outils de mesure des inégalités de revenu et de patrimoine","1sT8QZcA8WSwMcyJs_7OVl2koy_SUSJoRCwY64gwu4hU","ses1"],
-  ["2026-09-18","ses","Les facteurs de hiérarchisation de la structure sociale (PCS et revenu)","11zRoy3Q2it3q_-fQIoARnMGIP54ABySZWIIySli1d5U","ses1"],
-  ["2026-09-18","hg","Étude de cas, la façade maritime chinoise (suite)","1_b7jQVCZNXX8C_ReK0yzUqfxv_pCPUVyN55qQfwTp7U","hgG1"],
+  ["2026-09-21","ses","Les outils de mesure des inégalités de revenu et de patrimoine","1sT8QZcA8WSwMcyJs_7OVl2koy_SUSJoRCwY64gwu4hU","ses1:p2"],
+  ["2026-09-18","ses","Les facteurs de hiérarchisation de la structure sociale (PCS et revenu)","11zRoy3Q2it3q_-fQIoARnMGIP54ABySZWIIySli1d5U","ses1:p2"],
+  ["2026-09-18","hg","Étude de cas, la façade maritime chinoise (suite)","1_b7jQVCZNXX8C_ReK0yzUqfxv_pCPUVyN55qQfwTp7U","hgG1:p1"],
   ["2026-09-17","hggsp","Jalon 1, la forêt française depuis Colbert","1Skklv4yrlouAwIRGeas9fenNXbev9Hs33G6SDiA1YtU","hggsp5:axe1"],
-  ["2026-09-16","hg","Étude de cas, les ports chinois et la mondialisation","11ebTrX5EKlyCQwPPNWMZJpeHCfECAzVex7cIsHz0YTo","hgG1"],
+  ["2026-09-16","hg","Étude de cas, les ports chinois et la mondialisation","11ebTrX5EKlyCQwPPNWMZJpeHCfECAzVex7cIsHz0YTo","hgG1:p1"],
   ["2026-09-16","hggsp","Axe 1, exploiter, préserver, protéger : les enjeux","1mflToGvq4yHybsyX7PXg4gKRwktZAImmQ1sS5zUOW9g","hggsp5:axe1"],
-  ["2026-09-15","hg","Les espaces maritimes, une approche géostratégique","1Vh98Ma41dtBXlzmeTN3HljnxNjFUFRxCqHBtBEKcsA8","hgG1"],
+  ["2026-09-15","hg","Les espaces maritimes, une approche géostratégique","1Vh98Ma41dtBXlzmeTN3HljnxNjFUFRxCqHBtBEKcsA8","hgG1:p1"],
   ["2026-09-14","hggsp","La construction sociale des problèmes environnementaux","1T6lfFRbc8JJTO0cdOz95kpK3P_-uOeO9DMW1NAGFZSM","hggsp5:intro"],
-  ["2026-09-14","ses","Synthèse sur la pertinence de l'analyse en classes sociales","16RpY0fv8Ty4lv5NnO1-gpJ_JsZpN8VeWJymDh4XfOms","ses1"],
-  ["2026-09-11","ses","La moyennisation de la société française (Trente Glorieuses)","1FmbQtZ2N88jfaXe1XqZ65FgIJYSn-cpe58oG9EXfdIk","ses1"],
+  ["2026-09-14","ses","Synthèse sur la pertinence de l'analyse en classes sociales","16RpY0fv8Ty4lv5NnO1-gpJ_JsZpN8VeWJymDh4XfOms","ses1:p1"],
+  ["2026-09-11","ses","La moyennisation de la société française (Trente Glorieuses)","1FmbQtZ2N88jfaXe1XqZ65FgIJYSn-cpe58oG9EXfdIk","ses1:p1"],
   ["2026-09-10","philo","Une vie heureuse est-elle une vie de plaisirs ?","19wdqdH2gD7QlGCqS14u-4irX3Y6xZqeXpqb7IBpw3VY","philoBonheur"],
-  ["2026-09-10","ses","Marx et Weber, méthodologie de l'épreuve composée","1K2W-HKPMiGV5zmvTVJ5m0VUVVXliDoqkGVlKt1c5JIM","ses1"],
+  ["2026-09-10","ses","Marx et Weber, méthodologie de l'épreuve composée","1K2W-HKPMiGV5zmvTVJ5m0VUVVXliDoqkGVlKt1c5JIM","ses1:p1"],
   ["2026-09-10","hggsp","Greta Thunberg et la politisation de l'environnement","1sP1BbAg5CXk1Rzf9s-iaKmytjp0bqNz-uOQsLlntgvc","hggsp5:intro"],
   ["2026-09-09","hggsp","Environnement, entre exploitation et protection (Thème 5)","1LBV7t1_gaUZ-DBAQwc-9G7-DzjiiSoOoXluQKjvH6kQ","hggsp5:intro"],
   ["2026-09-08","philo","La nature a-t-elle besoin de nous ?","1ZRRQS-dFgUi8HnBcybomyRjmgybN79CXWfN75Fc8n-g","philoNature"],
@@ -924,13 +951,13 @@ const COURS = [
 /* Chapitres : l'ordre du programme. Chaque fiche (ch) et chaque cours (5e champ, "chapitre:partie") y est rangé. */
 const CHAPITRES = {
   ses:[
-    {k:"ses1", dir:"1EfwKZw5swvBA2Ga7eDqh7vB-4iYvjhM9", n:"Chapitre 1", sub:"Sociologie", t:"Comment est structurée la société française actuelle ?"},
+    {k:"ses1", dir:"1EfwKZw5swvBA2Ga7eDqh7vB-4iYvjhM9", n:"Chapitre 1", sub:"Sociologie", t:"Comment est structurée la société française actuelle ?", parts:[["p1", "Partie I · Les analyses de la structure sociale"], ["p2", "Partie II · Facteurs et évolutions de la structure sociale"]]},
     {k:"sesM", dir:"1yzhs8aHQa3i9A74BX8CIDabuo8Y9Hqpn", n:"Méthode", t:"Méthode du bac, programme et rentrée"}],
   hggsp:[
     {k:"hggsp5", dir:"1L6T1fjnZrR_AgNWQCNaltUhY8-uFf3Y7", n:"Thème 5", t:"L'environnement, entre exploitation et protection : un enjeu planétaire", parts:[["intro", "Introduction"], ["axe1", "Axe 1 · Exploiter, préserver et protéger"]]},
     {k:"hggspM", dir:"1cNpZBl1MD1biVUHt0dOdfEIbdpn04IlC", n:"Méthode", t:"Méthode du bac, programme et rentrée"}],
   hg:[
-    {k:"hgG1", dir:"1vFGJgo_GiN9voUqgrPJtPad5zC9y4UTn", n:"Géographie · Thème 1", t:"Mers et océans : au cœur de la mondialisation"},
+    {k:"hgG1", dir:"1vFGJgo_GiN9voUqgrPJtPad5zC9y4UTn", n:"Géographie · Thème 1", t:"Mers et océans : au cœur de la mondialisation", parts:[["p1", "1 · Les espaces maritimes, une approche géostratégique"], ["p2", "2 · Des réserves de ressources qui polarisent des flux"]]},
     {k:"hgM", dir:"1rB2-yXJ5i1pQVbvFALswuJBAr1izl49e", n:"Méthode", t:"Méthode et conseils"}],
   philo:[
     {k:"philoNature", dir:"13eSGIagnSL7DG6gzWMI1apNad4UXW3vw", n:"Notion", t:"La nature"},
@@ -941,6 +968,9 @@ const CHAPITRES = {
   ang:[
     {k:"ang1", dir:"1Q9MsHbQ7ZYHJ27KcXvrjUoX8eHR-CqCx", n:"Chapter 1", t:"Tradwives in the USA and the Women's Liberation Movement"},
     {k:"angM", dir:"1QJqm2ZDfmPmZ0SfPVVu55vG7uklfGIFc", n:"Méthode", t:"Méthodologie et conseils"}],
+  es:[
+    {k:"es2a", dir:"12YJ3O8OYhJLpoInRTXbhzAkcf3zTF8Hk", n:"Thème 2 · Le futur des énergies", t:"Deux siècles d'énergie électrique"},
+    {k:"esM", dir:"1rY78_b0lTmnc9MoEqcS5SyZPlUP_Hg24", n:"Méthode", t:"Méthodologie et conseils"}],
   droit:[
     {k:"droitI", dir:"12RtqxtrULJEFUYQmdMUtUzcHGEHthROk", n:"Introduction générale", t:"Qu'est-ce que le droit ? Le droit et ses fonctions"},
     {k:"droitM", dir:"1vDtetf0dLyDunKfREico8Vmq0FGDnUNX", n:"Méthode", t:"Méthodologie et conseils"}]
@@ -1041,6 +1071,26 @@ const QCM = {
     ["Selon le texte, la vraie question n'est pas ce qu'une femme choisit, mais…",["si elle a la liberté et les ressources de choisir","si son choix plaît aux réseaux sociaux","si elle travaille ou non","si elle suit le féminisme dominant"],0,"La vraie question est de savoir si elle a la liberté et les ressources de choisir."],
     ["Pourquoi rester à la maison n'est-il pas toujours un choix libre ?",["parce que c'est interdit par la loi","parce que cela peut venir d'une contrainte : garde d'enfants trop chère, pas d'emploi, pression du conjoint","parce que toutes les tradwives sont soumises","parce que le texte condamne la vie de famille"],1,"Le même comportement peut être un choix financé par un revenu suffisant ou une contrainte (garde d'enfants trop chère, pas d'emploi, pression du conjoint)."]
   ],
+  es1:[
+    ["Un alternateur convertit…",["une énergie mécanique en énergie électrique","une énergie électrique en énergie mécanique","une énergie chimique en énergie électrique","une énergie lumineuse en chaleur"],0,"L'alternateur transforme un mouvement de rotation en énergie électrique."],
+    ["Le rotor d'un alternateur est…",["la partie mobile, qui tourne","la partie fixe","la bobine","le fil de sortie"],0,"Rotor = partie mobile ; stator = partie fixe."],
+    ["Le rôle de l'aimant est de…",["créer un champ magnétique","produire de la chaleur","stocker l'énergie","isoler la bobine"],0,"L'aimant (ou électroaimant) crée le champ magnétique."],
+    ["La bobine est…",["le siège des phénomènes électromagnétiques","la source du champ magnétique","toujours la partie qui tourne","un isolant"],0,"C'est aux bornes des bobines qu'apparaît la tension."],
+    ["Une tension apparaît aux bornes de la bobine quand…",["le champ magnétique qui la traverse varie","un aimant immobile est posé devant elle","on la chauffe","le courant s'arrête"],0,"C'est la variation du champ, due au mouvement de l'aimant, qui crée la tension : c'est l'induction."],
+    ["Un aimant immobile devant une bobine…",["ne produit aucune tension","produit une tension constante","produit une tension qui oscille","démagnétise la bobine"],0,"Sans mouvement relatif, le champ ne varie pas : pas de tension."],
+    ["L'effet Joule, c'est…",["l'échauffement d'un conducteur parcouru par un courant","une perte par frottement des pièces","la variation du champ magnétique","le mouvement du rotor"],0,"L'effet Joule est dû à la résistance électrique des conducteurs."],
+    ["Le rendement d'un alternateur est…",["toujours inférieur à 1","égal à 1","supérieur à 1","égal à 0"],0,"Une partie de l'énergie est perdue (frottements, effet Joule), surtout sous forme de chaleur."]
+  ],
+  hg3:[
+    ["Les ressources halieutiques désignent…",["les ressources vivantes des mers exploitées par l'homme","les hydrocarbures sous-marins","les minerais des grands fonds","les ports et leurs équipements"],0,"Poissons, crustacés, mollusques, exploités par la pêche ou l'aquaculture."],
+    ["Selon le cours, exploiter une ressource…",["ne veut pas dire « prélever »","veut dire uniquement pêcher","est interdit en haute mer","ne concerne que les États côtiers"],0,"Le cours pose la question de la gestion de la ressource, pas seulement de sa capture."],
+    ["La population mondiale vers 1900 était d'environ…",["1,6 milliard (arrondi à 2 dans le cours)","4 milliards","500 millions","6 milliards"],0,"Environ 1,6 milliard ; le cours arrondit à 2 milliards."],
+    ["Pour 2050, l'ONU projette une population mondiale d'environ…",["9,7 milliards","6 milliards","15 milliards","8 milliards"],0,"Près de 10 milliards, 9,7 selon l'ONU."],
+    ["La pêche industrielle se pratique…",["à grande échelle, souvent loin des côtes, pour les marchés mondiaux","uniquement à pied sur le littoral","seulement en eau douce","sans navire"],0,"Grands navires, loin des côtes, tournés vers les marchés mondiaux."],
+    ["L'aquaculture, c'est…",["l'élevage d'espèces aquatiques","la pêche en haute mer","la protection des récifs coralliens","le transport de poissons par conteneurs"],0,"Selon la FAO, elle fournit désormais plus de la moitié du poisson consommé."],
+    ["Une ressource « polarise des flux » quand…",["elle attire acteurs, navires et échanges vers un espace maritime","elle éloigne les navires d'une zone","elle est totalement épuisée","elle n'intéresse aucun État"],0,"Elle fait de l'espace maritime un enjeu."],
+    ["Selon la FAO, la production mondiale de poisson en 2024 était d'environ…",["188 millions de tonnes","18 millions de tonnes","1,8 milliard de tonnes","8 millions de tonnes"],0,"188 millions de tonnes en 2024 (FAO, 2026)."]
+  ],
   droit1:[
     ["D'où vient le mot « droit » ?",["du latin directum : la règle, la droite ligne","du grec dikê : la vengeance","du latin dominus : le maître","de l'ancien français droiture : la richesse"],0,"Directum renvoie à la règle, à la droite ligne, à la rectitude : la « conduite à tenir »."],
     ["Le Digeste de Justinien qualifie le droit d'…",["« art du bon et de l'équitable »","« ensemble des lois du prince »","« science du bien et du mal »","« volonté du plus fort »"],0,"Formule du juriste Celse, citée au début du Digeste (530-533)."],
@@ -1099,7 +1149,11 @@ const SUBJ = {
     lead:"L'hédonisme et son calcul des plaisirs, Épicure et l'ataraxie, puis trois objections qui fissurent la thèse.",
     quote:"Peut-on être heureux quand les autres ne le sont pas ?", cite:"Question ouverte du cours", plate:"ataraxie",
     cap:["Planche · De l'agitation à l'ataraxie", "L'absence de trouble de l'âme, selon les épicuriens"]},
-  es:{short:"Sciences", big:"Sciences", full:"Enseignement scientifique", nav:"Sciences", tile:"ondes"},
+  es:{short:"Sciences", big:"Sciences", full:"Enseignement scientifique", nav:"Sciences", tile:"ondes",
+    title:"Deux siècles <em>d'énergie électrique</em>",
+    lead:"L'alternateur, au cœur de presque toutes les centrales : un aimant qui tourne, une bobine fixe, et une tension qui naît du mouvement.",
+    quote:"Ce n'est pas la présence d'un champ magnétique qui crée la tension, mais sa variation.", cite:"Fiche Sciences 01", plate:"alternateur",
+    cap:["Planche · L'alternateur", "Le rotor tourne, la tension oscille"]},
   ang:{short:"Anglais", big:"Anglais", full:"LV1 Anglais", nav:"Anglais", tile:"voix"},
   droit:{short:"Droit", big:"Droit", full:"Droit et grands enjeux du monde contemporain", nav:"Droit", tile:"balance",
     title:"Qu'est-ce que <em>le droit ?</em>",
@@ -1382,6 +1436,40 @@ const PLATES = {
       const bh = Math.max(1.5, a * h * .26), hot = i % 6 === 0;
       ctx.fillStyle = hexA(hot ? C.ang : C.ink, hot ? .85 : .2); ctx.fillRect(i * step + 3, cy - bh, 3, bh * 2);
     }
+  },
+  alternateur(s, t){
+    const {ctx, w, h} = s; ctx.clearRect(0, 0, w, h);
+    const mono = "IBM Plex Mono, monospace", band = h < 300, spd = .35 + 1.1 * Math.min(1, s.p * 1.3);
+    const a = t * spd * 2.2;
+    /* Alternateur : stator (anneau + 2 bobines) et rotor aimanté */
+    const cx = band ? w * .26 : w * .3, cy = h * .5, R0 = Math.min(band ? h * .38 : w * .2, h * .3);
+    ctx.lineWidth = 1.4; ctx.strokeStyle = C.ink;
+    ctx.beginPath(); ctx.arc(cx, cy, R0, 0, 7); ctx.stroke();
+    ctx.strokeStyle = C.line; ctx.beginPath(); ctx.arc(cx, cy, R0 * 1.18, 0, 7); ctx.stroke();
+    for (const sg of [-1, 1]) {
+      const bx = cx + sg * R0 * 1.02, bw = R0 * .26, bh = R0 * .62;
+      ctx.fillStyle = hexA(C.es, .22); ctx.fillRect(bx - bw / 2, cy - bh / 2, bw, bh);
+      ctx.strokeStyle = C.es; ctx.lineWidth = 1.2;
+      for (let k = 0; k <= 6; k++) { const yy = cy - bh / 2 + k * bh / 6; ctx.beginPath(); ctx.moveTo(bx - bw / 2, yy); ctx.lineTo(bx + bw / 2, yy); ctx.stroke(); }
+    }
+    ctx.save(); ctx.translate(cx, cy); ctx.rotate(a);
+    const L = R0 * .72, T = R0 * .2;
+    ctx.fillStyle = C.ink; ctx.fillRect(0, -T / 2, L, T);
+    ctx.fillStyle = hexA(C.es, .9); ctx.fillRect(-L, -T / 2, L, T);
+    ctx.fillStyle = C.bg; ctx.font = `600 ${Math.max(9, T * .7)}px ${mono}`; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    ctx.fillText("N", L * .72, 1); ctx.fillText("S", -L * .72, 1);
+    ctx.restore(); ctx.textAlign = "start"; ctx.textBaseline = "alphabetic";
+    ctx.beginPath(); ctx.arc(cx, cy, 4, 0, 7); ctx.fillStyle = C.ink; ctx.fill();
+    /* Tension induite : u = sin(angle), qui défile */
+    const x0 = band ? w * .52 : w * .56, x1 = w * .95, gy = cy, amp = Math.min(h * (band ? .3 : .2), 90);
+    ctx.strokeStyle = C.line; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(x0, gy); ctx.lineTo(x1, gy); ctx.moveTo(x0, gy - amp * 1.2); ctx.lineTo(x0, gy + amp * 1.2); ctx.stroke();
+    ctx.strokeStyle = C.es; ctx.lineWidth = 2.2; ctx.beginPath();
+    for (let x = x0; x <= x1; x += 2) { const ph = a - (x1 - x) / (x1 - x0) * Math.PI * 4; const y = gy - Math.cos(ph) * amp; x === x0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); }
+    ctx.stroke();
+    ctx.fillStyle = C["ink-2"]; ctx.font = `500 ${band ? 9 : 11}px ${mono}`;
+    ctx.fillText("TENSION u(t)", x0 + 6, gy - amp * 1.2 + 4);
+    if (!band) { ctx.fillText("STATOR · BOBINES FIXES", cx - R0, cy + R0 * 1.18 + 26); ctx.fillText("ROTOR · AIMANT QUI TOURNE", cx - R0, cy + R0 * 1.18 + 44); }
   },
   directum(s, t){
     const {ctx, w, h} = s; ctx.clearRect(0, 0, w, h);
@@ -1723,10 +1811,11 @@ function viewHome(root){
 
   /* Vient de paraître */
   const track = el("div", {class:"track"});
-  for (const [dt, m, t, id] of COURS) { const [y, mo, d] = dt.split("-");
+  for (const [dt, m, t, id, tag] of COURS) { const [y, mo, d] = dt.split("-");
     track.append(el("a", {class:"card", href:DOC(id), target:"_blank", rel:"noopener", style:`--c:var(--${m})`},
       el("div", {}, el("div", {class:"day"}, d), el("div", {class:"k muted", style:"margin-top:8px"}, MOIS[+mo - 1] + " " + y)),
       el("div", {class:"ct"}, t),
+      chapLabel(m, tag) ? el("div", {class:"k muted card-ch"}, chapLabel(m, tag)) : null,
       el("div", {class:"meta"}, el("span", {class:"k", style:"display:flex;gap:8px;align-items:center"}, el("span", {class:"dot", style:`--c:var(--${m})`}), MAT[m].nom), el("span", {class:"k muted"}, "Lire ↗")))); }
   const paru = el("section", {class:"paru", id:"paru", "aria-labelledby":"h-paru"},
     el("div", {class:"paru-head g max"}, el("h2", {class:"wide-t big-t", id:"h-paru", html:"Vient de <em>paraître</em>"}), el("p", {class:"k muted", style:"margin:0"}, nCours + " cours depuis la rentrée")), track,
@@ -1829,8 +1918,8 @@ function viewHomeM(root){
     el("p", {class:"k muted m-sub"}, "Spécialités & option"), el("div", {class:"m-mats"}, SPE.map(row))));
 
   /* Vient de paraître */
-  const list = el("ol", {class:"cl m-paru"}, COURS.map(([dt, m, t, id], i) => el("li", {hidden:i >= 3 || null},
-    el("a", {href:DOC(id), target:"_blank", rel:"noopener", style:`--c:var(--${m})`}, el("span", {class:"d"}, fmtDay(dt)), el("span", {class:"t"}, el("span", {class:"dot"}), t), el("span", {class:"go"}, arrow())))));
+  const list = el("ol", {class:"cl m-paru"}, COURS.map(([dt, m, t, id, tag], i) => el("li", {hidden:i >= 3 || null},
+    el("a", {href:DOC(id), target:"_blank", rel:"noopener", style:`--c:var(--${m})`}, el("span", {class:"d"}, fmtDay(dt)), el("span", {class:"t"}, el("span", {class:"dot"}), el("span", {}, t, chapLabel(m, tag) ? el("small", {class:"m-ch"}, chapLabel(m, tag)) : null)), el("span", {class:"go"}, arrow())))));
   const more = COURS.length > 3 ? el("button", {class:"btn ghost m-more", type:"button", onclick:() => { $$("li[hidden]", list).forEach(li => li.hidden = false); more.remove(); }}, `Voir les ${COURS.length} cours`, el("span", {"aria-hidden":"true"}, "↓")) : null;
   root.append(el("section", {class:"m-sec g", "aria-labelledby":"m-h-paru"}, el("h2", {class:"m-h", id:"m-h-paru"}, "Vient de paraître"), list, more));
 
@@ -1875,23 +1964,33 @@ function chaptersOf(k){
   }).filter(c => c.vols.length || c.cours.length || c.texts.length);
   const latest = out.filter(c => !c.meth && !c.aside).reduce((a, c) => c.last > (a ? a.last : "") ? c : a, null);
   const opened = latest || out.find(c => !c.meth && !c.aside) || null;
-  out.forEach(c => c.open = c === opened);
+  out.forEach(c => { c.open = c === opened; c.cur = c === latest; });
   return out;
+}
+function chapLabel(m, tag){
+  const k = (tag || "").split(":")[0], c = (CHAPITRES[m] || []).find(x => x.k === k);
+  return c ? c.n : "";
+}
+function chapRange(c){
+  if (!c.cours.length) return null;
+  const f = d => { const [, mo, dd] = d.split("-"); return +dd + " " + MOIS[+mo - 1]; };
+  const a = c.cours[0][0], b = c.cours[c.cours.length - 1][0];
+  return a === b ? "le " + f(a) : "du " + f(a) + " au " + f(b);
 }
 function renderChapters(k, onQuiz){
   const chs = chaptersOf(k);
-  return el("div", {class:"chaps"}, chs.map((c, i) => {
+  const items = chs.map((c, i) => {
     const nq = c.qvols.reduce((a, v) => a + QCM[v.q].length, 0);
-    const meta = [c.vols.length ? c.vols.length + (c.vols.length > 1 ? " fiches" : " fiche") : null, c.cours.length + c.texts.length ? c.cours.length + c.texts.length + " cours" : null, nq ? nq + " questions" : null].filter(Boolean).join(" · ");
-    return el("details", {class:"chap" + (c.meth ? " meth" : ""), open:c.open || null},
+    const meta = [c.vols.length ? c.vols.length + (c.vols.length > 1 ? " fiches" : " fiche") : null, c.cours.length + c.texts.length ? c.cours.length + c.texts.length + " cours" : null, nq ? nq + " questions" : null, c.meth ? null : chapRange(c)].filter(Boolean).join(" · ");
+    return el("details", {class:"chap" + (c.meth ? " meth" : ""), open:c.open || null, id:"ch-" + c.k},
       el("summary", {class:"chap-h"},
-        el("span", {class:"chap-n k"}, c.n + (c.sub ? " · " + c.sub : "")),
+        el("span", {class:"chap-n k"}, c.n + (c.sub ? " · " + c.sub : ""), c.cur ? el("span", {class:"chap-cur"}, "En cours") : null),
         el("span", {class:"chap-t"}, c.t),
         el("span", {class:"chap-m k muted"}, meta),
         el("span", {class:"chap-i", "aria-hidden":"true"})),
       el("div", {class:"chap-b"},
         c.vols.length ? el("div", {class:"chap-col"}, el("h4", {class:"k muted"}, "Fiches de révision"),
-          el("ul", {class:"fl"}, c.vols.map(v => el("li", {}, el("a", {href:DOC(v.id), target:"_blank", rel:"noopener", "data-q":v.q || null},
+          el("ul", {class:"fl"}, c.vols.map(v => el("li", {"data-kw":LEX.filter(e => e.m === v.m && e.s.includes(v.n)).map(e => e.t).join(" ")}, el("a", {href:DOC(v.id), target:"_blank", rel:"noopener", "data-q":v.q || null},
             el("span", {class:"n"}, v.n === "M" ? "Méth." : v.n === "P" ? "Prog." : "N° " + v.n), el("span", {class:"t"}, v.t), el("span", {class:"go"}, arrow()))))),
           onQuiz && c.qvols.length ? el("div", {class:"row-actions", style:"margin-top:18px"}, el("button", {class:"btn", type:"button", onclick:() => onQuiz(c.qvols)}, "QCM du chapitre", arrow())) : null) : null,
         c.cours.length || c.texts.length ? el("div", {class:"chap-col"}, el("h4", {class:"k muted"}, "Les cours, dans l'ordre"),
@@ -1900,7 +1999,50 @@ function renderChapters(k, onQuiz){
             el("ol", {class:"cl"}, g.cours.map(([dt, , t, id]) => { const [, mo, d] = dt.split("-");
               return el("li", {}, el("a", {href:DOC(id), target:"_blank", rel:"noopener"}, el("span", {class:"d"}, +d + " " + MOIS[+mo - 1]), el("span", {class:"t"}, t), el("span", {class:"go"}, arrow()))); }))]) : null) : null,
         c.dir ? el("p", {class:"chap-dir"}, el("a", {class:"k muted", href:FOLDER(c.dir), target:"_blank", rel:"noopener"}, "Ouvrir le dossier du chapitre dans le Drive ↗")) : null));
+  });
+  const wrap = el("div", {class:"chaps"}, items);
+  if (chs.length < 2) return wrap;
+  const relayout = () => { if (typeof ST !== "undefined" && ST) ST.refresh(); };
+  /* Sommaire : un bouton par chapitre, qui ouvre et fait défiler jusqu'au chapitre */
+  const idx = el("nav", {class:"chap-idx", "aria-label":"Sommaire des chapitres"}, chs.map((c, i) => {
+    const n = c.vols.length + c.cours.length + c.texts.length;
+    return el("button", {type:"button", class:"chap-chip" + (c.cur ? " cur" : "") + (c.meth ? " meth" : ""), onclick:() => {
+      items[i].hidden = false; items[i].open = true; relayout();
+      items[i].scrollIntoView({behavior:MOTION ? "smooth" : "auto", block:"start"}); }},
+      el("span", {class:"k"}, c.n), el("span", {class:"cc-t"}, c.t), el("span", {class:"k muted"}, n + (n > 1 ? " documents" : " document")));
   }));
+  /* Recherche dans les cours et fiches de la matière */
+  const input = el("input", {type:"search", class:"chap-q", placeholder:"Chercher un cours, une fiche, une date…", "aria-label":"Chercher dans les cours et les fiches de la matière", autocomplete:"off"});
+  const empty = el("p", {class:"chap-empty muted", hidden:true}, "Aucun cours ni aucune fiche ne correspond à cette recherche.");
+  const count = el("span", {class:"k muted chap-count", "aria-live":"polite"});
+  let saved = null;
+  const run = () => {
+    const q = norm(input.value.trim());
+    if (!q) {
+      $$("li,.part,.chap-col", wrap).forEach(x => x.hidden = false); items.forEach(d => d.hidden = false);
+      if (saved) { items.forEach((d, i) => d.open = saved[i]); saved = null; }
+      empty.hidden = true; count.textContent = ""; idx.hidden = false; relayout(); return;
+    }
+    if (!saved) saved = items.map(d => d.open);
+    let hits = 0;
+    items.forEach(d => {
+      const head = norm($(".chap-n", d).textContent + " " + $(".chap-t", d).textContent).includes(q);
+      let n = 0;
+      $$("li", d).forEach(li => { const ok = head || norm(li.textContent + " " + (li.dataset.kw || "")).includes(q); li.hidden = !ok; if (ok) n++; });
+      $$(".part", d).forEach(p => { const ol = p.nextElementSibling; p.hidden = !!ol && ![...ol.children].some(li => !li.hidden); });
+      $$(".chap-col", d).forEach(col => { col.hidden = !$$("li", col).some(li => !li.hidden); });
+      d.hidden = !(head || n); d.open = !d.hidden; hits += n;
+    });
+    empty.hidden = hits > 0; idx.hidden = true;
+    count.textContent = hits ? hits + (hits > 1 ? " résultats" : " résultat") : "";
+    relayout();
+  };
+  input.addEventListener("input", run);
+  const all = v => () => { items.forEach(d => { if (!d.hidden) d.open = v; }); relayout(); };
+  return el("div", {class:"chap-wrap"},
+    el("div", {class:"chap-tools"}, input, count,
+      el("div", {class:"chap-btns"}, el("button", {type:"button", class:"k chap-b1", onclick:all(true)}, "Tout ouvrir"), el("button", {type:"button", class:"k chap-b1", onclick:all(false)}, "Tout fermer"))),
+    idx, empty, wrap);
 }
 
 function viewSubject(root, k){
@@ -2463,12 +2605,23 @@ const LEX = [
   {t:"Égalité en droits", m:"droit", s:["02"], d:"Tous ont les mêmes droits dès la naissance (DDHC 1789, DUDH 1948) : égalité juridique et politique, pas égalité des conditions sociales."},
   {t:"Solidarité", m:"droit", s:["02"], d:"Devoir de la société de porter secours à ceux qui manquent de ressources, sans contrepartie mais sous conditions de ressources (ex. : l'Aspa)."},
   {t:"Laïcité", m:"droit", s:["02"], d:"Principe qui repose sur la liberté de conscience, la séparation des institutions publiques et des religions, et l'égalité de tous devant la loi quelles que soient les convictions."},
-  {t:"Neutralité", m:"droit", s:["02"], d:"Obligation qui pèse sur l'État, les collectivités et les services publics, et non sur leurs usagers."}
+  {t:"Neutralité", m:"droit", s:["02"], d:"Obligation qui pèse sur l'État, les collectivités et les services publics, et non sur leurs usagers."},
+  {t:"Alternateur", m:"es", s:["01"], d:"Dispositif qui convertit une énergie mécanique (un mouvement de rotation) en énergie électrique ; il produit l'électricité de presque toutes les centrales et des éoliennes."},
+  {t:"Rotor et stator", m:"es", s:["01"], d:"Le rotor est la partie mobile de l'alternateur, qui tourne ; le stator est la partie fixe."},
+  {t:"Induction électromagnétique", m:"es", s:["01"], d:"Quand le champ magnétique qui traverse une bobine varie, une tension apparaît à ses bornes ; sans mouvement relatif, pas de variation, donc pas de tension."},
+  {t:"Rendement", m:"es", s:["01"], d:"Rapport entre l'énergie électrique fournie et l'énergie mécanique reçue ; toujours inférieur à 1, car une partie de l'énergie est perdue, surtout en chaleur."},
+  {t:"Effet Joule", m:"es", s:["01"], d:"Échauffement des conducteurs parcourus par un courant, dû à leur résistance électrique : une des pertes de l'alternateur, avec les frottements mécaniques."},
+  {t:"Ressources halieutiques", m:"hg", s:["03"], d:"Ressources vivantes des mers et océans exploitées par l'homme (poissons, crustacés, mollusques), par la pêche ou l'aquaculture."},
+  {t:"Pêche industrielle", m:"hg", s:["03"], d:"Pêche pratiquée à grande échelle, avec de grands navires, souvent loin des côtes, tournée vers les marchés mondiaux."},
+  {t:"Aquaculture", m:"hg", s:["03"], d:"Élevage d'espèces aquatiques ; selon la FAO, elle fournit désormais plus de la moitié du poisson destiné à la consommation humaine.", note:"Définition générale, à confronter au cours."},
+  {t:"Facteurs sociodémographiques", m:"ses", s:["02"], d:"L'âge et la position dans le cycle de vie, la composition familiale, le genre et le lieu de résidence ; ils s'ajoutent aux facteurs socio-économiques (PCS, revenu, diplôme) pour expliquer la stratification."},
+  {t:"Composition familiale", m:"ses", s:["02"], d:"Forme de la famille, taille de la famille et place dans la fratrie ; elle crée des inégalités de niveau de vie (un couple a en général un niveau de vie plus élevé qu'une famille monoparentale)."},
+  {t:"Tertiarisation", m:"ses", s:["02"], d:"Hausse de la part du secteur tertiaire (les services : commerce, santé, éducation, administration, banque…) dans l'emploi et la production, au détriment de l'agriculture et de l'industrie.", note:"Notée « à définir » en cours : définition générale, à confronter au cours."}
 ];
 
 /* ---------- Vue : lexique ---------- */
 const norm = x => x.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/œ/g, "oe").replace(/æ/g, "ae");
-const LEX_M = ["ses","hggsp","hg","philo","ang","droit"];
+const LEX_M = ["ses","hggsp","hg","philo","ang","es","droit"];
 const lxToggle = dt => { const it = dt.parentElement, o = it.classList.toggle("open"); dt.setAttribute("aria-expanded", String(o)); };
 function viewLexique(root){
   const entries = LEX.map(e => ({...e, key:norm(e.t), hay:norm(e.t + " " + e.d + " " + (e.note || ""))}))
