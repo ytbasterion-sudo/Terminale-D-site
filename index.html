@@ -568,6 +568,39 @@ details.nb-card[open] > summary{margin-bottom:20px}
 .chap-col h4{margin:0 0 10px;font-weight:400}
 .chap-quiz{grid-column:1/-1;margin-top:10px;padding-top:28px;border-top:1px solid var(--line)}
 .chap-quiz h4{margin:0 0 4px;font-weight:400}
+.chap-memo{grid-column:1/-1;margin-top:10px;padding-top:28px;border-top:1px solid var(--line)}
+.chap-memo h4{margin:0 0 12px;font-weight:400}
+.chap-memo-lead{max-width:66ch;margin:0 0 6px;font-size:16px;line-height:1.5;color:var(--ink-2)}
+.chap-memo .memo-dl{margin-top:6px}
+/* ---------- Fiches natives, en remplacement du lien Google Docs ---------- */
+.chap-fiche{grid-column:1/-1;margin-top:10px;padding-top:28px;border-top:1px solid var(--line)}
+.chap-fiche-h{margin-bottom:24px}
+.chap-fiche-h .k{color:var(--c)}
+.chap-fiche-h h4{margin:6px 0 0;font-family:var(--serif);font-weight:400;font-size:23px}
+.fiche-sec{margin-top:30px}
+.fiche-sec:first-of-type{margin-top:0}
+.fiche-sec h5{margin:0 0 14px;font-weight:400}
+.fiche-sec .memo-dl{border-top:1px solid var(--line)}
+.fiche-auteurs{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px 26px}
+.auteur-n{margin:0;font-family:var(--grotesk);font-weight:700;font-size:15px}
+.auteur-d{margin:4px 0 0;font-size:14.5px;line-height:1.5;color:var(--ink-2)}
+.fiche-dates{display:flex;flex-wrap:wrap;gap:9px}
+.date-chip{font-family:var(--mono);font-size:12.5px;padding:7px 13px;border:1px solid var(--line)}
+.fiche-pieges{display:flex;flex-direction:column;gap:14px}
+.piege-item{padding:14px 18px;border-left:3px solid var(--c);background:var(--bg-2)}
+.piege-item.flag{border-left-color:var(--bad)}
+.piege-t{margin:0 0 4px;font-weight:700;font-size:14.5px}
+.piege-d{margin:0;font-size:14.5px;line-height:1.55;color:var(--ink-2)}
+.fiche-dissert{max-width:72ch;margin:0;font-size:16px;line-height:1.6;font-style:italic}
+.fiche-vocab{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px 22px}
+.vocab-item{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14.5px}
+.vocab-en{font-weight:700}
+.vocab-fr{color:var(--ink-2);text-align:right}
+.fiche-corrige{display:flex;flex-direction:column;gap:12px}
+.corrige-item{display:flex;gap:12px;align-items:baseline}
+.corrige-q{flex:none;font-family:var(--mono);font-size:12.5px;color:var(--c);padding-top:2px}
+.corrige-r{margin:0;font-size:14.5px;line-height:1.55;color:var(--ink-2)}
+@media (max-width:560px){ .fiche-auteurs{grid-template-columns:1fr}.corrige-item{flex-direction:column;gap:4px} }
 .chap-dir{grid-column:1/-1;margin:0}.chap-dir a{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}.chap-dir a:hover{color:var(--ink)}
 .chap .part{margin:22px 0 8px;color:var(--ct,var(--c,var(--ink)))}
 .chap .part:first-of-type{margin-top:0}
@@ -959,6 +992,7 @@ html.mode-m .offline-banner,html:not(.mode-d) .offline-banner{padding-bottom:cal
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="fiches-data.js"></script>
 <script>
 const DOC = id => "https://docs.google.com/document/d/" + id + "/edit";
 const FOLDER = id => "https://drive.google.com/drive/folders/" + id;
@@ -1032,6 +1066,7 @@ const COURS = [
 /* Nouveautés du site : une entrée par mise à jour poussée en ligne, la plus récente en premier.
    Enrichi à chaque push (demande d'Adam du 29/09/2026). */
 const NOUVEAUTES = [
+  {d:"2026-09-29", t:"Toutes les fiches passent au nouveau format", body:"Les 14 fiches de révision (SES, HGGSP, Histoire-Géo, Philo, Anglais, Sciences, Droit) ont quitté Google Docs pour un format propre au site : notions clés, auteurs et repères, dates à retenir, pièges à éviter, et selon la matière du vocabulaire ou un corrigé. Tout s'affiche directement en dépliant le chapitre concerné."},
   {d:"2026-09-28", t:"Impression, mode hors connexion et dossier Anglais complet", body:"Le site peut maintenant être installé et consulté hors connexion, et propose une mise en page propre à l'impression : plus de menus ni d'animations sur le papier, juste le texte, avec les adresses des liens en clair sous chaque cours et fiche. Le chapitre 1 d'Anglais (Tradwives) a reçu son dossier complet (citation, légende, texte du chapitre). Quelques corrections d'affichage sur téléphone au passage (onglets de « Mes notes », changement de mode d'affichage, animations moins gourmandes en batterie)."},
   {d:"2026-09-27", t:"Navigation par chapitre, Sciences et la fiche « détroits et canaux »", body:"Les pages matières sont maintenant rangées par chapitre, avec une recherche et des boutons tout ouvrir/tout fermer. La page Sciences a reçu son premier chapitre (l'alternateur), avec sa planche animée. En Histoire-Géo, une fiche mémo sur « les détroits et canaux » a été ajoutée, avec des moyens mémotechniques et des points repliables au clic."},
   {d:"2026-09-25", t:"Droit, mode sombre et version téléphone", body:"Le Droit (option DGEMC) est arrivé sur le site : introduction, fiches, méthodologie et QCM. Le site propose maintenant un mode sombre, une section « Une demande ? » pour joindre Adam directement, et un choix Téléphone/Ordinateur à l'arrivée avec une mise en page adaptée à chaque écran."},
@@ -2096,11 +2131,71 @@ function chapRange(c){
   const a = c.cours[0][0], b = c.cours[c.cours.length - 1][0];
   return a === b ? "le " + f(a) : "du " + f(a) + " au " + f(b);
 }
+/* ---------- Fiches natives, en remplacement du lien Google Docs. Le contenu propre à chaque
+   fiche (auteurs, dates, pièges, dissert, vocab, corrigé) vit dans fiches-data.js, un fichier à
+   part du code du site (objet FICHE_DATA, clé = "matière-numéro", ex. "ses-01"), pour qu'on ne
+   confonde jamais le contenu et le code du site — seules les notions clés viennent d'ici, du
+   tableau LEX (source commune avec le Lexique), pour ne jamais dupliquer une définition à deux
+   endroits. */
+function renderFicheNative(key){
+  const f = FICHE_DATA[key];
+  if (!f) return null;
+  const notions = LEX.filter(e => e.m === f.m && e.s.includes(f.n));
+  const vol = VOLUMES.find(v => v.m === f.m && v.n === f.n);
+  const item = (t, d) => el("div", {class:"lx-item"},
+    el("dt", {role:"button", tabindex:"0", "aria-expanded":"false", onclick:ev => lxToggle(ev.currentTarget), onkeydown:ev => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); lxToggle(ev.currentTarget); } }}, t),
+    el("dd", {}, el("p", {class:"lx-def"}, d)));
+  return el("div", {class:"chap-fiche"},
+    el("div", {class:"chap-fiche-h"},
+      vol ? el("span", {class:"k"}, vol.code + " " + vol.n) : null,
+      el("h4", {}, f.titre)),
+    notions.length ? el("section", {class:"fiche-sec"},
+      el("h5", {class:"k muted"}, "Notions clés"),
+      el("dl", {class:"lx-dl memo-dl"}, notions.map(n => item(n.t, n.d)))) : null,
+    f.vocab?.length ? el("section", {class:"fiche-sec"},
+      el("h5", {class:"k muted"}, "Vocabulaire et expressions"),
+      el("div", {class:"fiche-vocab"}, f.vocab.map(v => el("div", {class:"vocab-item"},
+        el("span", {class:"vocab-en"}, v.en), el("span", {class:"vocab-fr"}, v.fr))))) : null,
+    f.auteurs?.length ? el("section", {class:"fiche-sec"},
+      el("h5", {class:"k muted"}, "Auteurs et repères"),
+      el("div", {class:"fiche-auteurs"}, f.auteurs.map(a => el("div", {class:"auteur-item"},
+        el("p", {class:"auteur-n"}, a.n, a.dates ? el("span", {class:"k muted"}, " · " + a.dates) : null),
+        el("p", {class:"auteur-d"}, a.d))))) : null,
+    f.dates?.length ? el("section", {class:"fiche-sec"},
+      el("h5", {class:"k muted"}, "Dates et chiffres à retenir"),
+      el("div", {class:"fiche-dates"}, f.dates.map(d => el("span", {class:"date-chip"}, d)))) : null,
+    f.pieges?.length ? el("section", {class:"fiche-sec"},
+      el("h5", {class:"k muted"}, "Pièges à éviter"),
+      el("div", {class:"fiche-pieges"}, f.pieges.map(p => el("div", {class:"piege-item" + (p.flag ? " flag" : "")},
+        el("p", {class:"piege-t"}, p.t), el("p", {class:"piege-d"}, p.d))))) : null,
+    f.corrige?.length ? el("section", {class:"fiche-sec"},
+      el("h5", {class:"k muted"}, "Corrigé"),
+      el("div", {class:"fiche-corrige"}, f.corrige.map(c => el("div", {class:"corrige-item"},
+        el("span", {class:"corrige-q"}, c.q), el("p", {class:"corrige-r"}, c.r))))) : null,
+    f.dissert ? el("section", {class:"fiche-sec"},
+      el("h5", {class:"k muted"}, "Repères pour la dissertation et l'épreuve composée"),
+      el("p", {class:"fiche-dissert"}, f.dissert)) : null);
+}
+
+/* Contenu ponctuel propre à un chapitre précis (clé CHAPITRES), affiché dans son chap-b
+   uniquement une fois le chapitre déplié — jamais comme section à part sur la page matière.
+   Une entrée peut renvoyer un seul élément ou un tableau d'éléments (plusieurs fiches). */
+const CHAP_EXTRA = {
+  ses1: () => [renderFicheNative("ses-01"), renderFicheNative("ses-02"), renderFicheNative("ses-03")],
+  hggsp5: () => renderFicheNative("hggsp-01"),
+  hgG1: () => [renderFicheNative("hg-01"), renderFicheNative("hg-02"), renderFicheNative("hg-03"), hgMemo()],
+  philoBonheur: () => [renderFicheNative("philo-01"), renderFicheNative("philo-02")],
+  philoRaison: () => renderFicheNative("philo-03"),
+  ang1: () => renderFicheNative("ang-01"),
+  es2a: () => renderFicheNative("es-01"),
+  droitI: () => [renderFicheNative("droit-01"), renderFicheNative("droit-02")]
+};
 function renderChapters(k){
   const chs = chaptersOf(k);
   const items = chs.map((c, i) => {
     const nq = c.qvols.reduce((a, v) => a + QCM[v.q].length, 0);
     const meta = [c.vols.length ? c.vols.length + (c.vols.length > 1 ? " fiches" : " fiche") : null, c.cours.length + c.texts.length ? c.cours.length + c.texts.length + " cours" : null, nq ? nq + " questions" : null, c.meth ? null : chapRange(c)].filter(Boolean).join(" · ");
+    const extra = CHAP_EXTRA[c.k] ? CHAP_EXTRA[c.k]() : null;
     const quizHost = c.qvols.length ? el("div", {class:"chap-quiz"}, el("h4", {class:"k muted"}, "QCM du chapitre"), el("div", {class:"qcol"})) : null;
     const det = el("details", {class:"chap" + (c.meth ? " meth" : ""), open:c.open || null, id:"ch-" + c.k},
       el("summary", {class:"chap-h"},
@@ -2117,6 +2212,7 @@ function renderChapters(k){
           c.cours.length ? c.groups.flatMap(g => [g.t ? el("p", {class:"part k"}, g.t) : null,
             el("ol", {class:"cl"}, g.cours.map(([dt, , t, id]) => { const [, mo, d] = dt.split("-");
               return el("li", {}, el("a", {href:DOC(id), target:"_blank", rel:"noopener"}, el("span", {class:"d"}, +d + " " + MOIS[+mo - 1]), el("span", {class:"t"}, t), el("span", {class:"go"}, arrow()))); }))]) : null) : null,
+        extra,
         quizHost,
         c.dir ? el("p", {class:"chap-dir"}, el("a", {class:"k muted", href:FOLDER(c.dir), target:"_blank", rel:"noopener"}, "Ouvrir le dossier du chapitre dans le Drive ↗")) : null));
     if (quizHost) mountQuiz(quizHost, c.qvols);
@@ -2167,19 +2263,16 @@ function renderChapters(k){
     idx, empty, wrap);
 }
 
-/* Petite section à part : la trace écrite "Les détroits et canaux" à apprendre pour mardi.
-   Ne fait pas partie du système chapitre/fiche habituel : juste des conseils de révision
-   et des moyens mémotechniques, à côté du cours lui-même (fiche HG 01). */
+/* La trace écrite "Les détroits et canaux" : des conseils de révision et des moyens
+   mémotechniques, à côté du cours lui-même (fiche HG 01). Intégrée directement dans le
+   chapitre hgG1 (voir renderChapters/CHAP_EXTRA) : elle n'apparaît qu'une fois le chapitre déplié. */
 function hgMemo(){
   const item = (t, d, note) => el("div", {class:"lx-item"},
     el("dt", {role:"button", tabindex:"0", "aria-expanded":"false", onclick:ev => lxToggle(ev.currentTarget), onkeydown:ev => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); lxToggle(ev.currentTarget); } }}, t),
     el("dd", {}, el("p", {class:"lx-def"}, d), note ? el("p", {class:"lx-note"}, note) : null));
-  return el("section", {class:"memo g max", "aria-labelledby":"h-memo"},
-    el("div", {class:"memo-h"},
-      el("span", {class:"k"}, "À apprendre pour mardi"),
-      el("h2", {class:"serif-t", id:"h-memo", html:"Les détroits et canaux, <em>une trace écrite à fixer</em>"}),
-      el("p", {class:"muted"}, "Deux pages données en cours le 25 septembre, dans le prolongement de la fiche HG 01 « Les espaces maritimes, une approche géostratégique ». Pas besoin de l'apprendre mot pour mot : voici comment la retenir.")),
-    el("p", {class:"memo-lead"}, "Le texte part d'un chiffre (150 à 180 détroits et passages « qui méritent une certaine attention » dans le monde), puis explique ce qu'est un détroit selon deux points de vue complémentaires, avant de resserrer sur les douze verrous de rang mondial qui fixent les grandes routes maritimes. Pour la retenir, ne récite pas les phrases : reconstruis plutôt cet enchaînement (le chiffre → les deux définitions → le classement) et raccroche chaque exemple cité à l'un de ces trois moments."),
+  return el("div", {class:"chap-memo", "aria-labelledby":"h-memo"},
+    el("h4", {class:"k muted", id:"h-memo"}, "Trace écrite : les détroits et canaux"),
+    el("p", {class:"chap-memo-lead"}, "Deux pages données en cours le 25 septembre, dans le prolongement de la fiche HG 01 « Les espaces maritimes, une approche géostratégique ». Pas besoin de l'apprendre mot pour mot : voici comment la retenir. Le texte part d'un chiffre (150 à 180 détroits et passages « qui méritent une certaine attention » dans le monde), puis explique ce qu'est un détroit selon deux points de vue complémentaires, avant de resserrer sur les douze verrous de rang mondial qui fixent les grandes routes maritimes. Pour la retenir, ne récite pas les phrases : reconstruis plutôt cet enchaînement (le chiffre → les deux définitions → le classement) et raccroche chaque exemple cité à l'un de ces trois moments."),
     el("dl", {class:"lx-dl memo-dl"},
       item("Deux approches, un seul objet", "La « approche maritime » et la « approche terrestre » ne sont pas deux catégories de détroits : ce sont deux angles sur le même lieu. Vue depuis la mer, c'est une porte océanique qui relie deux étendues d'eau (Ormuz, Taïwan…). Vue depuis la terre, c'est le point le plus proche entre deux terres, parfois franchi par un pont ou un tunnel (Bosphore, Kertch, Akashi, tunnel sous la Manche).", "Moyen mnémotechnique : « la MER relie, la TERRE rapproche »."),
       item("National ou international : une question de voisins", "Un détroit national reste dans les eaux territoriales d'un seul État (les détroits turcs). Un détroit international sert de frontière entre États riverains (Pas-de-Calais, Øresund, Gibraltar, Ormuz, Bab-el-Mandeb, Malacca).", "Moyen mnémotechnique : un seul propriétaire = national ; deux voisins qui partagent la clôture = international."),
@@ -2204,7 +2297,6 @@ function viewSubject(root, k){
         el("div", {class:"btns"},
           el("a", {class:"btn", href:FOLDER(m.cours), target:"_blank", rel:"noopener"}, "Dossier dans le Drive", arrow()))))));
   splitLetters(h1);
-  if (k === "hg") root.append(hgMemo());
 
   let plateState = null;
   if (!cours.length && !vols.length) {
