@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Terminale D</title>
 <script>try{var t=localStorage.getItem("td.theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
-<meta name="description" content="Terminale D — le projet des délégués Adam et Kenza pour la Terminale D 2026-2027, le magazine de révision de la classe : cours tapés en classe, fiches de révision vérifiées, pour SES, HGGSP, Histoire-Géo, Philosophie, Anglais et Droit (DGEMC).">
+<meta name="description" content="Terminale D — un projet d'Adam et Kenza pour la Terminale D 2026-2027 (Adam n'a pas été élu délégué cette année, mais continue d'actualiser le site), le magazine de révision de la classe : cours tapés en classe, fiches de révision vérifiées, pour SES, HGGSP, Histoire-Géo, Philosophie, Anglais et Droit (DGEMC).">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://tdlfi.space/">
 <meta property="og:title" content="Terminale D">
@@ -14,6 +14,11 @@
 <meta property="og:url" content="https://tdlfi.space/">
 <meta name="theme-color" content="#F4F3EF">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230E0E10'/%3E%3Ctext x='50' y='68' font-size='58' font-family='Georgia,serif' fill='%23F4F3EF' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E">
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Terminale D">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -81,6 +86,17 @@ a{color:inherit}
 .cover{position:relative;min-height:calc(min(86vh,900px) - 58px);display:grid;grid-template-rows:auto 1fr auto auto;grid-template-columns:minmax(0,1fr);padding-block:18px 28px;isolation:isolate;overflow:hidden}
 .cover canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
 .issue{display:flex;justify-content:space-between;gap:10px 24px;flex-wrap:wrap;border-bottom:1px solid var(--ink);padding-bottom:10px}
+/* ---------- Badge « Mis à jour le ... » (nouveautés du site, en popover discret) ---------- */
+.maj-wrap{position:relative;display:inline-flex}
+.maj-btn{all:unset;cursor:pointer;font:inherit;font-family:inherit;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px;text-decoration-color:var(--ink-2)}
+.maj-btn:hover,.maj-btn[aria-expanded="true"]{color:var(--ink);text-decoration-color:var(--ink)}
+.maj-btn:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.maj-menu{position:absolute;top:calc(100% + 10px);right:0;z-index:70;width:min(300px,80vw);background:var(--bg);border:1px solid var(--ink);padding:16px 18px;box-shadow:0 30px 60px -30px rgba(0,0,0,.35)}
+.maj-menu[hidden]{display:none}
+.maj-menu .mj-item{margin:0 0 12px}
+.maj-menu .mj-item:last-of-type{margin-bottom:0}
+.maj-menu .mj-t{margin:3px 0 0;font-size:14px;line-height:1.4}
+.maj-menu .mj-foot{margin:14px 0 0;padding-top:12px;border-top:1px solid var(--line)}
 .mast{align-self:center;min-width:0;font-size:clamp(58px,13.2vw,212px);will-change:transform}
 .mast .l{display:inline-block}
 .mast em{font-size:1.12em;color:var(--ses);margin-left:.04em;display:inline-block}
@@ -550,6 +566,8 @@ details.nb-card[open] > summary{margin-bottom:20px}
 .chap.meth .chap-t{font-size:clamp(20px,2vw,28px);color:var(--ink-2)}
 .chap-b{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:28px clamp(28px,4vw,64px);padding:4px 0 36px}
 .chap-col h4{margin:0 0 10px;font-weight:400}
+.chap-quiz{grid-column:1/-1;margin-top:10px;padding-top:28px;border-top:1px solid var(--line)}
+.chap-quiz h4{margin:0 0 4px;font-weight:400}
 .chap-dir{grid-column:1/-1;margin:0}.chap-dir a{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}.chap-dir a:hover{color:var(--ink)}
 .chap .part{margin:22px 0 8px;color:var(--ct,var(--c,var(--ink)))}
 .chap .part:first-of-type{margin-top:0}
@@ -690,7 +708,7 @@ select:disabled{opacity:.55;cursor:not-allowed}
 
   /* Mes notes : une partie à la fois */
   .nb-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));position:sticky;top:calc(env(safe-area-inset-top,0px) + 58px);z-index:6;background:var(--bg);margin:0 calc(var(--gut) * -1) 18px;padding:10px var(--gut);border-bottom:1px solid var(--ink)}
-  .nb-tabs button{all:unset;cursor:pointer;text-align:center;padding:9px 2px;font-family:var(--grotesk);font-size:13.5px;font-weight:600;box-shadow:inset 0 0 0 1px var(--line)}
+  .nb-tabs button{all:unset;display:block;width:100%;box-sizing:border-box;cursor:pointer;text-align:center;padding:9px 2px;font-family:var(--grotesk);font-size:13.5px;font-weight:600;line-height:1.15;box-shadow:inset 0 0 0 1px var(--line);overflow-wrap:break-word}
   .nb-tabs button[aria-selected="true"]{background:var(--ink);color:var(--bg);box-shadow:none}
   .nb-tabs button:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
   .nb-sec{padding-top:0 !important;border-top:0 !important;margin-top:0 !important}
@@ -853,6 +871,46 @@ html.mode-m.mode-wide .tabbar{left:50% !important;right:auto !important;width:43
 html.theme-anim,html.theme-anim *{transition:background-color .35s ease,color .35s ease,border-color .35s ease,box-shadow .35s ease !important}
 .themesw{margin-top:6px}
 @media (prefers-reduced-motion:reduce){ html.theme-anim,html.theme-anim *{transition:none !important} }
+
+/* Bandeau "hors connexion" : discret, en bas, visible seulement quand il faut */
+.offline-banner{position:fixed;left:0;right:0;bottom:0;z-index:60;display:none;justify-content:center;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);font-family:var(--mono);font-size:12.5px;letter-spacing:.03em;text-align:center}
+.offline-banner.show{display:flex}
+html.mode-m .offline-banner,html:not(.mode-d) .offline-banner{padding-bottom:calc(64px + env(safe-area-inset-bottom,0px))}
+@media (min-width:901px){ .offline-banner{padding-bottom:10px} }
+
+/* ---------- Impression : on garde le texte, on enlève l'interface ---------- */
+@media print{
+  :root,:root[data-theme="dark"]{color-scheme:light;--bg:#fff;--bg-2:#fff;--ink:#000;--ink-2:#333;--line:#ccc;--focus:#000}
+  html,body{background:#fff !important}
+  .nav,.tabbar,.sheet-wrap,#curtain,.mp,footer.colophon,.offline-banner,.scrollhint,.due-strip,
+  .chap-tools,.chap-idx,.interro,.chap-quiz,.ask,.m-ask,.next,.paru-more,.m-more,.modesw,
+  canvas,.theme-btn,.btn,.chap-i,.lx-bar,
+  .chap-b1,.qcm-strip,.m-log summary .chap-i{display:none !important}
+  a{color:inherit;text-decoration:none}
+  .g{padding-inline:0}
+  .max{max-width:none;margin:0}
+  main#view{padding:0}
+  /* On force tout le contenu replié à s'afficher, quel que soit son état à l'écran */
+  details{border:0 !important}
+  details > summary{list-style:none;cursor:default}
+  details > summary::-webkit-details-marker{display:none}
+  details > *:not(summary){display:block !important}
+  .chap-b{display:block !important}
+  .lx-item dd,.memo-dl .lx-item dd{display:block !important;margin-top:6px}
+  .lx-item dt::after,.memo-dl .lx-item dt::after{content:none !important}
+  .lx-item dt,.memo-dl .lx-item dt{cursor:default}
+  /* Sous chaque lien de cours ou de fiche, l'adresse en clair : utile une fois sur papier */
+  .fl a[href],.cl a[href],.lx-src a[href]{display:inline-block}
+  .fl a[href]::after,.cl a[href]::after,.lx-src a[href]::after{content:" (" attr(href) ")";font-size:9.5px;color:#555;word-break:break-all}
+  .fl a .go,.cl a .go,.lx-src a .go{display:none}
+  .chap,.lx-item,.m-row,li{break-inside:avoid}
+  h1,h2,h3{break-after:avoid}
+  .wide-t,.mast,.big-t{font-size:36px !important;letter-spacing:normal !important}
+  .shero .band,.cover,.m-cover{display:none !important}
+  .dossier{grid-template-columns:1fr !important}
+  .dossier .plate{display:none !important}
+  body{font-size:12.5px}
+}
 </style>
 </head>
 <body>
@@ -877,9 +935,10 @@ html.theme-anim,html.theme-anim *{transition:background-color .35s ease,color .3
   </div>
 </div>
 <div id="curtain" aria-hidden="true"><span id="curtain-t"></span></div>
+<div class="offline-banner" id="offline-banner" role="status" aria-live="polite">Hors connexion · le site marche, mais les liens vers le Drive ont besoin du réseau</div>
 <main id="view" tabindex="-1"></main>
 <footer class="colophon g max">
-  <p><b style="color:var(--ink);font-weight:500">Terminale D</b>, le magazine de révision de la classe, un projet d'Adam et Kenza, délégués 2026–2027. Cours tapés en classe, relus deux fois, fiches vérifiées ; en cas de doute, la parole du professeur prime.</p>
+  <p><b style="color:var(--ink);font-weight:500">Terminale D</b>, le magazine de révision de la classe, un projet d'Adam et Kenza pour 2026–2027. Adam n'a pas été élu délégué cette année, mais il continue d'actualiser le site pour toute la classe. Cours tapés en classe, relus deux fois, fiches vérifiées ; en cas de doute, la parole du professeur prime.</p>
   <nav aria-label="Liens utiles">
     <a class="k muted" href="https://docs.google.com/document/d/1-01XoXc3TBBmgmZkVjlQqwadu1qUHWpLWduGNw02vU0/edit" target="_blank" rel="noopener">Emploi du temps ↗</a>
     <a class="k muted" href="https://drive.google.com/drive/folders/1BfgnH2luYOf4F3WkCsYZWQNARDiwrsi8" target="_blank" rel="noopener">Le Drive ↗</a>
@@ -968,6 +1027,16 @@ const COURS = [
   ["2026-09-08","philo","La nature a-t-elle besoin de nous ?","1ZRRQS-dFgUi8HnBcybomyRjmgybN79CXWfN75Fc8n-g","philoNature"],
   ["2026-09-07","ses","Rentrée","1Gz4R7IkTNMI1FdXRAofgY7D912LcUx5nVebXcvPzLLY","sesM"],
   ["2026-09-07","hggsp","Rentrée","1BsRUzkC8_WBUl5V0voENyJddBYnK0AmTb-4zjLVJkkA","hggspM"]
+];
+
+/* Nouveautés du site : une entrée par mise à jour poussée en ligne, la plus récente en premier.
+   Enrichi à chaque push (demande d'Adam du 29/09/2026). */
+const NOUVEAUTES = [
+  {d:"2026-09-28", t:"Impression, mode hors connexion et dossier Anglais complet", body:"Le site peut maintenant être installé et consulté hors connexion, et propose une mise en page propre à l'impression : plus de menus ni d'animations sur le papier, juste le texte, avec les adresses des liens en clair sous chaque cours et fiche. Le chapitre 1 d'Anglais (Tradwives) a reçu son dossier complet (citation, légende, texte du chapitre). Quelques corrections d'affichage sur téléphone au passage (onglets de « Mes notes », changement de mode d'affichage, animations moins gourmandes en batterie)."},
+  {d:"2026-09-27", t:"Navigation par chapitre, Sciences et la fiche « détroits et canaux »", body:"Les pages matières sont maintenant rangées par chapitre, avec une recherche et des boutons tout ouvrir/tout fermer. La page Sciences a reçu son premier chapitre (l'alternateur), avec sa planche animée. En Histoire-Géo, une fiche mémo sur « les détroits et canaux » a été ajoutée, avec des moyens mémotechniques et des points repliables au clic."},
+  {d:"2026-09-25", t:"Droit, mode sombre et version téléphone", body:"Le Droit (option DGEMC) est arrivé sur le site : introduction, fiches, méthodologie et QCM. Le site propose maintenant un mode sombre, une section « Une demande ? » pour joindre Adam directement, et un choix Téléphone/Ordinateur à l'arrivée avec une mise en page adaptée à chaque écran."},
+  {d:"2026-09-24", t:"L'Anglais et l'outil Séance", body:"Le premier chapitre d'Anglais est arrivé (texte, fiche, méthodologie, QCM, lexique), avec un nouvel outil « Séance » : un minuteur pour réviser par blocs de temps, qui garde tes fiches et tes cours à portée de main par matière."},
+  {d:"2026-09-23", t:"Lancement du site", body:"Premières pages en ligne, référencement activé et corrections de mise en page pour un lancement propre."}
 ];
 
 /* Chapitres : l'ordre du programme. Chaque fiche (ch) et chaque cours (5e champ, "chapitre:partie") y est rangé. */
@@ -1176,7 +1245,11 @@ const SUBJ = {
     lead:"L'alternateur, au cœur de presque toutes les centrales : un aimant qui tourne, une bobine fixe, et une tension qui naît du mouvement.",
     quote:"Ce n'est pas la présence d'un champ magnétique qui crée la tension, mais sa variation.", cite:"Fiche Sciences 01", plate:"alternateur",
     cap:["Planche · L'alternateur", "Le rotor tourne, la tension oscille"]},
-  ang:{short:"Anglais", big:"Anglais", full:"LV1 Anglais", nav:"Anglais", tile:"voix"},
+  ang:{short:"Anglais", big:"Anglais", full:"LV1 Anglais", nav:"Anglais", tile:"voix",
+    title:"From Liberation to <em>&quot;Tradwife&quot;</em>",
+    lead:"From the Women's Liberation Movement to today's “tradwife” trend: how the fight for choice and autonomy comes up against gender hierarchy, unpaid domestic labour, and the question of coercion versus privilege.",
+    plate:"voix",
+    cap:["Chapitre · From Liberation to “Tradwife”", "Titre du document de cours, en anglais"]},
   droit:{short:"Droit", big:"Droit", full:"Droit et grands enjeux du monde contemporain", nav:"Droit", tile:"balance",
     title:"Qu'est-ce que <em>le droit ?</em>",
     lead:"Du « directum » romain à la loi de 1905 : ce qui distingue le droit de la morale, ses grandes branches, et à quoi il sert (ordre public, paix sociale, liberté, égalité, solidarité, laïcité).",
@@ -1281,15 +1354,19 @@ function applyMode(){
       const t = MEDIA0.get(r), ok = W == null ? null : widthOk(t, W);
       r.media.mediaText = ok === null ? t : ok ? "all" : "not all"; } }
   root.classList.toggle("mode-m", MODE === "m"); root.classList.toggle("mode-d", MODE === "d"); root.classList.toggle("mode-wide", MODE === "m" && innerWidth >= 600);
-  /* Ordinateur sur un petit écran : on montre la page à 1 280 px de large, dézoomée */
+  /* Ordinateur sur un petit écran : on montre la page à 1 280 px de large, dézoomée.
+     Sur un vrai mobile, changer le viewport meta suffit (innerWidth devient 1280 tout seul).
+     Dans une iframe, ou sur une fenêtre de bureau étroite (fenêtre redimensionnée, écran
+     partagé…), le viewport meta ne fait rien : innerWidth reste étroit, et c'est ce
+     qu'on regarde ici pour appliquer un zoom CSS de secours, quel que soit le cas. */
   const vp = document.querySelector('meta[name="viewport"]'), small = screen.width < 900 || innerWidth < 900;
   if (vp && !IN_FRAME) vp.setAttribute("content", MODE === "d" && small ? "width=1280" : "width=device-width, initial-scale=1.0");
-  const zoom = MODE === "d" && IN_FRAME && innerWidth < 1100 ? innerWidth / 1280 : 1;
+  const zoom = MODE === "d" && innerWidth < 1100 ? innerWidth / 1280 : 1;
   document.body.style.zoom = zoom === 1 ? "" : String(zoom); root.classList.toggle("mode-zoom", zoom !== 1);
 }
 applyMode();
 NARROW.addEventListener("change", () => { if (!MODE && !first) build(routeKey()); });
-addEventListener("resize", () => { if (MODE === "d" && IN_FRAME) applyMode(); else document.documentElement.classList.toggle("mode-wide", MODE === "m" && innerWidth >= 600); });
+addEventListener("resize", () => { if (MODE === "d") applyMode(); else document.documentElement.classList.toggle("mode-wide", MODE === "m" && innerWidth >= 600); });
 function setMode(m){
   MODE = m; try { if (m) localStorage.setItem(MODE_KEY, m); else localStorage.removeItem(MODE_KEY); } catch {}
   applyMode(); markMode(); build(routeKey()); window.scrollTo(0, 0);
@@ -1335,12 +1412,17 @@ const LOWP = matchMedia("(pointer: coarse), (max-width: 760px)").matches;
 /* Pendant un défilement au doigt, les illustrations se figent un instant : le défilement reste fluide */
 let scrolling = false, scrollTO = 0;
 if (LOWP) addEventListener("scroll", () => { scrolling = true; clearTimeout(scrollTO); scrollTO = setTimeout(() => { scrolling = false; }, 140); }, {passive:true});
+/* Fréquence d'images définie pour les illustrations en canvas : ce sont des dessins
+   décoratifs (vagues, plans animés), pas besoin de suivre les 60, 120 ou 144 Hz de
+   l'écran. Un plafond fixe à 30 i/s économise batterie et calcul sur tous les
+   appareils, sans perte visible sur ce type d'animation lente. */
+const CANVAS_FPS = 30, CANVAS_FRAME_MS = 1000 / CANVAS_FPS;
 function canvasLoop(canvas, draw, p0){
   const ctx = canvas.getContext("2d"); let w = 0, h = 0, vis = false, raf = 0, dead = false, lastT = -1e9, dirty = true; const t0 = performance.now();
   const state = {p:REDUCED ? 1 : (p0 ?? 0), mx:.5, my:-1, ctx, get w(){ return w; }, get h(){ return h; }};
   const size = () => { const r = canvas.getBoundingClientRect(); const d = Math.min(devicePixelRatio || 1, LOWP ? 1.25 : 2); w = r.width; h = r.height; canvas.width = Math.max(1, Math.round(w * d)); canvas.height = Math.max(1, Math.round(h * d)); ctx.setTransform(d, 0, 0, d, 0, 0); dirty = true; };
   const ro = new ResizeObserver(() => { if (dead) return; size(); if (!raf && vis) { dirty = false; draw(state, (performance.now() - t0) / 1000); } }); ro.observe(canvas);
-  const frame = now => { if (dead) return; if (dirty || !LOWP || (!scrolling && now - lastT >= 31)) { dirty = false; lastT = now; draw(state, (now - t0) / 1000); } raf = vis && !REDUCED ? requestAnimationFrame(frame) : 0; };
+  const frame = now => { if (dead) return; if (dirty || (!scrolling && now - lastT >= CANVAS_FRAME_MS)) { dirty = false; lastT = now; draw(state, (now - t0) / 1000); } raf = vis && !REDUCED ? requestAnimationFrame(frame) : 0; };
   const io = new IntersectionObserver(es => { vis = es[0].isIntersecting; if (vis && !raf && !dead) raf = requestAnimationFrame(frame); }, {rootMargin:"80px"}); io.observe(canvas);
   size(); /* premier dessin seulement quand l'illustration devient visible */
   state.dispose = () => { dead = true; ro.disconnect(); io.disconnect(); cancelAnimationFrame(raf); };
@@ -1593,6 +1675,21 @@ document.addEventListener("keydown", e => { if (e.key === "Escape" && !speMenu.h
 addEventListener("resize", () => { if (!speMenu.hidden) placeSpe(); });
 links.addEventListener("scroll", () => { if (!speMenu.hidden) placeSpe(); }, {passive:true});
 
+/* ---------- Badge « Mis à jour le ... » : popover discret avec les dernières nouveautés ---------- */
+function majBadge(){
+  const [y, m, d] = NOUVEAUTES[0].d.split("-");
+  const menu = el("div", {class:"maj-menu", hidden:true, role:"region", "aria-label":"Dernières mises à jour du site"},
+    NOUVEAUTES.slice(0, 3).map(n => el("div", {class:"mj-item"}, el("span", {class:"k muted"}, fmtDay(n.d)), el("p", {class:"mj-t"}, n.t))),
+    el("p", {class:"k muted mj-foot"}, NOUVEAUTES.length + " mise" + (NOUVEAUTES.length > 1 ? "s" : "") + " à jour depuis le lancement"));
+  const btn = el("button", {type:"button", class:"k muted maj-btn", "aria-haspopup":"true", "aria-expanded":"false"}, "Mis à jour le " + d + "." + m);
+  return el("span", {class:"maj-wrap"}, btn, menu);
+}
+document.addEventListener("click", e => {
+  const btn = e.target.closest(".maj-btn");
+  if (btn) { const menu = btn.nextElementSibling; const open = menu.hidden; menu.hidden = !open; btn.setAttribute("aria-expanded", String(open)); e.stopPropagation(); return; }
+  $$(".maj-menu:not([hidden])").forEach(menu => { if (!menu.contains(e.target)) { menu.hidden = true; menu.previousElementSibling?.setAttribute("aria-expanded", "false"); } });
+});
+document.addEventListener("keydown", e => { if (e.key !== "Escape") return; $$(".maj-menu:not([hidden])").forEach(menu => { menu.hidden = true; const b = menu.previousElementSibling; b?.setAttribute("aria-expanded", "false"); b?.focus(); }); });
 
 /* ---------- Navigation mobile : barre d'onglets + feuille des matières ---------- */
 const ICONS = {
@@ -1755,10 +1852,10 @@ function viewHome(root){
   const coverCv = el("canvas", {"aria-hidden":"true"});
   const mast = el("h1", {class:"wide-t mast", "aria-label":"Terminale D"}, el("span", {class:"w", "aria-hidden":"true"}, "Terminale"), " ", el("em", {"aria-hidden":"true"}, "D"));
   root.append(el("header", {class:"cover g"}, coverCv,
-    el("div", {class:"issue max", style:"width:100%"}, el("span", {class:"k"}, "N° 03 · Septembre 2026"), el("span", {class:"k muted"}, "Lycée Français International Mhamed Driss · Sousse"), el("span", {class:"k muted"}, "Mis à jour le 25.09")),
+    el("div", {class:"issue max", style:"width:100%"}, el("span", {class:"k"}, "N° 03 · Septembre 2026"), el("span", {class:"k muted"}, "Lycée Français International Mhamed Driss · Sousse"), majBadge()),
     el("div", {class:"max", style:"width:100%;align-self:center"}, mast),
-    el("div", {class:"byline max", style:"width:100%", "aria-label":"Un projet d'Adam et Kenza, délégués de la Terminale D, 2026-2027"},
-      el("div", {class:"by-k l", "aria-hidden":"true"}, el("span", {class:"k"}, "Un projet"), el("span", {class:"k muted"}, "de vos délégués")),
+    el("div", {class:"byline max", style:"width:100%", "aria-label":"Un projet d'Adam et Kenza pour la Terminale D, 2026-2027"},
+      el("div", {class:"by-k l", "aria-hidden":"true"}, el("span", {class:"k"}, "Un projet"), el("span", {class:"k muted"}, "pour la Terminale D")),
       el("p", {class:"by-names", "aria-hidden":"true"}, "Adam", el("span", {class:"amp"}, "&"), "Kenza"),
       el("div", {class:"by-k r", "aria-hidden":"true"}, el("span", {class:"k muted"}, "Terminale D"), el("span", {class:"by-year"}, "2026–2027"))),
     el("div", {class:"cover-foot max", style:"width:100%"},
@@ -1906,10 +2003,10 @@ function viewHomeM(root){
   const nCours = COURS.length + VOLUMES.filter(v => v.n === "T").length, nFiches = VOLUMES.filter(v => v.n !== "T").length, nQ = Object.values(QCM).reduce((a, q) => a + q.length, 0);
   const cv = el("canvas", {"aria-hidden":"true"});
   root.append(el("header", {class:"m-cover g"},
-    el("div", {class:"m-issue"}, el("span", {class:"k"}, "N° 03 · Sept. 2026"), el("span", {class:"k muted"}, "Mis à jour le 25.09")),
+    el("div", {class:"m-issue"}, el("span", {class:"k"}, "N° 03 · Sept. 2026"), majBadge()),
     el("h1", {class:"m-mast", "aria-label":"Terminale D"}, "Terminale", el("em", {"aria-hidden":"true"}, "D")),
     el("div", {class:"m-by"},
-      el("span", {class:"k muted"}, "Un projet de vos délégués · 2026–2027"),
+      el("span", {class:"k muted"}, "Un projet pour la Terminale D · 2026–2027"),
       el("p", {class:"by-names"}, "Adam", el("span", {class:"amp"}, "&"), "Kenza")),
     el("p", {class:"m-lead"}, "Les cours de la classe, relus et rangés dans le Drive, avec des fiches et des QCM pour s'entraîner."),
     el("div", {class:"m-ribbon", "aria-hidden":"true"}, cv)));
@@ -1999,12 +2096,13 @@ function chapRange(c){
   const a = c.cours[0][0], b = c.cours[c.cours.length - 1][0];
   return a === b ? "le " + f(a) : "du " + f(a) + " au " + f(b);
 }
-function renderChapters(k, onQuiz){
+function renderChapters(k){
   const chs = chaptersOf(k);
   const items = chs.map((c, i) => {
     const nq = c.qvols.reduce((a, v) => a + QCM[v.q].length, 0);
     const meta = [c.vols.length ? c.vols.length + (c.vols.length > 1 ? " fiches" : " fiche") : null, c.cours.length + c.texts.length ? c.cours.length + c.texts.length + " cours" : null, nq ? nq + " questions" : null, c.meth ? null : chapRange(c)].filter(Boolean).join(" · ");
-    return el("details", {class:"chap" + (c.meth ? " meth" : ""), open:c.open || null, id:"ch-" + c.k},
+    const quizHost = c.qvols.length ? el("div", {class:"chap-quiz"}, el("h4", {class:"k muted"}, "QCM du chapitre"), el("div", {class:"qcol"})) : null;
+    const det = el("details", {class:"chap" + (c.meth ? " meth" : ""), open:c.open || null, id:"ch-" + c.k},
       el("summary", {class:"chap-h"},
         el("span", {class:"chap-n k"}, c.n + (c.sub ? " · " + c.sub : ""), c.cur ? el("span", {class:"chap-cur"}, "En cours") : null),
         el("span", {class:"chap-t"}, c.t),
@@ -2013,14 +2111,16 @@ function renderChapters(k, onQuiz){
       el("div", {class:"chap-b"},
         c.vols.length ? el("div", {class:"chap-col"}, el("h4", {class:"k muted"}, "Fiches de révision"),
           el("ul", {class:"fl"}, c.vols.map(v => el("li", {"data-kw":LEX.filter(e => e.m === v.m && e.s.includes(v.n)).map(e => e.t).join(" ")}, el("a", {href:DOC(v.id), target:"_blank", rel:"noopener", "data-q":v.q || null},
-            el("span", {class:"n"}, v.n === "M" ? "Méth." : v.n === "P" ? "Prog." : "N° " + v.n), el("span", {class:"t"}, v.t), el("span", {class:"go"}, arrow()))))),
-          onQuiz && c.qvols.length ? el("div", {class:"row-actions", style:"margin-top:18px"}, el("button", {class:"btn", type:"button", onclick:() => onQuiz(c.qvols)}, "QCM du chapitre", arrow())) : null) : null,
+            el("span", {class:"n"}, v.n === "M" ? "Méth." : v.n === "P" ? "Prog." : "N° " + v.n), el("span", {class:"t"}, v.t), el("span", {class:"go"}, arrow())))))) : null,
         c.cours.length || c.texts.length ? el("div", {class:"chap-col"}, el("h4", {class:"k muted"}, "Les cours, dans l'ordre"),
           c.texts.length ? el("ol", {class:"cl"}, c.texts.map(v => el("li", {}, el("a", {href:DOC(v.id), target:"_blank", rel:"noopener"}, el("span", {class:"d"}, "Texte"), el("span", {class:"t"}, v.t), el("span", {class:"go"}, arrow()))))) : null,
           c.cours.length ? c.groups.flatMap(g => [g.t ? el("p", {class:"part k"}, g.t) : null,
             el("ol", {class:"cl"}, g.cours.map(([dt, , t, id]) => { const [, mo, d] = dt.split("-");
               return el("li", {}, el("a", {href:DOC(id), target:"_blank", rel:"noopener"}, el("span", {class:"d"}, +d + " " + MOIS[+mo - 1]), el("span", {class:"t"}, t), el("span", {class:"go"}, arrow()))); }))]) : null) : null,
+        quizHost,
         c.dir ? el("p", {class:"chap-dir"}, el("a", {class:"k muted", href:FOLDER(c.dir), target:"_blank", rel:"noopener"}, "Ouvrir le dossier du chapitre dans le Drive ↗")) : null));
+    if (quizHost) mountQuiz(quizHost, c.qvols);
+    return det;
   });
   const wrap = el("div", {class:"chaps"}, items);
   if (chs.length < 2) return wrap;
@@ -2118,24 +2218,16 @@ function viewSubject(root, k){
         el("div", {class:"dtext"},
           el("span", {class:"k", style:"display:flex;gap:10px;align-items:center"}, el("span", {class:"dot", style:`--c:var(--${k})`}), "Le dossier"),
           el("h2", {class:"serif-t dtitle", id:"h-dos", html:S.title}),
-          MOB.matches ? el("details", {class:"m-intro"}, el("summary", {}, "Lire l'intro du dossier", el("span", {class:"chap-i", "aria-hidden":"true"})), el("p", {class:"lead"}, S.lead), el("blockquote", {class:"quote"}, el("span", {class:"qt"}, S.quote), el("cite", {}, S.cite))) : null,
+          MOB.matches ? el("details", {class:"m-intro"}, el("summary", {}, "Lire l'intro du dossier", el("span", {class:"chap-i", "aria-hidden":"true"})), el("p", {class:"lead"}, S.lead), S.quote ? el("blockquote", {class:"quote"}, el("span", {class:"qt"}, S.quote), el("cite", {}, S.cite)) : null) : null,
           MOB.matches ? null : el("p", {class:"lead"}, S.lead),
-          MOB.matches ? null : el("blockquote", {class:"quote"}, el("span", {class:"qt"}, S.quote), el("cite", {}, S.cite)),
+          MOB.matches || !S.quote ? null : el("blockquote", {class:"quote"}, el("span", {class:"qt"}, S.quote), el("cite", {}, S.cite)),
           MOB.matches ? null : el("a", {class:"btn ghost", href:"#h-ch", onclick:e => { e.preventDefault(); $("#h-ch", root)?.scrollIntoView({behavior:MOTION ? "smooth" : "auto"}); }}, "Voir les chapitres", el("span", {"aria-hidden":"true"}, "↓")))));
       plateState = canvasLoop(cv, PLATES[S.plate]);
     }
-    let quiz = null;
-    const toQuiz = qv => { if (!quiz) return; quiz.start(qv.find(v => qState(qDone(), v.q) !== "fait") || qv[0]); $("#h-q", root).scrollIntoView({behavior:MOTION ? "smooth" : "auto"}); };
     root.append(el("section", {class:"bychap g max", "aria-labelledby":"h-ch"},
       el("div", {class:"bychap-h"}, el("h2", {class:"serif-t", id:"h-ch", html:"Par <em>chapitre</em>"}),
         el("p", {class:"muted"}, "Fiches, cours et QCM rangés chapitre par chapitre, dans l'ordre du programme. Le chapitre en cours est ouvert ; clique sur un titre pour ouvrir les autres.")),
-      renderChapters(k, qvols.length ? toQuiz : null)));
-    if (qvols.length) {
-      const q = el("section", {class:"interro g max", "aria-labelledby":"h-q"},
-        el("div", {class:"qcol"}, el("h2", {class:"serif-t", id:"h-q", html:"L'interro <em>surprise</em>"}),
-          el("p", {class:"muted", style:"margin:18px 0 0;max-width:34ch"}, "Huit questions par fiche, rédigées à partir des fiches. Chaque réponse cite ce que dit la fiche. Un QCM réussi revient « à réviser » après 3 jours, puis 10, puis 30 : c'est ce qui fixe une notion dans la durée.")));
-      root.append(q); quiz = mountQuiz(q, qvols);
-    }
+      renderChapters(k)));
     markFiches();
   }
   const nk = ORDER[(ORDER.indexOf(k) + 1) % ORDER.length];
@@ -2241,16 +2333,7 @@ function viewSeance(root){
       el("div", {class:"btns"}, el("a", {class:"btn ghost", href:FOLDER(m.cours), target:"_blank", rel:"noopener"}, "Dossier dans le Drive", arrow())));
     rev.append(head);
     if (!chs.length) { rev.append(el("section", {class:"empty g max"}, el("p", {}, "Rien n'a encore été numérisé dans cette matière : le minuteur marche quand même, et le dossier est prêt dans le Drive."))); return; }
-    const qvols = VOLUMES.filter(v => v.m === k && v.q && QCM[v.q]);
-    let quiz = null;
-    const toQuiz = qv => { if (!quiz) return; quiz.start(qv.find(v => qState(qDone(), v.q) !== "fait") || qv[0]); $(".interro", rev).scrollIntoView({behavior:MOTION ? "smooth" : "auto"}); };
-    rev.append(el("section", {class:"bychap g max"}, renderChapters(k, qvols.length ? toQuiz : null)));
-    if (qvols.length) {
-      const q = el("section", {class:"interro g max", "aria-label":"QCM " + (S ? S.short : m.nom)},
-        el("div", {class:"qcol"}, el("h2", {class:"serif-t", html:"Les <em>QCM</em>"}),
-          el("p", {class:"muted", style:"margin:18px 0 0;max-width:34ch"}, "Choisis une fiche : ceux à revoir ou à réviser passent en premier.")));
-      rev.append(q); quiz = mountQuiz(q, qvols);
-    }
+    rev.append(el("section", {class:"bychap g max"}, renderChapters(k)));
     markFiches();
   };
   tMat.addEventListener("change", () => { if (!MAT[tMat.value]) tMat.value = "ses"; store.set("td.mat", tMat.value); setC(); paint(); renderRev(); });
@@ -2785,6 +2868,19 @@ go();
 modePicker();
 addEventListener("load", () => ST && ST.refresh());
 document.fonts?.ready.then(() => { fitType(); if (ST) ST.refresh(); });
+
+/* ---------- Hors connexion : le site reste consultable ---------- */
+if ("serviceWorker" in navigator) {
+  addEventListener("load", () => { navigator.serviceWorker.register("/sw.js").catch(() => {}); });
+}
+(function offlineBanner(){
+  const b = $("#offline-banner");
+  if (!b) return;
+  const paint = () => b.classList.toggle("show", !navigator.onLine);
+  addEventListener("online", paint);
+  addEventListener("offline", paint);
+  paint();
+})();
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
 </body>
