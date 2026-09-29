@@ -572,35 +572,65 @@ details.nb-card[open] > summary{margin-bottom:20px}
 .chap-memo h4{margin:0 0 12px;font-weight:400}
 .chap-memo-lead{max-width:66ch;margin:0 0 6px;font-size:16px;line-height:1.5;color:var(--ink-2)}
 .chap-memo .memo-dl{margin-top:6px}
-/* ---------- Fiches natives, en remplacement du lien Google Docs ---------- */
+/* ---------- Fiches natives, en remplacement du lien Google Docs ----------
+   Cartes colorées (accent = couleur de la matière, var(--c)) + flashcards
+   pour les notions et le vocabulaire : le recto affiche le terme, un clic
+   (ou Entrée/Espace) retourne la carte pour révéler la définition. Pensé
+   pour réviser activement, pas juste relire un mur de texte. */
 .chap-fiche{grid-column:1/-1;margin-top:10px;padding-top:28px;border-top:1px solid var(--line)}
-.chap-fiche-h{margin-bottom:24px}
+.chap-fiche-h{margin-bottom:26px}
 .chap-fiche-h .k{color:var(--c)}
 .chap-fiche-h h4{margin:6px 0 0;font-family:var(--serif);font-weight:400;font-size:23px}
-.fiche-sec{margin-top:30px}
+.fiche-sec{margin-top:20px;padding:22px 24px;background:var(--bg-2);border-left:3px solid var(--c)}
 .fiche-sec:first-of-type{margin-top:0}
-.fiche-sec h5{margin:0 0 14px;font-weight:400}
-.fiche-sec .memo-dl{border-top:1px solid var(--line)}
-.fiche-auteurs{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px 26px}
+.fc-h{display:flex;align-items:center;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.fc-h .fc-ic{color:var(--c);flex:none}
+.fc-h h5{margin:0;font-family:var(--grotesk);font-weight:700;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase}
+.fc-count{font-family:var(--mono);font-size:11px;color:var(--ink-2)}
+.fc-toggle-all{all:unset;box-sizing:border-box;cursor:pointer;margin-left:auto;padding:7px 13px;border:1px solid var(--line);font-family:var(--grotesk);font-size:12px;font-weight:600;color:var(--ink-2);transition:border-color .2s ease,color .2s ease}
+.fc-toggle-all:hover{border-color:var(--c);color:var(--ink)}
+.fc-toggle-all:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.fc-hint{margin:14px 0 0;font-size:12.5px}
+/* flashcards : notions et vocabulaire */
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+.fc-grid-vocab{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
+.fc-tile{all:unset;box-sizing:border-box;display:block;width:100%;cursor:pointer;perspective:1000px}
+.fc-tile-in{display:grid;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.fc-tile.flipped .fc-tile-in{transform:rotateY(180deg)}
+.fc-face{grid-area:1/1;box-sizing:border-box;min-height:64px;padding:14px 16px;display:flex;align-items:center;border:1px solid var(--line);backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.fc-front{background:color-mix(in srgb,var(--c) 8%,var(--bg));border-color:color-mix(in srgb,var(--c) 30%,var(--line));font-family:var(--grotesk);font-weight:700;font-size:15px;line-height:1.3;transition:border-color .2s ease}
+.fc-back{transform:rotateY(180deg);align-items:flex-start;background:var(--bg);font-size:13.5px;line-height:1.5;color:var(--ink-2)}
+.fc-tile:hover .fc-front{border-color:var(--c)}
+.fc-tile:focus-visible .fc-tile-in{outline:2px solid var(--focus);outline-offset:3px}
+/* auteurs et repères */
+.fiche-auteurs{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
+.auteur-item{display:flex;gap:13px;align-items:flex-start;background:var(--bg);border:1px solid var(--line);padding:14px 16px}
+.auteur-av{flex:none;width:32px;height:32px;border-radius:50%;background:var(--c);color:var(--bg);display:grid;place-items:center;font-family:var(--grotesk);font-weight:700;font-size:12px}
 .auteur-n{margin:0;font-family:var(--grotesk);font-weight:700;font-size:15px}
-.auteur-d{margin:4px 0 0;font-size:14.5px;line-height:1.5;color:var(--ink-2)}
+.auteur-d{margin:4px 0 0;font-size:14px;line-height:1.5;color:var(--ink-2)}
+/* dates et chiffres */
 .fiche-dates{display:flex;flex-wrap:wrap;gap:9px}
-.date-chip{font-family:var(--mono);font-size:12.5px;padding:7px 13px;border:1px solid var(--line)}
-.fiche-pieges{display:flex;flex-direction:column;gap:14px}
-.piege-item{padding:14px 18px;border-left:3px solid var(--c);background:var(--bg-2)}
+.date-chip{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:12.5px;font-weight:500;padding:8px 14px;background:var(--bg);border:1px solid color-mix(in srgb,var(--c) 35%,var(--line));color:var(--ink)}
+.date-chip .fc-ic{color:var(--c)}
+/* pièges */
+.fiche-pieges{display:flex;flex-direction:column;gap:12px}
+.piege-item{display:flex;gap:12px;padding:14px 16px;background:var(--bg);border:1px solid var(--line);border-left:3px solid var(--c)}
+.piege-item .fc-ic{flex:none;margin-top:2px;color:var(--c)}
 .piege-item.flag{border-left-color:var(--bad)}
+.piege-item.flag .fc-ic{color:var(--bad)}
 .piege-t{margin:0 0 4px;font-weight:700;font-size:14.5px}
-.piege-d{margin:0;font-size:14.5px;line-height:1.55;color:var(--ink-2)}
-.fiche-dissert{max-width:72ch;margin:0;font-size:16px;line-height:1.6;font-style:italic}
-.fiche-vocab{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px 22px}
-.vocab-item{display:flex;justify-content:space-between;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);font-size:14.5px}
-.vocab-en{font-weight:700}
-.vocab-fr{color:var(--ink-2);text-align:right}
-.fiche-corrige{display:flex;flex-direction:column;gap:12px}
-.corrige-item{display:flex;gap:12px;align-items:baseline}
-.corrige-q{flex:none;font-family:var(--mono);font-size:12.5px;color:var(--c);padding-top:2px}
-.corrige-r{margin:0;font-size:14.5px;line-height:1.55;color:var(--ink-2)}
-@media (max-width:560px){ .fiche-auteurs{grid-template-columns:1fr}.corrige-item{flex-direction:column;gap:4px} }
+.piege-d{margin:0;font-size:14px;line-height:1.55;color:var(--ink-2)}
+/* corrigé */
+.fiche-corrige{display:flex;flex-direction:column;gap:10px}
+.corrige-item{display:flex;gap:14px;align-items:flex-start;background:var(--bg);border:1px solid var(--line);padding:13px 16px}
+.corrige-q{flex:none;padding:4px 9px;border-radius:99px;background:var(--c);color:var(--bg);font-family:var(--mono);font-size:11.5px;font-weight:700;line-height:1.3;white-space:nowrap}
+.corrige-r{margin:0;font-size:14px;line-height:1.55;color:var(--ink-2)}
+/* dissertation / épreuve composée */
+.fiche-dissert{max-width:72ch;margin:0;padding:18px 20px;background:var(--bg);border:1px solid var(--line);border-left:3px solid var(--c);font-size:15.5px;line-height:1.6;font-style:italic}
+@media (max-width:560px){
+  .fiche-sec{padding:18px}
+  .fiche-auteurs,.fc-grid,.fc-grid-vocab{grid-template-columns:1fr}
+}
 .chap-dir{grid-column:1/-1;margin:0}.chap-dir a{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}.chap-dir a:hover{color:var(--ink)}
 .chap .part{margin:22px 0 8px;color:var(--ct,var(--c,var(--ink)))}
 .chap .part:first-of-type{margin-top:0}
@@ -1066,6 +1096,7 @@ const COURS = [
 /* Nouveautés du site : une entrée par mise à jour poussée en ligne, la plus récente en premier.
    Enrichi à chaque push (demande d'Adam du 29/09/2026). */
 const NOUVEAUTES = [
+  {d:"2026-09-29", t:"Les fiches passent en cartes et en flashcards", body:"Nouvelle mise en page des fiches de révision : chaque partie (notions, vocabulaire, auteurs, dates, pièges, corrigé) devient une carte colorée avec une icône, plus lisible qu'un mur de texte. Les notions clés et le vocabulaire se révisent maintenant en flashcards : le terme s'affiche seul, un clic retourne la carte pour révéler la définition, avec un bouton pour tout révéler d'un coup."},
   {d:"2026-09-29", t:"Toutes les fiches passent au nouveau format", body:"Les 14 fiches de révision (SES, HGGSP, Histoire-Géo, Philo, Anglais, Sciences, Droit) ont quitté Google Docs pour un format propre au site : notions clés, auteurs et repères, dates à retenir, pièges à éviter, et selon la matière du vocabulaire ou un corrigé. Tout s'affiche directement en dépliant le chapitre concerné."},
   {d:"2026-09-28", t:"Impression, mode hors connexion et dossier Anglais complet", body:"Le site peut maintenant être installé et consulté hors connexion, et propose une mise en page propre à l'impression : plus de menus ni d'animations sur le papier, juste le texte, avec les adresses des liens en clair sous chaque cours et fiche. Le chapitre 1 d'Anglais (Tradwives) a reçu son dossier complet (citation, légende, texte du chapitre). Quelques corrections d'affichage sur téléphone au passage (onglets de « Mes notes », changement de mode d'affichage, animations moins gourmandes en batterie)."},
   {d:"2026-09-27", t:"Navigation par chapitre, Sciences et la fiche « détroits et canaux »", body:"Les pages matières sont maintenant rangées par chapitre, avec une recherche et des boutons tout ouvrir/tout fermer. La page Sciences a reçu son premier chapitre (l'alternateur), avec sa planche animée. En Histoire-Géo, une fiche mémo sur « les détroits et canaux » a été ajoutée, avec des moyens mémotechniques et des points repliables au clic."},
@@ -2136,44 +2167,71 @@ function chapRange(c){
    part du code du site (objet FICHE_DATA, clé = "matière-numéro", ex. "ses-01"), pour qu'on ne
    confonde jamais le contenu et le code du site — seules les notions clés viennent d'ici, du
    tableau LEX (source commune avec le Lexique), pour ne jamais dupliquer une définition à deux
-   endroits. */
+   endroits. Chaque section est une carte teintée à la couleur de la matière (var(--c)) ; les
+   notions et le vocabulaire sont des flashcards (recto = terme, clic = retournement vers la
+   définition), pour réviser activement plutôt que juste relire du texte. */
+const FICHE_ICONS = {
+  notions:'<path d="M11 5.3C9.2 4 7 3.3 4.5 3.3a.7.7 0 0 0-.7.7v12c0 .4.3.7.7.7 2.5 0 4.7.7 6.5 2 1.8-1.3 4-2 6.5-2 .4 0 .7-.3.7-.7v-12a.7.7 0 0 0-.7-.7C15 3.3 12.8 4 11 5.3zM11 5.3v13.4"/>',
+  vocab:'<rect x="3" y="6" width="13" height="9.5" rx="1"/><rect x="6.5" y="9" width="13" height="9.5" rx="1" fill="var(--bg-2)"/>',
+  auteurs:'<circle cx="11" cy="7.6" r="3.3"/><path d="M4.8 18.5c1-4 3.8-5.8 6.2-5.8s5.2 1.8 6.2 5.8"/>',
+  dates:'<rect x="3" y="4.6" width="16" height="14" rx="1.2"/><path d="M3 9h16M7 2.8v3.6M15 2.8v3.6"/>',
+  pieges:'<path d="M11 3.2 2 19h18z"/><path d="M11 9.2v4.6"/><circle cx="11" cy="16.4" r=".4" fill="currentColor" stroke="none"/>',
+  corrige:'<path d="M4.5 11.3l4.2 4.2L18 6"/>',
+  dissert:'<path d="M5.5 5.5h11M5.5 10h11M5.5 14.5h7"/>'
+};
+const ficheIcon = name => svg(`<svg class="fc-ic" viewBox="0 0 22 22" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${FICHE_ICONS[name] || ""}</svg>`);
+const initials = name => name.split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0]).join("").toUpperCase();
+function flashFlip(tile){ const on = tile.classList.toggle("flipped"); tile.setAttribute("aria-pressed", String(on)); }
+function flashToggleAll(btn){
+  const tiles = $$(".fc-tile", btn.closest(".fiche-sec"));
+  const allOn = tiles.every(t => t.classList.contains("flipped"));
+  tiles.forEach(t => { t.classList.toggle("flipped", !allOn); t.setAttribute("aria-pressed", String(!allOn)); });
+  btn.textContent = allOn ? "Tout révéler" : "Tout cacher";
+}
 function renderFicheNative(key){
   const f = FICHE_DATA[key];
   if (!f) return null;
   const notions = LEX.filter(e => e.m === f.m && e.s.includes(f.n));
   const vol = VOLUMES.find(v => v.m === f.m && v.n === f.n);
-  const item = (t, d) => el("div", {class:"lx-item"},
-    el("dt", {role:"button", tabindex:"0", "aria-expanded":"false", onclick:ev => lxToggle(ev.currentTarget), onkeydown:ev => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); lxToggle(ev.currentTarget); } }}, t),
-    el("dd", {}, el("p", {class:"lx-def"}, d)));
+  const secHead = (icon, title, count, flashSec) => el("div", {class:"fc-h"},
+    ficheIcon(icon), el("h5", {}, title), count ? el("span", {class:"fc-count"}, count) : null,
+    flashSec ? el("button", {type:"button", class:"fc-toggle-all", onclick:ev => flashToggleAll(ev.currentTarget)}, "Tout révéler") : null);
+  const flashTile = (front, back) => el("button", {type:"button", class:"fc-tile", "aria-pressed":"false", onclick:ev => flashFlip(ev.currentTarget)},
+    el("span", {class:"fc-tile-in"},
+      el("span", {class:"fc-face fc-front"}, front),
+      el("span", {class:"fc-face fc-back"}, back)));
   return el("div", {class:"chap-fiche"},
     el("div", {class:"chap-fiche-h"},
       vol ? el("span", {class:"k"}, vol.code + " " + vol.n) : null,
       el("h4", {}, f.titre)),
     notions.length ? el("section", {class:"fiche-sec"},
-      el("h5", {class:"k muted"}, "Notions clés"),
-      el("dl", {class:"lx-dl memo-dl"}, notions.map(n => item(n.t, n.d)))) : null,
+      secHead("notions", "Notions clés", notions.length, true),
+      el("div", {class:"fc-grid"}, notions.map(n => flashTile(n.t, n.d))),
+      el("p", {class:"fc-hint muted"}, "Clique sur une notion pour révéler sa définition.")) : null,
     f.vocab?.length ? el("section", {class:"fiche-sec"},
-      el("h5", {class:"k muted"}, "Vocabulaire et expressions"),
-      el("div", {class:"fiche-vocab"}, f.vocab.map(v => el("div", {class:"vocab-item"},
-        el("span", {class:"vocab-en"}, v.en), el("span", {class:"vocab-fr"}, v.fr))))) : null,
+      secHead("vocab", "Vocabulaire et expressions", f.vocab.length, true),
+      el("div", {class:"fc-grid fc-grid-vocab"}, f.vocab.map(v => flashTile(v.en, v.fr))),
+      el("p", {class:"fc-hint muted"}, "Clique sur un mot pour révéler sa traduction.")) : null,
     f.auteurs?.length ? el("section", {class:"fiche-sec"},
-      el("h5", {class:"k muted"}, "Auteurs et repères"),
+      secHead("auteurs", "Auteurs et repères", f.auteurs.length),
       el("div", {class:"fiche-auteurs"}, f.auteurs.map(a => el("div", {class:"auteur-item"},
-        el("p", {class:"auteur-n"}, a.n, a.dates ? el("span", {class:"k muted"}, " · " + a.dates) : null),
-        el("p", {class:"auteur-d"}, a.d))))) : null,
+        el("span", {class:"auteur-av"}, initials(a.n)),
+        el("div", {},
+          el("p", {class:"auteur-n"}, a.n, a.dates ? el("span", {class:"k muted"}, " · " + a.dates) : null),
+          el("p", {class:"auteur-d"}, a.d)))))) : null,
     f.dates?.length ? el("section", {class:"fiche-sec"},
-      el("h5", {class:"k muted"}, "Dates et chiffres à retenir"),
-      el("div", {class:"fiche-dates"}, f.dates.map(d => el("span", {class:"date-chip"}, d)))) : null,
+      secHead("dates", "Dates et chiffres à retenir", f.dates.length),
+      el("div", {class:"fiche-dates"}, f.dates.map(d => el("span", {class:"date-chip"}, ficheIcon("dates"), d)))) : null,
     f.pieges?.length ? el("section", {class:"fiche-sec"},
-      el("h5", {class:"k muted"}, "Pièges à éviter"),
+      secHead("pieges", "Pièges à éviter", f.pieges.length),
       el("div", {class:"fiche-pieges"}, f.pieges.map(p => el("div", {class:"piege-item" + (p.flag ? " flag" : "")},
-        el("p", {class:"piege-t"}, p.t), el("p", {class:"piege-d"}, p.d))))) : null,
+        ficheIcon("pieges"), el("div", {}, el("p", {class:"piege-t"}, p.t), el("p", {class:"piege-d"}, p.d)))))) : null,
     f.corrige?.length ? el("section", {class:"fiche-sec"},
-      el("h5", {class:"k muted"}, "Corrigé"),
+      secHead("corrige", "Corrigé", f.corrige.length),
       el("div", {class:"fiche-corrige"}, f.corrige.map(c => el("div", {class:"corrige-item"},
         el("span", {class:"corrige-q"}, c.q), el("p", {class:"corrige-r"}, c.r))))) : null,
     f.dissert ? el("section", {class:"fiche-sec"},
-      el("h5", {class:"k muted"}, "Repères pour la dissertation et l'épreuve composée"),
+      secHead("dissert", "Repères pour la dissertation et l'épreuve composée"),
       el("p", {class:"fiche-dissert"}, f.dissert)) : null);
 }
 
