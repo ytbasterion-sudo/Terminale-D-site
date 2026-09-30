@@ -575,8 +575,15 @@ details.nb-card[open] > summary{margin-bottom:20px}
 /* ---------- Fiches natives, en remplacement du lien Google Docs ----------
    Cartes colorées (accent = couleur de la matière, var(--c)) + flashcards
    pour les notions et le vocabulaire : le recto affiche le terme, un clic
-   (ou Entrée/Espace) retourne la carte pour révéler la définition. Pensé
-   pour réviser activement, pas juste relire un mur de texte. */
+   (ou Entrée/Espace) déplie la carte pour révéler la définition — rien
+   d'autre que le terme n'est visible avant ce clic. Une carte dépliée
+   s'étale sur toute la largeur de la grille, pour que les définitions
+   longues restent confortables à lire au lieu d'être compressées dans une
+   colonne étroite. Pensé pour réviser activement, pas juste relire un mur
+   de texte. (Volontairement un simple dépli, pas un flip 3D CSS : ce
+   dernier dépend de transform-style:preserve-3d dans un conteneur grid/
+   flex, non fiable sur Safari/iOS — le dos du recto pouvait rester visible
+   sans clic.) */
 .chap-fiche{grid-column:1/-1;margin-top:10px;padding-top:28px;border-top:1px solid var(--line)}
 .chap-fiche-h{margin-bottom:26px}
 .chap-fiche-h .k{color:var(--c)}
@@ -591,17 +598,19 @@ details.nb-card[open] > summary{margin-bottom:20px}
 .fc-toggle-all:hover{border-color:var(--c);color:var(--ink)}
 .fc-toggle-all:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
 .fc-hint{margin:14px 0 0;font-size:12.5px}
-/* flashcards : notions et vocabulaire */
-.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+/* flashcards : notions et vocabulaire. Un simple bouton qui déplie sa définition
+   sous le terme ; une carte ouverte prend toute la largeur de la grille (via
+   grid-column) pour que les définitions longues ne soient jamais tassées. */
+.fc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;align-items:start}
 .fc-grid-vocab{grid-template-columns:repeat(auto-fill,minmax(180px,1fr))}
-.fc-tile{all:unset;box-sizing:border-box;display:block;width:100%;cursor:pointer;perspective:1000px}
-.fc-tile-in{display:grid;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
-.fc-tile.flipped .fc-tile-in{transform:rotateY(180deg)}
-.fc-face{grid-area:1/1;box-sizing:border-box;min-height:64px;padding:14px 16px;display:flex;align-items:center;border:1px solid var(--line);backface-visibility:hidden;-webkit-backface-visibility:hidden}
-.fc-front{background:color-mix(in srgb,var(--c) 8%,var(--bg));border-color:color-mix(in srgb,var(--c) 30%,var(--line));font-family:var(--grotesk);font-weight:700;font-size:15px;line-height:1.3;transition:border-color .2s ease}
-.fc-back{transform:rotateY(180deg);align-items:flex-start;background:var(--bg);font-size:13.5px;line-height:1.5;color:var(--ink-2)}
-.fc-tile:hover .fc-front{border-color:var(--c)}
-.fc-tile:focus-visible .fc-tile-in{outline:2px solid var(--focus);outline-offset:3px}
+.fc-tile{all:unset;box-sizing:border-box;display:flex;flex-direction:column;gap:0;width:100%;cursor:pointer;padding:14px 16px;border:1px solid color-mix(in srgb,var(--c) 30%,var(--line));background:color-mix(in srgb,var(--c) 8%,var(--bg));transition:border-color .2s ease,background .2s ease}
+.fc-tile:hover{border-color:var(--c)}
+.fc-tile:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+.fc-tile[aria-expanded="true"]{grid-column:1/-1;background:var(--bg);border-color:var(--c)}
+.fc-front{display:flex;align-items:center;justify-content:space-between;gap:14px;font-family:var(--grotesk);font-weight:700;font-size:15px;line-height:1.3}
+.fc-front::after{content:"+";flex:none;font-family:var(--mono);font-weight:400;font-size:14px;color:var(--ink-2)}
+.fc-tile[aria-expanded="true"] .fc-front::after{content:"−"}
+.fc-back{display:block;margin:12px 0 0;padding-top:12px;border-top:1px solid var(--line);font-size:14px;line-height:1.55;color:var(--ink-2);max-width:72ch}
 /* auteurs et repères */
 .fiche-auteurs{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:14px}
 .auteur-item{display:flex;gap:13px;align-items:flex-start;background:var(--bg);border:1px solid var(--line);padding:14px 16px}
@@ -1096,6 +1105,7 @@ const COURS = [
 /* Nouveautés du site : une entrée par mise à jour poussée en ligne, la plus récente en premier.
    Enrichi à chaque push (demande d'Adam du 29/09/2026). */
 const NOUVEAUTES = [
+  {d:"2026-09-30", t:"Flashcards plus fiables, animation de révélation, notions réordonnées", body:"Les flashcards des fiches (notions et vocabulaire) sont maintenant fiables sur tous les navigateurs, y compris Safari/iPhone, et la définition ne s'affiche plus qu'au clic. Un clic sur une carte révèle toutes les cartes de sa section d'un coup, avec une petite animation. Les notions clés et les dates de plusieurs fiches (SES, HGGSP, Philo) ont aussi été remises dans l'ordre où elles ont été vues en cours, pour mieux réviser dans le fil du chapitre."},
   {d:"2026-09-29", t:"Les fiches passent en cartes et en flashcards", body:"Nouvelle mise en page des fiches de révision : chaque partie (notions, vocabulaire, auteurs, dates, pièges, corrigé) devient une carte colorée avec une icône, plus lisible qu'un mur de texte. Les notions clés et le vocabulaire se révisent maintenant en flashcards : le terme s'affiche seul, un clic retourne la carte pour révéler la définition, avec un bouton pour tout révéler d'un coup."},
   {d:"2026-09-29", t:"Toutes les fiches passent au nouveau format", body:"Les 14 fiches de révision (SES, HGGSP, Histoire-Géo, Philo, Anglais, Sciences, Droit) ont quitté Google Docs pour un format propre au site : notions clés, auteurs et repères, dates à retenir, pièges à éviter, et selon la matière du vocabulaire ou un corrigé. Tout s'affiche directement en dépliant le chapitre concerné."},
   {d:"2026-09-28", t:"Impression, mode hors connexion et dossier Anglais complet", body:"Le site peut maintenant être installé et consulté hors connexion, et propose une mise en page propre à l'impression : plus de menus ni d'animations sur le papier, juste le texte, avec les adresses des liens en clair sous chaque cours et fiche. Le chapitre 1 d'Anglais (Tradwives) a reçu son dossier complet (citation, légende, texte du chapitre). Quelques corrections d'affichage sur téléphone au passage (onglets de « Mes notes », changement de mode d'affichage, animations moins gourmandes en batterie)."},
@@ -2181,12 +2191,39 @@ const FICHE_ICONS = {
 };
 const ficheIcon = name => svg(`<svg class="fc-ic" viewBox="0 0 22 22" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${FICHE_ICONS[name] || ""}</svg>`);
 const initials = name => name.split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0]).join("").toUpperCase();
-function flashFlip(tile){ const on = tile.classList.toggle("flipped"); tile.setAttribute("aria-pressed", String(on)); }
+/* Un clic sur n'importe quelle carte révèle (ou cache) toutes les cartes de
+   sa section d'un coup — reveal total, pas carte par carte — que ce soit en
+   cliquant une carte ou en passant par le bouton "Tout révéler". L'apparition
+   anime seulement opacity + transform (jamais height/padding, coûteux en
+   mise en page sur une grille de dix-plus cartes) : ce sont les deux seules
+   propriétés que le navigateur peut animer sur son compositeur graphique,
+   sans recalcul de mise en page à chaque frame — fluide même avec beaucoup
+   de cartes en même temps, et neutralisé automatiquement si le visiteur a
+   demandé moins d'animations (prefers-reduced-motion, cf. MOTION). */
+function flashSetAll(sec, on){
+  const tiles = $$(".fc-tile", sec);
+  tiles.forEach(t => t.setAttribute("aria-expanded", String(on)));
+  const btn = $(".fc-toggle-all", sec);
+  if (btn) btn.textContent = on ? "Tout cacher" : "Tout révéler";
+  const backs = tiles.map(t => $(".fc-back", t)).filter(Boolean);
+  if (!backs.length) return;
+  if (on) {
+    backs.forEach(b => { b.hidden = false; });
+    if (MOTION) G.fromTo(backs, {opacity:0, y:-8}, {opacity:1, y:0, duration:.4, ease:"power2.out", stagger:.035, overwrite:true, clearProps:"transform"});
+  } else if (MOTION) {
+    G.to(backs, {opacity:0, y:-6, duration:.22, ease:"power2.in", stagger:.02, overwrite:true, onComplete:() => backs.forEach(b => b.hidden = true)});
+  } else {
+    backs.forEach(b => b.hidden = true);
+  }
+}
+function flashFlip(tile){
+  const on = tile.getAttribute("aria-expanded") !== "true";
+  flashSetAll(tile.closest(".fiche-sec"), on);
+}
 function flashToggleAll(btn){
-  const tiles = $$(".fc-tile", btn.closest(".fiche-sec"));
-  const allOn = tiles.every(t => t.classList.contains("flipped"));
-  tiles.forEach(t => { t.classList.toggle("flipped", !allOn); t.setAttribute("aria-pressed", String(!allOn)); });
-  btn.textContent = allOn ? "Tout révéler" : "Tout cacher";
+  const sec = btn.closest(".fiche-sec");
+  const allOn = $$(".fc-tile", sec).every(t => t.getAttribute("aria-expanded") === "true");
+  flashSetAll(sec, !allOn);
 }
 function renderFicheNative(key){
   const f = FICHE_DATA[key];
@@ -2196,10 +2233,9 @@ function renderFicheNative(key){
   const secHead = (icon, title, count, flashSec) => el("div", {class:"fc-h"},
     ficheIcon(icon), el("h5", {}, title), count ? el("span", {class:"fc-count"}, count) : null,
     flashSec ? el("button", {type:"button", class:"fc-toggle-all", onclick:ev => flashToggleAll(ev.currentTarget)}, "Tout révéler") : null);
-  const flashTile = (front, back) => el("button", {type:"button", class:"fc-tile", "aria-pressed":"false", onclick:ev => flashFlip(ev.currentTarget)},
-    el("span", {class:"fc-tile-in"},
-      el("span", {class:"fc-face fc-front"}, front),
-      el("span", {class:"fc-face fc-back"}, back)));
+  const flashTile = (front, back) => el("button", {type:"button", class:"fc-tile", "aria-expanded":"false", onclick:ev => flashFlip(ev.currentTarget)},
+    el("span", {class:"fc-front"}, front),
+    el("span", {class:"fc-back", hidden:true}, back));
   return el("div", {class:"chap-fiche"},
     el("div", {class:"chap-fiche-h"},
       vol ? el("span", {class:"k"}, vol.code + " " + vol.n) : null,
@@ -2780,10 +2816,10 @@ const LEX = [
   {t:"Lutte des classes", m:"ses", s:["01"], d:"Confrontation entre bourgeoisie et prolétariat, moteur du changement social selon Marx."},
   {t:"Groupe de statut (Weber)", m:"ses", s:["01","03"], d:"Individus partageant le même prestige social (diplôme, profession, naissance, style de vie). L'ordre social est autonome de l'ordre économique : un professeur d'université ou un membre du clergé peut avoir un grand prestige sans grande richesse."},
   {t:"Réalisme et nominalisme (Marx, Weber)", m:"ses", s:["01","03"], d:"Marx a une analyse unidimensionnelle et réaliste : il ne retient que le critère économique, les classes existant objectivement. Weber a une analyse multidimensionnelle et nominaliste : il distingue trois ordres indépendants, économique (classes), social (statuts) et politique (partis) ; pour lui les classes sont des catégories construites par le sociologue, pas des groupes qui existent en soi."},
-  {t:"Distance interclasses", m:"ses", s:["01","03"], d:"Écart statistique et culturel entre classes sociales différentes."},
-  {t:"Distance intra-classe", m:"ses", s:["01","03"], d:"Écart de conditions de vie, de revenus et de comportements au sein d'une même classe. Sa hausse fragilise l'homogénéité d'une classe."},
   {t:"Moyennisation", m:"ses", s:["01","03"], d:"Constitution d'une vaste classe moyenne aux modes de vie uniformisés, qui réduit la distance interclasses. Théorie d'Henri Mendras : une société en toupie plutôt qu'en pyramide."},
+  {t:"Distance interclasses", m:"ses", s:["01","03"], d:"Écart statistique et culturel entre classes sociales différentes."},
   {t:"Individualisation", m:"ses", s:["01","03"], d:"Détachement de l'individu de ses appartenances collectives, via la personnalisation du travail (rémunération au mérite, entretiens individuels) et le numérique (travail en ligne, évaluation par les clients), qui affaiblit la conscience de classe."},
+  {t:"Distance intra-classe", m:"ses", s:["01","03"], d:"Écart de conditions de vie, de revenus et de comportements au sein d'une même classe. Sa hausse fragilise l'homogénéité d'une classe."},
   {t:"Capitaux (Bourdieu)", m:"ses", s:["01"], d:"Capital économique (patrimoine, revenus), capital culturel (diplômes, biens et dispositions culturelles) et capital social (réseau de relations mobilisable), dont la dotation globale détermine la position sociale d'un individu."},
   {t:"Rapports sociaux de genre", m:"ses", s:["01","03"], d:"Hiérarchisation entre hommes et femmes, qui s'articule avec les rapports de classe sans les remplacer."},
   {t:"Catégorie socioprofessionnelle (PCS)", m:"ses", s:["02"], d:"Catégorie statistique créée par l'Insee en 1954, selon le statut d'emploi, la qualification et le secteur d'activité. Huit catégories au niveau agrégé : six actives (agriculteurs exploitants, artisans-commerçants-chefs d'entreprise, cadres et professions intellectuelles supérieures, professions intermédiaires, employés, ouvriers) et deux inactives (retraités, autres sans activité professionnelle)."},
@@ -2795,33 +2831,32 @@ const LEX = [
   {t:"Courbe de Lorenz, indice de Gini", m:"ses", s:["02"], d:"Représentent la concentration des revenus ou du patrimoine par comparaison à une égalité parfaite (la droite d'équirépartition) ; l'indice de Gini résume cet écart en un seul chiffre, compris entre 0 (égalité parfaite) et 1 (inégalité maximale)."},
   {t:"Capital humain", m:"ses", s:["02"], d:"Connaissances et compétences d'un individu, déterminées en partie par le diplôme, et corrélées à la PCS et au revenu."},
   {t:"Ménage", m:"ses", s:["02"], d:"Occupants d'une résidence, avec ou sans lien de parenté, partageant un budget commun."},
-  {t:"Cycle de vie", m:"ses", s:["02"], d:"Étapes de la vie (célibat, couple, famille, veuvage) et modes de vie qui y sont associés."},
   {t:"Génération", m:"ses", s:["02"], d:"Individus nés la même décennie, partageant des événements communs."},
   {t:"Salarisation, tertiarisation, féminisation, massification scolaire", m:"ses", s:["02"], d:"Quatre évolutions distinctes de la population active depuis 1950 : hausse de la part des salariés, du secteur tertiaire, des femmes dans l'emploi, et du niveau de diplôme."},
 
   /* HGGSP */
   {t:"Environnement", m:"hggsp", s:["01"], d:"Espace productif définissant le rapport entre l'homme et la nature, enjeu planétaire entre exploitation et protection."},
-  {t:"Anthropocène", m:"hggsp", s:["01"], d:"L'action humaine est devenue une force majeure de transformation de la Terre (artificialisation des sols, exploitation des terres rares).", note:"Terme proposé au début des années 2000 ; en mars 2024, l'instance internationale de stratigraphie a voté contre sa reconnaissance comme époque géologique officielle."},
-  {t:"Problème environnemental", m:"hggsp", s:["01"], d:"Une construction sociale : le fait matériel existe indépendamment (par exemple des sacs plastiques dans l'océan), mais il ne devient un problème que lorsque des acteurs le jugent inacceptable."},
-  {t:"Problème public", m:"hggsp", s:["01"], d:"Situation banale du quotidien qui devient un sujet de débat exigeant une réaction collective."},
-  {t:"Naming, blaming, claiming", m:"hggsp", s:["01"], d:"Trois étapes de la construction d'un problème public : nommer (rendre visible), accuser (désigner des responsables), revendiquer (réclamer des solutions)."},
-  {t:"Expertise, construction médiatique", m:"hggsp", s:["01"], d:"L'expertise scientifique ou technique légitime la reconnaissance d'un problème ; la construction médiatique désigne le rôle des médias (angles, mots, images) dans la perception d'un problème.", note:"Concepts standards, à confronter au cours."},
-  {t:"Conflit d'usage", m:"hggsp", s:["01"], d:"Désaccord entre acteurs sur l'utilisation concurrente d'un espace ou d'une ressource (exemple : une ressource en eau disputée entre agriculture, tourisme, industrie et habitants en période de sécheresse).", note:GEN},
-  {t:"Pensée déterministe", m:"hggsp", s:["01"], d:"L'inégalité des ressources en fonction de l'endroit sur Terre.", note:"Formulation du cours ; le lien avec le déterminisme environnemental reste à confirmer avec le professeur."},
-  {t:"Déterminisme géographique (Ratzel)", m:"hggsp", s:["01"], d:"Le milieu déterminerait les sociétés. Aujourd'hui critiqué par la géographie contemporaine."},
-  {t:"Possibilisme (Vidal de la Blache)", m:"hggsp", s:["01"], d:"Les sociétés choisissent parmi les possibilités offertes par leur milieu."},
   {t:"Crise frumentaire", m:"hggsp", s:["01"], d:"Crise liée au manque de grain, associée au grand hiver de 1788-1789 et à la Révolution française."},
+  {t:"Anthropocène", m:"hggsp", s:["01"], d:"L'action humaine est devenue une force majeure de transformation de la Terre (artificialisation des sols, exploitation des terres rares).", note:"Terme proposé au début des années 2000 ; en mars 2024, l'instance internationale de stratigraphie a voté contre sa reconnaissance comme époque géologique officielle."},
   {t:"Biosphère", m:"hggsp", s:["01"], d:"Espaces où la vie est possible."},
   {t:"Hydrosphère", m:"hggsp", s:["01"], d:"Ensemble des eaux de la planète."},
   {t:"Atmosphère", m:"hggsp", s:["01"], d:"Enveloppe gazeuse de la Terre."},
   {t:"Lithosphère", m:"hggsp", s:["01"], d:"Couche rocheuse superficielle de la Terre."},
-  {t:"Écologie", m:"hggsp", s:["01"], d:"Science développée à partir des années 1930, fondée sur la notion d'écosystème."},
-  {t:"Empreinte écologique", m:"hggsp", s:["01"], d:"Consommation humaine des ressources naturelles renouvelables, mesurée en hectares globaux."},
+  {t:"Pensée déterministe", m:"hggsp", s:["01"], d:"L'inégalité des ressources en fonction de l'endroit sur Terre.", note:"Formulation du cours ; le lien avec le déterminisme environnemental reste à confirmer avec le professeur."},
+  {t:"Problème environnemental", m:"hggsp", s:["01"], d:"Une construction sociale : le fait matériel existe indépendamment (par exemple des sacs plastiques dans l'océan), mais il ne devient un problème que lorsque des acteurs le jugent inacceptable."},
+  {t:"Problème public", m:"hggsp", s:["01"], d:"Situation banale du quotidien qui devient un sujet de débat exigeant une réaction collective."},
+  {t:"Naming, blaming, claiming", m:"hggsp", s:["01"], d:"Trois étapes de la construction d'un problème public : nommer (rendre visible), accuser (désigner des responsables), revendiquer (réclamer des solutions)."},
+  {t:"Expertise, construction médiatique", m:"hggsp", s:["01"], d:"L'expertise scientifique ou technique légitime la reconnaissance d'un problème ; la construction médiatique désigne le rôle des médias (angles, mots, images) dans la perception d'un problème.", note:"Concepts standards, à confronter au cours."},
+  {t:"Déterminisme géographique (Ratzel)", m:"hggsp", s:["01"], d:"Le milieu déterminerait les sociétés. Aujourd'hui critiqué par la géographie contemporaine."},
+  {t:"Possibilisme (Vidal de la Blache)", m:"hggsp", s:["01"], d:"Les sociétés choisissent parmi les possibilités offertes par leur milieu."},
   {t:"Jour du dépassement", m:"hggsp", s:["01"], d:"Date de l'année, calculée par Global Footprint Network, à partir de laquelle l'humanité a consommé les ressources renouvelables produites en un an."},
+  {t:"Empreinte écologique", m:"hggsp", s:["01"], d:"Consommation humaine des ressources naturelles renouvelables, mesurée en hectares globaux."},
+  {t:"Écologie", m:"hggsp", s:["01"], d:"Science développée à partir des années 1930, fondée sur la notion d'écosystème."},
+  {t:"Grande accélération", m:"hggsp", s:["01"], d:"Hausse brutale et simultanée, depuis le milieu du vingtième siècle, de nombreux indicateurs de l'activité humaine et de ses impacts (population, PIB, énergie, CO2)."},
   {t:"Exploiter, conserver, préserver", m:"hggsp", s:["01"], d:"Trois logiques face à l'environnement. Exploiter, c'est prélever une ressource pour produire des richesses (risque de surexploitation). Conserver, c'est protéger en continuant d'utiliser, par une gestion raisonnée (exemple : l'agriculture biologique). Préserver, c'est protéger la nature pour elle-même (sanctuarisation)."},
   {t:"Anthropisation", m:"hggsp", s:["01"], d:"Transformation des milieux naturels par l'action humaine."},
-  {t:"Grande accélération", m:"hggsp", s:["01"], d:"Hausse brutale et simultanée, depuis le milieu du vingtième siècle, de nombreux indicateurs de l'activité humaine et de ses impacts (population, PIB, énergie, CO2)."},
   {t:"Pastoralisme", m:"hggsp", s:["01"], d:"Élevage nomade ou itinérant adapté aux espaces contraignants. Estive ou remue : mobilité verticale en montagne. Transhumance : mobilité horizontale longue distance. Agropastoralisme : associé à l'agriculture.", note:GEN},
+  {t:"Conflit d'usage", m:"hggsp", s:["01"], d:"Désaccord entre acteurs sur l'utilisation concurrente d'un espace ou d'une ressource (exemple : une ressource en eau disputée entre agriculture, tourisme, industrie et habitants en période de sécheresse).", note:GEN},
   {t:"Forêt domaniale, forêt privée", m:"hggsp", s:["01"], d:"La forêt domaniale appartient à l'État et est gérée par l'Office national des forêts (ONF) ; la forêt privée appartient à des particuliers."},
   {t:"Sylviculture", m:"hggsp", s:["01"], d:"Culture et exploitation raisonnée de la forêt en vue de la production de bois."},
   {t:"Bois d'œuvre", m:"hggsp", s:["01"], d:"Bois destiné à la construction ou à la fabrication d'objets, par opposition au bois de chauffage."},
@@ -2862,8 +2897,8 @@ const LEX = [
   {t:"ZEE (zone économique exclusive)", m:"hg", s:["02"], d:"Espace maritime qui s'étend jusqu'à 200 milles marins (environ 370 km) des côtes, où l'État côtier est seul à pouvoir exploiter les ressources. Définie par la convention de Montego Bay (1982). À ne pas confondre avec les eaux territoriales (12 milles, pleine souveraineté de l'État)."},
 
   /* Philosophie */
-  {t:"Hédonisme", m:"philo", s:["01"], d:"Théorie du bonheur fondée sur le calcul rationnel des plaisirs et de leurs conséquences. Agir bien revient à maximiser le plaisir et minimiser la souffrance."},
   {t:"Épicurisme populaire (carpe diem)", m:"philo", s:["01"], d:"Philosophie de l'excès selon laquelle tout ce qui est bon mériterait d'être abusé. C'est une déformation de la pensée d'Épicure, pas sa continuation fidèle."},
+  {t:"Hédonisme", m:"philo", s:["01"], d:"Théorie du bonheur fondée sur le calcul rationnel des plaisirs et de leurs conséquences. Agir bien revient à maximiser le plaisir et minimiser la souffrance."},
   {t:"Épicurisme antique", m:"philo", s:["01"], d:"Doctrine d'Épicure qui vise l'ataraxie par des plaisirs simples et la modération des désirs, en évitant les désirs superflus."},
   {t:"Ataraxie", m:"philo", s:["01"], d:"Absence de trouble de l'âme, état recherché par les épicuriens."},
   {t:"Euthymie", m:"philo", s:["02"], d:"Heureuse disposition de l'âme, obtenue selon Démocrite par la modération du plaisir, non par sa quantité."},
@@ -2893,6 +2928,7 @@ const LEX = [
   {t:"Pêche industrielle", m:"hg", s:["03"], d:"Pêche pratiquée à grande échelle, avec de grands navires, souvent loin des côtes, tournée vers les marchés mondiaux."},
   {t:"Aquaculture", m:"hg", s:["03"], d:"Élevage d'espèces aquatiques ; selon la FAO, elle fournit désormais plus de la moitié du poisson destiné à la consommation humaine.", note:"Définition générale, à confronter au cours."},
   {t:"Facteurs sociodémographiques", m:"ses", s:["02"], d:"L'âge et la position dans le cycle de vie, la composition familiale, le genre et le lieu de résidence ; ils s'ajoutent aux facteurs socio-économiques (PCS, revenu, diplôme) pour expliquer la stratification."},
+  {t:"Cycle de vie", m:"ses", s:["02"], d:"Étapes de la vie (célibat, couple, famille, veuvage) et modes de vie qui y sont associés."},
   {t:"Composition familiale", m:"ses", s:["02"], d:"Forme de la famille, taille de la famille et place dans la fratrie ; elle crée des inégalités de niveau de vie (un couple a en général un niveau de vie plus élevé qu'une famille monoparentale)."},
   {t:"Tertiarisation", m:"ses", s:["02"], d:"Hausse de la part du secteur tertiaire (les services : commerce, santé, éducation, administration, banque…) dans l'emploi et la production, au détriment de l'agriculture et de l'industrie.", note:"Notée « à définir » en cours : définition générale, à confronter au cours."}
 ];

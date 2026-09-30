@@ -88,14 +88,14 @@ const FICHE_DATA = {
     ],
     dates: [
       "Édit de Louis XIV (XVIIe siècle) puis 1669 : Ordonnance des eaux et forêts.",
-      "13 à 18 % : part du territoire français couverte par la forêt sous l'Ancien Régime.",
       "1788–1789 : grand hiver, crise frumentaire, prélude à la Révolution française.",
-      "Années 1930 : naissance de l'écologie comme science.",
+      "Anthropocène : terme proposé au début des années 2000 ; en mars 2024, l'instance internationale de stratigraphie a voté contre sa reconnaissance comme époque géologique officielle.",
       "1972 : rapport Meadows.",
-      "1827 : code forestier, qui renforce l'administration de la forêt française au XIXe siècle.",
-      "Entre 1942 et 1949 : grands épisodes d'incendie dans les Landes, attribués en cours à la sécheresse et au régime pétainiste.",
+      "Années 1930 : naissance de l'écologie comme science.",
       "Étude de cas de la forêt de Fontainebleau : 32 000 hectares, à environ 70 km au sud-est de Paris, plus de 3 millions de visiteurs par an ; schéma de cohérence territoriale (SCoT) de 2018.",
-      "Anthropocène : terme proposé au début des années 2000 ; en mars 2024, l'instance internationale de stratigraphie a voté contre sa reconnaissance comme époque géologique officielle."
+      "13 à 18 % : part du territoire français couverte par la forêt sous l'Ancien Régime.",
+      "1827 : code forestier, qui renforce l'administration de la forêt française au XIXe siècle.",
+      "Entre 1942 et 1949 : grands épisodes d'incendie dans les Landes, attribués en cours à la sécheresse et au régime pétainiste."
     ],
     pieges: [
       {t:"Pensée déterministe", d:"C'est l'inégalité des ressources en fonction de l'endroit sur Terre. Formulation du cours, à garder telle quelle ; le lien avec le déterminisme environnemental mentionné par le professeur (voir Auteurs et repères, Ratzel/Vidal de la Blache) reste à confirmer avec lui — ne pas le reconstituer soi-même.", flag:true},
