@@ -5,6 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Terminale D</title>
 <script>try{var t=localStorage.getItem("td.theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+<script>/* Détection d'une accélération GPU absente ou logicielle (laptops bas de gamme, pilotes
+   désactivés) : avant même le premier affichage, pour éviter un flash d'animations qui
+   seraient ensuite coupées. On crée un contexte WebGL et on regarde le rendu déclaré :
+   les moteurs logiciels (SwiftShader, llvmpipe, WARP, "Basic Render Driver") trahissent
+   l'absence de GPU. Si aucun contexte WebGL n'est seulement disponible, c'est encore plus net. */
+try{
+  var __noGpu = false;
+  try{
+    var __cv = document.createElement("canvas");
+    var __gl = __cv.getContext("webgl") || __cv.getContext("experimental-webgl");
+    if (!__gl) { __noGpu = true; }
+    else {
+      var __dbg = __gl.getExtension("WEBGL_debug_renderer_info");
+      var __rend = __dbg ? __gl.getParameter(__dbg.UNMASKED_RENDERER_WEBGL) : __gl.getParameter(__gl.RENDERER);
+      if (__rend && /swiftshader|llvmpipe|software|basic render|microsoft basic|warp|angle \(software/i.test(String(__rend))) __noGpu = true;
+    }
+  } catch(e) { __noGpu = true; }
+  if (__noGpu) document.documentElement.classList.add("no-gpu");
+} catch(e) {}
+</script>
 <meta name="description" content="Terminale D — un projet d'Adam et Kenza pour la Terminale D 2026-2027 (Adam n'a pas été élu délégué cette année, mais continue d'actualiser le site), le magazine de révision de la classe : cours tapés en classe, fiches de révision vérifiées, pour SES, HGGSP, Histoire-Géo, Philosophie, Anglais et Droit (DGEMC).">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://tdlfi.space/">
@@ -504,6 +524,14 @@ details.nb-card[open] > summary{margin-bottom:20px}
 }
 @media (max-width:560px){ body{font-size:17px} .tiles{grid-template-columns:1fr} .spe-head{margin-top:60px} .tile{min-height:300px} .card .day{font-size:96px} .big-t{white-space:normal} .nav-in{gap:10px} .brand{font-size:13px} }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+/* Mode allégé : laptops sans accélération GPU dans le navigateur (classe posée très tôt,
+   cf. script en tête de <head>). On coupe le flou (très coûteux à recalculer à chaque
+   image sans GPU) sur les barres fixes, et les transitions/animations CSS comme pour
+   prefers-reduced-motion ; le JS applique la même logique aux animations GSAP et aux
+   illustrations canvas via REDUCED (cf. script principal). */
+html.no-gpu *{transition:none!important;animation:none!important}
+html.no-gpu .nav,html.no-gpu .tabbar{backdrop-filter:none!important;-webkit-backdrop-filter:none!important;background:var(--bg)!important}
+html.no-gpu .mast,html.no-gpu .big-t,html.no-gpu .track,html.no-gpu .shero h1{will-change:auto!important}
 /* Ajustements tactiles de Mes notes (après ses styles de base) */
 .nb-bac td.v input{padding-block:9px}
 .nb-scale span{font-size:11px}
@@ -1068,10 +1096,10 @@ const VOLUMES = [
   {m:"hg", code:"HG", n:"03", t:"Mers et océans, des réserves de ressources", ch:"hgG1", id:"1JgN_HnLEbwlA7MzfnHbV6IB31kQPjVlvXGjfismhLQw", w:56, h:250, q:"hg3"},
   {m:"es", code:"SCI", n:"01", t:"L'alternateur", ch:"es2a", id:"1pMahzoxQERFBPmBitIdrIyXmbs5aJfw-ff9UKp26rUU", w:52, h:246, q:"es1"},
   {m:"es", code:"SCI", n:"M", t:"Méthodologie et conseils", ch:"esM", id:"10A8cVoYyGas_24sLK-CGt7k9_49p5avraBzbHpMoVSk", w:50, h:226},
-  {m:"droit", code:"DROIT", n:"01", t:"Qu'est-ce que le droit ?", ch:"droitI", id:"1XvLtjtlXgp-yRufG-cr87xN8GyvcmwVH1PDNm227uPI", w:62, h:254, q:"droit1"},
-  {m:"droit", code:"DROIT", n:"02", t:"Le droit et ses fonctions", ch:"droitI", id:"19LgpT-VhyAs6SNJevMqa7DxqVqEXrZbSaDFa12Da43E", w:68, h:260, q:"droit2"},
-  {m:"droit", code:"DROIT", n:"T", t:"Leçon 1 : qu'est-ce que le droit ? (poly du professeur)", ch:"droitI", id:"1dtYcp8heMN4iHcDQPoR2DlbLo3cYqU1f_zWs6R257cQ", w:44, h:230},
-  {m:"droit", code:"DROIT", n:"T", t:"Le droit et ses fonctions (dossier documentaire)", ch:"droitI", id:"1XuijB5nYe4td_SWApIHXUYbsnN2vcfBH9-2n63oU7O8", w:44, h:230},
+  {m:"droit", code:"DROIT", n:"01", t:"Qu'est-ce que le droit ?", ch:"droitI1", id:"1XvLtjtlXgp-yRufG-cr87xN8GyvcmwVH1PDNm227uPI", w:62, h:254, q:"droit1"},
+  {m:"droit", code:"DROIT", n:"02", t:"Le droit et ses fonctions", ch:"droitI2", id:"19LgpT-VhyAs6SNJevMqa7DxqVqEXrZbSaDFa12Da43E", w:68, h:260, q:"droit2"},
+  {m:"droit", code:"DROIT", n:"T", t:"Leçon 1 : qu'est-ce que le droit ? (poly du professeur)", ch:"droitI1", id:"1dtYcp8heMN4iHcDQPoR2DlbLo3cYqU1f_zWs6R257cQ", w:44, h:230},
+  {m:"droit", code:"DROIT", n:"T", t:"Le droit et ses fonctions (dossier documentaire)", ch:"droitI2", id:"1XuijB5nYe4td_SWApIHXUYbsnN2vcfBH9-2n63oU7O8", w:44, h:230},
   {m:"droit", code:"DROIT", n:"M", t:"Méthodologie et conseils", ch:"droitM", id:"1RoChNgaiBkfmTQ8CrTC5WByPe8Myo5IY670SqVPCpAE", w:52, h:228}
 ];
 
@@ -1105,6 +1133,8 @@ const COURS = [
 /* Nouveautés du site : une entrée par mise à jour poussée en ligne, la plus récente en premier.
    Enrichi à chaque push (demande d'Adam du 29/09/2026). */
 const NOUVEAUTES = [
+  {d:"2026-10-01", t:"La page Droit se déplie en deux chapitres plus courts", body:"L'introduction générale de Droit (DGEMC) était un seul chapitre très long à déplier (deux fiches, deux QCM, deux documents du professeur d'un coup). Elle est maintenant coupée en deux : « Qu'est-ce que le droit ? » et « Le droit et ses fonctions », chacun avec son propre contenu, plus court à lire."},
+  {d:"2026-10-01", t:"Le site s'allège automatiquement sur les ordinateurs sans accélération graphique", body:"Sur un ordinateur dont le navigateur n'a pas d'accélération graphique activée (souvent le cas sur du matériel plus ancien ou bas de gamme), le site le détecte au chargement et passe seul en mode allégé : flou désactivé sur les barres fixes, animations coupées, illustrations affichées directement sans boucle. Le site reste identique partout ailleurs."},
   {d:"2026-09-30", t:"Flashcards plus fiables, animation de révélation, notions réordonnées", body:"Les flashcards des fiches (notions et vocabulaire) sont maintenant fiables sur tous les navigateurs, y compris Safari/iPhone, et la définition ne s'affiche plus qu'au clic. Un clic sur une carte révèle toutes les cartes de sa section d'un coup, avec une petite animation. Les notions clés et les dates de plusieurs fiches (SES, HGGSP, Philo) ont aussi été remises dans l'ordre où elles ont été vues en cours, pour mieux réviser dans le fil du chapitre."},
   {d:"2026-09-29", t:"Les fiches passent en cartes et en flashcards", body:"Nouvelle mise en page des fiches de révision : chaque partie (notions, vocabulaire, auteurs, dates, pièges, corrigé) devient une carte colorée avec une icône, plus lisible qu'un mur de texte. Les notions clés et le vocabulaire se révisent maintenant en flashcards : le terme s'affiche seul, un clic retourne la carte pour révéler la définition, avec un bouton pour tout révéler d'un coup."},
   {d:"2026-09-29", t:"Toutes les fiches passent au nouveau format", body:"Les 14 fiches de révision (SES, HGGSP, Histoire-Géo, Philo, Anglais, Sciences, Droit) ont quitté Google Docs pour un format propre au site : notions clés, auteurs et repères, dates à retenir, pièges à éviter, et selon la matière du vocabulaire ou un corrigé. Tout s'affiche directement en dépliant le chapitre concerné."},
@@ -1139,7 +1169,8 @@ const CHAPITRES = {
     {k:"es2a", dir:"12YJ3O8OYhJLpoInRTXbhzAkcf3zTF8Hk", n:"Thème 2 · Le futur des énergies", t:"Deux siècles d'énergie électrique"},
     {k:"esM", dir:"1rY78_b0lTmnc9MoEqcS5SyZPlUP_Hg24", n:"Méthode", t:"Méthodologie et conseils"}],
   droit:[
-    {k:"droitI", dir:"12RtqxtrULJEFUYQmdMUtUzcHGEHthROk", n:"Introduction générale", t:"Qu'est-ce que le droit ? Le droit et ses fonctions"},
+    {k:"droitI1", dir:"12RtqxtrULJEFUYQmdMUtUzcHGEHthROk", n:"Introduction générale", t:"Qu'est-ce que le droit ?"},
+    {k:"droitI2", dir:"12RtqxtrULJEFUYQmdMUtUzcHGEHthROk", n:"Introduction générale", t:"Le droit et ses fonctions"},
     {k:"droitM", dir:"1vDtetf0dLyDunKfREico8Vmq0FGDnUNX", n:"Méthode", t:"Méthodologie et conseils"}]
 };
 
@@ -1356,7 +1387,12 @@ const store = {
 const pad = n => String(n).padStart(2, "0");
 const MOIS = ["janv.","févr.","mars","avr.","mai","juin","juil.","août","sept.","oct.","nov.","déc."];
 const shuffle = a => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]]; } return b; };
-const REDUCED = matchMedia("(prefers-reduced-motion: reduce)").matches;
+/* REDUCED regroupe deux cas qui appellent le même traitement : une préférence
+   d'accessibilité explicite, et l'absence d'accélération GPU détectée en tête de
+   page (classe .no-gpu posée avant le premier affichage, cf. <head>). Dans les deux
+   cas : pas d'animation GSAP (MOTION), illustrations canvas figées sur leur dessin
+   final sans boucle d'images (cf. canvasLoop). */
+const REDUCED = matchMedia("(prefers-reduced-motion: reduce)").matches || document.documentElement.classList.contains("no-gpu");
 const G = window.gsap, ST = window.ScrollTrigger;
 if (G && ST) G.registerPlugin(ST);
 const MOTION = !!(G && ST && !REDUCED);
@@ -1484,7 +1520,7 @@ function modePicker(){
   document.body.append(box);
   $(".mp-opt.rec", box).focus({preventScroll:true});
 }
-const LOWP = matchMedia("(pointer: coarse), (max-width: 760px)").matches;
+const LOWP = matchMedia("(pointer: coarse), (max-width: 760px)").matches || REDUCED;
 /* Pendant un défilement au doigt, les illustrations se figent un instant : le défilement reste fluide */
 let scrolling = false, scrollTO = 0;
 if (LOWP) addEventListener("scroll", () => { scrolling = true; clearTimeout(scrollTO); scrollTO = setTimeout(() => { scrolling = false; }, 140); }, {passive:true});
@@ -2282,7 +2318,8 @@ const CHAP_EXTRA = {
   philoRaison: () => renderFicheNative("philo-03"),
   ang1: () => renderFicheNative("ang-01"),
   es2a: () => renderFicheNative("es-01"),
-  droitI: () => [renderFicheNative("droit-01"), renderFicheNative("droit-02")]
+  droitI1: () => renderFicheNative("droit-01"),
+  droitI2: () => renderFicheNative("droit-02")
 };
 function renderChapters(k){
   const chs = chaptersOf(k);
