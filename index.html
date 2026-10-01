@@ -25,7 +25,7 @@ try{
   if (__noGpu) document.documentElement.classList.add("no-gpu");
 } catch(e) {}
 </script>
-<meta name="description" content="Terminale D — un projet d'Adam et Kenza pour la Terminale D 2026-2027 (Adam n'a pas été élu délégué cette année, mais continue d'actualiser le site), le magazine de révision de la classe : cours tapés en classe, fiches de révision vérifiées, pour SES, HGGSP, Histoire-Géo, Philosophie, Anglais et Droit (DGEMC).">
+<meta name="description" content="Terminale D — un projet d'Adam et Kenza pour la Terminale D 2026-2027, le magazine de révision de la classe : cours tapés en classe, fiches de révision vérifiées, pour SES, HGGSP, Histoire-Géo, Philosophie, Anglais et Droit (DGEMC).">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://tdlfi.space/">
 <meta property="og:title" content="Terminale D">
@@ -105,6 +105,9 @@ a{color:inherit}
 /* ---------- Accueil : couverture ---------- */
 .cover{position:relative;min-height:calc(min(86vh,900px) - 58px);display:grid;grid-template-rows:auto 1fr auto auto;grid-template-columns:minmax(0,1fr);padding-block:18px 28px;isolation:isolate;overflow:hidden}
 .cover canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+/* Patch 2.0 : un halo couleur du fond autour des petits textes posés sur les rubans, pour qu'aucune ligne ne les barre */
+.cover .k,.cover-foot p,.m-cover .k,.m-lead,.m-issue{text-shadow:0 0 3px var(--bg),0 0 8px var(--bg),0 0 14px var(--bg)}
+.cover .by-k .k,.m-by > .k{width:fit-content;background:color-mix(in srgb,var(--bg) 82%,transparent);-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:1px 4px;margin-inline:-4px}
 .issue{display:flex;justify-content:space-between;gap:10px 24px;flex-wrap:wrap;border-bottom:1px solid var(--ink);padding-bottom:10px}
 /* ---------- Badge « Mis à jour le ... » (nouveautés du site, en popover discret) ---------- */
 .maj-wrap{position:relative;display:inline-flex}
@@ -140,8 +143,8 @@ a{color:inherit}
 .manifest em{font-style:italic}
 
 /* Drive */
-.drive-sec{border-top:1px solid var(--ink);padding-block:90px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:40px clamp(28px,5vw,90px);align-items:start;min-height:100vh}
-.drive-sec h2{font-size:clamp(56px,8vw,132px)}
+.drive-sec{border-top:1px solid var(--ink);padding-block:64px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:40px clamp(28px,5vw,90px);align-items:start}
+.drive-sec h2{font-size:clamp(48px,6vw,96px)}
 .drive-sec .lead{font-size:clamp(19px,1.5vw,22px);max-width:36ch;margin:26px 0 30px}
 .stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;margin-top:40px;border-top:1px solid var(--ink)}
 .stat{padding:18px 0 14px;border-bottom:1px solid var(--line)}
@@ -171,7 +174,10 @@ a{color:inherit}
 .step p{margin:0;color:var(--ink-2);max-width:32ch}
 
 /* Tuiles matières */
-.subjects{border-top:1px solid var(--ink);padding-block:90px}
+.subjects{border-top:1px solid var(--ink);padding-block:56px 64px}
+.tools-top{padding-block:28px 40px}
+.tools-top .tiles-small{margin-top:0}
+.tools-top .due-strip{margin-bottom:16px}
 .ask{border-top:1px solid var(--ink);padding-block:80px 90px;display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:28px clamp(28px,4vw,64px);align-items:end}
 .ask-l .k{margin:0 0 14px}.ask-l h2{margin:0}
 .ask-lead{font-family:var(--serif);font-size:clamp(19px,1.6vw,23px);line-height:1.45;margin:0 0 26px;max-width:36em}
@@ -180,7 +186,7 @@ a{color:inherit}
 .btn.wa svg{flex:none}
 @media (max-width:900px){ .ask{grid-template-columns:1fr;align-items:start;padding-block:60px 70px} }
 .tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:44px}
-.tile{position:relative;min-height:460px;background:var(--bg-2);text-decoration:none;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:20px;isolation:isolate}
+.tile{position:relative;min-height:300px;background:var(--bg-2);text-decoration:none;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:20px;isolation:isolate}
 .tile canvas{position:absolute;inset:0;width:100%;height:100%;z-index:-1;opacity:.55;transition:transform .8s cubic-bezier(.2,.7,.2,1),opacity .6s}
 .tile:hover canvas{opacity:.9}
 .tile .head{background:color-mix(in srgb,var(--bg-2) 86%,transparent);margin:-8px;padding:8px}
@@ -195,7 +201,7 @@ a{color:inherit}
 .tile-s b{font-family:var(--grotesk);font-weight:700;font-stretch:112%;font-size:19px;display:flex;gap:10px;align-items:center}
 
 /* Parutions */
-.paru{border-top:1px solid var(--ink);padding-block:80px 60px;overflow:hidden}
+.paru{border-top:1px solid var(--ink);padding-block:56px 48px;overflow:hidden}
 .paru-head{display:flex;justify-content:space-between;align-items:end;gap:14px 30px;flex-wrap:wrap;margin-bottom:34px}
 .big-t{font-size:clamp(44px,9vw,150px);white-space:nowrap;will-change:transform}
 .track{display:flex;gap:18px;width:max-content;padding-inline:var(--gut);will-change:transform}
@@ -206,9 +212,10 @@ a{color:inherit}
 .card .ct{font-size:21px;line-height:1.28;margin:18px 0 14px;text-wrap:balance}
 .card .meta{display:flex;justify-content:space-between;gap:10px;align-items:center}
 .paru.stack .track{flex-direction:column;width:auto}
+.paru.max .track{padding-inline:0;will-change:auto;gap:10px}
 .paru.stack .card{width:100%;min-height:0;display:grid;grid-template-columns:92px minmax(0,1fr);grid-template-areas:"d t" "d m";gap:8px 16px;align-items:start;padding:20px 18px 18px}
 .paru.stack .card > :first-child{grid-area:d}
-.paru.stack .card .day{font-size:56px}
+.paru.stack .card .day{font-size:40px}
 .paru.stack .card .ct{grid-area:t;margin:0;font-size:18px;line-height:1.3;text-wrap:pretty}
 .paru.stack .card .meta{grid-area:m;justify-content:flex-start;gap:14px;align-self:end}
 .paru.stack:not(.all) .card:nth-child(n+7){display:none}
@@ -219,8 +226,12 @@ a{color:inherit}
 /* ---------- Page matière ---------- */
 .shero{position:relative;padding-block:40px 34px;overflow:hidden;isolation:isolate;border-bottom:1px solid var(--ink)}
 .shero .band{position:absolute;left:0;right:0;top:0;height:10px;background:var(--c);transform-origin:left}
+.shero-cv{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+.shero .top .k{text-shadow:0 0 3px var(--bg),0 0 8px var(--bg)}
+/* sur téléphone le texte occupe toute la largeur : le fond se fait filigrane */
+@media (max-width:760px){ .shero-cv{opacity:.38} }
 .shero .top{display:flex;justify-content:space-between;gap:10px 24px;flex-wrap:wrap;padding-top:18px}
-.shero h1{font-size:clamp(76px,17vw,280px);margin-top:36px;color:var(--ink);will-change:transform}
+.shero h1{font-size:clamp(68px,12.5vw,200px);margin-top:26px;color:var(--ink);will-change:transform}
 .shero h1 .l{display:inline-block}
 .shero .full{font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(24px,3vw,44px);line-height:1.1;margin:14px 0 0;color:var(--ct,var(--c));max-width:24ch}
 .shero-foot{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px 40px;align-items:end;margin-top:40px}
@@ -228,11 +239,11 @@ a{color:inherit}
 .nums div b{display:block;font-family:var(--grotesk);font-weight:200;font-stretch:62%;font-size:clamp(56px,6vw,96px);line-height:.85;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
 .btns{display:flex;gap:10px;flex-wrap:wrap}
 
-.dossier{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:40px clamp(28px,5vw,80px);padding-block:70px}
-.plate{position:sticky;top:calc(env(safe-area-inset-top,0px) + 76px);height:min(80vh,740px);background:var(--bg-2);overflow:hidden;margin:0}
+.dossier{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:32px clamp(28px,5vw,80px);padding-block:48px;align-items:center}
+.plate{position:relative;height:min(52vh,460px);background:var(--bg-2);overflow:hidden;margin:0}
 .plate canvas{position:absolute;inset:0;width:100%;height:100%}
 .plate figcaption{position:absolute;left:18px;right:18px;bottom:14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.dtext{display:grid;align-content:start;gap:28px}
+.dtext{display:grid;align-content:center;gap:20px}
 .dtitle{font-size:clamp(40px,4.8vw,78px)}
 .lead{font-size:clamp(19px,1.5vw,22px);line-height:1.5;margin:0;max-width:44ch}
 .quote{margin:8px 0;font-family:var(--grotesk);font-weight:500;font-size:clamp(22px,2.2vw,32px);line-height:1.18;letter-spacing:-.015em;color:var(--ct,var(--c));max-width:24ch;text-wrap:balance}
@@ -358,13 +369,13 @@ select{font:inherit;font-family:var(--grotesk);font-size:16px;background:var(--b
 .chip.revoir .tick{color:var(--bad)}
 .chip.revoir[aria-pressed="true"] .tick{color:var(--bg)}
 .qdone-ko{margin:0;font-family:var(--grotesk);font-weight:600;font-size:18px;color:var(--bad)}
-.fl a.qrevoir .t::after{content:"QCM à revoir ↺";margin-left:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--bad);white-space:nowrap}
-.fl a.qdone .t::after{content:"QCM fait ✓";margin-left:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--good);white-space:nowrap}
+.fl .qrevoir .t::after{content:"QCM à revoir ↺";margin-left:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--bad);white-space:nowrap}
+.fl .qdone .t::after{content:"QCM fait ✓";margin-left:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--good);white-space:nowrap}
 /* ---------- Répétition espacée ---------- */
 .chip.reviser{border-color:color-mix(in srgb,var(--philo) 70%,transparent)}
 .chip.reviser .tick{color:var(--philo-t)}
 .chip.reviser[aria-pressed="true"] .tick{color:var(--bg)}
-.fl a.qreviser .t::after{content:"QCM à réviser ↻";margin-left:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--philo-t);white-space:nowrap}
+.fl .qreviser .t::after{content:"QCM à réviser ↻";margin-left:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--philo-t);white-space:nowrap}
 .due-strip{border:1px solid var(--ink);padding:18px 20px;margin:0 0 60px;background:var(--bg)}
 .due-strip > .k{margin:0 0 12px}
 .due-list{display:flex;flex-wrap:wrap;gap:8px}
@@ -553,8 +564,8 @@ html.no-gpu .mast,html.no-gpu .big-t,html.no-gpu .track,html.no-gpu .shero h1{wi
 @media (max-width:900px){ .memo-dl .lx-item dt{font-size:18px} }
 
 /* Par chapitre */
-.bychap{border-top:1px solid var(--ink);padding-block:70px}
-.bychap-h{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,36ch);gap:18px 40px;align-items:end;margin-bottom:34px}
+.bychap{border-top:1px solid var(--ink);padding-block:52px}
+.bychap-h{display:grid;grid-template-columns:minmax(0,1fr);gap:18px 40px;align-items:end;margin-bottom:26px}
 .bychap-h p{margin:0}
 .chaps{border-top:1px solid var(--ink)}
 .chap{scroll-margin-top:84px}
@@ -588,11 +599,28 @@ html.no-gpu .mast,html.no-gpu .big-t,html.no-gpu .track,html.no-gpu .shero h1{wi
 .chap-i{grid-area:i;width:34px;height:34px;border:1px solid var(--ink);position:relative;flex:none;transition:transform .35s cubic-bezier(.2,.7,.2,1)}
 .chap-i::before,.chap-i::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:1.5px;background:var(--ink);transform:translate(-50%,-50%)}
 .chap-i::after{transform:translate(-50%,-50%) rotate(90deg);transition:transform .35s}
-.chap[open] .chap-i::after{transform:translate(-50%,-50%) rotate(0)}
+.chap[open] > .chap-h .chap-i::after,.fiche-d[open] > summary .chap-i::after{transform:translate(-50%,-50%) rotate(0)}
 .chap-h:hover .chap-i{background:var(--ink)}
 .chap-h:hover .chap-i::before,.chap-h:hover .chap-i::after{background:var(--bg)}
 .chap.meth .chap-t{font-size:clamp(20px,2vw,28px);color:var(--ink-2)}
 .chap-b{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:28px clamp(28px,4vw,64px);padding:4px 0 36px}
+/* Patch 2.0 : fiches en pleine largeur, repliées ; cours en dessous, sur deux colonnes en grand écran */
+.chap-b{grid-template-columns:minmax(0,7fr) minmax(0,5fr);align-items:start}
+.fiche-d > summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:62px minmax(0,1fr) auto;gap:14px;align-items:center;padding:15px 0;border-bottom:1px solid var(--line)}
+.fiche-d > summary::-webkit-details-marker{display:none}
+.fiche-d > summary:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.fiche-d > summary .n{font-family:var(--mono);font-size:13px;color:var(--ink-2);align-self:baseline;padding-top:3px}
+.fiche-d > summary .fd-t{display:flex;flex-direction:column;gap:4px;min-width:0}
+.fiche-d > summary .t{font-size:19px;line-height:1.3}
+.fiche-d > summary .fd-m{font-size:11px}
+.fiche-d > summary .chap-i{grid-area:auto;width:28px;height:28px}
+.fiche-d > summary:hover .chap-i{background:var(--ink)}
+.fiche-d > summary:hover .chap-i::before,.fiche-d > summary:hover .chap-i::after{background:var(--bg)}
+.fiche-d[open] > summary{border-bottom-color:transparent}
+.fiche-d .chap-fiche{margin:0 0 26px;padding:0;border:0}
+.fiche-deja{margin:12px 0 0;padding:12px 16px;border:1px dashed var(--line);font-size:14px;line-height:1.5;display:flex;flex-wrap:wrap;gap:4px 8px;align-items:baseline}
+.fiche-deja .k{margin-right:6px}
+.fiche-src{margin:16px 0 0}.fiche-src a{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}.fiche-src a:hover{color:var(--ink)}
 .chap-col h4{margin:0 0 10px;font-weight:400}
 .chap-quiz{grid-column:1/-1;margin-top:10px;padding-top:28px;border-top:1px solid var(--line)}
 .chap-quiz h4{margin:0 0 4px;font-weight:400}
@@ -680,6 +708,12 @@ html.no-gpu .mast,html.no-gpu .big-t,html.no-gpu .track,html.no-gpu .shero h1{wi
 .rev-h{border-top:1px solid var(--ink);padding-block:60px 0;display:flex;justify-content:space-between;align-items:end;gap:20px 40px;flex-wrap:wrap}
 .rev-h .btns{display:flex;gap:10px;flex-wrap:wrap}
 #t-rev .bychap{border-top:0;padding-top:36px}
+.rev-short{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px clamp(28px,4vw,64px);padding-block:30px 70px}
+.rev-short h3{margin:0 0 10px;font-weight:400}
+.rev-short .cl a{grid-template-columns:86px minmax(0,1fr) auto}
+.rev-short .cl .d{white-space:normal;font-size:11.5px;text-transform:uppercase;letter-spacing:.06em}
+.sr-st{display:block;margin-top:4px;font-size:10.5px}.sr-st.hot{color:var(--bad)}
+@media (max-width:900px){ .rev-short{grid-template-columns:1fr;padding-block:22px 40px} }
 .seg button:disabled{cursor:not-allowed;opacity:.45}
 .seg button[aria-pressed="true"]:disabled{opacity:1}
 select:disabled{opacity:.55;cursor:not-allowed}
@@ -697,7 +731,9 @@ select:disabled{opacity:.55;cursor:not-allowed}
   .m-by .by-names{margin:0;font-family:var(--serif);font-style:italic;font-weight:300;font-size:clamp(36px,11vw,52px);line-height:1;letter-spacing:-.02em}
   .m-by .amp{font-family:var(--grotesk);font-style:normal;font-weight:800;font-stretch:125%;font-size:.74em;color:var(--ses);margin:0 .12em;display:inline-block}
   .m-lead{margin:0;font-size:18px;line-height:1.45;max-width:34ch}
-  .m-ribbon{height:84px;margin-inline:calc(var(--gut) * -1);position:relative;border-bottom:1px solid var(--ink)}
+  /* Rubans en fond de toute la couverture (pleine largeur, sous le texte) */
+  .m-cover{isolation:isolate;padding-bottom:26px !important}
+  .m-ribbon{position:absolute;top:0;bottom:0;left:calc(var(--gut) * -1);right:calc(var(--gut) * -1);z-index:-1;border-bottom:1px solid var(--ink);pointer-events:none}
   .m-ribbon canvas{position:absolute;inset:0;width:100%;height:100%}
   .m-sec{display:block;padding-block:30px 6px}
   .m-h{margin:0 0 14px;font-family:var(--serif);font-weight:300;font-size:32px;line-height:1;letter-spacing:-.02em}
@@ -750,6 +786,13 @@ select:disabled{opacity:.55;cursor:not-allowed}
   .dossier{padding-block:24px 8px;gap:16px}
   .plate{height:120px !important;min-height:0 !important}
   .plate figcaption{display:none}
+  /* Patch 2.0 : sommaire des chapitres en une rangée qui défile, au lieu d'une pile de cartes */
+  .chap-idx{display:flex;overflow-x:auto;gap:8px;margin:0 calc(var(--gut) * -1) 18px;padding:0 var(--gut) 4px;scroll-snap-type:x proximity;scrollbar-width:none}
+  .chap-idx::-webkit-scrollbar{display:none}
+  .chap-chip{flex:0 0 min(74%,280px);scroll-snap-align:start;padding:11px 14px;gap:4px}
+  .chap-chip .cc-t{font-size:15.5px}
+  .fiche-d > summary{grid-template-columns:48px minmax(0,1fr) auto;gap:10px;padding:14px 0}
+  .fiche-d > summary .t{font-size:17px}
   .dtext{gap:12px}
   .dtext > .k{display:none}
   .dtitle{font-size:28px !important}
@@ -854,7 +897,7 @@ html.mode-m.mode-wide .tabbar{left:50% !important;right:auto !important;width:43
   .m-issue{padding-bottom:12px}
   .m-by{gap:8px;padding-top:16px}
   .m-lead{line-height:1.55}
-  .m-ribbon{height:96px;margin-top:6px}
+  .m-cover{padding-bottom:32px !important}
   .m-sec{padding-block:44px 8px}
   .m-sec + .m-sec{border-top:1px solid var(--line);margin-top:28px}
   .m-h{margin-bottom:20px;font-size:34px}
@@ -1006,7 +1049,7 @@ html.mode-m .offline-banner,html:not(.mode-d) .offline-banner{padding-bottom:cal
   .chap,.lx-item,.m-row,li{break-inside:avoid}
   h1,h2,h3{break-after:avoid}
   .wide-t,.mast,.big-t{font-size:36px !important;letter-spacing:normal !important}
-  .shero .band,.cover,.m-cover{display:none !important}
+  .shero .band,.shero-cv,.cover,.m-cover{display:none !important}
   .dossier{grid-template-columns:1fr !important}
   .dossier .plate{display:none !important}
   body{font-size:12.5px}
@@ -1038,7 +1081,7 @@ html.mode-m .offline-banner,html:not(.mode-d) .offline-banner{padding-bottom:cal
 <div class="offline-banner" id="offline-banner" role="status" aria-live="polite">Hors connexion · le site marche, mais les liens vers le Drive ont besoin du réseau</div>
 <main id="view" tabindex="-1"></main>
 <footer class="colophon g max">
-  <p><b style="color:var(--ink);font-weight:500">Terminale D</b>, le magazine de révision de la classe, un projet d'Adam et Kenza pour 2026–2027. Adam n'a pas été élu délégué cette année, mais il continue d'actualiser le site pour toute la classe. Cours tapés en classe, relus deux fois, fiches vérifiées ; en cas de doute, la parole du professeur prime.</p>
+  <p><b style="color:var(--ink);font-weight:500">Terminale D</b>, le magazine de révision de la classe, un projet d'Adam et Kenza pour 2026–2027. Cours tapés en classe, relus deux fois, fiches vérifiées ; en cas de doute, la parole du professeur prime.</p>
   <nav aria-label="Liens utiles">
     <a class="k muted" href="https://docs.google.com/document/d/1-01XoXc3TBBmgmZkVjlQqwadu1qUHWpLWduGNw02vU0/edit" target="_blank" rel="noopener">Emploi du temps ↗</a>
     <a class="k muted" href="https://drive.google.com/drive/folders/1BfgnH2luYOf4F3WkCsYZWQNARDiwrsi8" target="_blank" rel="noopener">Le Drive ↗</a>
@@ -1133,6 +1176,7 @@ const COURS = [
 /* Nouveautés du site : une entrée par mise à jour poussée en ligne, la plus récente en premier.
    Enrichi à chaque push (demande d'Adam du 29/09/2026). */
 const NOUVEAUTES = [
+  {d:"2026-10-01", t:"Patch 2.0 : un site plus clair, avec moins de contenu d'un coup", body:"Grosse mise à jour. Dans un chapitre, chaque fiche est maintenant une ligne repliée qui s'ouvre au clic, au lieu de toutes les fiches dépliées les unes sous les autres, et la liste de liens qui faisait doublon disparaît. Une notion déjà définie dans une fiche précédente du chapitre n'est plus répétée. La page Séance garde son minuteur et propose des raccourcis vers les QCM à faire et les chapitres, au lieu de recopier toute la page matière. L'accueil met les outils en haut et regroupe les textes qui se répétaient. Les petits textes ne se chevauchent plus sur téléphone. Côté animations, la couverture de l'accueil a des rubans de soie qui se vrillent, et chaque en-tête a maintenant son propre fond animé : un ruban à la couleur de la matière, un cadran de montre pour la Séance, des lignes de crête pour Mes notes et une trame de points pour le Lexique. Tout est lent, sans interaction avec la souris, et se fige sur les ordinateurs sans accélération graphique."},
   {d:"2026-10-01", t:"La page Droit se déplie en deux chapitres plus courts", body:"L'introduction générale de Droit (DGEMC) était un seul chapitre très long à déplier (deux fiches, deux QCM, deux documents du professeur d'un coup). Elle est maintenant coupée en deux : « Qu'est-ce que le droit ? » et « Le droit et ses fonctions », chacun avec son propre contenu, plus court à lire."},
   {d:"2026-10-01", t:"Le site s'allège automatiquement sur les ordinateurs sans accélération graphique", body:"Sur un ordinateur dont le navigateur n'a pas d'accélération graphique activée (souvent le cas sur du matériel plus ancien ou bas de gamme), le site le détecte au chargement et passe seul en mode allégé : flou désactivé sur les barres fixes, animations coupées, illustrations affichées directement sans boucle. Le site reste identique partout ailleurs."},
   {d:"2026-09-30", t:"Flashcards plus fiables, animation de révélation, notions réordonnées", body:"Les flashcards des fiches (notions et vocabulaire) sont maintenant fiables sur tous les navigateurs, y compris Safari/iPhone, et la définition ne s'affiche plus qu'au clic. Un clic sur une carte révèle toutes les cartes de sa section d'un coup, avec une petite animation. Les notions clés et les dates de plusieurs fiches (SES, HGGSP, Philo) ont aussi été remises dans l'ordre où elles ont été vues en cours, pour mieux réviser dans le fil du chapitre."},
@@ -1545,7 +1589,7 @@ function canvasLoop(canvas, draw, p0){
 const PLATES = {
   lorenz(s, t){
     const {ctx, w, h} = s; ctx.clearRect(0, 0, w, h);
-    const m = Math.min(w, h) * .14, x0 = (w - Math.min(w - 2 * m, h - 2 * m)) / 2, sz = Math.min(w - 2 * m, h - 2 * m), y0 = (h - sz) / 2 - 10;
+    const m = Math.min(w, h) * .14, foot = h < 200 ? 0 : 56, sz = Math.min(w - 2 * m, h - 2 * m - foot), x0 = (w - sz) / 2, y0 = (h - foot - sz) / 2;
     const X = u => x0 + u * sz, Y = v => y0 + sz - v * sz;
     ctx.strokeStyle = C.line; ctx.lineWidth = 1;
     for (let i = 0; i <= 10; i++) { ctx.beginPath(); ctx.moveTo(X(i / 10), Y(0)); ctx.lineTo(X(i / 10), Y(1)); ctx.moveTo(X(0), Y(i / 10)); ctx.lineTo(X(1), Y(i / 10)); ctx.stroke(); }
@@ -1559,6 +1603,7 @@ const PLATES = {
     ctx.strokeStyle = C.ses; ctx.lineWidth = 2.4; ctx.stroke();
     for (let i = 1; i <= 9; i++) { const u = i / 10, v = L(u); ctx.beginPath(); ctx.arc(X(u), Y(v), 3.5 + (i === 1 || i === 9 ? 2 : 0), 0, 7); ctx.fillStyle = C.ses; ctx.fill(); }
     const g = 1 - 2 / (k + 1);
+    if (h < 200) return; /* bandeau téléphone : la courbe seule, sans étiquettes qui se chevaucheraient */
     ctx.fillStyle = C.ink; ctx.font = `500 ${Math.max(11, sz * .03)}px ${getComputedStyle(document.body).getPropertyValue("--mono") || "monospace"}`;
     ctx.fillText("D1", X(.1) - 8, Y(L(.1)) - 12); ctx.fillText("D9", X(.9) - 8, Y(L(.9)) - 12);
     ctx.fillStyle = C["ink-2"]; ctx.fillText("% cumulé de la population →", X(0), Y(0) + 24);
@@ -1586,6 +1631,7 @@ const PLATES = {
       ctx.fillStyle = hexA(C.hggsp, .18 + r * .45); ctx.fill();
     }
     const year = Math.round(1669 + (2026 - 1669) * s.p);
+    if (h < 200) return; /* bandeau téléphone : la forêt seule, l'année passerait sous les arbres */
     ctx.fillStyle = C.ink; ctx.font = `200 ${Math.min(w * .26, h * .3)}px Archivo, sans-serif`;
     ctx.fillText(String(year), w * .06, h * .3);
     ctx.font = `500 11px IBM Plex Mono, monospace`; ctx.fillStyle = C["ink-2"];
@@ -1609,8 +1655,9 @@ const PLATES = {
         const a = s.p > .05 ? Math.min(1, s.p * 2) : .35;
         ctx.fillStyle = hexA(C.hg, .8 * a); ctx.fillRect(cx - 4, cy - 1.5, 8, 3);
       }
-      const rr = size * (.5 + .5 * Math.min(1, s.p * 1.5));
+      const band = h < 200, rr = size * (band ? .45 : 1) * (.5 + .5 * Math.min(1, s.p * 1.5));
       ctx.beginPath(); ctx.arc(px, py, rr, 0, 7); ctx.fillStyle = hexA(C.hg, j === 1 ? .9 : .55); ctx.fill();
+      if (band) return; /* bandeau téléphone : les ports sans leurs noms, qui se chevaucheraient */
       ctx.font = `500 ${w < 500 ? 9.5 : 11}px IBM Plex Mono, monospace`; ctx.fillStyle = C.ink;
       const tw = ctx.measureText(name).width; ctx.fillText(name, Math.min(px + rr + 8, w - tw - 8), py + 4);
     });
@@ -1736,23 +1783,198 @@ const PLATES = {
 };
 
 
+/* Couverture : quatre rubans de soie (une couleur par spécialité / tronc commun) qui
+   se vrillent lentement, sur un fond de lueurs colorées qui dérivent. Purement
+   décoratif, sans interaction : rien ne dépend de la souris, donc aucun calcul en plus
+   quand on la bouge. Économies :
+   - les lueurs sont dessinées dans un petit canvas hors écran (1/12 de la taille) puis
+     agrandies d'un seul drawImage : le lissage de l'agrandissement fait office de flou
+     gratuit, au lieu d'un filtre blur coûteux ;
+   - la trajectoire et la vrille de chaque ruban sont calculées une seule fois par image
+     et partagées par toutes ses lignes (au lieu de refaire les sinus pour chaque ligne) ;
+   - la boucle reste plafonnée à 30 i/s et s'arrête hors écran (cf. canvasLoop), et un
+     seul dessin figé est fait en mode allégé (sans GPU ou mouvement réduit). */
 function ribbons(s, t){
   const {ctx, w, h} = s; ctx.clearRect(0, 0, w, h);
-  const cols = [C.ses, C.hggsp, C.hg, C.philo], per = w < 600 ? 7 : 11;
+  if (w < 2 || h < 2) return;
+  const cols = [C.ses, C.hggsp, C.hg, C.philo], small = w < 600, dark = isDark();
+
+  /* 1. Lueurs de fond */
+  let g = s.glow;
+  if (!g) { g = s.glow = document.createElement("canvas"); g.c = g.getContext("2d"); }
+  const gw = Math.max(8, Math.round(w / 12)), gh = Math.max(6, Math.round(h / 12));
+  if (g.width !== gw || g.height !== gh) { g.width = gw; g.height = gh; }
+  const gc = g.c; gc.clearRect(0, 0, gw, gh);
   for (let b = 0; b < 4; b++) {
-    const baseY = h * (.28 + b * .14) + s.p * h * .08 * (b - 1.5);
+    const cx = gw * ((b + .5) / 4 + .1 * Math.sin(t * .07 + b * 2.1)), cy = gh * (.5 + .28 * Math.sin(t * .05 + b * 1.3));
+    const r = Math.max(gw, gh) * (.32 + .07 * Math.sin(t * .09 + b));
+    const gr = gc.createRadialGradient(cx, cy, 0, cx, cy, r);
+    gr.addColorStop(0, hexA(cols[b], dark ? .30 : .20)); gr.addColorStop(1, hexA(cols[b], 0));
+    gc.fillStyle = gr; gc.fillRect(0, 0, gw, gh);
+  }
+  /* fondu sur les bords, pour que la lueur ne dessine pas le rectangle du canvas */
+  gc.globalCompositeOperation = "destination-in";
+  for (const [x1, y1] of [[gw, 0], [0, gh]]) {
+    const f = gc.createLinearGradient(0, 0, x1, y1);
+    f.addColorStop(0, "rgba(0,0,0,0)"); f.addColorStop(.2, "#000"); f.addColorStop(.8, "#000"); f.addColorStop(1, "rgba(0,0,0,0)");
+    gc.fillStyle = f; gc.fillRect(0, 0, gw, gh);
+  }
+  gc.globalCompositeOperation = "source-over";
+  ctx.imageSmoothingEnabled = true; ctx.drawImage(g, 0, 0, w, h);
+
+  /* 2. Rubans vrillés */
+  const per = small ? 8 : 14, step = small ? 10 : 12, W = small ? 20 : 58;
+  const N = Math.ceil((w + 40) / step) + 1, X = new Float32Array(N), CY = new Float32Array(N), TW = new Float32Array(N);
+  for (let j = 0; j < N; j++) X[j] = -20 + j * step;
+  for (let b = 0; b < 4; b++) {
+    const col = cols[b], baseY = h * (.28 + b * .14) + s.p * h * .08 * (b - 1.5), amp = 22 + b * 6;
+    for (let j = 0; j < N; j++) {
+      const u = X[j] / w;
+      CY[j] = baseY + Math.sin(u * 5.2 + t * .35 + b * 1.7) * amp + Math.sin(u * 13 + t * .6 + b) * 5;
+      TW[j] = W * Math.cos(u * 2.6 - t * .22 + b * 1.9); /* largeur signée : passe par zéro là où le ruban se retourne */
+    }
+    const yAt = (j, k) => CY[j] + k * TW[j] + Math.sin(X[j] / w * 9 + t * .5 + k * 2) * 2.5 * k;
+    /* voile du ruban, entre ses deux bords */
+    ctx.beginPath();
+    for (let j = 0; j < N; j++) j ? ctx.lineTo(X[j], yAt(j, -.5)) : ctx.moveTo(X[j], yAt(j, -.5));
+    for (let j = N - 1; j >= 0; j--) ctx.lineTo(X[j], yAt(j, .5));
+    ctx.closePath(); ctx.fillStyle = hexA(col, dark ? .07 : .05); ctx.fill();
+    /* fils */
+    ctx.lineWidth = 1;
     for (let i = 0; i < per; i++) {
-      ctx.beginPath(); ctx.strokeStyle = hexA(cols[b], .08 + .32 * (i / per)); ctx.lineWidth = 1;
-      const off = i * (w < 600 ? 3 : 4.2);
-      for (let x = -20; x <= w + 20; x += 14) {
-        const u = x / w, dx = u - s.mx, dy = (baseY / h) - s.my;
-        const pull = Math.exp(-(dx * dx * 9 + dy * dy * 14)) * 38;
-        const y = baseY + off + Math.sin(u * 5.2 + t * .35 + b * 1.7 + i * .06) * (22 + b * 6) + Math.sin(u * 13 + t * .6 + b) * 5 - pull * Math.sign(dy || 1);
-        x === -20 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-      }
+      const k = i / (per - 1) - .5, edge = i === 0 || i === per - 1;
+      ctx.beginPath(); ctx.strokeStyle = hexA(col, edge ? .5 : .1 + .28 * (i / per));
+      for (let j = 0; j < N; j++) j ? ctx.lineTo(X[j], yAt(j, k)) : ctx.moveTo(X[j], yAt(j, k));
+      ctx.stroke();
+    }
+    /* reflet qui file le long du ruban */
+    const span = .55 * w, head = ((t * .055 + b * .29) % 1.5 - .25) * w, x0 = head - span / 2, x1 = head + span / 2;
+    if (x1 > -20 && x0 < w + 20) {
+      const lg = ctx.createLinearGradient(x0, 0, x1, 0);
+      lg.addColorStop(0, hexA(col, 0)); lg.addColorStop(.5, hexA(col, dark ? .95 : .8)); lg.addColorStop(1, hexA(col, 0));
+      ctx.strokeStyle = lg; ctx.lineWidth = small ? 1.4 : 1.8; ctx.beginPath();
+      let on = false;
+      for (let j = 0; j < N; j++) { if (X[j] < x0 - step || X[j] > x1 + step) continue; const y = yAt(j, .5); on ? ctx.lineTo(X[j], y) : (ctx.moveTo(X[j], y), on = true); }
       ctx.stroke();
     }
   }
+}
+
+/* ---------- Fonds animés des en-têtes (patch 2.0) ----------
+   Même langage que la couverture (traits fins, couleurs à faible opacité, mouvement lent,
+   aucune interaction), décliné par page :
+   - matières : un ruban de soie à la couleur de la matière, avec son écho, sur une lueur ;
+   - Séance : un cadran de montre en traits fins, avec une aiguille qui balaie ;
+   - Mes notes : des lignes de crête superposées, comme des relevés qui ondulent ;
+   - Lexique : une trame de points façon similigravure, traversée par une onde.
+   Chaque dessin est estompé vers la gauche (là où est le texte) par un seul masque en
+   dégradé, reste plafonné à 30 i/s, s'arrête hors écran et se fige en mode allégé
+   (cf. canvasLoop). */
+function fadeLeft(ctx, w, h, from = .18, to = .62){
+  ctx.globalCompositeOperation = "destination-in";
+  const g = ctx.createLinearGradient(w * from, 0, w * to, 0);
+  g.addColorStop(0, "rgba(0,0,0,0)"); g.addColorStop(1, "#000");
+  ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+  ctx.globalCompositeOperation = "source-over";
+}
+function drawSilk(ctx, w, h, t, o){
+  const step = w < 600 ? 10 : 12, N = Math.ceil((w + 40) / step) + 1, dark = isDark();
+  const X = new Float32Array(N), CY = new Float32Array(N), TW = new Float32Array(N);
+  for (let j = 0; j < N; j++) {
+    X[j] = -20 + j * step; const u = X[j] / w;
+    CY[j] = o.y + Math.sin(u * o.f + t * o.s + o.ph) * o.amp + Math.sin(u * o.f * 2.6 + t * o.s * 1.7 + o.ph) * o.amp * .18;
+    TW[j] = o.W * Math.cos(u * 2.2 - t * o.s * .6 + o.ph * 1.3);
+  }
+  const yAt = (j, k) => CY[j] + k * TW[j];
+  ctx.beginPath();
+  for (let j = 0; j < N; j++) j ? ctx.lineTo(X[j], yAt(j, -.5)) : ctx.moveTo(X[j], yAt(j, -.5));
+  for (let j = N - 1; j >= 0; j--) ctx.lineTo(X[j], yAt(j, .5));
+  ctx.closePath(); ctx.fillStyle = hexA(o.col, (dark ? .08 : .06) * o.a); ctx.fill();
+  ctx.lineWidth = 1;
+  for (let i = 0; i < o.per; i++) {
+    const k = i / (o.per - 1) - .5, edge = i === 0 || i === o.per - 1;
+    ctx.beginPath(); ctx.strokeStyle = hexA(o.col, (edge ? .55 : .1 + .3 * i / o.per) * o.a);
+    for (let j = 0; j < N; j++) j ? ctx.lineTo(X[j], yAt(j, k)) : ctx.moveTo(X[j], yAt(j, k));
+    ctx.stroke();
+  }
+  const span = .5 * w, head = ((t * .05 + o.ph * .2) % 1.5 - .25) * w, x0 = head - span / 2, x1 = head + span / 2;
+  if (x1 > 0 && x0 < w) {
+    const lg = ctx.createLinearGradient(x0, 0, x1, 0);
+    lg.addColorStop(0, hexA(o.col, 0)); lg.addColorStop(.5, hexA(o.col, (dark ? .95 : .8) * o.a)); lg.addColorStop(1, hexA(o.col, 0));
+    ctx.strokeStyle = lg; ctx.lineWidth = 1.6; ctx.beginPath(); let on = false;
+    for (let j = 0; j < N; j++) { if (X[j] < x0 - step || X[j] > x1 + step) continue; const y = yAt(j, .5); on ? ctx.lineTo(X[j], y) : (ctx.moveTo(X[j], y), on = true); }
+    ctx.stroke();
+  }
+}
+const HERO = {
+  silk: k => (s, t) => {
+    const {ctx, w, h} = s; ctx.clearRect(0, 0, w, h); if (w < 2) return;
+    const col = C[k] || C.ink, small = w < 600, dark = isDark();
+    const gx = w * (.76 + .06 * Math.sin(t * .08)), gy = h * (.5 + .12 * Math.sin(t * .06)), r = Math.max(w * .4, h);
+    const gr = ctx.createRadialGradient(gx, gy, 0, gx, gy, r);
+    gr.addColorStop(0, hexA(col, dark ? .22 : .14)); gr.addColorStop(1, hexA(col, 0));
+    ctx.fillStyle = gr; ctx.fillRect(0, 0, w, h);
+    drawSilk(ctx, w, h, t, {col, y:h * .52, amp:h * .16, f:4.2, s:.32, ph:0, W:small ? 26 : 64, per:small ? 9 : 15, a:1});
+    drawSilk(ctx, w, h, t, {col, y:h * .66, amp:h * .1, f:3.1, s:.26, ph:2.4, W:small ? 12 : 26, per:small ? 5 : 8, a:.55});
+    fadeLeft(ctx, w, h, small ? .1 : .22, small ? .7 : .6);
+  },
+  dial(s, t){
+    const {ctx, w, h} = s; ctx.clearRect(0, 0, w, h); if (w < 2) return;
+    const small = w < 600, cx = w * (small ? .86 : .83), cy = h * .56, R = Math.min(h * (small ? .36 : .42), w * .3), ink = C.ink;
+    ctx.lineWidth = 1;
+    for (let i = 1; i <= 5; i++) { ctx.beginPath(); ctx.arc(cx, cy, R * i / 5, 0, 7); ctx.strokeStyle = hexA(ink, .07 + .02 * i); ctx.stroke(); }
+    const rot = t * .05;
+    for (let i = 0; i < 60; i++) {
+      const a = rot + i / 60 * Math.PI * 2, big = i % 5 === 0, r0 = R * (big ? .9 : .95);
+      ctx.beginPath(); ctx.moveTo(cx + Math.cos(a) * r0, cy + Math.sin(a) * r0); ctx.lineTo(cx + Math.cos(a) * R, cy + Math.sin(a) * R);
+      ctx.strokeStyle = hexA(ink, big ? .45 : .18); ctx.lineWidth = big ? 1.4 : 1; ctx.stroke();
+    }
+    /* aiguille qui balaie, avec une traîne en éventail */
+    const sw = -Math.PI / 2 + (t * .35) % (Math.PI * 2);
+    for (let i = 0; i < 26; i++) {
+      const a = sw - i * .03;
+      ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx + Math.cos(a) * R * .86, cy + Math.sin(a) * R * .86);
+      ctx.strokeStyle = hexA(ink, .5 * Math.pow(1 - i / 26, 2.2)); ctx.lineWidth = i ? 1 : 1.6; ctx.stroke();
+    }
+    ctx.beginPath(); ctx.arc(cx, cy, 3.5, 0, 7); ctx.fillStyle = ink; ctx.fill();
+    fadeLeft(ctx, w, h, small ? .2 : .35, small ? .75 : .65);
+  },
+  ridges(s, t){
+    const {ctx, w, h} = s; ctx.clearRect(0, 0, w, h); if (w < 2) return;
+    const small = w < 600, n = small ? 10 : 16, top = h * .2, gap = (h * .78 - top) / n, x0 = w * (small ? .35 : .45), x1 = w - (small ? 10 : 40), step = small ? 6 : 8;
+    for (let i = 0; i < n; i++) {
+      const base = top + (i + 1) * gap, ph = i * .7;
+      ctx.beginPath(); ctx.moveTo(x0, base);
+      for (let x = x0; x <= x1; x += step) {
+        const u = (x - x0) / (x1 - x0), env = Math.pow(Math.sin(u * Math.PI), 3);
+        const y = base - env * gap * (1.6 + Math.sin(t * .4 + ph) * .6) * (.55 + .45 * Math.sin(u * 9 + t * .7 + ph * 1.3) * Math.sin(u * 4.3 - t * .3 + i));
+        ctx.lineTo(x, y);
+      }
+      ctx.lineTo(x1, base); ctx.fillStyle = C.bg; ctx.fill();
+      ctx.strokeStyle = hexA(C.ink, .22 + .3 * (i / n)); ctx.lineWidth = 1; ctx.stroke();
+    }
+    fadeLeft(ctx, w, h, small ? .3 : .42, small ? .7 : .62);
+  },
+  dots(s, t){
+    const {ctx, w, h} = s; ctx.clearRect(0, 0, w, h); if (w < 2) return;
+    const small = w < 600, g = small ? 14 : 20, x0 = w * (small ? .3 : .42), B = 5;
+    /* points regroupés en 5 niveaux d'opacité : 5 remplissages par image au lieu d'un par point */
+    const paths = Array.from({length:B}, () => new Path2D());
+    for (let y = g / 2; y < h; y += g) { const wy = Math.sin(y * .02 + t * .3) * 1.6;
+      for (let x = x0 + g / 2; x < w; x += g) {
+        const v = Math.sin(x * .018 - t * .9 + wy) * .5 + .5, sz = .6 + v * v * (g * .28);
+        paths[Math.min(B - 1, Math.floor(v * B))].rect(x - sz / 2, y - sz / 2, sz, sz);
+      } }
+    ctx.fillStyle = C.ink;
+    for (let i = 0; i < B; i++) { ctx.globalAlpha = .12 + .4 * (i + .5) / B; ctx.fill(paths[i]); }
+    ctx.globalAlpha = 1;
+    fadeLeft(ctx, w, h, small ? .3 : .42, small ? .75 : .66);
+  }
+};
+function heroArt(root, draw){
+  const hdr = $(".shero", root); if (!hdr) return;
+  const cv = el("canvas", {class:"shero-cv", "aria-hidden":"true"});
+  hdr.prepend(cv); canvasLoop(cv, draw);
 }
 
 /* ---------- Navigation ---------- */
@@ -1867,7 +2089,7 @@ const qDue = e => e.due || addDays(e.d, QINTERVALLES[0]);
 /* null = à faire · revoir = raté · reviser = réussi mais l'échéance est passée · fait = réussi, à jour */
 const qState = (D, q) => { const e = D[q]; if (!e) return null; if (e.st === "revoir") return "revoir"; return qDue(e) <= todayISO() ? "reviser" : "fait"; };
 const fmtDay = iso => { const [y, m, d] = iso.split("-"); return +d + " " + MOIS[+m - 1]; };
-function markFiches(){ const D = qDone(); $$(".fl a[data-q]").forEach(a => { const st = qState(D, a.dataset.q); a.classList.toggle("qdone", st === "fait"); a.classList.toggle("qrevoir", st === "revoir"); a.classList.toggle("qreviser", st === "reviser"); }); }
+function markFiches(){ const D = qDone(); $$(".fl [data-q]").forEach(a => { const st = qState(D, a.dataset.q); a.classList.toggle("qdone", st === "fait"); a.classList.toggle("qrevoir", st === "revoir"); a.classList.toggle("qreviser", st === "reviser"); }); }
 
 /* ---------- Composant : interro ---------- */
 function mountQuiz(host, vols){
@@ -1976,16 +2198,19 @@ function viewHome(root){
   splitLetters($(".w", mast));
   const cover = canvasLoop(coverCv, ribbons);
   const hdr = $(".cover", root);
-  hdr.addEventListener("pointermove", e => { const r = hdr.getBoundingClientRect(); cover.mx = (e.clientX - r.left) / r.width; cover.my = (e.clientY - r.top) / r.height; });
-  hdr.addEventListener("pointerleave", () => { cover.my = -1; });
 
-  /* Manifeste, mot à mot */
-  const man = el("p", {});
-  const words = "Chaque cours tapé en classe est relu deux fois, | corrigé sans rien inventer, | rangé dans le Drive | puis condensé en fiche. | Ce site est la porte d'entrée.".split(" ");
-  for (const w of words) { if (w === "|") continue; man.append(el("span", {class:"w"}, w), " "); }
-  $$(".w", man).forEach(s => { if (["Drive", "fiche.", "d'entrée."].includes(s.textContent)) s.innerHTML = "<em>" + s.textContent + "</em>"; });
-  root.append(el("section", {class:"manifest g max", "aria-label":"Présentation"}, man));
-  if (!MOTION) $$(".w", man).forEach(s => s.style.opacity = 1);
+  /* Patch 2.0 : le manifeste et « Du cours à la fiche » répétaient le texte de la couverture et
+     celui du Drive ; ils sont fusionnés dans le texte du bloc Drive. Ordre de la page : outils et
+     QCM à reprendre, matières, derniers cours, Drive, contact. */
+  const Dq = qDone(), dues = VOLUMES.filter(v => v.q && ["revoir", "reviser"].includes(qState(Dq, v.q)));
+  root.append(el("section", {class:"tools-top g max", "aria-label":"Outils"},
+    dues.length ? el("div", {class:"due-strip"}, el("p", {class:"k"}, el("span", {"aria-hidden":"true"}, "↻ "), dues.length + " QCM à reprendre aujourd'hui"),
+      el("div", {class:"due-list"}, dues.map(v => { const st = qState(Dq, v.q); return el("a", {href:"#" + v.m, class:"due " + st, style:`--c:var(--${v.m})`},
+        el("span", {class:"dot"}), v.code + " " + v.n + " · " + v.t, el("span", {class:"k muted"}, st === "revoir" ? "à revoir" : "à réviser")); }))) : null,
+    el("div", {class:"tiles-small tools-s"},
+      el("a", {class:"tile-s", href:"#lexique"}, el("b", {}, "Lexique des notions"), el("span", {class:"k muted"}, LEX.length + " notions →")),
+      el("a", {class:"tile-s", href:"#seance"}, el("b", {}, "Minuteur de séance"), el("span", {class:"k muted"}, "Ouvrir →")),
+      el("a", {class:"tile-s", href:"#notes"}, el("b", {}, "Mes notes et projection bac"), el("span", {class:"k muted"}, "Privé →")))));
 
   /* Le Drive */
   const counts = countsOf;
@@ -2004,18 +2229,10 @@ function viewHome(root){
   const drive = el("section", {class:"drive-sec g max", id:"drive", "aria-labelledby":"h-drive"},
     el("div", {}, el("p", {class:"k", style:"margin:0 0 18px"}, "Le Drive de la classe"),
       el("h2", {class:"wide-t", id:"h-drive"}, "Tout est ", el("em", {}, "dans le Drive")),
-      el("p", {class:"lead"}, "Un dossier par matière, un fichier par cours, daté et titré, et un dossier de fiches de révision. Le lien est partagé avec toute la classe."),
+      el("p", {class:"lead"}, "Chaque cours tapé en classe est relu deux fois, corrigé sans rien inventer, rangé ici avec sa date et son titre, puis condensé en fiche et en QCM. Un dossier par matière, partagé avec toute la classe."),
       el("a", {class:"btn xl", href:FOLDER(DRIVE_ROOT), target:"_blank", rel:"noopener"}, "Ouvrir le Drive", arrow()),
       stats),
     tree);
-  root.append(drive);
-
-  /* Comment ça marche : trois étapes réelles */
-  const steps = [["En classe", "Les cours sont tapés en direct, pendant l'heure, puis enregistrés le jour même."], ["Le soir", "Chaque cours est relu deux fois, corrigé sans rien ajouter, et rangé dans le Drive avec sa date et son titre."], ["Les fiches", "Les notions, auteurs, dates et pièges sont condensés en fiches, puis transformés en QCM pour s'entraîner."]];
-  root.append(el("section", {class:"steps g max", "aria-labelledby":"h-steps"},
-    el("h2", {class:"serif-t", id:"h-steps", html:"Du cours <em>à la fiche</em>"}),
-    el("div", {class:"steps-grid"}, el("div", {class:"steps-line", "aria-hidden":"true"}, el("i")),
-      steps.map(([t, p], i) => el("div", {class:"step"}, el("div", {class:"n"}, pad(i + 1)), el("h3", {}, t), el("p", {}, p))))));
 
   /* Les matières */
   const tile = k => {
@@ -2026,19 +2243,11 @@ function viewHome(root){
     const st = canvasLoop(cv, PLATES[SUBJ[k].tile || SUBJ[k].plate], .65); st.p = .65;
     return a;
   };
-  const Dq = qDone(), dues = VOLUMES.filter(v => v.q && ["revoir", "reviser"].includes(qState(Dq, v.q)));
   root.append(el("section", {class:"subjects g max", "aria-labelledby":"h-subj"},
-    dues.length ? el("div", {class:"due-strip"}, el("p", {class:"k"}, el("span", {"aria-hidden":"true"}, "↻ "), dues.length + " QCM à reprendre aujourd'hui"),
-      el("div", {class:"due-list"}, dues.map(v => { const st = qState(Dq, v.q); return el("a", {href:"#" + v.m, class:"due " + st, style:`--c:var(--${v.m})`},
-        el("span", {class:"dot"}), v.code + " " + v.n + " · " + v.t, el("span", {class:"k muted"}, st === "revoir" ? "à revoir" : "à réviser")); }))) : null,
     el("div", {class:"sub-head"}, el("h2", {class:"serif-t", id:"h-subj", html:"Le tronc <em>commun</em>"}), el("p", {class:"muted"}, "Les matières que toute la classe suit.")),
     el("div", {class:"tiles"}, TRONC.map(tile)),
     el("div", {class:"sub-head spe-head"}, el("h2", {class:"serif-t", id:"h-spe", html:"Spécialités <em>& option</em>"}), el("p", {class:"muted"}, "SES, HGGSP et l'option droit, pour ceux qui les suivent. Les autres spécialités de la classe ne sont pas couvertes par ce Drive.")),
-    el("div", {class:"tiles tiles-3"}, SPE.map(tile)),
-    el("div", {class:"tiles-small tools-s"},
-      el("a", {class:"tile-s", href:"#notes"}, el("b", {}, "Mes notes et projection bac"), el("span", {class:"k muted"}, "Privé →")),
-      el("a", {class:"tile-s", href:"#seance"}, el("b", {}, "Minuteur de séance"), el("span", {class:"k muted"}, "Ouvrir →")),
-      el("a", {class:"tile-s", href:"#lexique"}, el("b", {}, "Lexique des notions"), el("span", {class:"k muted"}, LEX.length + " notions →")))));
+    el("div", {class:"tiles tiles-3"}, SPE.map(tile))));
 
   /* Vient de paraître */
   const track = el("div", {class:"track"});
@@ -2048,14 +2257,14 @@ function viewHome(root){
       el("div", {class:"ct"}, t),
       chapLabel(m, tag) ? el("div", {class:"k muted card-ch"}, chapLabel(m, tag)) : null,
       el("div", {class:"meta"}, el("span", {class:"k", style:"display:flex;gap:8px;align-items:center"}, el("span", {class:"dot", style:`--c:var(--${m})`}), MAT[m].nom), el("span", {class:"k muted"}, "Lire ↗")))); }
-  const paru = el("section", {class:"paru", id:"paru", "aria-labelledby":"h-paru"},
-    el("div", {class:"paru-head g max"}, el("h2", {class:"wide-t big-t", id:"h-paru", html:"Vient de <em>paraître</em>"}), el("p", {class:"k muted", style:"margin:0"}, nCours + " cours depuis la rentrée")), track,
-    COURS.length > 6 ? el("div", {class:"paru-more g"}, el("button", {class:"btn ghost", type:"button", onclick:() => { paru.classList.add("all"); if (ST) ST.refresh(); }}, `Voir les ${COURS.length - 6} autres cours`, el("span", {"aria-hidden":"true"}, "↓"))) : null);
-  root.append(paru);
+  const paru = el("section", {class:"paru stack g max", id:"paru", "aria-labelledby":"h-paru"},
+    el("div", {class:"paru-head"}, el("h2", {class:"serif-t", id:"h-paru", html:"Vient de <em>paraître</em>"}), el("p", {class:"k muted", style:"margin:0"}, nCours + " cours depuis la rentrée")), track,
+    COURS.length > 6 ? el("div", {class:"paru-more"}, el("button", {class:"btn ghost", type:"button", onclick:() => { paru.classList.add("all"); if (ST) ST.refresh(); }}, `Voir les ${COURS.length - 6} autres cours`, el("span", {"aria-hidden":"true"}, "↓"))) : null);
+  root.append(paru, drive);
   root.append(askSection(false));
 
   return () => {
-    if (!MOTION) { paru.classList.add("stack"); return; }
+    if (!MOTION) return;
     G.from($$(".mast .l", root), {yPercent:24, rotate:4, duration:1.3, ease:"expo.out", stagger:.035});
     G.from($(".mast em", root), {xPercent:40, rotate:-10, duration:1.5, ease:"expo.out", delay:.2});
     G.from($(".byline", root), {y:24, opacity:0, duration:1.2, ease:"power3.out", delay:.25});
@@ -2063,33 +2272,15 @@ function viewHome(root){
     G.from($(".cover-foot", root), {y:30, duration:1.2, ease:"power3.out", delay:.3});
     G.to($(".mast", root), {yPercent:-20, scale:.9, transformOrigin:"left bottom", ease:"none", scrollTrigger:{trigger:hdr, start:"top top", end:"bottom top", scrub:true}});
     ST.create({trigger:hdr, start:"top top", end:"bottom top", scrub:true, onUpdate:s => cover.p = s.progress});
-    G.to($$(".manifest .w", root), {opacity:1, stagger:.08, ease:"none", scrollTrigger:{trigger:".manifest", start:"top 78%", end:"bottom 45%", scrub:true}});
-    const mm = G.matchMedia();
-    mm.add("(min-width: 901px)", () => {
-      const bs = $$(".stat b", drive); bs.forEach(b => b.textContent = "0");
-      const tl = G.timeline({scrollTrigger:{trigger:drive, start:"top 58px", end:"+=110%", pin:true, scrub:.7, anticipatePin:1}});
-      const o = {p:0};
-      tl.fromTo($(".trunk", drive), {scaleY:0}, {scaleY:1, duration:1, ease:"none"}, 0)
-        .from($$(".tree .row", drive), {x:60, duration:.5, stagger:.06, ease:"power2.out"}, .05)
-        .fromTo($$(".tree .br", drive), {scaleX:0}, {scaleX:1, duration:.3, stagger:.06}, .05)
-        .to(o, {p:1, duration:1, ease:"none", onUpdate:() => bs.forEach(b => b.textContent = Math.round(+b.dataset.n * o.p))}, 0)
-        .from($("h2", drive), {x:40, duration:1, ease:"none"}, 0);
-      G.fromTo(".big-t", {xPercent:6}, {xPercent:-14, ease:"none", scrollTrigger:{trigger:"#paru", start:"top bottom", end:"bottom top", scrub:true}});
-      const tw = G.to($("#paru .track"), {x:() => -Math.max(0, $("#paru .track").scrollWidth - innerWidth), ease:"none", scrollTrigger:{trigger:"#paru", start:"top 58px", end:() => "+=" + Math.max(0, $("#paru .track").scrollWidth - innerWidth), pin:true, scrub:.8, invalidateOnRefresh:true}});
-      G.from($$("#paru .card"), {rotate:2, y:30, duration:.9, ease:"power3.out", stagger:.04, scrollTrigger:{trigger:"#paru", start:"top 70%"}});
-    });
-    mm.add("(max-width: 900px)", () => {
-      paru.classList.add("stack");
-      G.from($$(".tree .row", drive), {x:40, duration:.8, stagger:.05, ease:"power3.out", scrollTrigger:{trigger:drive, start:"top 70%"}});
-      G.fromTo($(".trunk", drive), {scaleY:0}, {scaleY:1, duration:1.2, ease:"power2.out", scrollTrigger:{trigger:drive, start:"top 70%"}});
-      const o = {p:0}; G.to(o, {p:1, duration:1.4, ease:"power2.out", scrollTrigger:{trigger:".stats", start:"top 85%"}, onUpdate:() => $$(".stat b", drive).forEach(b => b.textContent = Math.round(+b.dataset.n * o.p))});
-      return () => paru.classList.remove("stack");
-    });
-    G.fromTo($(".steps-line i", root), {scaleX:0}, {scaleX:1, ease:"none", scrollTrigger:{trigger:".steps-grid", start:"top 80%", end:"bottom 60%", scrub:true}});
-    G.from($$(".step", root), {y:50, duration:1, ease:"power3.out", stagger:.12, scrollTrigger:{trigger:".steps-grid", start:"top 80%"}});
+    /* Patch 2.0 : plus de sections épinglées (Drive, derniers cours) qui bloquaient le défilement
+       pendant plusieurs écrans ; de simples apparitions à l'arrivée. */
+    G.from($$(".tools-top .tile-s", root), {y:24, opacity:0, duration:.8, ease:"power3.out", stagger:.06, delay:.4});
+    G.from($$(".tree .row", drive), {x:40, duration:.8, stagger:.05, ease:"power3.out", scrollTrigger:{trigger:drive, start:"top 70%"}});
+    G.fromTo($(".trunk", drive), {scaleY:0}, {scaleY:1, duration:1.2, ease:"power2.out", scrollTrigger:{trigger:drive, start:"top 70%"}});
+    { const o = {p:0}; G.to(o, {p:1, duration:1.4, ease:"power2.out", scrollTrigger:{trigger:".stats", start:"top 85%"}, onUpdate:() => $$(".stat b", drive).forEach(b => b.textContent = Math.round(+b.dataset.n * o.p))}); }
+    G.from($$("#paru .card"), {y:24, opacity:0, duration:.7, ease:"power3.out", stagger:.05, scrollTrigger:{trigger:"#paru", start:"top 80%"}});
     $$(".tiles", root).forEach(g => G.from($$(".tile", g), {y:80, rotate:1.5, duration:1.1, ease:"expo.out", stagger:.08, scrollTrigger:{trigger:g, start:"top 85%"}}));
     $$(".serif-t", root).forEach(t => G.from(t, {x:-50, duration:1.1, ease:"expo.out", scrollTrigger:{trigger:t, start:"top 88%"}}));
-    return mm;
   };
 }
 
@@ -2261,10 +2452,28 @@ function flashToggleAll(btn){
   const allOn = $$(".fc-tile", sec).every(t => t.getAttribute("aria-expanded") === "true");
   flashSetAll(sec, !allOn);
 }
-function renderFicheNative(key){
+/* Patch 2.0 : une fiche n'est plus dépliée d'office. Chaque fiche du chapitre est une ligne
+   repliée (n°, titre, ce qu'elle contient) qui s'ouvre au clic ; la liste de liens Google
+   Docs qui doublait la fiche disparaît (le lien reste, discret, au bas de la fiche ouverte).
+   `seen` (partagé par les fiches d'un même chapitre, dans l'ordre) évite de redéfinir une
+   notion déjà définie dans une fiche précédente : on la renvoie vers cette fiche. Les dates
+   qui ne font que répéter la durée de vie d'un auteur déjà affichée sur sa carte sont omises. */
+function ficheParts(f, seen){
+  const all = LEX.filter(e => e.m === f.m && e.s.includes(f.n));
+  const notions = all.filter(e => !seen || !seen.has(e.t)), deja = all.filter(e => seen && seen.has(e.t));
+  const lifes = (f.auteurs || []).map(a => a.dates).filter(Boolean);
+  const dates = (f.dates || []).filter(d => !lifes.some(x => String(d).includes(x)));
+  return {notions, deja, dates};
+}
+function ficheMeta(f, P){
+  const n = (v, s, p) => v ? v + " " + (v > 1 ? p : s) : null;
+  return [n(P.notions.length, "notion", "notions"), n(f.vocab?.length, "mot", "mots"), n(f.auteurs?.length, "auteur", "auteurs"), n(f.pieges?.length, "piège", "pièges"), f.corrige?.length ? "corrigé" : null].filter(Boolean).join(" · ");
+}
+function renderFicheNative(key, seen){
   const f = FICHE_DATA[key];
   if (!f) return null;
-  const notions = LEX.filter(e => e.m === f.m && e.s.includes(f.n));
+  const {notions, deja, dates} = ficheParts(f, seen);
+  if (seen) { for (const e of notions) if (!seen.has(e.t)) seen.set(e.t, f.n); }
   const vol = VOLUMES.find(v => v.m === f.m && v.n === f.n);
   const secHead = (icon, title, count, flashSec) => el("div", {class:"fc-h"},
     ficheIcon(icon), el("h5", {}, title), count ? el("span", {class:"fc-count"}, count) : null,
@@ -2272,14 +2481,15 @@ function renderFicheNative(key){
   const flashTile = (front, back) => el("button", {type:"button", class:"fc-tile", "aria-expanded":"false", onclick:ev => flashFlip(ev.currentTarget)},
     el("span", {class:"fc-front"}, front),
     el("span", {class:"fc-back", hidden:true}, back));
+  const groupes = {};
+  for (const e of deja) (groupes[seen.get(e.t)] ||= []).push(e.t);
   return el("div", {class:"chap-fiche"},
-    el("div", {class:"chap-fiche-h"},
-      vol ? el("span", {class:"k"}, vol.code + " " + vol.n) : null,
-      el("h4", {}, f.titre)),
     notions.length ? el("section", {class:"fiche-sec"},
       secHead("notions", "Notions clés", notions.length, true),
       el("div", {class:"fc-grid"}, notions.map(n => flashTile(n.t, n.d))),
       el("p", {class:"fc-hint muted"}, "Clique sur une notion pour révéler sa définition.")) : null,
+    deja.length ? el("p", {class:"fiche-deja"}, el("span", {class:"k muted"}, "Déjà définies"),
+      Object.entries(groupes).map(([n, ts]) => el("span", {}, ts.join(", "), el("span", {class:"muted"}, " → fiche " + n + ". ")))) : null,
     f.vocab?.length ? el("section", {class:"fiche-sec"},
       secHead("vocab", "Vocabulaire et expressions", f.vocab.length, true),
       el("div", {class:"fc-grid fc-grid-vocab"}, f.vocab.map(v => flashTile(v.en, v.fr))),
@@ -2291,9 +2501,9 @@ function renderFicheNative(key){
         el("div", {},
           el("p", {class:"auteur-n"}, a.n, a.dates ? el("span", {class:"k muted"}, " · " + a.dates) : null),
           el("p", {class:"auteur-d"}, a.d)))))) : null,
-    f.dates?.length ? el("section", {class:"fiche-sec"},
-      secHead("dates", "Dates et chiffres à retenir", f.dates.length),
-      el("div", {class:"fiche-dates"}, f.dates.map(d => el("span", {class:"date-chip"}, ficheIcon("dates"), d)))) : null,
+    dates.length ? el("section", {class:"fiche-sec"},
+      secHead("dates", "Dates et chiffres à retenir", dates.length),
+      el("div", {class:"fiche-dates"}, dates.map(d => el("span", {class:"date-chip"}, ficheIcon("dates"), d)))) : null,
     f.pieges?.length ? el("section", {class:"fiche-sec"},
       secHead("pieges", "Pièges à éviter", f.pieges.length),
       el("div", {class:"fiche-pieges"}, f.pieges.map(p => el("div", {class:"piege-item" + (p.flag ? " flag" : "")},
@@ -2304,23 +2514,33 @@ function renderFicheNative(key){
         el("span", {class:"corrige-q"}, c.q), el("p", {class:"corrige-r"}, c.r))))) : null,
     f.dissert ? el("section", {class:"fiche-sec"},
       secHead("dissert", "Repères pour la dissertation et l'épreuve composée"),
-      el("p", {class:"fiche-dissert"}, f.dissert)) : null);
+      el("p", {class:"fiche-dissert"}, f.dissert)) : null,
+    vol ? el("p", {class:"fiche-src"}, el("a", {class:"k muted", href:DOC(vol.id), target:"_blank", rel:"noopener"}, "Version Google Docs de la fiche ↗")) : null);
 }
 
 /* Contenu ponctuel propre à un chapitre précis (clé CHAPITRES), affiché dans son chap-b
    uniquement une fois le chapitre déplié — jamais comme section à part sur la page matière.
    Une entrée peut renvoyer un seul élément ou un tableau d'éléments (plusieurs fiches). */
+/* Depuis le patch 2.0, les fiches natives ne se déclarent plus ici : toute fiche du chapitre
+   (VOLUMES) qui a son contenu dans FICHE_DATA (clé "matière-numéro") s'affiche d'elle-même,
+   repliée, dans la liste des fiches. Ne reste ici que le contenu ponctuel hors fiche. */
 const CHAP_EXTRA = {
-  ses1: () => [renderFicheNative("ses-01"), renderFicheNative("ses-02"), renderFicheNative("ses-03")],
-  hggsp5: () => renderFicheNative("hggsp-01"),
-  hgG1: () => [renderFicheNative("hg-01"), renderFicheNative("hg-02"), renderFicheNative("hg-03"), hgMemo()],
-  philoBonheur: () => [renderFicheNative("philo-01"), renderFicheNative("philo-02")],
-  philoRaison: () => renderFicheNative("philo-03"),
-  ang1: () => renderFicheNative("ang-01"),
-  es2a: () => renderFicheNative("es-01"),
-  droitI1: () => renderFicheNative("droit-01"),
-  droitI2: () => renderFicheNative("droit-02")
+  hgG1: () => hgMemo()
 };
+/* Une ligne de fiche : repliée (n°, titre, contenu en bref, état du QCM), dépliable si la fiche
+   a sa version native ; sinon simple lien vers le document (méthodologie, programme…). */
+function ficheRow(v, seen){
+  const key = v.m + "-" + v.n, f = /^\d\d$/.test(v.n) ? FICHE_DATA[key] : null;
+  const num = el("span", {class:"n"}, v.n === "M" ? "Méth." : v.n === "P" ? "Prog." : "N° " + v.n);
+  const kw = LEX.filter(e => e.m === v.m && e.s.includes(v.n)).map(e => e.t).join(" ");
+  if (!f) return el("li", {"data-kw":kw}, el("a", {href:DOC(v.id), target:"_blank", rel:"noopener", "data-q":v.q || null}, num, el("span", {class:"t"}, v.t), el("span", {class:"go"}, arrow())));
+  const body = renderFicheNative(key, seen), P = ficheParts(f, null);
+  return el("li", {"data-kw":kw}, el("details", {class:"fiche-d"},
+    el("summary", {"data-q":v.q || null}, num,
+      el("span", {class:"fd-t"}, el("span", {class:"t"}, v.t), el("span", {class:"k muted fd-m"}, ficheMeta(f, P))),
+      el("span", {class:"chap-i", "aria-hidden":"true"})),
+    body));
+}
 function renderChapters(k){
   const chs = chaptersOf(k);
   const items = chs.map((c, i) => {
@@ -2335,9 +2555,8 @@ function renderChapters(k){
         el("span", {class:"chap-m k muted"}, meta),
         el("span", {class:"chap-i", "aria-hidden":"true"})),
       el("div", {class:"chap-b"},
-        c.vols.length ? el("div", {class:"chap-col"}, el("h4", {class:"k muted"}, "Fiches de révision"),
-          el("ul", {class:"fl"}, c.vols.map(v => el("li", {"data-kw":LEX.filter(e => e.m === v.m && e.s.includes(v.n)).map(e => e.t).join(" ")}, el("a", {href:DOC(v.id), target:"_blank", rel:"noopener", "data-q":v.q || null},
-            el("span", {class:"n"}, v.n === "M" ? "Méth." : v.n === "P" ? "Prog." : "N° " + v.n), el("span", {class:"t"}, v.t), el("span", {class:"go"}, arrow())))))) : null,
+        c.vols.length ? (() => { const seen = new Map(); return el("div", {class:"chap-col chap-fiches"}, el("h4", {class:"k muted"}, "Fiches de révision"),
+          el("ul", {class:"fl"}, c.vols.map(v => ficheRow(v, seen)))); })() : null,
         c.cours.length || c.texts.length ? el("div", {class:"chap-col"}, el("h4", {class:"k muted"}, "Les cours, dans l'ordre"),
           c.texts.length ? el("ol", {class:"cl"}, c.texts.map(v => el("li", {}, el("a", {href:DOC(v.id), target:"_blank", rel:"noopener"}, el("span", {class:"d"}, "Texte"), el("span", {class:"t"}, v.t), el("span", {class:"go"}, arrow()))))) : null,
           c.cours.length ? c.groups.flatMap(g => [g.t ? el("p", {class:"part k"}, g.t) : null,
@@ -2387,10 +2606,9 @@ function renderChapters(k){
     relayout();
   };
   input.addEventListener("input", run);
-  const all = v => () => { items.forEach(d => { if (!d.hidden) d.open = v; }); relayout(); };
+  /* Patch 2.0 : plus de « Tout ouvrir / Tout fermer » (tout ouvrir redonnait une page de vingt écrans) */
   return el("div", {class:"chap-wrap"},
-    el("div", {class:"chap-tools"}, input, count,
-      el("div", {class:"chap-btns"}, el("button", {type:"button", class:"k chap-b1", onclick:all(true)}, "Tout ouvrir"), el("button", {type:"button", class:"k chap-b1", onclick:all(false)}, "Tout fermer"))),
+    el("div", {class:"chap-tools"}, input, count),
     idx, empty, wrap);
 }
 
@@ -2428,6 +2646,7 @@ function viewSubject(root, k){
         el("div", {class:"btns"},
           el("a", {class:"btn", href:FOLDER(m.cours), target:"_blank", rel:"noopener"}, "Dossier dans le Drive", arrow()))))));
   splitLetters(h1);
+  heroArt(root, HERO.silk(k));
 
   let plateState = null;
   if (!cours.length && !vols.length) {
@@ -2448,8 +2667,7 @@ function viewSubject(root, k){
       plateState = canvasLoop(cv, PLATES[S.plate]);
     }
     root.append(el("section", {class:"bychap g max", "aria-labelledby":"h-ch"},
-      el("div", {class:"bychap-h"}, el("h2", {class:"serif-t", id:"h-ch", html:"Par <em>chapitre</em>"}),
-        el("p", {class:"muted"}, "Fiches, cours et QCM rangés chapitre par chapitre, dans l'ordre du programme. Le chapitre en cours est ouvert ; clique sur un titre pour ouvrir les autres.")),
+      el("div", {class:"bychap-h"}, el("h2", {class:"serif-t", id:"h-ch", html:"Par <em>chapitre</em>"})),
       renderChapters(k)));
     markFiches();
   }
@@ -2482,7 +2700,8 @@ let actx = null;
 function viewSeance(root){
   root.append(el("header", {class:"shero g", style:"--c:var(--ink)"}, el("span", {class:"band", "aria-hidden":"true"}),
     el("div", {class:"max"}, el("div", {class:"top"}, el("span", {class:"k"}, "Outil"), el("span", {class:"k muted"}, "Travailler par blocs")),
-      el("h1", {class:"wide-t"}, "Séance"), el("p", {class:"full", style:"color:var(--ink-2)"}, "Choisis une matière : son minuteur, ses fiches, ses cours et ses QCM, rangés par chapitre, au même endroit."))));
+      el("h1", {class:"wide-t"}, "Séance"), el("p", {class:"full", style:"color:var(--ink-2)"}, "Un minuteur pour travailler par blocs, et des raccourcis vers ce qu'il reste à réviser."))));
+  heroArt(root, HERO.dial);
   const sec = el("section", {class:"seance g max"},
     el("div", {},
       el("div", {class:"ctrls"}, el("label", {class:"f", for:"t-mat"}, el("span", {}, "Matière"), el("select", {id:"t-mat"})),
@@ -2547,17 +2766,28 @@ function viewSeance(root){
   });
   $("#t-reset", sec).addEventListener("click", () => { stop(); endAt = null; runMat = null; remain = mins * 60000; save(); paint(); lock(); goB.textContent = "Commencer"; status.textContent = "Prêt"; });
 
-  /* la matière choisie affiche, en dessous, tout ce qu'il faut pour la réviser */
+  /* Patch 2.0 : sous le minuteur, des raccourcis seulement (QCM à reprendre, chapitres), au
+     lieu d'une copie complète de la page matière. Chaque lien ouvre la matière directement
+     sur le bon chapitre. */
   const renderRev = () => {
     const k = tMat.value, S = SUBJ[k], m = MAT[k]; rev.textContent = "";
     const chs = chaptersOf(k);
     const head = el("section", {class:"rev-h g max"},
       el("h2", {class:"serif-t", html:"Réviser <em>" + (S ? S.short : m.nom) + "</em>"}),
-      el("div", {class:"btns"}, el("a", {class:"btn ghost", href:FOLDER(m.cours), target:"_blank", rel:"noopener"}, "Dossier dans le Drive", arrow())));
+      el("div", {class:"btns"}, SUBJ[k] ? el("a", {class:"btn", href:"#" + k}, "Page " + S.short, arrow()) : null, el("a", {class:"btn ghost", href:FOLDER(m.cours), target:"_blank", rel:"noopener"}, "Drive", arrow())));
     rev.append(head);
     if (!chs.length) { rev.append(el("section", {class:"empty g max"}, el("p", {}, "Rien n'a encore été numérisé dans cette matière : le minuteur marche quand même, et le dossier est prêt dans le Drive."))); return; }
-    rev.append(el("section", {class:"bychap g max"}, renderChapters(k)));
-    markFiches();
+    const D = qDone(), lab = {revoir:"À revoir", reviser:"À réviser"};
+    const qs = chs.flatMap(c => c.qvols.map(v => ({c, v, st:qState(D, v.q) || "afaire"})));
+    const urgent = qs.filter(x => x.st === "revoir" || x.st === "reviser"), todo = qs.filter(x => x.st === "afaire");
+    const qrow = x => el("li", {}, el("a", {href:"#" + k, onclick:e => { e.preventDefault(); goChap(k, x.c.k); }},
+      el("span", {class:"d"}, x.v.code + " " + x.v.n), el("span", {class:"t"}, x.v.t, el("span", {class:"k sr-st" + (x.st === "afaire" ? " muted" : " hot")}, lab[x.st] || "À faire")), el("span", {class:"go"}, arrow())));
+    rev.append(el("section", {class:"rev-short g max"},
+      qs.length ? el("div", {}, el("h3", {class:"k muted"}, urgent.length ? urgent.length + " QCM à reprendre" + (todo.length ? " · " + todo.length + " à faire" : "") : todo.length ? todo.length + " QCM à faire" : "Tous les QCM sont faits ✓"),
+        el("ol", {class:"cl"}, [...urgent, ...todo].slice(0, 6).map(qrow))) : null,
+      el("div", {}, el("h3", {class:"k muted"}, "Les chapitres"),
+        el("ol", {class:"cl"}, chs.map(c => el("li", {}, el("a", {href:"#" + k, onclick:e => { e.preventDefault(); goChap(k, c.k); }},
+          el("span", {class:"d"}, c.cur ? "En cours" : c.meth ? "Méthode" : ""), el("span", {class:"t"}, c.t), el("span", {class:"go"}, arrow()))))))));
   };
   tMat.addEventListener("change", () => { if (!MAT[tMat.value]) tMat.value = "ses"; store.set("td.mat", tMat.value); setC(); paint(); renderRev(); });
 
@@ -2625,6 +2855,7 @@ function viewNotes(root){
       el("h1", {class:"wide-t"}, "Mes notes"),
       el("p", {class:"full", style:"color:var(--ink-2)"}, "Ton relevé de notes et une estimation de ta note au bac 2027. Personne d'autre ne voit tes notes : elles restent dans ton navigateur."))));
 
+  heroArt(root, HERO.ridges);
   const sec = el("div", {class:"g max nb"}); root.append(sec);
   sec.append(el("p", {class:"nb-warn", id:"nb-store", hidden:true}, "Ton navigateur bloque l'enregistrement (navigation privée ?). Tes notes seront perdues en fermant la page : utilise le code de transfert plus bas pour les garder."));
 
@@ -2983,6 +3214,7 @@ function viewLexique(root){
       el("h1", {class:"wide-t"}, "Lexique"),
       el("p", {class:"full", style:"color:var(--ink-2)"}, "Toutes les notions définies dans les fiches de révision, à chercher en un mot."))));
 
+  heroArt(root, HERO.dots);
   const sec = el("section", {class:"lx g max"}); root.append(sec);
   const input = el("input", {type:"search", id:"lx-q", placeholder:innerWidth < 520 ? "Cherche une notion…" : "Cherche une notion : ataraxie, ZEE, Gini…", autocomplete:"off", spellcheck:"false", "aria-label":"Chercher une notion", enterkeyhint:"search"});
   const filt = el("div", {class:"lx-filt", role:"group", "aria-label":"Filtrer par matière"});
@@ -3066,9 +3298,17 @@ function build(k){
   if (MOTION) { ctx = G.context(() => { const r = animate(); if (r && r.revert) mmCtx = r; }); ST.clearScrollMemory(); requestAnimationFrame(() => { ST.clearScrollMemory(); ST.refresh(); window.scrollTo(0, 0); ST.update(); }); }
   else animate();
 }
+/* Lien direct vers un chapitre d'une matière (depuis la page Séance) : la matière s'ouvre,
+   puis le chapitre demandé se déplie et vient en haut de l'écran. */
+let GO_CH = null;
+function goChap(k, ch){ GO_CH = ch; if (routeKey() === k) jumpChap(); else location.hash = k; }
+function jumpChap(){
+  if (!GO_CH) return; const id = GO_CH; GO_CH = null;
+  setTimeout(() => { const d = document.getElementById("ch-" + id); if (!d) return; d.open = true; if (ST) ST.refresh(); d.scrollIntoView({behavior:"auto", block:"start"}); }, 160);
+}
 function go(){
   const k = routeKey();
-  if (first || !MOTION) { first = false; build(k); window.scrollTo(0, 0); return; }
+  if (first || !MOTION) { first = false; build(k); window.scrollTo(0, 0); jumpChap(); return; }
   const c = $("#curtain"), label = $("#curtain-t");
   c.style.setProperty("--c", k === "accueil" || k === "seance" || k === "notes" || k === "lexique" ? "var(--ink)" : `var(--${k})`);
   label.textContent = k === "accueil" ? "Terminale D" : k === "seance" ? "Séance" : k === "notes" ? "Mes notes" : k === "lexique" ? "Lexique" : SUBJ[k].big;
@@ -3076,7 +3316,7 @@ function go(){
     .set(c, {transformOrigin:"bottom"})
     .to(c, {scaleY:1, duration:MOB.matches ? .28 : .55, ease:"expo.inOut"})
     .to(label, {opacity:1, duration:MOB.matches ? .1 : .2}, "-=.15")
-    .add(() => { build(k); window.scrollTo(0, 0); view.focus({preventScroll:true}); })
+    .add(() => { build(k); window.scrollTo(0, 0); view.focus({preventScroll:true}); jumpChap(); })
     .set(c, {transformOrigin:"top"})
     .to(label, {opacity:0, duration:MOB.matches ? .1 : .2}, MOB.matches ? "+=.02" : "+=.15")
     .to(c, {scaleY:0, duration:MOB.matches ? .3 : .65, ease:"expo.inOut"}, "-=.05");
