@@ -882,6 +882,36 @@ html.mp-open{overflow:hidden}
 .mp-rec{color:var(--ses);margin-top:auto}
 .mp-opt:hover .mp-rec,.mp-opt:focus-visible .mp-rec{color:inherit}
 @media (max-width:420px){ .mp-opts{grid-template-columns:1fr} .mp-opt{min-height:0} }
+/* ---------- Annonce Patch 2.0 (écran plein, une seule fois) ---------- */
+html.an-open{overflow:hidden}
+.an{position:fixed;inset:0;z-index:190;background:var(--bg);color:var(--ink);overflow:auto;overscroll-behavior:contain;display:grid;isolation:isolate}
+.an-cv{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+.an-in{position:relative;align-self:end;width:min(1180px,100%);margin:0 auto;padding:calc(env(safe-area-inset-top,0px) + 56px) var(--gut) calc(env(safe-area-inset-bottom,0px) + 36px);display:grid;gap:clamp(14px,2.4vw,26px)}
+.an-k{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;margin:0}
+.an-big{margin:0;font-family:var(--grotesk);font-weight:900;font-stretch:125%;font-size:clamp(120px,34vw,420px);line-height:.78;letter-spacing:-.07em;display:flex;align-items:flex-start;gap:.04em;margin-left:-.04em}
+.an-big small{font-size:.2em;letter-spacing:-.02em;font-stretch:100%;font-weight:700;text-transform:uppercase;line-height:1;margin-top:.1em;color:var(--ses)}
+.an-t{margin:0;font-family:var(--serif);font-weight:300;font-style:italic;font-size:clamp(28px,5.2vw,64px);line-height:1.05;letter-spacing:-.02em;max-width:24ch;text-wrap:balance}
+.an-t b{font-weight:300;color:var(--ses)}
+.an-l{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--ink)}
+.an-l li{display:grid;gap:6px;align-content:start;padding:14px 18px 6px 0}
+.an-l li+li{padding-left:18px;border-left:1px solid var(--line)}
+.an-l h3{margin:0;font-family:var(--grotesk);font-weight:700;font-size:19px;line-height:1.1}
+.an-l p{margin:0;font-size:16px;line-height:1.4;color:var(--ink-2)}
+.an-l .k{color:var(--ses)}
+.an-act{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.an-go{all:unset;cursor:pointer;font-family:var(--grotesk);font-weight:700;font-size:17px;padding:15px 26px;background:var(--ink);color:var(--bg);transition:transform .2s,background .2s}
+.an-go:hover{transform:translateY(-2px);background:var(--ses);color:#fff}
+.an-go:focus-visible,.an-skip:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+.an-skip{all:unset;cursor:pointer;font-family:var(--grotesk);font-weight:600;font-size:15px;padding:14px 8px;color:var(--ink-2);text-decoration:underline;text-underline-offset:4px}
+.an::after{content:"";position:fixed;inset:auto 0 0 0;height:70%;z-index:-1;pointer-events:none;background:linear-gradient(to top,var(--bg) 18%,transparent)}
+.an-in>*{animation:anUp .8s cubic-bezier(.2,.7,.2,1) both}
+.an-in>:nth-child(2){animation-delay:.08s}.an-in>:nth-child(3){animation-delay:.2s}.an-in>:nth-child(4){animation-delay:.32s}.an-in>:nth-child(5){animation-delay:.44s}
+@keyframes anUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+.an.out{opacity:0;transition:opacity .35s}
+html.no-gpu .an-in>*{animation:none}
+@media (prefers-reduced-motion:reduce){.an-in>*{animation:none}.an.out{transition:none}}
+@media (max-width:860px){ .an-l{grid-template-columns:1fr 1fr} .an-l li:nth-child(3){padding-left:0;border-left:0} .an-l li:nth-child(n+3){border-top:1px solid var(--line);margin-top:10px} }
+@media (max-width:520px){ .an-l{grid-template-columns:1fr} .an-l li,.an-l li+li{padding:12px 0 4px;border-left:0} .an-l li+li{border-top:1px solid var(--line)} .an-l li:nth-child(3){margin-top:0} .an-l li:nth-child(n+3){margin-top:0} .an-l p{font-size:15px} .an-go{flex:1;text-align:center} }
 /* Mode téléphone choisi sur un grand écran : le site tient dans une colonne de téléphone */
 html.mode-m.mode-wide{--gut:20px}
 html.mode-m.mode-wide body{max-width:430px;margin-inline:auto;box-shadow:0 0 0 1px var(--line)}
@@ -1176,6 +1206,7 @@ const COURS = [
 /* Nouveautés du site : une entrée par mise à jour poussée en ligne, la plus récente en premier.
    Enrichi à chaque push (demande d'Adam du 29/09/2026). */
 const NOUVEAUTES = [
+  {d:"2026-10-01", t:"Un écran d'annonce pour le Patch 2.0", body:"À la première visite, un grand écran présente le Patch 2.0 : les quatre changements principaux (fiches repliées, Séance allégée, accueil clarifié, fonds animés) sur un fond de rubans animés. Il ne s'affiche qu'une seule fois par navigateur et se ferme avec « Découvrir le site », « Passer » ou la touche Échap."},
   {d:"2026-10-01", t:"Patch 2.0 : un site plus clair, avec moins de contenu d'un coup", body:"Grosse mise à jour. Dans un chapitre, chaque fiche est maintenant une ligne repliée qui s'ouvre au clic, au lieu de toutes les fiches dépliées les unes sous les autres, et la liste de liens qui faisait doublon disparaît. Une notion déjà définie dans une fiche précédente du chapitre n'est plus répétée. La page Séance garde son minuteur et propose des raccourcis vers les QCM à faire et les chapitres, au lieu de recopier toute la page matière. L'accueil met les outils en haut et regroupe les textes qui se répétaient. Les petits textes ne se chevauchent plus sur téléphone. Côté animations, la couverture de l'accueil a des rubans de soie qui se vrillent, et chaque en-tête a maintenant son propre fond animé : un ruban à la couleur de la matière, un cadran de montre pour la Séance, des lignes de crête pour Mes notes et une trame de points pour le Lexique. Tout est lent, sans interaction avec la souris, et se fige sur les ordinateurs sans accélération graphique."},
   {d:"2026-10-01", t:"La page Droit se déplie en deux chapitres plus courts", body:"L'introduction générale de Droit (DGEMC) était un seul chapitre très long à déplier (deux fiches, deux QCM, deux documents du professeur d'un coup). Elle est maintenant coupée en deux : « Qu'est-ce que le droit ? » et « Le droit et ses fonctions », chacun avec son propre contenu, plus court à lire."},
   {d:"2026-10-01", t:"Le site s'allège automatiquement sur les ordinateurs sans accélération graphique", body:"Sur un ordinateur dont le navigateur n'a pas d'accélération graphique activée (souvent le cas sur du matériel plus ancien ou bas de gamme), le site le détecte au chargement et passe seul en mode allégé : flou désactivé sur les barres fixes, animations coupées, illustrations affichées directement sans boucle. Le site reste identique partout ailleurs."},
@@ -1551,7 +1582,7 @@ function modePicker(){
   const rec = NARROW.matches ? "m" : "d";
   const phone = '<svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><rect x="9" y="3" width="14" height="26" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M14 25h4" stroke="currentColor" stroke-width="1.6"/></svg>';
   const pc = '<svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><rect x="3" y="6" width="26" height="16" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M11 27h10M16 22v5" stroke="currentColor" stroke-width="1.6"/></svg>';
-  const opt = (m, icon, t, d) => el("button", {type:"button", class:"mp-opt" + (m === rec ? " rec" : ""), onclick:() => { box.remove(); document.documentElement.classList.remove("mp-open"); setMode(m); }},
+  const opt = (m, icon, t, d) => el("button", {type:"button", class:"mp-opt" + (m === rec ? " rec" : ""), onclick:() => { box.remove(); document.documentElement.classList.remove("mp-open"); setMode(m); annonce(); }},
     svg(icon), el("span", {class:"mp-t"}, t), el("span", {class:"mp-d"}, d), m === rec ? el("span", {class:"k mp-rec"}, "Conseillé pour cet écran") : null);
   const box = el("div", {class:"mp", role:"dialog", "aria-modal":"true", "aria-labelledby":"mp-h"},
     el("div", {class:"mp-in"},
@@ -1563,6 +1594,46 @@ function modePicker(){
   document.documentElement.classList.add("mp-open");
   document.body.append(box);
   $(".mp-opt.rec", box).focus({preventScroll:true});
+}
+/* Annonce du Patch 2.0 : un écran plein, montré une seule fois par navigateur */
+const ANNONCE_KEY = "td.annonce";
+function annonce(){
+  let seen = null; try { seen = localStorage.getItem(ANNONCE_KEY); } catch {}
+  if (seen === "2.0" || $(".an") || $(".mp")) return;
+  const pts = [
+    ["01", "Fiches repliées", "Une ligne par fiche, qui s'ouvre au clic. Fini le mur de texte."],
+    ["02", "Séance allégée", "Le minuteur, et des raccourcis vers tes QCM et tes chapitres."],
+    ["03", "Accueil clarifié", "Les outils en haut, les textes en double supprimés."],
+    ["04", "Fonds animés", "Rubans, cadran, crêtes, points : chaque page a le sien."]];
+  const cv = el("canvas", {class:"an-cv", "aria-hidden":"true"});
+  const close = () => {
+    try { localStorage.setItem(ANNONCE_KEY, "2.0"); } catch {}
+    st.dispose?.(); box.classList.add("out");
+    setTimeout(() => { box.remove(); document.documentElement.classList.remove("an-open"); window.scrollTo(0, 0); }, REDUCED ? 0 : 350);
+    removeEventListener("keydown", onKey);
+  };
+  const onKey = e => { if (e.key === "Escape") close(); };
+  const go1 = el("button", {type:"button", class:"an-go", onclick:close}, "Découvrir le site");
+  const box = el("div", {class:"an", role:"dialog", "aria-modal":"true", "aria-labelledby":"an-h"}, cv,
+    el("div", {class:"an-in"},
+      el("p", {class:"k an-k"}, el("span", {}, "Mise à jour"), el("span", {class:"muted"}, "1er octobre 2026")),
+      el("h2", {class:"an-big", id:"an-h", "aria-label":"Patch 2.0"}, el("span", {"aria-hidden":"true"}, "2.0"), el("small", {"aria-hidden":"true"}, "Patch")),
+      el("p", {class:"an-t"}, "Un site plus ", el("b", {}, "clair"), ", avec moins de contenu d'un coup."),
+      el("ul", {class:"an-l"}, pts.map(([n, t, d]) => el("li", {}, el("span", {class:"k"}, n), el("h3", {}, t), el("p", {}, d)))),
+      el("div", {class:"an-act"}, go1, el("button", {type:"button", class:"an-skip", onclick:close}, "Passer"))));
+  document.documentElement.classList.add("an-open");
+  document.body.append(box);
+  const st = canvasLoop(cv, (s, t) => {
+    const {ctx, w, h} = s; ctx.clearRect(0, 0, w, h); if (w < 2) return;
+    const small = w < 600, a = [C.ses, C.hggsp, C.philo, C.ang];
+    const W = small ? 1 : 1.7;
+    drawSilk(ctx, w, h, t, {col:a[0], y:h * .3, amp:h * .13, f:3.4, s:.30, ph:0, W:64 * W, per:small ? 9 : 15, a:1});
+    drawSilk(ctx, w, h, t, {col:a[2], y:h * .42, amp:h * .1, f:4.1, s:.24, ph:2.1, W:44 * W, per:small ? 7 : 11, a:.8});
+    drawSilk(ctx, w, h, t, {col:a[1], y:h * .2, amp:h * .08, f:2.8, s:.2, ph:4.2, W:30 * W, per:small ? 5 : 8, a:.65});
+    drawSilk(ctx, w, h, t, {col:a[3], y:h * .5, amp:h * .07, f:3.6, s:.34, ph:5.5, W:22 * W, per:small ? 4 : 6, a:.5});
+  });
+  addEventListener("keydown", onKey);
+  go1.focus({preventScroll:true});
 }
 const LOWP = matchMedia("(pointer: coarse), (max-width: 760px)").matches || REDUCED;
 /* Pendant un défilement au doigt, les illustrations se figent un instant : le défilement reste fluide */
@@ -3329,6 +3400,7 @@ markTheme();
 markMode();
 go();
 modePicker();
+annonce();
 addEventListener("load", () => ST && ST.refresh());
 document.fonts?.ready.then(() => { fitType(); if (ST) ST.refresh(); });
 
