@@ -25,7 +25,7 @@ try{
   if (__noGpu) document.documentElement.classList.add("no-gpu");
 } catch(e) {}
 </script>
-<meta name="description" content="Terminale D — un projet d'Adam et Kenza pour la Terminale D 2026-2027, le magazine de révision de la classe : cours tapés en classe, fiches de révision vérifiées, pour SES, HGGSP, Histoire-Géo, Philosophie, Anglais et Droit (DGEMC).">
+<meta name="description" content="Terminale D — le magazine de révision de la classe : cours tapés en classe, fiches de révision vérifiées, pour SES, HGGSP, Histoire-Géo, Philosophie, Anglais et Droit (DGEMC).">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://tdlfi.space/">
 <meta property="og:title" content="Terminale D">
@@ -182,8 +182,6 @@ a{color:inherit}
 .ask-l .k{margin:0 0 14px}.ask-l h2{margin:0}
 .ask-lead{font-family:var(--serif);font-size:clamp(19px,1.6vw,23px);line-height:1.45;margin:0 0 26px;max-width:36em}
 .ask-act{display:flex;flex-wrap:wrap;gap:14px 22px;align-items:center}
-.wa-num{text-decoration:none;letter-spacing:.06em}.wa-num:hover{color:var(--ink)}
-.btn.wa svg{flex:none}
 @media (max-width:900px){ .ask{grid-template-columns:1fr;align-items:start;padding-block:60px 70px} }
 .tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:44px}
 .tile{position:relative;min-height:300px;background:var(--bg-2);text-decoration:none;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;padding:20px;isolation:isolate}
@@ -1111,10 +1109,11 @@ html.mode-m .offline-banner,html:not(.mode-d) .offline-banner{padding-bottom:cal
 <div class="offline-banner" id="offline-banner" role="status" aria-live="polite">Hors connexion · le site marche, mais les liens vers le Drive ont besoin du réseau</div>
 <main id="view" tabindex="-1"></main>
 <footer class="colophon g max">
-  <p><b style="color:var(--ink);font-weight:500">Terminale D</b>, le magazine de révision de la classe, un projet d'Adam et Kenza pour 2026–2027. Cours tapés en classe, relus deux fois, fiches vérifiées ; en cas de doute, la parole du professeur prime.</p>
+  <p><b style="color:var(--ink);font-weight:500">Terminale D</b>, le magazine de révision de la classe. Cours tapés en classe, relus deux fois, fiches vérifiées ; en cas de doute, la parole du professeur prime.</p>
   <nav aria-label="Liens utiles">
     <a class="k muted" href="https://docs.google.com/document/d/1-01XoXc3TBBmgmZkVjlQqwadu1qUHWpLWduGNw02vU0/edit" target="_blank" rel="noopener">Emploi du temps ↗</a>
     <a class="k muted" href="https://drive.google.com/drive/folders/1BfgnH2luYOf4F3WkCsYZWQNARDiwrsi8" target="_blank" rel="noopener">Le Drive ↗</a>
+    <a class="k muted" href="https://tn.linkedin.com/in/adam-cappuccio-a08614351" target="_blank" rel="noopener">Adam sur LinkedIn ↗</a>
   </nav>
   <div class="modesw themesw" role="group" aria-label="Thème">
     <span class="k muted">Thème</span>
@@ -1206,6 +1205,7 @@ const COURS = [
 /* Nouveautés du site : une entrée par mise à jour poussée en ligne, la plus récente en premier.
    Enrichi à chaque push (demande d'Adam du 29/09/2026). */
 const NOUVEAUTES = [
+  {d:"2026-10-01", t:"Contact simplifié, page d'accueil plus sobre", body:"Pour une idée, une erreur dans une fiche ou un cours manquant, la section « Une demande ? » renvoie maintenant vers LinkedIn. Le bandeau de la couverture annonce simplement « Cours & Fiches »."},
   {d:"2026-10-01", t:"Un écran d'annonce pour le Patch 2.0", body:"À la première visite, un grand écran présente le Patch 2.0 : les quatre changements principaux (fiches repliées, Séance allégée, accueil clarifié, fonds animés) sur un fond de rubans animés. Il ne s'affiche qu'une seule fois par navigateur et se ferme avec « Découvrir le site », « Passer » ou la touche Échap."},
   {d:"2026-10-01", t:"Patch 2.0 : un site plus clair, avec moins de contenu d'un coup", body:"Grosse mise à jour. Dans un chapitre, chaque fiche est maintenant une ligne repliée qui s'ouvre au clic, au lieu de toutes les fiches dépliées les unes sous les autres, et la liste de liens qui faisait doublon disparaît. Une notion déjà définie dans une fiche précédente du chapitre n'est plus répétée. La page Séance garde son minuteur et propose des raccourcis vers les QCM à faire et les chapitres, au lieu de recopier toute la page matière. L'accueil met les outils en haut et regroupe les textes qui se répétaient. Les petits textes ne se chevauchent plus sur téléphone. Côté animations, la couverture de l'accueil a des rubans de soie qui se vrillent, et chaque en-tête a maintenant son propre fond animé : un ruban à la couleur de la matière, un cadran de montre pour la Séance, des lignes de crête pour Mes notes et une trame de points pour le Lexique. Tout est lent, sans interaction avec la souris, et se fige sur les ordinateurs sans accélération graphique."},
   {d:"2026-10-01", t:"La page Droit se déplie en deux chapitres plus courts", body:"L'introduction générale de Droit (DGEMC) était un seul chapitre très long à déplier (deux fiches, deux QCM, deux documents du professeur d'un coup). Elle est maintenant coupée en deux : « Qu'est-ce que le droit ? » et « Le droit et ses fonctions », chacun avec son propre contenu, plus court à lire."},
@@ -2259,9 +2259,9 @@ function viewHome(root){
   root.append(el("header", {class:"cover g"}, coverCv,
     el("div", {class:"issue max", style:"width:100%"}, el("span", {class:"k"}, "N° 03 · Septembre 2026"), el("span", {class:"k muted"}, "Lycée Français International Mhamed Driss · Sousse"), majBadge()),
     el("div", {class:"max", style:"width:100%;align-self:center"}, mast),
-    el("div", {class:"byline max", style:"width:100%", "aria-label":"Un projet d'Adam et Kenza pour la Terminale D, 2026-2027"},
-      el("div", {class:"by-k l", "aria-hidden":"true"}, el("span", {class:"k"}, "Un projet"), el("span", {class:"k muted"}, "pour la Terminale D")),
-      el("p", {class:"by-names", "aria-hidden":"true"}, "Adam", el("span", {class:"amp"}, "&"), "Kenza"),
+    el("div", {class:"byline max", style:"width:100%", "aria-label":"Cours et fiches pour la Terminale D, 2026-2027"},
+      el("div", {class:"by-k l", "aria-hidden":"true"}, el("span", {class:"k"}, "Révisions"), el("span", {class:"k muted"}, "pour la Terminale D")),
+      el("p", {class:"by-names", "aria-hidden":"true"}, "Cours", el("span", {class:"amp"}, "&"), "Fiches"),
       el("div", {class:"by-k r", "aria-hidden":"true"}, el("span", {class:"k muted"}, "Terminale D"), el("span", {class:"by-year"}, "2026–2027"))),
     el("div", {class:"cover-foot max", style:"width:100%"},
       el("p", {}, "Tous les cours de la classe, relus et rangés dans un Drive, avec des fiches de révision et de quoi s'entraîner, matière par matière."),
@@ -2355,20 +2355,16 @@ function viewHome(root){
   };
 }
 
-/* ---------- Section « Une demande ? » (WhatsApp) ---------- */
-const WA_NUM = "33661449345", WA_SHOW = "+33 6 61 44 93 45";
-const WA_URL = "https://wa.me/" + WA_NUM + "?text=" + encodeURIComponent("Salut Adam, j'ai une demande pour le site Terminale D : ");
-function waIcon(){ const s = document.createElementNS("http://www.w3.org/2000/svg", "svg"); s.setAttribute("viewBox", "0 0 24 24"); s.setAttribute("width", "18"); s.setAttribute("height", "18"); s.setAttribute("aria-hidden", "true");
-  s.innerHTML = '<path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M4 20l1.2-3.6A8 8 0 1 1 8 19z"/><path fill="currentColor" d="M9.2 8.3c.2-.4.5-.4.7-.4h.5c.2 0 .4 0 .5.4l.7 1.6c.1.2 0 .4-.1.6l-.5.6c.6 1.1 1.5 2 2.6 2.6l.6-.6c.2-.2.4-.2.6-.1l1.6.7c.3.1.4.3.4.5v.5c0 .3-.1.6-.5.8-.5.3-1.3.5-2.3.1a9 9 0 0 1-4.7-4.7c-.4-1-.2-1.8.1-2.3z"/>'; return s; }
+/* ---------- Section « Une demande ? » (LinkedIn) ---------- */
+const LI_URL = "https://tn.linkedin.com/in/adam-cappuccio-a08614351";
 function askSection(mobile){
-  const lead = "Un cours qui manque, une erreur dans une fiche, une notion à ajouter au lexique, une idée pour le site : écris-moi directement.";
-  const btn = el("a", {class:"btn wa", href:WA_URL, target:"_blank", rel:"noopener"}, waIcon(), "Écrire sur WhatsApp");
-  const num = el("a", {class:"k muted wa-num", href:"tel:+" + WA_NUM}, WA_SHOW);
+  const lead = "Un cours qui manque, une erreur dans une fiche, une notion à ajouter au lexique, une idée pour le site : écris-moi sur LinkedIn.";
+  const btn = el("a", {class:"btn", href:LI_URL, target:"_blank", rel:"noopener"}, "Me contacter sur LinkedIn ↗");
   if (mobile) return el("section", {class:"m-sec m-ask g", "aria-labelledby":"m-h-ask"},
-    el("h2", {class:"m-h", id:"m-h-ask"}, "Une demande ?"), el("p", {class:"m-txt"}, lead), el("div", {class:"m-links"}, btn, num));
+    el("h2", {class:"m-h", id:"m-h-ask"}, "Une demande ?"), el("p", {class:"m-txt"}, lead), el("div", {class:"m-links"}, btn));
   return el("section", {class:"ask g max", "aria-labelledby":"h-ask"},
     el("div", {class:"ask-l"}, el("p", {class:"k muted"}, "Contact · Adam"), el("h2", {class:"serif-t", id:"h-ask", html:"Une <em>demande</em> ?"})),
-    el("div", {class:"ask-r"}, el("p", {class:"ask-lead"}, lead), el("div", {class:"ask-act"}, btn, num)));
+    el("div", {class:"ask-r"}, el("p", {class:"ask-lead"}, lead), el("div", {class:"ask-act"}, btn)));
 }
 
 /* ---------- Vue : accueil, version téléphone ---------- */
@@ -2380,8 +2376,8 @@ function viewHomeM(root){
     el("div", {class:"m-issue"}, el("span", {class:"k"}, "N° 03 · Sept. 2026"), majBadge()),
     el("h1", {class:"m-mast", "aria-label":"Terminale D"}, "Terminale", el("em", {"aria-hidden":"true"}, "D")),
     el("div", {class:"m-by"},
-      el("span", {class:"k muted"}, "Un projet pour la Terminale D · 2026–2027"),
-      el("p", {class:"by-names"}, "Adam", el("span", {class:"amp"}, "&"), "Kenza")),
+      el("span", {class:"k muted"}, "Révisions pour la Terminale D · 2026–2027"),
+      el("p", {class:"by-names"}, "Cours", el("span", {class:"amp"}, "&"), "Fiches")),
     el("p", {class:"m-lead"}, "Les cours de la classe, relus et rangés dans le Drive, avec des fiches et des QCM pour s'entraîner."),
     el("div", {class:"m-ribbon", "aria-hidden":"true"}, cv)));
   const cover = canvasLoop(cv, ribbons, .3); cover.p = .3;
