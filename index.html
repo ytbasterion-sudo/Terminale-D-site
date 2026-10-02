@@ -1152,6 +1152,7 @@ const VOLUMES = [
   {m:"ses", code:"SES", n:"03", t:"EC1.1, le corrigé", ch:"ses1", id:"1_ChptLCNx_A8ScEalEqyskGky1V47nFZW_FPkdnmLmo", w:58, h:240, q:"ses3"},
   {m:"ses", code:"SES", n:"M", t:"Méthodologie du bac", ch:"sesM", id:"1ZHfZX08gPUt5wqTUusuA_cFGK2g9ianHoil5YXXTol0", w:54, h:228},
   {m:"ses", code:"SES", n:"P", t:"Programme de l'année", ch:"sesM", id:"1MVa1B9teMl7gJzxuga_O5yekOX0K3CXOwMaZCougksk", w:40, h:214},
+  {m:"ses", code:"SES", n:"04", t:"Les sources de la croissance économique", ch:"ses2", id:"19dcmYHSb5_-IkSjsdNW_pHP2-rEGy5RKojJq7pJM0pE", w:36, h:200},
   {m:"hggsp", code:"HGGSP", n:"01", t:"Environnement, entre exploitation et protection", ch:"hggsp5", id:"1pQu0DYhwBwF27OJNLD8gnEqw-c2dsZ-I4gY8Kbkd1hE", w:84, h:270, q:"hggsp1"},
   {m:"hggsp", code:"HGGSP", n:"M", t:"Méthodologie du bac", ch:"hggspM", id:"17y4Sf192M_g_H34-NaoX4DzNySR0dOh8GkDV60YVVEQ", w:52, h:228},
   {m:"hggsp", code:"HGGSP", n:"P", t:"Programme de l'année", ch:"hggspM", id:"1dviXGbJuJtNbArI_yOa1s4zggFRiITI4HhdS7b2bED8", w:38, h:214},
@@ -1176,6 +1177,9 @@ const VOLUMES = [
 ];
 
 const COURS = [
+  ["2026-10-01","ses","Les sources de la croissance économique","1LcPrHX-kKuyTchaz9Zn6oGKIdVXoCb_SsEPRiWEuLSA","ses2"],
+  ["2026-09-30","hggsp","Les limites planétaires et la grande accélération","1uERCoLrMcNjeSMn0Dqtd70ME1xVM9DWDGxyOfHy6ek0","hggsp5:axe1"],
+  ["2026-09-30","hg","La maritimisation et les détroits stratégiques : le cas du port de Yangzi","1-cpgufEv5RU7NBmyFjWREiO6QarS8uD0LdiF2aNtnHs","hgG1:p1"],
   ["2026-09-25","es","L'alternateur, rotor, stator et induction","1xK0iA0gH36z573QyT7DP3SDOWDJBRJ3EEdstVSta3Ds","es2a"],
   ["2026-09-25","ses","Les facteurs sociodémographiques de la stratification sociale","1UDlqxuIRANEOI9BZkrtEqpFjdPFX4r-bMMQ9NGe8yv4","ses1:p2"],
   ["2026-09-25","hg","Les mers, réserves de ressources : les ressources halieutiques","1KNrHhaW6r2dMylCf6vou5pdD9StvmrEjR7PFjHfKwGs","hgG1:p2"],
@@ -1205,6 +1209,7 @@ const COURS = [
 /* Nouveautés du site : une entrée par mise à jour poussée en ligne, la plus récente en premier.
    Enrichi à chaque push (demande d'Adam du 29/09/2026). */
 const NOUVEAUTES = [
+  {d:"2026-10-02", t:"Nouveau chapitre SES et « Vient de paraître » à jour", body:"Le chapitre 2 de SES, « Les sources de la croissance économique », est arrivé avec sa fiche et ses notions de lexique. « Vient de paraître » affichait un cours du 25 septembre comme le plus récent alors que deux cours plus récents (Histoire-Géo sur les détroits stratégiques, HGGSP sur la grande accélération) existaient déjà : c'est corrigé, et leurs fiches ont été complétées avec les repères qui manquaient."},
   {d:"2026-10-01", t:"Contact simplifié, page d'accueil plus sobre", body:"Pour une idée, une erreur dans une fiche ou un cours manquant, la section « Une demande ? » renvoie maintenant vers LinkedIn. Le bandeau de la couverture annonce simplement « Cours & Fiches »."},
   {d:"2026-10-01", t:"Un écran d'annonce pour le Patch 2.0", body:"À la première visite, un grand écran présente le Patch 2.0 : les quatre changements principaux (fiches repliées, Séance allégée, accueil clarifié, fonds animés) sur un fond de rubans animés. Il ne s'affiche qu'une seule fois par navigateur et se ferme avec « Découvrir le site », « Passer » ou la touche Échap."},
   {d:"2026-10-01", t:"Patch 2.0 : un site plus clair, avec moins de contenu d'un coup", body:"Grosse mise à jour. Dans un chapitre, chaque fiche est maintenant une ligne repliée qui s'ouvre au clic, au lieu de toutes les fiches dépliées les unes sous les autres, et la liste de liens qui faisait doublon disparaît. Une notion déjà définie dans une fiche précédente du chapitre n'est plus répétée. La page Séance garde son minuteur et propose des raccourcis vers les QCM à faire et les chapitres, au lieu de recopier toute la page matière. L'accueil met les outils en haut et regroupe les textes qui se répétaient. Les petits textes ne se chevauchent plus sur téléphone. Côté animations, la couverture de l'accueil a des rubans de soie qui se vrillent, et chaque en-tête a maintenant son propre fond animé : un ruban à la couleur de la matière, un cadran de montre pour la Séance, des lignes de crête pour Mes notes et une trame de points pour le Lexique. Tout est lent, sans interaction avec la souris, et se fige sur les ordinateurs sans accélération graphique."},
@@ -1224,6 +1229,7 @@ const NOUVEAUTES = [
 const CHAPITRES = {
   ses:[
     {k:"ses1", dir:"1EfwKZw5swvBA2Ga7eDqh7vB-4iYvjhM9", n:"Chapitre 1", sub:"Sociologie", t:"Comment est structurée la société française actuelle ?", parts:[["p1", "Partie I · Les analyses de la structure sociale"], ["p2", "Partie II · Facteurs et évolutions de la structure sociale"]]},
+    {k:"ses2", dir:"1ZSUI5JiIzowv6OMkUc2CugqqCTXegjwS", n:"Chapitre 2", sub:"Économie", t:"Quelles sont les sources et les défis de la croissance économique ?"},
     {k:"sesM", dir:"1yzhs8aHQa3i9A74BX8CIDabuo8Y9Hqpn", n:"Méthode", t:"Méthode du bac, programme et rentrée"}],
   hggsp:[
     {k:"hggsp5", dir:"1L6T1fjnZrR_AgNWQCNaltUhY8-uFf3Y7", n:"Thème 5", t:"L'environnement, entre exploitation et protection : un enjeu planétaire", parts:[["intro", "Introduction"], ["axe1", "Axe 1 · Exploiter, préserver et protéger"]]},
@@ -3220,6 +3226,7 @@ const LEX = [
   {t:"Espace maritime", m:"hg", s:["01"], d:"Étendue marine (mer, océan, façade, zone économique exclusive) considérée sous l'angle de ses usages économiques, stratégiques ou politiques."},
   {t:"Estuaire", m:"hg", s:["01"], d:"Embouchure fluviale ennoyée, stade intermédiaire entre ria et delta. Interface environnementale, d'échange et productive, créant des tensions (les installations portuaires migrent vers l'aval, ce qui accroît la pression sur les zones humides).", note:GEN},
   {t:"Rangée portuaire", m:"hg", s:["01"], d:"Ensemble hiérarchisé de ports se répartissant le trafic d'une façade maritime. Exemple chinois : cinq ensembles (golfe de Bohai, delta du Yangzi, littoral du Sud-Est, rivière des Perles, littoral du Sud-Ouest), trafic dominé par Shanghai et le delta du Yangzi."},
+  {t:"Détroit stratégique", m:"hg", s:["01"], d:"Passage maritime entre deux terres relativement proches, qui permet d'optimiser le flux maritime entre plusieurs espaces et qui dépend de la configuration naturelle du terrain (exemple : le détroit d'Ormuz)."},
   {t:"Corridor", m:"hg", s:["02"], d:"Espace étroit, terrestre ou maritime, qui relie deux zones stratégiques et concentre des flux intenses (transports, réseaux, marchandises)."},
   {t:"Canal", m:"hg", s:["02"], d:"Voie d'eau artificielle aménagée pour la navigation, qui raccourcit les distances ou relie deux mers ou océans."},
   {t:"Embouchure", m:"hg", s:["02"], d:"Endroit où un cours d'eau se jette dans une mer, un océan ou un lac."},
@@ -3263,6 +3270,10 @@ const LEX = [
   {t:"Pêche industrielle", m:"hg", s:["03"], d:"Pêche pratiquée à grande échelle, avec de grands navires, souvent loin des côtes, tournée vers les marchés mondiaux."},
   {t:"Aquaculture", m:"hg", s:["03"], d:"Élevage d'espèces aquatiques ; selon la FAO, elle fournit désormais plus de la moitié du poisson destiné à la consommation humaine.", note:"Définition générale, à confronter au cours."},
   {t:"Facteurs sociodémographiques", m:"ses", s:["02"], d:"L'âge et la position dans le cycle de vie, la composition familiale, le genre et le lieu de résidence ; ils s'ajoutent aux facteurs socio-économiques (PCS, revenu, diplôme) pour expliquer la stratification."},
+  {t:"Croissance économique", m:"ses", s:["04"], d:"Augmentation des richesses (de la production) réalisées sur le territoire d'un pays, sur une longue période, mesurée par le produit intérieur brut (PIB)."},
+  {t:"Produit intérieur brut (PIB)", m:"ses", s:["04"], d:"Indicateur qui mesure la valeur de la production réalisée sur le territoire national au cours d'une période donnée, en général un an.", note:"Définition générale, à confronter au cours."},
+  {t:"Facteurs de production", m:"ses", s:["04"], d:"Ressources combinées pour produire des biens et des services, notamment le facteur travail et le facteur capital."},
+  {t:"Productivité globale des facteurs (PGF)", m:"ses", s:["04"], d:"Mesure l'efficacité des facteurs de production, c'est-à-dire la quantité produite par chaque facteur de production. Son accroissement est, avec l'accumulation des facteurs de production, l'une des deux sources de la croissance économique."},
   {t:"Cycle de vie", m:"ses", s:["02"], d:"Étapes de la vie (célibat, couple, famille, veuvage) et modes de vie qui y sont associés."},
   {t:"Composition familiale", m:"ses", s:["02"], d:"Forme de la famille, taille de la famille et place dans la fratrie ; elle crée des inégalités de niveau de vie (un couple a en général un niveau de vie plus élevé qu'une famille monoparentale)."},
   {t:"Tertiarisation", m:"ses", s:["02"], d:"Hausse de la part du secteur tertiaire (les services : commerce, santé, éducation, administration, banque…) dans l'emploi et la production, au détriment de l'agriculture et de l'industrie.", note:"Notée « à définir » en cours : définition générale, à confronter au cours."}

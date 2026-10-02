@@ -73,6 +73,15 @@ const FICHE_DATA = {
     dissert: "Sujet type : peut-on encore parler de classes sociales dans la société française actuelle ? Plan en trois temps : pertinence historique (Marx, Weber) ; remise en cause (distance intra-classe, moyennisation, individualisation, genre) ; persistance (retour des inégalités, grande bourgeoisie comme classe pour soi). Comparer Marx et Weber sur quatre points : dimension, sphère d'analyse, nature du groupe, type de rapport. Illustrer avec les exemples du corrigé : employé administratif contre employé de commerce, plafond de verre, grande bourgeoisie. Rapports sociaux de genre : hiérarchisation homme-femme qui traverse chaque classe — cumul des désavantages dans les catégories populaires (précarité, temps partiel, postes subordonnés), plafond de verre dans les catégories supérieures malgré de meilleurs résultats scolaires en moyenne."
   },
 
+  "ses-04": {
+    titre: "Les sources de la croissance économique",
+    m: "ses", n: "04",
+    pieges: [
+      {t:"Croissance économique / développement", d:"Ne pas confondre : la croissance mesure une augmentation quantitative de la production (PIB), le développement une amélioration qualitative des conditions de vie d'une population. Distinction classique du programme, à confronter au cours."}
+    ],
+    dissert: "Sujet type : quelles sont les sources de la croissance économique ? Plan possible : d'abord l'accumulation des facteurs de production (augmentation du facteur travail, investissement en capital) ; ensuite le rôle de la productivité globale des facteurs, via la qualification et la motivation des travailleurs ainsi que l'investissement dans de nouvelles machines."
+  },
+
   "hggsp-01": {
     titre: "Environnement, entre exploitation et protection",
     m: "hggsp", n: "01",
@@ -80,6 +89,7 @@ const FICHE_DATA = {
       {n:"Laurent Testot", d:"Auteur de Cataclysmes, une histoire environnementale de l'humanité."},
       {n:"Greta Thunberg", d:"Discours à l'ONU, exemple de politisation d'un problème environnemental par la société civile."},
       {n:"Rapport Meadows", dates:"1972", d:"Club de Rome, Halte à la croissance ? — conception systémique, croissance menaçante si le rythme se poursuit."},
+      {n:"Conférence de Stockholm", dates:"1972", d:"Première grande conférence internationale sur l'environnement."},
       {n:"Edgar Morin", d:"La conscience écologique naît des interactions entre phénomènes naturels."},
       {n:"Ratzel / Vidal de la Blache", d:"Ratzel : déterminisme géographique (le milieu déterminerait les sociétés). Vidal de la Blache : possibilisme (les sociétés choisissent parmi les possibilités offertes par leur milieu). Repère mobilisable pour nuancer la pensée déterministe du cours ; le lien exact fait par le professeur entre les deux reste à confirmer."},
       {n:"Colbert", d:"Ordonnance des eaux et forêts (1669) : gestion de la forêt française, à la fois pour protéger la ressource et sécuriser le bois de marine de la flotte royale. Méthode associée en cours : enquêter, mesurer, ordonner."},
@@ -91,6 +101,8 @@ const FICHE_DATA = {
       "1788–1789 : grand hiver, crise frumentaire, prélude à la Révolution française.",
       "Anthropocène : terme proposé au début des années 2000 ; en mars 2024, l'instance internationale de stratigraphie a voté contre sa reconnaissance comme époque géologique officielle.",
       "1972 : rapport Meadows.",
+      "1987 : rapport Brundtland (Notre avenir à tous), qui popularise la notion de développement durable.",
+      "1992 : sommet de Rio, qui installe les sommets de la Terre comme rendez-vous internationaux réguliers sur l'environnement.",
       "Années 1930 : naissance de l'écologie comme science.",
       "Étude de cas de la forêt de Fontainebleau : 32 000 hectares, à environ 70 km au sud-est de Paris, plus de 3 millions de visiteurs par an ; schéma de cohérence territoriale (SCoT) de 2018.",
       "13 à 18 % : part du territoire français couverte par la forêt sous l'Ancien Régime.",
@@ -115,12 +127,17 @@ const FICHE_DATA = {
     m: "hg", n: "01",
     auteurs: [
       {n:"Thème 1 du programme (tronc commun)", d:"« Mers et océans au cœur de la mondialisation » (programme Eduscol)."},
-      {n:"Étude de cas : la Chine, premier pôle portuaire mondial", d:"Deng Xiaoping est associé en cours à l'émergence maritime chinoise à la fin des années 1980. Ses réformes d'ouverture ont en réalité commencé dès 1978 (zones économiques spéciales dès 1980, quatorze villes côtières ouvertes en 1984) : la fin des années 1980 correspond à l'approfondissement de cette ouverture plutôt qu'à son point de départ, à vérifier auprès du professeur."}
+      {n:"Étude de cas : la Chine, premier pôle portuaire mondial", d:"Deng Xiaoping est associé en cours à l'émergence maritime chinoise à la fin des années 1980. Ses réformes d'ouverture ont en réalité commencé dès 1978 (zones économiques spéciales dès 1980, quatorze villes côtières ouvertes en 1984) : la fin des années 1980 correspond à l'approfondissement de cette ouverture plutôt qu'à son point de départ, à vérifier auprès du professeur."},
+      {n:"Port de Yangzi (étude de cas Chine)", d:"Situé à 32 kilomètres de Shanghai, largement automatisé, ce qui garantit des échanges fluides malgré un flux de marchandises considérable ; il relie à la mondialisation maritime des régions sans façade maritime, comme le Sichuan, en import comme en export."}
     ],
-    dates: ["La Chine a adhéré à l'Organisation mondiale du commerce le 11 décembre 2001, étape majeure de son intégration à la mondialisation (repère général, non donné en cours, à confronter au cours)."],
+    dates: [
+      "La Chine a adhéré à l'Organisation mondiale du commerce le 11 décembre 2001, étape majeure de son intégration à la mondialisation (repère général, non donné en cours, à confronter au cours).",
+      "32 kilomètres : distance entre le port de Yangzi et Shanghai, exemple du rôle des infrastructures portuaires automatisées dans l'intégration des régions chinoises à la mondialisation maritime."
+    ],
     pieges: [
       {t:"Espace maritime / espace stratégique", d:"Un espace maritime n'est stratégique que s'il réunit certains critères : position remarquable, forte connectivité, concentration de flux, fonctions de commandement, concentration d'acteurs et d'armateurs."},
       {t:"Maritimisation / espace maritime", d:"La maritimisation est un processus (la hausse du rôle des mers dans l'économie mondiale), l'espace maritime est un lieu : ne pas les confondre."},
+      {t:"Détroit stratégique", d:"Passage maritime entre deux terres relativement proches, qui permet d'optimiser le flux maritime entre plusieurs espaces et qui dépend de la configuration naturelle du terrain (exemple : le détroit d'Ormuz)."},
       {t:"Estuaire, ria, delta", d:"L'estuaire est une vallée ennoyée par la mer avec comblement partiel, la ria une vallée ennoyée sans le même comblement, le delta une embouchure où les sédiments progressent sur la mer."},
       {t:"Émergence maritime chinoise", d:"Ne pas dater le début des réformes d'ouverture de la Chine de la seule fin des années 1980 : elles commencent dès 1978, la fin des années 1980 en marque l'approfondissement.", flag:true}
     ],
