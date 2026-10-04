@@ -465,6 +465,16 @@ details.nb-card > summary{padding-block:8px;margin-block:-8px}
 .nb textarea{min-height:104px;resize:vertical;border:1px solid var(--line);padding:12px;background:var(--bg);font-family:var(--mono);font-size:12.5px;line-height:1.5;word-break:break-all}
 .nb textarea:focus{border-color:var(--ink)}
 .nb-warn{margin:0 0 24px;padding:14px 16px;border-left:3px solid var(--bad);background:color-mix(in srgb,var(--bad) 8%,transparent)}
+/* Exemple rempli, pour comprendre la page avant de saisir ses propres notes */
+.nb-ex-go{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:10px;font-family:var(--grotesk);font-weight:600;font-size:14.5px;padding:12px 18px;margin-top:18px;border:1px solid var(--ink);color:var(--ink);transition:background .2s,color .2s}
+.nb-ex-go:hover{background:var(--ink);color:var(--bg)}
+.nb-ex-go:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+.nb-demo-bar{display:none;align-items:center;justify-content:space-between;gap:12px 20px;flex-wrap:wrap;margin:0 0 24px;padding:14px 18px;border:1px solid var(--ses);background:color-mix(in srgb,var(--ses) 10%,transparent)}
+.nb-demo-bar p{margin:0;font-family:var(--grotesk);font-size:14.5px}
+.nb-demo-bar b{color:var(--ses)}
+.nb.demo .nb-demo-bar{display:flex}
+.nb.demo input,.nb.demo select,.nb.demo textarea,.nb.demo .nb-add button,.nb.demo .nb-transfer button,.nb.demo .nb-chips button{pointer-events:none;opacity:.6}
+.nb.demo .nb-check{pointer-events:none;opacity:.6}
 .nb-card{border:1px solid var(--line);padding:20px 22px;background:var(--bg)}
 .nb-card h3{margin:0;font-family:var(--grotesk);font-weight:700;font-stretch:112%;font-size:20px}
 details.nb-card > summary{cursor:pointer;display:flex;justify-content:space-between;gap:10px 20px;flex-wrap:wrap;align-items:baseline;list-style:none}
@@ -880,36 +890,30 @@ html.mp-open{overflow:hidden}
 .mp-rec{color:var(--ses);margin-top:auto}
 .mp-opt:hover .mp-rec,.mp-opt:focus-visible .mp-rec{color:inherit}
 @media (max-width:420px){ .mp-opts{grid-template-columns:1fr} .mp-opt{min-height:0} }
-/* ---------- Annonce Patch 2.0 (écran plein, une seule fois) ---------- */
-html.an-open{overflow:hidden}
-.an{position:fixed;inset:0;z-index:190;background:var(--bg);color:var(--ink);overflow:auto;overscroll-behavior:contain;display:grid;isolation:isolate}
-.an-cv{position:fixed;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
-.an-in{position:relative;align-self:end;width:min(1180px,100%);margin:0 auto;padding:calc(env(safe-area-inset-top,0px) + 56px) var(--gut) calc(env(safe-area-inset-bottom,0px) + 36px);display:grid;gap:clamp(14px,2.4vw,26px)}
-.an-k{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;margin:0}
-.an-big{margin:0;font-family:var(--grotesk);font-weight:900;font-stretch:125%;font-size:clamp(120px,34vw,420px);line-height:.78;letter-spacing:-.07em;display:flex;align-items:flex-start;gap:.04em;margin-left:-.04em}
-.an-big small{font-size:.2em;letter-spacing:-.02em;font-stretch:100%;font-weight:700;text-transform:uppercase;line-height:1;margin-top:.1em;color:var(--ses)}
-.an-t{margin:0;font-family:var(--serif);font-weight:300;font-style:italic;font-size:clamp(28px,5.2vw,64px);line-height:1.05;letter-spacing:-.02em;max-width:24ch;text-wrap:balance}
-.an-t b{font-weight:300;color:var(--ses)}
-.an-l{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--ink)}
-.an-l li{display:grid;gap:6px;align-content:start;padding:14px 18px 6px 0}
-.an-l li+li{padding-left:18px;border-left:1px solid var(--line)}
-.an-l h3{margin:0;font-family:var(--grotesk);font-weight:700;font-size:19px;line-height:1.1}
-.an-l p{margin:0;font-size:16px;line-height:1.4;color:var(--ink-2)}
-.an-l .k{color:var(--ses)}
-.an-act{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
-.an-go{all:unset;cursor:pointer;font-family:var(--grotesk);font-weight:700;font-size:17px;padding:15px 26px;background:var(--ink);color:var(--bg);transition:transform .2s,background .2s}
-.an-go:hover{transform:translateY(-2px);background:var(--ses);color:#fff}
-.an-go:focus-visible,.an-skip:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
-.an-skip{all:unset;cursor:pointer;font-family:var(--grotesk);font-weight:600;font-size:15px;padding:14px 8px;color:var(--ink-2);text-decoration:underline;text-underline-offset:4px}
-.an::after{content:"";position:fixed;inset:auto 0 0 0;height:70%;z-index:-1;pointer-events:none;background:linear-gradient(to top,var(--bg) 18%,transparent)}
-.an-in>*{animation:anUp .8s cubic-bezier(.2,.7,.2,1) both}
-.an-in>:nth-child(2){animation-delay:.08s}.an-in>:nth-child(3){animation-delay:.2s}.an-in>:nth-child(4){animation-delay:.32s}.an-in>:nth-child(5){animation-delay:.44s}
-@keyframes anUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
-.an.out{opacity:0;transition:opacity .35s}
-html.no-gpu .an-in>*{animation:none}
-@media (prefers-reduced-motion:reduce){.an-in>*{animation:none}.an.out{transition:none}}
-@media (max-width:860px){ .an-l{grid-template-columns:1fr 1fr} .an-l li:nth-child(3){padding-left:0;border-left:0} .an-l li:nth-child(n+3){border-top:1px solid var(--line);margin-top:10px} }
-@media (max-width:520px){ .an-l{grid-template-columns:1fr} .an-l li,.an-l li+li{padding:12px 0 4px;border-left:0} .an-l li+li{border-top:1px solid var(--line)} .an-l li:nth-child(3){margin-top:0} .an-l li:nth-child(n+3){margin-top:0} .an-l p{font-size:15px} .an-go{flex:1;text-align:center} }
+/* ---------- Visite guidée (première visite, 3 étapes très courtes) ---------- */
+html.tour-open{overflow:hidden}
+.tour-wrap{position:fixed;inset:0;z-index:150}
+.tour-spot{position:fixed;border-radius:12px;box-shadow:0 0 0 9999px rgba(10,8,6,.62);transition:top .4s cubic-bezier(.2,.7,.2,1),left .4s cubic-bezier(.2,.7,.2,1),width .4s cubic-bezier(.2,.7,.2,1),height .4s cubic-bezier(.2,.7,.2,1),box-shadow .3s;pointer-events:none}
+.tour-spot.on{box-shadow:0 0 0 4px var(--ses),0 0 0 9999px rgba(10,8,6,.62)}
+.tour-card{position:fixed;width:min(340px,calc(100vw - 32px));background:var(--bg);color:var(--ink);border:1px solid var(--ink);padding:22px 24px;display:grid;gap:12px;transition:top .4s cubic-bezier(.2,.7,.2,1),left .4s cubic-bezier(.2,.7,.2,1);box-shadow:0 30px 60px -24px rgba(0,0,0,.45)}
+.tour-card.center{position:fixed;inset:0;margin:auto;width:min(420px,calc(100vw - 32px));height:max-content;text-align:center;justify-items:center}
+.tour-k{display:flex;align-items:center;justify-content:space-between;gap:10px;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);margin:0}
+.tour-dots{display:flex;gap:6px}
+.tour-dots i{width:6px;height:6px;border-radius:50%;background:var(--line)}
+.tour-dots i.on{background:var(--ses)}
+.tour-card h3{margin:0;font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.15}
+.tour-card p{margin:0;font-size:15px;line-height:1.45;color:var(--ink-2)}
+.tour-act{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:4px}
+.tour-card.center .tour-act{justify-content:center}
+.tour-next{all:unset;cursor:pointer;font-family:var(--grotesk);font-weight:700;font-size:14.5px;padding:11px 20px;background:var(--ink);color:var(--bg);transition:background .2s}
+.tour-next:hover{background:var(--ses)}
+.tour-skip{all:unset;cursor:pointer;font-family:var(--grotesk);font-weight:600;font-size:13.5px;color:var(--ink-2);text-decoration:underline;text-underline-offset:3px;padding:8px 2px}
+.tour-next:focus-visible,.tour-skip:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+.tour-card{animation:tourIn .5s cubic-bezier(.2,.7,.2,1) both}
+@keyframes tourIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.tour-spot{transition:none}.tour-card{animation:none;transition:none}}
+html.no-gpu .tour-spot,html.no-gpu .tour-card{transition:none}
+html.no-gpu .tour-card{animation:none}
 /* Mode téléphone choisi sur un grand écran : le site tient dans une colonne de téléphone */
 html.mode-m.mode-wide{--gut:20px}
 html.mode-m.mode-wide body{max-width:430px;margin-inline:auto;box-shadow:0 0 0 1px var(--line)}
@@ -1209,6 +1213,7 @@ const COURS = [
 /* Nouveautés du site : une entrée par mise à jour poussée en ligne, la plus récente en premier.
    Enrichi à chaque push (demande d'Adam du 29/09/2026). */
 const NOUVEAUTES = [
+  {d:"2026-10-04", t:"Une visite guidée à la première visite, et l'écran du Patch 2.0 retiré", body:"L'écran plein du Patch 2.0 a disparu : au premier chargement, une visite beaucoup plus courte en trois étapes montre juste où trouver les matières et la page « Mes notes ». La page « Mes notes » propose aussi un exemple rempli (bouton en haut de page) pour comprendre comment elle fonctionne avant de saisir ses propres notes."},
   {d:"2026-10-02", t:"Nouveau chapitre SES et « Vient de paraître » à jour", body:"Le chapitre 2 de SES, « Les sources de la croissance économique », est arrivé avec sa fiche et ses notions de lexique. « Vient de paraître » affichait un cours du 25 septembre comme le plus récent alors que deux cours plus récents (Histoire-Géo sur les détroits stratégiques, HGGSP sur la grande accélération) existaient déjà : c'est corrigé, et leurs fiches ont été complétées avec les repères qui manquaient."},
   {d:"2026-10-01", t:"Contact simplifié, page d'accueil plus sobre", body:"Pour une idée, une erreur dans une fiche ou un cours manquant, la section « Une demande ? » renvoie maintenant vers LinkedIn. Le bandeau de la couverture annonce simplement « Cours & Fiches »."},
   {d:"2026-10-01", t:"Un écran d'annonce pour le Patch 2.0", body:"À la première visite, un grand écran présente le Patch 2.0 : les quatre changements principaux (fiches repliées, Séance allégée, accueil clarifié, fonds animés) sur un fond de rubans animés. Il ne s'affiche qu'une seule fois par navigateur et se ferme avec « Découvrir le site », « Passer » ou la touche Échap."},
@@ -1588,7 +1593,7 @@ function modePicker(){
   const rec = NARROW.matches ? "m" : "d";
   const phone = '<svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><rect x="9" y="3" width="14" height="26" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M14 25h4" stroke="currentColor" stroke-width="1.6"/></svg>';
   const pc = '<svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><rect x="3" y="6" width="26" height="16" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M11 27h10M16 22v5" stroke="currentColor" stroke-width="1.6"/></svg>';
-  const opt = (m, icon, t, d) => el("button", {type:"button", class:"mp-opt" + (m === rec ? " rec" : ""), onclick:() => { box.remove(); document.documentElement.classList.remove("mp-open"); setMode(m); annonce(); }},
+  const opt = (m, icon, t, d) => el("button", {type:"button", class:"mp-opt" + (m === rec ? " rec" : ""), onclick:() => { box.remove(); document.documentElement.classList.remove("mp-open"); setMode(m); setTimeout(startTour, 450); }},
     svg(icon), el("span", {class:"mp-t"}, t), el("span", {class:"mp-d"}, d), m === rec ? el("span", {class:"k mp-rec"}, "Conseillé pour cet écran") : null);
   const box = el("div", {class:"mp", role:"dialog", "aria-modal":"true", "aria-labelledby":"mp-h"},
     el("div", {class:"mp-in"},
@@ -1601,45 +1606,65 @@ function modePicker(){
   document.body.append(box);
   $(".mp-opt.rec", box).focus({preventScroll:true});
 }
-/* Annonce du Patch 2.0 : un écran plein, montré une seule fois par navigateur */
-const ANNONCE_KEY = "td.annonce";
-function annonce(){
-  let seen = null; try { seen = localStorage.getItem(ANNONCE_KEY); } catch {}
-  if (seen === "2.0" || $(".an") || $(".mp")) return;
-  const pts = [
-    ["01", "Fiches repliées", "Une ligne par fiche, qui s'ouvre au clic. Fini le mur de texte."],
-    ["02", "Séance allégée", "Le minuteur, et des raccourcis vers tes QCM et tes chapitres."],
-    ["03", "Accueil clarifié", "Les outils en haut, les textes en double supprimés."],
-    ["04", "Fonds animés", "Rubans, cadran, crêtes, points : chaque page a le sien."]];
-  const cv = el("canvas", {class:"an-cv", "aria-hidden":"true"});
-  const close = () => {
-    try { localStorage.setItem(ANNONCE_KEY, "2.0"); } catch {}
-    st.dispose?.(); box.classList.add("out");
-    setTimeout(() => { box.remove(); document.documentElement.classList.remove("an-open"); window.scrollTo(0, 0); }, REDUCED ? 0 : 350);
-    removeEventListener("keydown", onKey);
+/* ---------- Visite guidée (première visite, 3 étapes) ---------- */
+const TOUR_KEY = "td.tour";
+function startTour(){
+  let seen = null; try { seen = localStorage.getItem(TOUR_KEY); } catch {}
+  if (seen === "1" || routeKey() !== "accueil" || $(".tour-wrap")) return;
+  const steps = [
+    {text:["Bienvenue sur ", el("em", {}, "Terminale D"), " — une visite en trois temps avant de commencer."]},
+    {get:() => MOB.matches ? $(".m-mats .m-mat") : $(".tiles .tile"), title:"Les matières", text:["Clique sur une matière, puis un chapitre : le cours, la fiche et le QCM s'affichent d'un coup, au même endroit."]},
+    {get:() => MOB.matches ? $('.tab[data-t="notes"]') : $('.tile-s[href="#notes"]'), title:"Mes notes", text:["Saisis tes notes ici pour suivre ta moyenne et estimer ta note au bac. Tout reste privé, dans ton navigateur."]}
+  ];
+  const wrap = el("div", {class:"tour-wrap", role:"dialog", "aria-modal":"true", "aria-label":"Visite guidée"});
+  const spot = el("div", {class:"tour-spot"});
+  wrap.append(spot);
+  document.documentElement.classList.add("tour-open");
+  document.body.append(wrap);
+  let i = 0, card = null, raf = 0;
+  const onResize = () => place(steps[i]);
+  const finish = () => {
+    try { localStorage.setItem(TOUR_KEY, "1"); } catch {}
+    removeEventListener("resize", onResize); removeEventListener("keydown", onKey);
+    document.documentElement.classList.remove("tour-open");
+    wrap.remove();
   };
-  const onKey = e => { if (e.key === "Escape") close(); };
-  const go1 = el("button", {type:"button", class:"an-go", onclick:close}, "Découvrir le site");
-  const box = el("div", {class:"an", role:"dialog", "aria-modal":"true", "aria-labelledby":"an-h"}, cv,
-    el("div", {class:"an-in"},
-      el("p", {class:"k an-k"}, el("span", {}, "Mise à jour"), el("span", {class:"muted"}, "1er octobre 2026")),
-      el("h2", {class:"an-big", id:"an-h", "aria-label":"Patch 2.0"}, el("span", {"aria-hidden":"true"}, "2.0"), el("small", {"aria-hidden":"true"}, "Patch")),
-      el("p", {class:"an-t"}, "Un site plus ", el("b", {}, "clair"), ", avec moins de contenu d'un coup."),
-      el("ul", {class:"an-l"}, pts.map(([n, t, d]) => el("li", {}, el("span", {class:"k"}, n), el("h3", {}, t), el("p", {}, d)))),
-      el("div", {class:"an-act"}, go1, el("button", {type:"button", class:"an-skip", onclick:close}, "Passer"))));
-  document.documentElement.classList.add("an-open");
-  document.body.append(box);
-  const st = canvasLoop(cv, (s, t) => {
-    const {ctx, w, h} = s; ctx.clearRect(0, 0, w, h); if (w < 2) return;
-    const small = w < 600, a = [C.ses, C.hggsp, C.philo, C.ang];
-    const W = small ? 1 : 1.7;
-    drawSilk(ctx, w, h, t, {col:a[0], y:h * .3, amp:h * .13, f:3.4, s:.30, ph:0, W:64 * W, per:small ? 9 : 15, a:1});
-    drawSilk(ctx, w, h, t, {col:a[2], y:h * .42, amp:h * .1, f:4.1, s:.24, ph:2.1, W:44 * W, per:small ? 7 : 11, a:.8});
-    drawSilk(ctx, w, h, t, {col:a[1], y:h * .2, amp:h * .08, f:2.8, s:.2, ph:4.2, W:30 * W, per:small ? 5 : 8, a:.65});
-    drawSilk(ctx, w, h, t, {col:a[3], y:h * .5, amp:h * .07, f:3.6, s:.34, ph:5.5, W:22 * W, per:small ? 4 : 6, a:.5});
-  });
+  const onKey = e => { if (e.key === "Escape") finish(); else if (e.key === "ArrowRight") next(); else if (e.key === "ArrowLeft" && i > 0) { i--; show(); } };
+  function place(step){
+    const target = step.get ? step.get() : null;
+    if (!target) { spot.style.cssText = "width:0;height:0;top:50%;left:50%"; spot.classList.remove("on"); return; }
+    const r = target.getBoundingClientRect(), pad = 10;
+    spot.style.top = (r.top - pad) + "px"; spot.style.left = (r.left - pad) + "px";
+    spot.style.width = (r.width + pad * 2) + "px"; spot.style.height = (r.height + pad * 2) + "px";
+    spot.classList.add("on");
+    if (!card) return;
+    const cw = card.offsetWidth, ch = card.offsetHeight, gap = 16, gut = 16;
+    let top = r.bottom + pad + gap, left = r.left + r.width / 2 - cw / 2;
+    if (top + ch > innerHeight - gut) top = Math.max(gut, r.top - pad - gap - ch);
+    left = Math.min(Math.max(left, gut), innerWidth - cw - gut);
+    card.style.top = top + "px"; card.style.left = left + "px";
+  }
+  function show(){
+    const step = steps[i], last = i === steps.length - 1;
+    if (card) card.remove();
+    const centered = !step.get;
+    card = el("div", {class:"tour-card" + (centered ? " center" : "")},
+      el("p", {class:"tour-k"}, el("span", {}, i + 1 + " / " + steps.length), el("div", {class:"tour-dots"}, steps.map((s, n) => el("i", {class:n === i ? "on" : ""})))),
+      step.title ? el("h3", {}, step.title) : null,
+      el("p", {}, ...step.text),
+      el("div", {class:"tour-act"},
+        el("button", {type:"button", class:"tour-skip", onclick:finish}, "Passer"),
+        el("button", {type:"button", class:"tour-next", onclick:next}, last ? "C'est parti" : "Suivant")));
+    wrap.append(card);
+    const target = step.get && step.get();
+    if (target) { target.scrollIntoView({block:"center", behavior:MOTION ? "smooth" : "auto"}); setTimeout(() => place(step), MOTION ? 260 : 0); }
+    else place(step);
+    card.querySelector(".tour-next").focus({preventScroll:true});
+  }
+  function next(){ if (i < steps.length - 1) { i++; show(); } else finish(); }
+  addEventListener("resize", onResize);
   addEventListener("keydown", onKey);
-  go1.focus({preventScroll:true});
+  show();
 }
 const LOWP = matchMedia("(pointer: coarse), (max-width: 760px)").matches || REDUCED;
 /* Pendant un défilement au doigt, les illustrations se figent un instant : le défilement reste fluide */
@@ -2911,25 +2936,71 @@ async function decodeBul(code){
   const b = normBul(d); b._qcm = cleanQDone(d.qcm); return b;
 }
 
+/* Exemple rempli, pour comprendre la page avant de saisir ses propres notes.
+   Profil par défaut (SES/HGGSP/Anglais/Arabe/DGEMC), notes et saisie plausibles. */
+const EXAMPLE_BUL = {
+  v:1,
+  profil:{spe1:"SES", spe2:"HGGSP", speAb:"Mathématiques", lva:"Anglais", lvb:"Arabe", options:["dgemc"], periodes:3},
+  notes:[
+    {id:"ex1", m:"philo", val:12, sur:20, coef:2, per:1, lib:"Dissertation", date:"2026-09-20"},
+    {id:"ex2", m:"philo", val:13.5, sur:20, coef:1, per:1, lib:"Explication de texte", date:"2026-10-04"},
+    {id:"ex3", m:"spe1", val:15, sur:20, coef:2, per:1, lib:"Épreuve composée", date:"2026-09-22"},
+    {id:"ex4", m:"spe1", val:16, sur:20, coef:1, per:1, lib:"Interrogation", date:"2026-10-01"},
+    {id:"ex5", m:"spe2", val:11, sur:20, coef:2, per:1, lib:"Étude critique de documents", date:"2026-09-28"},
+    {id:"ex6", m:"spe2", val:13, sur:20, coef:1, per:1, lib:"", date:"2026-10-03"},
+    {id:"ex7", m:"hg", val:14, sur:20, coef:1, per:1, lib:"Composition", date:"2026-09-25"},
+    {id:"ex8", m:"es", val:17, sur:20, coef:1, per:1, lib:"", date:"2026-09-18"},
+    {id:"ex9", m:"lva", val:16.5, sur:20, coef:1, per:1, lib:"Oral", date:"2026-09-30"},
+    {id:"ex10", m:"lvb", val:12, sur:20, coef:1, per:1, lib:"", date:"2026-09-26"},
+    {id:"ex11", m:"eps", val:15, sur:20, coef:1, per:1, lib:"", date:"2026-09-15"},
+    {id:"ex12", m:"opt:dgemc", val:14, sur:20, coef:1, per:1, lib:"Cas pratique", date:"2026-09-29"},
+    {id:"ex13", m:"philo", val:11, sur:20, coef:2, per:2, lib:"Dissertation", date:"2026-11-14"},
+    {id:"ex14", m:"spe1", val:17, sur:20, coef:2, per:2, lib:"Épreuve composée", date:"2026-11-10"},
+    {id:"ex15", m:"spe2", val:12.5, sur:20, coef:2, per:2, lib:"Dissertation", date:"2026-11-20"},
+    {id:"ex16", m:"hg", val:13, sur:20, coef:1, per:2, lib:"", date:"2026-11-08"}
+  ],
+  saisie:{go:15, frE:13, frO:14, maths:12, hg1:14, lva1:15, lvb1:11, es1:16, emc1:16, spe1ab:10}
+};
+
 function viewNotes(root){
   let B = loadBul();
+  let demo = false, realB = null;
   const frn = (x, d = 2) => x == null || isNaN(x) ? "—" : x.toFixed(d).replace(".", ",");
   const perLabel = p => (B.profil.periodes === 3 ? "T" : "S") + p;
   const perAvg = (m, p) => { const ns = B.notes.filter(n => n.m === m && n.per === p); const w = ns.reduce((a, n) => a + n.coef, 0); return w ? ns.reduce((a, n) => a + n.val / n.sur * 20 * n.coef, 0) / w : null; };
   const yearAvg = m => { const ps = []; for (let p = 1; p <= B.profil.periodes; p++) { const a = perAvg(m, p); if (a != null) ps.push(a); } return ps.length ? ps.reduce((a, b) => a + b, 0) / ps.length : null; };
   const curPer = () => Math.min(B.notes.reduce((a, n) => Math.max(a, n.per), 1), B.profil.periodes);
   let codeT = null;
-  const persist = () => { saveBul(B); $("#nb-store", root).hidden = storageOk; clearTimeout(codeT); codeT = setTimeout(() => makeCode(), 400); };
+  const persist = () => { if (demo) return; saveBul(B); $("#nb-store", root).hidden = storageOk; clearTimeout(codeT); codeT = setTimeout(() => makeCode(), 400); };
+  const applyExample = () => {
+    if (demo) return;
+    realB = {profil:{...B.profil}, notes:B.notes, saisie:B.saisie};
+    Object.assign(B.profil, EXAMPLE_BUL.profil); B.notes = EXAMPLE_BUL.notes.map(n => ({...n})); B.saisie = {...EXAMPLE_BUL.saisie};
+    demo = true; sec.classList.add("demo"); fillProfil(); renderAll(); profil.open = false;
+    exBtn.hidden = true; demoBar.hidden = false; demoBar.scrollIntoView({block:"start", behavior:MOTION ? "smooth" : "auto"});
+  };
+  const exitExample = () => {
+    if (!demo) return;
+    Object.assign(B.profil, realB.profil); B.notes = realB.notes; B.saisie = realB.saisie; realB = null;
+    demo = false; sec.classList.remove("demo"); fillProfil(); renderAll(); persist();
+    exBtn.hidden = false; demoBar.hidden = true;
+  };
 
   root.style.setProperty("--c", "var(--ses)");
+  const exBtn = el("button", {type:"button", class:"nb-ex-go", onclick:applyExample}, "Voir un exemple rempli", arrow());
   root.append(el("header", {class:"shero g", style:"--c:var(--ink)"}, el("span", {class:"band", "aria-hidden":"true"}),
     el("div", {class:"max"},
       el("div", {class:"top"}, el("span", {class:"k"}, "Outil"), el("span", {class:"k muted"}, "Privé · enregistré sur cet appareil")),
       el("h1", {class:"wide-t"}, "Mes notes"),
-      el("p", {class:"full", style:"color:var(--ink-2)"}, "Ton relevé de notes et une estimation de ta note au bac 2027. Personne d'autre ne voit tes notes : elles restent dans ton navigateur."))));
+      el("p", {class:"full", style:"color:var(--ink-2)"}, "Ton relevé de notes et une estimation de ta note au bac 2027. Personne d'autre ne voit tes notes : elles restent dans ton navigateur."),
+      el("p", {}, exBtn))));
 
   heroArt(root, HERO.ridges);
   const sec = el("div", {class:"g max nb"}); root.append(sec);
+  const demoBar = el("div", {class:"nb-demo-bar", hidden:true, role:"status"},
+    el("p", {}, el("b", {}, "Exemple"), " — ce ne sont pas tes notes, la saisie est désactivée. Regarde comment la page se remplit, puis reviens à tes vraies notes."),
+    el("button", {type:"button", class:"btn ghost", onclick:exitExample}, "Revenir à mes notes"));
+  sec.append(demoBar);
   sec.append(el("p", {class:"nb-warn", id:"nb-store", hidden:true}, "Ton navigateur bloque l'enregistrement (navigation privée ?). Tes notes seront perdues en fermant la page : utilise le code de transfert plus bas pour les garder."));
 
   /* Profil */
@@ -3407,7 +3478,7 @@ markTheme();
 markMode();
 go();
 modePicker();
-annonce();
+if (MODE) setTimeout(startTour, 450);
 addEventListener("load", () => ST && ST.refresh());
 document.fonts?.ready.then(() => { fitType(); if (ST) ST.refresh(); });
 
