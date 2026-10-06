@@ -166,14 +166,19 @@ const FICHE_DATA = {
     m: "hg", n: "03",
     dates: [
       "Population mondiale : environ 1,6 milliard d'habitants en 1900 (le cours arrondit à 2 milliards), et près de 10 milliards projetés pour 2050 (9,7 selon l'ONU).",
-      "Selon le cours, 1 milliard de personnes dépendent exclusivement des ressources halieutiques. Repère complémentaire (FAO, 2026) : la production mondiale de poisson a atteint 188 millions de tonnes en 2024, et environ 600 millions de personnes vivent de la filière."
+      "Selon le cours, 1 milliard de personnes dépendent exclusivement des ressources halieutiques. Repère complémentaire (FAO, 2026) : la production mondiale de poisson a atteint 188 millions de tonnes en 2024, et environ 600 millions de personnes vivent de la filière.",
+      "Le crabe bleu, introduit en Méditerranée par les eaux de ballast ou via le canal de Suez (premières signalisations dans les années 1990, espèce bien installée depuis le début des années 2010), perturbe la pêche artisanale du golfe de Gabès en Tunisie, où il représente aujourd'hui une large part des captures côtières.",
+      "L'AMP de la mer de Ross (Antarctique), créée en 2016 sous l'égide de la CCAMLR, protège 1,55 million de km², l'une des plus grandes aires marines protégées au monde.",
+      "L'accord BBNJ est entré en vigueur début 2026 et couvre potentiellement environ 60 % de la surface des océans (la haute mer, au-delà des zones économiques exclusives nationales)."
     ],
     pieges: [
       {t:"Chiffre de 1900", d:"2 milliards est un arrondi du cours ; l'ordre de grandeur plus juste est 1,6 milliard. Utilise l'un ou l'autre, mais sache que c'est une approximation."},
       {t:"« Dépendre exclusivement »", d:"La formulation du cours est forte. Les sources internationales disent plutôt que le poisson est la principale source de protéines animales pour une partie de la population mondiale. Garde la formulation du cours, mais nuance-la dans une copie si tu cites une autre source.", flag:true},
-      {t:"Ressources halieutiques / pêche", d:"Ne pas réduire les ressources halieutiques à la pêche : l'aquaculture pèse désormais davantage."}
+      {t:"Ressources halieutiques / pêche", d:"Ne pas réduire les ressources halieutiques à la pêche : l'aquaculture pèse désormais davantage."},
+      {t:"Protection / interdiction totale", d:"Ne pas confondre : une AMP organise souvent les usages (recherche, tourisme, droits autochtones) plutôt que d'exclure toute activité humaine."},
+      {t:"Échelle régionale / échelle mondiale", d:"Ne pas confondre la Convention de Barcelone (régionale, Méditerranée) et la CNUDM ou le BBNJ (mondiaux) : des niveaux de gouvernance complémentaires, pas concurrents."}
     ],
-    dissert: "Sujet type : « Les mers et océans, des espaces convoités pour leurs ressources. » I. Des ressources vitales (pêche, besoins d'une population en forte croissance). II. Des ressources qui polarisent des flux et attirent des acteurs. La partie 2 du cours n'est pas terminée à ce stade de l'année : cette fiche sera complétée avec les cours suivants."
+    dissert: "Sujet type : « Les mers et océans, des espaces convoités pour leurs ressources. » I. Des ressources vitales (pêche, besoins d'une population en forte croissance). II. Des ressources qui polarisent des flux et attirent des acteurs, entre exploitation (pêche, hydrocarbures, minerais des fonds marins, tourisme) et tentative de régulation (AMP, Convention de Barcelone, CNUDM, accord BBNJ). Exemple mobilisable : le crabe bleu en Méditerranée (golfe de Gabès), qui illustre à la fois une menace écologique (espèce invasive) et un enjeu économique, avec des réponses nationales divergentes entre la Tunisie et la France. La fiche pourra être complétée avec les cours suivants."
   },
 
   "philo-01": {
