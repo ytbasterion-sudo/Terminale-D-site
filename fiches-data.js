@@ -76,6 +76,9 @@ const FICHE_DATA = {
   "ses-04": {
     titre: "Les sources de la croissance économique",
     m: "ses", n: "04",
+    dates: [
+      "Danemark, 2019 (OCDE) : PIB + 2,8 %, dont facteur travail + 0,9 point, facteur capital + 0,5 point et productivité globale des facteurs + 1,4 point."
+    ],
     pieges: [
       {t:"Croissance économique / développement", d:"Ne pas confondre : la croissance mesure une augmentation quantitative de la production (PIB), le développement une amélioration qualitative des conditions de vie d'une population. Distinction classique du programme, à confronter au cours."}
     ],
@@ -107,10 +110,12 @@ const FICHE_DATA = {
       "Étude de cas de la forêt de Fontainebleau : 32 000 hectares, à environ 70 km au sud-est de Paris, plus de 3 millions de visiteurs par an ; schéma de cohérence territoriale (SCoT) de 2018.",
       "13 à 18 % : part du territoire français couverte par la forêt sous l'Ancien Régime.",
       "1827 : code forestier, qui renforce l'administration de la forêt française au XIXe siècle.",
-      "Entre 1942 et 1949 : grands épisodes d'incendie dans les Landes, attribués en cours à la sécheresse et au régime pétainiste."
+      "Entre 1942 et 1949 : grands épisodes d'incendie dans les Landes, attribués en cours à la sécheresse et au régime pétainiste.",
+      "Étude de document (1er octobre) : carte légendée fondée sur des données de la Banque mondiale (2014) et le BP Statistical Review of World Energy (2019) — la Chine émettait environ 28 % des émissions mondiales de CO2, les États-Unis environ 15 %, loin devant des pays comme la Russie ou l'Australie. Donnée précise d'un document étudié en classe, à actualiser avec des statistiques plus récentes si réutilisée hors de ce contexte précis."
     ],
     pieges: [
       {t:"Pensée déterministe", d:"C'est l'inégalité des ressources en fonction de l'endroit sur Terre. Formulation du cours, à garder telle quelle ; le lien avec le déterminisme environnemental mentionné par le professeur (voir Auteurs et repères, Ratzel/Vidal de la Blache) reste à confirmer avec lui — ne pas le reconstituer soi-même.", flag:true},
+      {t:"Jalon 1 de l'Axe 2", d:"Ne pas réduire l'étude du climat en Europe du Moyen Âge au XIXe siècle à un seul épisode comme la crise de 1788-1789 : la méthode consiste à croiser plusieurs archives naturelles (cernes des arbres, pollens fossilisés) sur la longue durée."},
       {t:"Anthropocène", d:"Ne pas la présenter comme une époque géologique officiellement reconnue : son statut scientifique fait encore débat."},
       {t:"Problème environnemental / fait environnemental", d:"Ne pas les confondre : le second suppose une mobilisation collective qui juge le premier inacceptable."},
       {t:"Exploiter, conserver, préserver", d:"Trois logiques distinctes face à l'environnement, à ne pas confondre (voir Notions clés)."},
@@ -212,6 +217,19 @@ const FICHE_DATA = {
       {t:"Chez Wittgenstein, une limite de nature, pas de degré", d:"La limite de la raison scientifique n'est pas une limite de degré (elle expliquerait indéfiniment plus de faits) mais une limite de nature : elle ne rencontre jamais l'absolu."}
     ],
     dissert: "Q6, faut-il se fier à sa propre raison : Maïmonide et Montaigne convergent vers un oui conditionnel, une fois la raison affranchie de ses entraves (le manque corporel, la coutume). Q7, la raison a-t-elle des limites : Comte et Wittgenstein répondent oui, mais avec des limites de nature différente — une méthode à changer chez Comte, la catégorie même du factuel chez Wittgenstein."
+  },
+
+  "philo-04": {
+    titre: "La vérité",
+    m: "philo", n: "04",
+    auteurs: [
+      {n:"Leibniz", dates:"1646–1716", d:"Distingue les vérités de raison, nécessaires et universelles (comme les vérités logiques et mathématiques), des vérités de fait, contingentes et connues par l'expérience. Repère mobilisable pour éclairer la distinction faite en cours entre vérités indiscutables et vérités controversées, à confronter à ce qu'en a dit précisément le professeur."}
+    ],
+    pieges: [
+      {t:"Vérité logique / vérité factuelle ou de valeur", d:"Ne pas confondre une vérité logique (vraie par sa seule forme, comme « tout célibataire est non marié ») et une vérité factuelle ou de valeur, qui dépend de l'expérience ou d'un jugement et peut donc être discutée."},
+      {t:"Consensus et vérité ne se confondent pas", d:"Un énoncé peut être largement partagé sans être vrai, et une vérité peut être découverte ou défendue par une minorité avant d'être reconnue par le plus grand nombre."}
+    ],
+    dissert: "Sujet type : y a-t-il des vérités indiscutables ? Plan possible : d'abord montrer qu'il existe des vérités qui semblent s'imposer à tous, comme les vérités logiques (« tout célibataire est non marié ») ; ensuite interroger la prétention de certains à détenir seuls la vérité (critique de l'élitisme épistémique) ; enfin se demander si la vérité peut se passer du consensus du plus grand nombre, ou si elle en dépend."
   },
 
   "ang-01": {
