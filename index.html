@@ -630,8 +630,8 @@ html.no-gpu .mast,html.no-gpu .big-t,html.no-gpu .track,html.no-gpu .shero h1{wi
 .fiche-deja .k{margin-right:6px}
 .fiche-src{margin:16px 0 0}.fiche-src a{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}.fiche-src a:hover{color:var(--ink)}
 .chap-col h4{margin:0 0 10px;font-weight:400}
-.chap-quiz{grid-column:1/-1;margin-top:10px;padding-top:28px;border-top:1px solid var(--line)}
-.chap-quiz h4{margin:0 0 4px;font-weight:400}
+.chap-quiz{grid-column:1/-1;margin-top:28px;padding:16px;background:var(--bg-2);border:1px solid var(--line);border-radius:4px}
+.chap-quiz h4{margin:0 0 12px;font-weight:600;font-size:15px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink)}
 .chap-memo{grid-column:1/-1;margin-top:10px;padding-top:28px;border-top:1px solid var(--line)}
 .chap-memo h4{margin:0 0 12px;font-weight:400}
 .chap-memo-lead{max-width:66ch;margin:0 0 6px;font-size:16px;line-height:1.5;color:var(--ink-2)}
@@ -1221,8 +1221,13 @@ const COURS = [
 /* Nouveautés du site : une entrée par mise à jour poussée en ligne, la plus récente en premier.
    Enrichi à chaque push (demande d'Adam du 29/09/2026). */
 const NOUVEAUTES = [
+<<<<<<< HEAD
     {d:"2026-10-09", t:"Quatre nouveaux cours numérisés et fiches enrichies", body:"Quatre cours ont été numérisés et intégrés au Drive : méthodologie de lecture des documents géographiques en Histoire-Géo (Thème 1), structure des introductions de dissertation et d'explication de texte en Philosophie (Méthode), croissance endogène et rôle des institutions en SES (Chapitre 1), changement climatique et coopération en HGGSP (Thème 5). Chaque chapitre a une fiche enrichie avec notions clés, pièges à éviter, et repères pour l'épreuve."},
 {d:"2026-10-06", t:"Un nouveau cours et une fiche enrichie en Histoire-Géo sur les océans", body:"Dans le chapitre « Mers et océans » d'Histoire-Géo, un nouveau cours sur les aires marines protégées et les rivalités géopolitiques en mer est arrivé, et la fiche « Mers et océans, des réserves de ressources » s'est enrichie : le crabe bleu comme exemple d'espèce invasive en Méditerranée, les aires marines protégées (mer de Ross, CCAMLR), l'accord BBNJ et la CNUDM, avec de nouvelles notions dans le Lexique."},
+=======
+  {d:"2026-10-08", t:"Les QCM des chapitres sont maintenant toujours visibles", body:"Les QCM de révision ne sont plus cachés dans le menu déroulant du chapitre : ils s'affichent désormais directement sous la liste des fiches et des cours, toujours accessibles sans devoir cliquer pour dérouler le chapitre. Les QCM restent liés au chapitre avec la même mise en page soignée (titre en majuscules grisées, fond et bordure distincts)."},
+  {d:"2026-10-06", t:"Un nouveau cours et une fiche enrichie en Histoire-Géo sur les océans", body:"Dans le chapitre « Mers et océans » d'Histoire-Géo, un nouveau cours sur les aires marines protégées et les rivalités géopolitiques en mer est arrivé, et la fiche « Mers et océans, des réserves de ressources » s'est enrichie : le crabe bleu comme exemple d'espèce invasive en Méditerranée, les aires marines protégées (mer de Ross, CCAMLR), l'accord BBNJ et la CNUDM, avec de nouvelles notions dans le Lexique."},
+>>>>>>> 4b20f5af8210c6e222e873487fcf5050f99918d8
   {d:"2026-10-06", t:"Une méthode détaillée pour réussir son introduction en philo", body:"Un nouveau document, dans la page Philosophie (chapitre Méthode), détaille pas à pas comment construire l'introduction d'une dissertation et celle d'une explication de texte : accroche, problématisation en trois étapes, annonce du plan, mouvements du texte, avec un exemple entièrement rédigé pour chaque exercice et les pièges les plus fréquents."},
   {d:"2026-10-06", t:"La visite guidée est plus complète, et un nouveau chapitre de philo", body:"La visite guidée du premier chargement compte maintenant 5 étapes (elle montre aussi le Lexique et le minuteur de Séance), avec un cadrage corrigé sur chaque étape. Côté contenu : l'Axe 2 d'HGGSP (le changement climatique) est arrivé avec son cours et sa fiche enrichie, le chapitre 2 de SES s'est enrichi d'un cours sur la productivité globale des facteurs, et la Philosophie a un tout nouveau chapitre, « La vérité », avec sa fiche complète."},
   {d:"2026-10-04", t:"Une visite guidée à la première visite, et l'écran du Patch 2.0 retiré", body:"L'écran plein du Patch 2.0 a disparu : au premier chargement, une visite beaucoup plus courte en trois étapes montre juste où trouver les matières et la page « Mes notes ». La page « Mes notes » propose aussi un exemple rempli (bouton en haut de page) pour comprendre comment elle fonctionne avant de saisir ses propres notes."},
@@ -2677,10 +2682,10 @@ function renderChapters(k){
             el("ol", {class:"cl"}, g.cours.map(([dt, , t, id]) => { const [, mo, d] = dt.split("-");
               return el("li", {}, el("a", {href:DOC(id), target:"_blank", rel:"noopener"}, el("span", {class:"d"}, +d + " " + MOIS[+mo - 1]), el("span", {class:"t"}, t), el("span", {class:"go"}, arrow()))); }))]) : null) : null,
         extra,
-        quizHost,
         c.dir ? el("p", {class:"chap-dir"}, el("a", {class:"k muted", href:FOLDER(c.dir), target:"_blank", rel:"noopener"}, "Ouvrir le dossier du chapitre dans le Drive ↗")) : null));
     if (quizHost) mountQuiz(quizHost, c.qvols);
-    return det;
+    // Retourner un conteneur avec le details ET le quizHost en dehors
+    return el("div", {class:"chap-wrap"}, det, quizHost);
   });
   const wrap = el("div", {class:"chaps"}, items);
   if (chs.length < 2) return wrap;
