@@ -376,6 +376,16 @@ select{font:inherit;font-family:var(--grotesk);font-size:16px;background:var(--b
 .fl .qreviser .t::after{content:"QCM à réviser ↻";margin-left:10px;font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--philo-t);white-space:nowrap}
 .due-strip{border:1px solid var(--ink);padding:18px 20px;margin:0 0 60px;background:var(--bg)}
 .due-strip > .k{margin:0 0 12px}
+.hello{border:1px solid var(--line);padding:16px 20px;margin:0 0 20px;background:var(--bg-2);display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
+.hello > .k{margin:0;flex:none}
+.hello-f{display:flex;flex-wrap:wrap;gap:12px;align-items:center;flex:1;min-width:200px}
+.hello-f input{font:inherit;font-family:var(--grotesk);font-size:15px;background:transparent;color:var(--ink);border:0;border-bottom:1px solid var(--ink);padding:6px 2px;min-width:0;flex:1 1 160px;border-radius:0}
+.hello-f input:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.hello-f .btn{padding:10px 16px;font-size:13.5px}
+.hello-skip{all:unset;cursor:pointer;flex:none;font-family:var(--grotesk);font-size:13px;color:var(--ink-2);text-decoration:underline;text-underline-offset:2px}
+.hello-skip:hover{color:var(--ink)}
+.hello-skip:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+@media (max-width:560px){ .hello{padding:14px 16px} .hello-f{min-width:0}}
 .due-list{display:flex;flex-wrap:wrap;gap:8px}
 .due{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid var(--line);text-decoration:none;font-family:var(--grotesk);font-weight:500;font-size:15px;transition:border-color .25s,padding .3s}
 .due:hover{border-color:var(--ink);padding-left:18px}
@@ -1221,13 +1231,9 @@ const COURS = [
 /* Nouveautés du site : une entrée par mise à jour poussée en ligne, la plus récente en premier.
    Enrichi à chaque push (demande d'Adam du 29/09/2026). */
 const NOUVEAUTES = [
-<<<<<<< HEAD
-    {d:"2026-10-09", t:"Quatre nouveaux cours numérisés et fiches enrichies", body:"Quatre cours ont été numérisés et intégrés au Drive : méthodologie de lecture des documents géographiques en Histoire-Géo (Thème 1), structure des introductions de dissertation et d'explication de texte en Philosophie (Méthode), croissance endogène et rôle des institutions en SES (Chapitre 1), changement climatique et coopération en HGGSP (Thème 5). Chaque chapitre a une fiche enrichie avec notions clés, pièges à éviter, et repères pour l'épreuve."},
-{d:"2026-10-06", t:"Un nouveau cours et une fiche enrichie en Histoire-Géo sur les océans", body:"Dans le chapitre « Mers et océans » d'Histoire-Géo, un nouveau cours sur les aires marines protégées et les rivalités géopolitiques en mer est arrivé, et la fiche « Mers et océans, des réserves de ressources » s'est enrichie : le crabe bleu comme exemple d'espèce invasive en Méditerranée, les aires marines protégées (mer de Ross, CCAMLR), l'accord BBNJ et la CNUDM, avec de nouvelles notions dans le Lexique."},
-=======
+  {d:"2026-10-09", t:"Quatre nouveaux cours numérisés et fiches enrichies", body:"Quatre cours ont été numérisés et intégrés au Drive : méthodologie de lecture des documents géographiques en Histoire-Géo (Thème 1), structure des introductions de dissertation et d'explication de texte en Philosophie (Méthode), croissance endogène et rôle des institutions en SES (Chapitre 1), changement climatique et coopération en HGGSP (Thème 5). Chaque chapitre a une fiche enrichie avec notions clés, pièges à éviter, et repères pour l'épreuve."},
   {d:"2026-10-08", t:"Les QCM des chapitres sont maintenant toujours visibles", body:"Les QCM de révision ne sont plus cachés dans le menu déroulant du chapitre : ils s'affichent désormais directement sous la liste des fiches et des cours, toujours accessibles sans devoir cliquer pour dérouler le chapitre. Les QCM restent liés au chapitre avec la même mise en page soignée (titre en majuscules grisées, fond et bordure distincts)."},
   {d:"2026-10-06", t:"Un nouveau cours et une fiche enrichie en Histoire-Géo sur les océans", body:"Dans le chapitre « Mers et océans » d'Histoire-Géo, un nouveau cours sur les aires marines protégées et les rivalités géopolitiques en mer est arrivé, et la fiche « Mers et océans, des réserves de ressources » s'est enrichie : le crabe bleu comme exemple d'espèce invasive en Méditerranée, les aires marines protégées (mer de Ross, CCAMLR), l'accord BBNJ et la CNUDM, avec de nouvelles notions dans le Lexique."},
->>>>>>> 4b20f5af8210c6e222e873487fcf5050f99918d8
   {d:"2026-10-06", t:"Une méthode détaillée pour réussir son introduction en philo", body:"Un nouveau document, dans la page Philosophie (chapitre Méthode), détaille pas à pas comment construire l'introduction d'une dissertation et celle d'une explication de texte : accroche, problématisation en trois étapes, annonce du plan, mouvements du texte, avec un exemple entièrement rédigé pour chaque exercice et les pièges les plus fréquents."},
   {d:"2026-10-06", t:"La visite guidée est plus complète, et un nouveau chapitre de philo", body:"La visite guidée du premier chargement compte maintenant 5 étapes (elle montre aussi le Lexique et le minuteur de Séance), avec un cadrage corrigé sur chaque étape. Côté contenu : l'Axe 2 d'HGGSP (le changement climatique) est arrivé avec son cours et sa fiche enrichie, le chapitre 2 de SES s'est enrichi d'un cours sur la productivité globale des facteurs, et la Philosophie a un tout nouveau chapitre, « La vérité », avec sa fiche complète."},
   {d:"2026-10-04", t:"Une visite guidée à la première visite, et l'écran du Patch 2.0 retiré", body:"L'écran plein du Patch 2.0 a disparu : au premier chargement, une visite beaucoup plus courte en trois étapes montre juste où trouver les matières et la page « Mes notes ». La page « Mes notes » propose aussi un exemple rempli (bouton en haut de page) pour comprendre comment elle fonctionne avant de saisir ses propres notes."},
@@ -1686,6 +1692,26 @@ function startTour(){
   addEventListener("resize", onResize);
   addEventListener("keydown", onKey);
   show();
+}
+/* ---------- Prénom : personnalise l'accueil, suit le code de transfert ---------- */
+const PRENOM_KEY = "td.prenom", PRENOM_ASKED_KEY = "td.prenom.asked";
+const getPrenom = () => store.get(PRENOM_KEY, "") || "";
+function setPrenom(v){ store.set(PRENOM_KEY, v || ""); store.set(PRENOM_ASKED_KEY, true); }
+function prenomAsked(){ return store.get(PRENOM_ASKED_KEY, false) || !!getPrenom(); }
+function helloCard(onSet){
+  if (prenomAsked() || routeKey() !== "accueil") return null;
+  const input = el("input", {type:"text", maxlength:"20", placeholder:"Ton prénom", "aria-label":"Ton prénom", autocomplete:"given-name"});
+  const card = el("div", {class:"hello"},
+    el("p", {class:"k"}, "Comment veux-tu qu'on t'appelle ?"),
+    el("form", {class:"hello-f", onsubmit:e => {
+      e.preventDefault();
+      const v = input.value.trim().slice(0, 20);
+      setPrenom(v);
+      card.remove();
+      if (v) onSet(v);
+    }}, input, el("button", {type:"submit", class:"btn"}, "Valider")),
+    el("button", {type:"button", class:"hello-skip", onclick:() => { setPrenom(""); card.remove(); }}, "Passer"));
+  return card;
 }
 const LOWP = matchMedia("(pointer: coarse), (max-width: 760px)").matches || REDUCED;
 /* Pendant un défilement au doigt, les illustrations se figent un instant : le défilement reste fluide */
@@ -2308,6 +2334,7 @@ function viewHome(root){
   const nCours = COURS.length + VOLUMES.filter(v => v.n === "T").length, nFiches = VOLUMES.filter(v => v.n !== "T").length, nQ = Object.values(QCM).reduce((a, q) => a + q.length, 0);
   const coverCv = el("canvas", {"aria-hidden":"true"});
   const mast = el("h1", {class:"wide-t mast", "aria-label":"Terminale D"}, el("span", {class:"w", "aria-hidden":"true"}, "Terminale"), " ", el("em", {"aria-hidden":"true"}, "D"));
+  const greetEl = el("span", {class:"greet", hidden:!getPrenom()}, getPrenom() ? `Bonjour, ${getPrenom()}. ` : "");
   root.append(el("header", {class:"cover g"}, coverCv,
     el("div", {class:"issue max", style:"width:100%"}, el("span", {class:"k"}, "N° 03 · Septembre 2026"), el("span", {class:"k muted"}, "Lycée Français International Mhamed Driss · Sousse"), majBadge()),
     el("div", {class:"max", style:"width:100%;align-self:center"}, mast),
@@ -2316,7 +2343,7 @@ function viewHome(root){
       el("p", {class:"by-names", "aria-hidden":"true"}, "Cours", el("span", {class:"amp"}, "&"), "Fiches"),
       el("div", {class:"by-k r", "aria-hidden":"true"}, el("span", {class:"k muted"}, "Terminale D"), el("span", {class:"by-year"}, "2026–2027"))),
     el("div", {class:"cover-foot max", style:"width:100%"},
-      el("p", {}, "Tous les cours de la classe, relus et rangés dans un Drive, avec des fiches de révision et de quoi s'entraîner, matière par matière."),
+      el("p", {}, greetEl, "Tous les cours de la classe, relus et rangés dans un Drive, avec des fiches de révision et de quoi s'entraîner, matière par matière."),
       el("div", {class:"scrollhint"}, el("i"), el("span", {class:"k"}, "Découvrir")))));
   splitLetters($(".w", mast));
   const cover = canvasLoop(coverCv, ribbons);
@@ -2327,6 +2354,7 @@ function viewHome(root){
      QCM à reprendre, matières, derniers cours, Drive, contact. */
   const Dq = qDone(), dues = VOLUMES.filter(v => v.q && ["revoir", "reviser"].includes(qState(Dq, v.q)));
   root.append(el("section", {class:"tools-top g max", "aria-label":"Outils"},
+    helloCard(p => { greetEl.textContent = `Bonjour, ${p}. `; greetEl.hidden = false; }),
     dues.length ? el("div", {class:"due-strip"}, el("p", {class:"k"}, el("span", {"aria-hidden":"true"}, "↻ "), dues.length + " QCM à reprendre aujourd'hui"),
       el("div", {class:"due-list"}, dues.map(v => { const st = qState(Dq, v.q); return el("a", {href:"#" + v.m, class:"due " + st, style:`--c:var(--${v.m})`},
         el("span", {class:"dot"}), v.code + " " + v.n + " · " + v.t, el("span", {class:"k muted"}, st === "revoir" ? "à revoir" : "à réviser")); }))) : null,
@@ -2424,13 +2452,14 @@ const MNAME = {hg:"Histoire-Géographie", philo:"Philosophie", es:"Enseignement 
 function viewHomeM(root){
   const nCours = COURS.length + VOLUMES.filter(v => v.n === "T").length, nFiches = VOLUMES.filter(v => v.n !== "T").length, nQ = Object.values(QCM).reduce((a, q) => a + q.length, 0);
   const cv = el("canvas", {"aria-hidden":"true"});
+  const greetEl = el("span", {class:"greet", hidden:!getPrenom()}, getPrenom() ? `Bonjour, ${getPrenom()}. ` : "");
   root.append(el("header", {class:"m-cover g"},
     el("div", {class:"m-issue"}, el("span", {class:"k"}, "N° 03 · Sept. 2026"), majBadge()),
     el("h1", {class:"m-mast", "aria-label":"Terminale D"}, "Terminale", el("em", {"aria-hidden":"true"}, "D")),
     el("div", {class:"m-by"},
       el("span", {class:"k muted"}, "Révisions pour la Terminale D · 2026–2027"),
       el("p", {class:"by-names"}, "Cours", el("span", {class:"amp"}, "&"), "Fiches")),
-    el("p", {class:"m-lead"}, "Les cours de la classe, relus et rangés dans le Drive, avec des fiches et des QCM pour s'entraîner."),
+    el("p", {class:"m-lead"}, greetEl, "Les cours de la classe, relus et rangés dans le Drive, avec des fiches et des QCM pour s'entraîner."),
     el("div", {class:"m-ribbon", "aria-hidden":"true"}, cv)));
   const cover = canvasLoop(cv, ribbons, .3); cover.p = .3;
 
@@ -2439,6 +2468,7 @@ function viewHomeM(root){
   const dues = qv.filter(v => ["revoir", "reviser"].includes(qState(Dq, v.q))), todo = qv.filter(v => !Dq[v.q]).length;
   const last = COURS[0];
   root.append(el("section", {class:"m-sec m-today g", "aria-labelledby":"m-h-today"},
+    helloCard(p => { greetEl.textContent = `Bonjour, ${p}. `; greetEl.hidden = false; }),
     el("h2", {class:"m-h", id:"m-h-today"}, "Aujourd'hui"),
     dues.length
       ? el("div", {class:"m-due"}, el("p", {class:"k", style:"color:var(--bad)"}, "↻ " + dues.length + " QCM à reprendre"),
@@ -2943,7 +2973,7 @@ const b64u = bytes => { let s = ""; for (let i = 0; i < bytes.length; i++) s += 
 const unb64u = str => { const s = atob(str.replace(/-/g, "+").replace(/_/g, "/")); const a = new Uint8Array(s.length); for (let i = 0; i < s.length; i++) a[i] = s.charCodeAt(i); return a; };
 async function pipe(bytes, stream){ return new Uint8Array(await new Response(new Blob([bytes]).stream().pipeThrough(stream)).arrayBuffer()); }
 async function encodeBul(B){
-  const json = new TextEncoder().encode(JSON.stringify({...B, qcm:qDone()}));
+  const json = new TextEncoder().encode(JSON.stringify({...B, qcm:qDone(), prenom:getPrenom()}));
   if (window.CompressionStream) { try { return "TD1-" + b64u(await pipe(json, new CompressionStream("deflate-raw"))); } catch {} }
   return "TD0-" + b64u(json);
 }
@@ -2954,7 +2984,7 @@ async function decodeBul(code){
   if (m[1] === "TD1") { if (!window.DecompressionStream) throw new Error("navigateur"); bytes = await pipe(bytes, new DecompressionStream("deflate-raw")); }
   const d = JSON.parse(new TextDecoder().decode(bytes));
   if (!d || typeof d !== "object" || !d.profil) throw new Error("contenu");
-  const b = normBul(d); b._qcm = cleanQDone(d.qcm); return b;
+  const b = normBul(d); b._qcm = cleanQDone(d.qcm); b._prenom = typeof d.prenom === "string" ? d.prenom.slice(0, 20) : ""; return b;
 }
 
 /* Exemple rempli, pour comprendre la page avant de saisir ses propres notes.
@@ -3212,7 +3242,7 @@ function viewNotes(root){
     catch (e) { inMsg.append(el("p", {class:"nb-err"}, e?.message === "navigateur" ? "Ton navigateur est trop ancien pour lire ce code. Mets-le à jour ou utilise un autre navigateur." : "Ce code n'est pas valide. Vérifie qu'il commence par TD1- et qu'il a été copié en entier.")); return; }
     inMsg.append(el("p", {}, `Ce code contient ${data.notes.length} note${data.notes.length > 1 ? "s" : ""} et ${Object.values(data._qcm).filter(v => v.st !== "revoir").length} QCM fait${Object.values(data._qcm).filter(v => v.st !== "revoir").length > 1 ? "s" : ""}, profil ${data.profil.spe1} et ${data.profil.spe2}. Il remplacera ce qui est enregistré sur cet appareil (${B.notes.length} note${B.notes.length > 1 ? "s" : ""}).`),
       el("div", {class:"row-actions", style:"margin-top:12px"},
-        el("button", {class:"btn", type:"button", onclick:() => { store.set(QDONE_KEY, data._qcm); delete data._qcm; B = data; Object.assign(P, B.profil); B.profil = P; persist(); fillProfil(); renderAll(); makeCode(); codeIn.value = ""; inMsg.textContent = ""; inMsg.append(el("p", {class:"nb-ok"}, "C'est fait : tes notes et tes QCM faits sont sur cet appareil.")); }}, "Remplacer mes données"),
+        el("button", {class:"btn", type:"button", onclick:() => { store.set(QDONE_KEY, data._qcm); delete data._qcm; if (data._prenom) setPrenom(data._prenom); delete data._prenom; B = data; Object.assign(P, B.profil); B.profil = P; persist(); fillProfil(); renderAll(); makeCode(); codeIn.value = ""; inMsg.textContent = ""; inMsg.append(el("p", {class:"nb-ok"}, "C'est fait : tes notes et tes QCM faits sont sur cet appareil.")); }}, "Remplacer mes données"),
         el("button", {class:"btn ghost", type:"button", onclick:() => { inMsg.textContent = ""; }}, "Annuler")));
   };
   sec.append(el("section", {class:"nb-sec", "aria-labelledby":"h-tr"},
