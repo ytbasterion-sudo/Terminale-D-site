@@ -1097,6 +1097,44 @@ html.mode-m .offline-banner,html:not(.mode-d) .offline-banner{padding-bottom:cal
   .dossier .plate{display:none !important}
   body{font-size:12.5px}
 }
+
+/* ====== CONTRÔLE DEMAIN (HG) — bloc temporaire pour le contrôle du 14/10/2026.
+   À SUPPRIMER après le contrôle : cette règle, le bloc .cd-strip et son appel dans
+   viewSubject (grep "CONTRÔLE DEMAIN"), ainsi que la fonction controleDemainBanner()
+   et les données CD_* juste avant hgMemo(). */
+.cd-strip{border:1px solid var(--hg);border-left-width:5px;background:var(--surface,var(--bg));padding:24px clamp(16px,4vw,32px) 28px;margin:0 0 36px}
+.cd-strip .cd-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 16px;margin-bottom:4px}
+.cd-strip .cd-eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--hg)}
+.cd-strip h2{margin:4px 0 14px;font-size:clamp(22px,4vw,30px)}
+.cd-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 18px}
+.cd-tabs button{all:unset;cursor:pointer;font-family:var(--grotesk,var(--sans,inherit));font-weight:600;font-size:13.5px;padding:7px 14px;border-radius:99px;border:1px solid var(--line);color:var(--ink-2)}
+.cd-tabs button.on{background:var(--hg);border-color:var(--hg);color:#fff}
+.cd-panel{display:none}
+.cd-panel.on{display:block}
+.cd-panel p.cd-sub{margin:0 0 14px;color:var(--ink-2);font-size:14.5px;max-width:62ch}
+.cd-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin-bottom:8px}
+.cd-card{border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.cd-card b{display:block;font-size:13.5px;margin-bottom:4px}
+.cd-card p{margin:0;font-size:14px;color:var(--ink-2)}
+.cd-step{border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:10px}
+.cd-step .cd-step-h{display:flex;align-items:baseline;gap:10px;margin-bottom:8px}
+.cd-step .cd-step-h b{font-size:15px}
+.cd-step .cd-step-h span{margin-left:auto;font-family:var(--mono);font-size:11.5px;color:var(--ink-2);white-space:nowrap}
+.cd-step ul{margin:0;padding-left:18px;font-size:13.5px}
+.cd-step li{margin-bottom:5px}
+.cd-piege{border-left:3px solid var(--philo);border-radius:0 10px 10px 0;padding:10px 14px;margin-bottom:8px;background:var(--bg)}
+.cd-piege b{display:block;font-size:14px;margin-bottom:2px}
+.cd-piege p{margin:0;font-size:13.5px;color:var(--ink-2)}
+.cd-qz{border:1px solid var(--line);border-radius:10px;padding:16px;margin-bottom:12px}
+.cd-qz h3{margin:0 0 10px;font-size:15px;font-weight:600}
+.cd-qz .cd-opts{display:grid;gap:7px}
+.cd-qz button.cd-opt{all:unset;cursor:pointer;border:1px solid var(--line);border-radius:8px;padding:9px 12px;font-size:13.5px}
+.cd-qz button.cd-opt.good{background:var(--good-bg,#e4f3ea);border-color:var(--good,#1f7a4d);color:var(--good,#1f7a4d)}
+.cd-qz button.cd-opt.bad{background:var(--bad-bg,#fbe8e3);border-color:var(--bad,#b23d26);color:var(--bad,#b23d26)}
+.cd-qz .cd-expl{display:none;margin-top:10px;padding-top:10px;border-top:1px solid var(--line);font-size:13.5px;color:var(--ink-2)}
+.cd-qz.done .cd-expl{display:block}
+.cd-qz.done button.cd-opt{pointer-events:none}
+@media (max-width:560px){ .cd-strip{padding:18px 16px 22px} .cd-grid{grid-template-columns:1fr} }
 </style>
 </head>
 <body>
@@ -1231,6 +1269,7 @@ const COURS = [
 /* Nouveautés du site : une entrée par mise à jour poussée en ligne, la plus récente en premier.
    Enrichi à chaque push (demande d'Adam du 29/09/2026). */
 const NOUVEAUTES = [
+  {d:"2026-10-13", t:"Une révision express pour le contrôle de géo sur « Mers et océans »", body:"En haut de la section « Par chapitre » de la page Histoire-Géo, un bloc temporaire de révision couvre le chapitre « Mers et océans » : notions clés à déplier, méthode de l'étude de document(s), pièges à éviter, dates et chiffres, et un petit QCM. Ce bloc sera retiré après le contrôle."},
   {d:"2026-10-09", t:"Quatre nouveaux cours numérisés et fiches enrichies", body:"Quatre cours ont été numérisés et intégrés au Drive : méthodologie de lecture des documents géographiques en Histoire-Géo (Thème 1), structure des introductions de dissertation et d'explication de texte en Philosophie (Méthode), croissance endogène et rôle des institutions en SES (Chapitre 1), changement climatique et coopération en HGGSP (Thème 5). Chaque chapitre a une fiche enrichie avec notions clés, pièges à éviter, et repères pour l'épreuve."},
   {d:"2026-10-08", t:"Les QCM des chapitres sont maintenant toujours visibles", body:"Les QCM de révision ne sont plus cachés dans le menu déroulant du chapitre : ils s'affichent désormais directement sous la liste des fiches et des cours, toujours accessibles sans devoir cliquer pour dérouler le chapitre. Les QCM restent liés au chapitre avec la même mise en page soignée (titre en majuscules grisées, fond et bordure distincts)."},
   {d:"2026-10-06", t:"Un nouveau cours et une fiche enrichie en Histoire-Géo sur les océans", body:"Dans le chapitre « Mers et océans » d'Histoire-Géo, un nouveau cours sur les aires marines protégées et les rivalités géopolitiques en mer est arrivé, et la fiche « Mers et océans, des réserves de ressources » s'est enrichie : le crabe bleu comme exemple d'espèce invasive en Méditerranée, les aires marines protégées (mer de Ross, CCAMLR), l'accord BBNJ et la CNUDM, avec de nouvelles notions dans le Lexique."},
@@ -2761,6 +2800,138 @@ function renderChapters(k){
     idx, empty, wrap);
 }
 
+/* ====== CONTRÔLE DEMAIN (HG) — bloc temporaire pour le contrôle du 14/10/2026, affiché
+   en haut de la page Histoire-Géo (voir viewSubject, "CONTRÔLE DEMAIN"). Contenu fidèle aux
+   fiches HG 01/02/03 du chapitre "Mers et océans" et à la fiche-méthode du professeur
+   (étude de document(s), 1h). À SUPPRIMER après le contrôle, avec le bloc CSS .cd-strip
+   et l'appel dans viewSubject. */
+const CD_NOTIONS = [
+  ["Maritimisation", "Hausse du rôle des mers et océans dans l'économie mondiale (flux maritimes, exploitation des ressources marines). À ne pas confondre avec « espace maritime »."],
+  ["Espace stratégique", "Zone dont la localisation, les ressources ou les points de passage offrent un avantage géopolitique, économique ou militaire : position remarquable, forte connectivité, concentration de flux, fonctions de commandement, concentration d'acteurs."],
+  ["Détroit stratégique", "Passage maritime entre deux terres relativement proches, qui optimise le flux maritime entre plusieurs espaces (exemple : le détroit d'Ormuz)."],
+  ["Rangée portuaire", "Ensemble hiérarchisé de ports se répartissant le trafic d'une façade maritime. Exemple chinois : cinq ensembles, trafic dominé par Shanghai et le delta du Yangzi."],
+  ["Ressources halieutiques", "Ensemble des ressources vivantes des mers et océans exploitées par l'homme (poissons, crustacés, mollusques), par la pêche ou par l'aquaculture."],
+  ["Aquaculture", "Élevage d'espèces aquatiques. Selon la FAO, elle fournit désormais plus de la moitié du poisson destiné à la consommation humaine.", "Définition générale, à confronter au cours."],
+  ["Espèce invasive", "Espèce introduite hors de son aire d'origine (eaux de ballast, canal maritime…) qui bouleverse l'écosystème local. Le crabe bleu en Méditerranée en est un exemple."],
+  ["Aire marine protégée (AMP)", "Espace maritime délimité où les activités humaines sont réglementées ou interdites pour préserver les écosystèmes, parfois en organisant certains usages (recherche, tourisme encadré, droits des populations autochtones)."],
+  ["Accord BBNJ", "Biodiversity Beyond National Jurisdiction : accord international qui permet de créer des outils de conservation en haute mer, au-delà des eaux sous juridiction nationale. Entré en vigueur début 2026."],
+  ["CNUDM", "Convention des Nations unies sur le droit de la mer : cadre juridique mondial qui fixe les droits et obligations des États en mer (ZEE, eaux internationales…)."],
+  ["ZEE", "Zone économique exclusive : s'étend jusqu'à 200 milles marins (≈ 370 km) des côtes, où l'État côtier est seul à exploiter les ressources. Définie par la convention de Montego Bay (1982)."]
+];
+const CD_STEPS = [
+  {t:"Lire le sujet et dégager le plan", time:"5 min", items:[
+    "Repérer et définir les termes importants de la consigne (attention au sens des petits mots de liaison).",
+    "Repérer les délimitations spatio-temporelles pour poser un cadre et éviter le hors-sujet.",
+    "Dégager un plan en 2 ou 3 paragraphes à partir de la formulation de la consigne."]},
+  {t:"Observer le document, sans le lire", time:"5 min", items:[
+    "Nature du document, émetteur / récepteur. Titre : est-il parlant ? Auteur : le connais-tu ?",
+    "Source : fiable ? orientée (si c'est un journal) ? Date : quel contexte général ?",
+    "Trie l'essentiel du superflu : ça nourrira ta présentation en introduction."]},
+  {t:"Lire activement, au moins deux fois", time:"15-20 min", items:[
+    "Ne sélectionne que ce qui répond à la consigne ; surligne par couleur selon la partie du plan.",
+    "Porte un regard critique : document représentatif ? orienté ? quelles limites, quelle portée ?",
+    "Au brouillon, trois colonnes : informations du document, connaissances pour les expliquer, connaissances pour le regard critique."]},
+  {t:"Rédiger au propre", time:"temps restant", items:[
+    "Introduction : présentation du document + contexte, problématique, annonce du plan.",
+    "Développement (2-3 paragraphes) : une idée par paragraphe, appuyée sur le document, complétée par tes connaissances.",
+    "Conclusion : réponse à la problématique, intérêt du document. Garde un temps de relecture."]}
+];
+const CD_PIEGES = [
+  ["Maritimisation ≠ espace maritime", "La maritimisation est un processus (la hausse du rôle des mers), l'espace maritime est un lieu."],
+  ["ZEE ≠ eaux territoriales", "La ZEE s'étend sur 200 milles marins (droits sur les ressources) ; les eaux territoriales sur 12 milles seulement (pleine souveraineté de l'État)."],
+  ["1,6 milliard, pas 2 milliards", "La population mondiale vers 1900 est d'environ 1,6 milliard. « 2 milliards » n'est qu'un arrondi du cours."],
+  ["Pêche ≠ toutes les ressources halieutiques", "Ne pas réduire les ressources halieutiques à la pêche : l'aquaculture pèse aujourd'hui davantage dans la production mondiale."],
+  ["AMP ≠ interdiction totale", "Une aire marine protégée organise souvent les usages (recherche, tourisme, droits autochtones) plutôt que d'exclure toute activité humaine."],
+  ["Échelle régionale vs mondiale", "Ne pas confondre la Convention de Barcelone (régionale, Méditerranée) et la CNUDM / l'accord BBNJ (mondiaux) : des niveaux complémentaires, pas concurrents."]
+];
+const CD_REPERES = [
+  ["~1,6 milliard", "Population mondiale vers 1900 (le cours arrondit à 2 milliards)."],
+  ["~10 milliards", "Population mondiale projetée pour 2050 (9,7 selon l'ONU)."],
+  ["188 Mt", "Production mondiale de poisson en 2024 selon la FAO ; environ 600 millions de personnes vivent de la filière."],
+  ["Golfe de Gabès", "Zone où le crabe bleu (espèce invasive, Méditerranée) perturbe la pêche artisanale tunisienne."],
+  ["1,55 million de km²", "Surface de l'AMP de la mer de Ross (Antarctique), créée en 2016 sous l'égide de la CCAMLR."],
+  ["200 milles marins", "Étendue de la ZEE (≈ 370 km), convention de Montego Bay (1982), contre 12 milles pour les eaux territoriales."]
+];
+const CD_QCM = [
+  {q:"Que désigne la « maritimisation » ?", o:["La hausse du rôle des mers et océans dans l'économie mondiale", "La concentration des populations sur les côtes", "L'élevage d'espèces aquatiques", "L'attraction des régions ensoleillées"], a:0,
+   e:"La maritimisation est un processus économique, à ne pas confondre avec la littoralisation (concentration des hommes sur les côtes)."},
+  {q:"Quelle est la différence entre la ZEE et les eaux territoriales ?", o:["La ZEE (200 milles marins) donne des droits sur les ressources ; les eaux territoriales (12 milles) sont sous pleine souveraineté", "Ce sont deux noms pour le même espace", "Les eaux territoriales sont plus étendues que la ZEE", "La ZEE ne concerne que la pêche"], a:0,
+   e:"Définies par la convention de Montego Bay (1982) : ZEE = 200 milles marins (≈370 km), eaux territoriales = 12 milles."},
+  {q:"Qu'est-ce que l'accord BBNJ ?", o:["Un accord qui permet de créer des aires protégées en haute mer, au-delà des eaux nationales", "Un traité commercial entre ports asiatiques", "La convention qui définit la ZEE", "Un programme de lutte contre les espèces invasives uniquement"], a:0,
+   e:"BBNJ (Biodiversity Beyond National Jurisdiction) couvre potentiellement 60 % de la surface des océans, la haute mer. Entré en vigueur début 2026."},
+  {q:"Où le crabe bleu perturbe-t-il la pêche artisanale ?", o:["Dans le golfe de Gabès, en Tunisie", "Dans le détroit d'Ormuz", "Dans le delta du Yangzi", "Dans la mer de Ross"], a:0,
+   e:"Le crabe bleu, espèce invasive bien installée en Méditerranée, pèse sur la pêche artisanale du golfe de Gabès."},
+  {q:"Qu'est-ce qu'un détroit stratégique ?", o:["Un passage maritime entre deux terres proches qui optimise le flux maritime (ex. Ormuz)", "Une voie d'eau artificielle", "Une chaîne de montagnes sous-marines", "Un ensemble hiérarchisé de ports"], a:0,
+   e:"À distinguer du canal (aménagement artificiel) : le détroit dépend de la configuration naturelle du terrain."},
+  {q:"Combien de « rangées portuaires » structurent la façade maritime chinoise ?", o:["Cinq, dominées par Shanghai et le delta du Yangzi", "Deux", "Dix", "Une seule, centrée sur Shanghai"], a:0,
+   e:"Golfe de Bohai, delta du Yangzi, littoral du Sud-Est, rivière des Perles, littoral du Sud-Ouest — avec Shanghai et le Yangzi en tête."}
+];
+function cdTab(t){
+  $$(".cd-tabs button", document).forEach(b => b.classList.toggle("on", b.dataset.t === t));
+  $$(".cd-panel", document).forEach(p => p.classList.toggle("on", p.dataset.t === t));
+}
+function controleDemainBanner(){
+  const tabs = ["notions", "methode", "pieges", "reperes", "qcm"];
+  const labels = {notions:"Notions", methode:"Méthode", pieges:"Pièges", reperes:"Repères", qcm:"QCM"};
+  const nav = el("div", {class:"cd-tabs"}, tabs.map((t, i) => el("button", {type:"button", class:"cd-tab" + (i === 0 ? " on" : ""), "data-t":t, onclick:() => cdTab(t)}, labels[t])));
+
+  const notions = el("div", {class:"cd-panel on", "data-t":"notions"},
+    el("p", {class:"cd-sub"}, "À confronter au cours : clique sur une notion pour la déplier."),
+    el("dl", {class:"lx-dl memo-dl"}, CD_NOTIONS.map(([t, d, note]) => el("div", {class:"lx-item"},
+      el("dt", {role:"button", tabindex:"0", "aria-expanded":"false", onclick:ev => lxToggle(ev.currentTarget), onkeydown:ev => { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); lxToggle(ev.currentTarget); } }}, t),
+      el("dd", {}, el("p", {class:"lx-def"}, d), note ? el("p", {class:"lx-note"}, note) : null)))));
+
+  const methode = el("div", {class:"cd-panel", "data-t":"methode"},
+    el("p", {class:"cd-sub"}, "Étude de document(s), 1h, 10 points — d'après la fiche-méthode de ton professeur."),
+    el("div", {class:"cd-grid"},
+      el("div", {class:"cd-card"}, el("b", {}, "Capacités évaluées"), el("p", {}, "Exploiter, organiser et confronter des informations · analyser un document de source et de nature diverses · rédiger des réponses construites et argumentées.")),
+      el("div", {class:"cd-card"}, el("b", {}, "Le réflexe à garder"), el("p", {}, "Le document reste au centre de ta réflexion : ce n'est pas un prétexte pour réciter le cours."))),
+    CD_STEPS.map((s, i) => el("div", {class:"cd-step"},
+      el("div", {class:"cd-step-h"}, el("b", {}, (i + 1) + ". " + s.t), el("span", {}, s.time)),
+      el("ul", {}, s.items.map(it => el("li", {}, it))))));
+
+  const pieges = el("div", {class:"cd-panel", "data-t":"pieges"},
+    el("p", {class:"cd-sub"}, "Les confusions que les fiches signalent explicitement."),
+    CD_PIEGES.map(([t, d]) => el("div", {class:"cd-piege"}, el("b", {}, t), el("p", {}, d))));
+
+  const reperes = el("div", {class:"cd-panel", "data-t":"reperes"},
+    el("p", {class:"cd-sub"}, "Dates et chiffres à mobiliser pour contextualiser le document."),
+    el("div", {class:"cd-grid"}, CD_REPERES.map(([t, d]) => el("div", {class:"cd-card"}, el("b", {}, t), el("p", {}, d)))));
+
+  let qzScore = 0, qzAnswered = 0;
+  const qzHost = el("div", {});
+  const qzBar = el("p", {class:"cd-sub"}, "Score : 0 / " + CD_QCM.length);
+  const renderCdQcm = () => {
+    qzHost.innerHTML = "";
+    CD_QCM.forEach((item, i) => {
+      const expl = el("div", {class:"cd-expl"}, item.e);
+      const opts = el("div", {class:"cd-opts"});
+      const card = el("div", {class:"cd-qz"}, el("h3", {}, (i + 1) + ". " + item.q), opts, expl);
+      item.o.forEach((optText, oi) => {
+        const btn = el("button", {type:"button", class:"cd-opt"}, optText);
+        btn.onclick = () => {
+          if (card.classList.contains("done")) return;
+          card.classList.add("done");
+          const all = opts.querySelectorAll("button");
+          all[item.a].classList.add("good");
+          if (oi !== item.a) btn.classList.add("bad");
+          qzAnswered++; if (oi === item.a) qzScore++;
+          qzBar.textContent = "Score : " + qzScore + " / " + CD_QCM.length + (qzAnswered === CD_QCM.length ? " — terminé" : "");
+        };
+        opts.append(btn);
+      });
+      qzHost.append(card);
+    });
+  };
+  renderCdQcm();
+  const qcm = el("div", {class:"cd-panel", "data-t":"qcm"}, qzBar, qzHost);
+
+  return el("section", {class:"cd-strip g max", "aria-labelledby":"cd-h"},
+    el("div", {class:"cd-head"}, el("span", {class:"cd-eyebrow"}, "Histoire-Géo · Thème 1"), el("span", {class:"k muted"}, "Mers et océans")),
+    el("h2", {id:"cd-h"}, "Contrôle de géo demain : ce qu'il faut réviser"),
+    nav, notions, methode, pieges, reperes, qcm);
+}
+
 /* La trace écrite "Les détroits et canaux" : des conseils de révision et des moyens
    mémotechniques, à côté du cours lui-même (fiche HG 01). Intégrée directement dans le
    chapitre hgG1 (voir renderChapters/CHAP_EXTRA) : elle n'apparaît qu'une fois le chapitre déplié. */
@@ -2817,6 +2988,9 @@ function viewSubject(root, k){
     }
     root.append(el("section", {class:"bychap g max", "aria-labelledby":"h-ch"},
       el("div", {class:"bychap-h"}, el("h2", {class:"serif-t", id:"h-ch", html:"Par <em>chapitre</em>"})),
+      /* CONTRÔLE DEMAIN (HG) — bloc temporaire, à supprimer après le contrôle du 14/10/2026
+         (voir controleDemainBanner, CD_* et le bloc CSS .cd-strip). */
+      k === "hg" ? controleDemainBanner() : null,
       renderChapters(k)));
     markFiches();
   }
