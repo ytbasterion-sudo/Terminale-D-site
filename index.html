@@ -1205,7 +1205,7 @@ const VOLUMES = [
   {m:"ses", code:"SES", n:"03", t:"EC1.1, le corrigé", ch:"ses1", id:"1_ChptLCNx_A8ScEalEqyskGky1V47nFZW_FPkdnmLmo", w:58, h:240, q:"ses3"},
   {m:"ses", code:"SES", n:"M", t:"Méthodologie du bac", ch:"sesM", id:"1ZHfZX08gPUt5wqTUusuA_cFGK2g9ianHoil5YXXTol0", w:54, h:228},
   {m:"ses", code:"SES", n:"P", t:"Programme de l'année", ch:"sesM", id:"1MVa1B9teMl7gJzxuga_O5yekOX0K3CXOwMaZCougksk", w:40, h:214},
-  {m:"ses", code:"SES", n:"04", t:"Les sources de la croissance économique", ch:"ses2", id:"19dcmYHSb5_-IkSjsdNW_pHP2-rEGy5RKojJq7pJM0pE", w:36, h:200},
+  {m:"ses", code:"SES", n:"04", t:"Les sources de la croissance économique", ch:"ses2", id:"1k7zvFxkZKCnzzgxzDOKyogz3kKyuU4NiHF9Gwdat_Q0", w:64, h:254, q:"ses4"},
   {m:"hggsp", code:"HGGSP", n:"01", t:"Environnement, entre exploitation et protection", ch:"hggsp5", id:"1pQu0DYhwBwF27OJNLD8gnEqw-c2dsZ-I4gY8Kbkd1hE", w:84, h:270, q:"hggsp1"},
   {m:"hggsp", code:"HGGSP", n:"M", t:"Méthodologie du bac", ch:"hggspM", id:"17y4Sf192M_g_H34-NaoX4DzNySR0dOh8GkDV60YVVEQ", w:52, h:228},
   {m:"hggsp", code:"HGGSP", n:"P", t:"Programme de l'année", ch:"hggspM", id:"1dviXGbJuJtNbArI_yOa1s4zggFRiITI4HhdS7b2bED8", w:38, h:214},
@@ -1222,6 +1222,8 @@ const VOLUMES = [
   {m:"philo", code:"PHILO", n:"T", t:"Méthode de l'introduction : dissertation et explication de texte", ch:"philoM", id:"1LpTrB7PY4Wk5y4VDicqvId4NgXQzWTQIyAEnkA8MNks", w:48, h:224},
   {m:"philo", code:"PHILO", n:"04", t:"La vérité", ch:"philoVerite", id:"1k7NNk1EzAcUDvttdCbQbujCfMNMwrXiWy9PKQ6cFZls", w:44, h:222},
   {m:"hg", code:"HG", n:"03", t:"Mers et océans, des réserves de ressources", ch:"hgG1", id:"1JgN_HnLEbwlA7MzfnHbV6IB31kQPjVlvXGjfismhLQw", w:56, h:250, q:"hg3"},
+  {m:"hggsp", code:"HGGSP", n:"02", t:"Climat et coopération internationale", ch:"hggsp5", id:"1iE_wulFmRP90nk-gAes0jOjzrP0vam7xN7fW1Tdc-qo", w:70, h:262, q:"hggsp2"},
+  {m:"ang", code:"ANG", n:"02", t:"When Fantasy Becomes Reality", ch:"ang2", id:"1K1cJtlw7wOUwQf7hV778h7TluRR328ummEnAENGzB6k", w:38, h:200},
   {m:"es", code:"SCI", n:"01", t:"L'alternateur", ch:"es2a", id:"1pMahzoxQERFBPmBitIdrIyXmbs5aJfw-ff9UKp26rUU", w:52, h:246, q:"es1"},
   {m:"es", code:"SCI", n:"M", t:"Méthodologie et conseils", ch:"esM", id:"10A8cVoYyGas_24sLK-CGt7k9_49p5avraBzbHpMoVSk", w:50, h:226},
   {m:"droit", code:"DROIT", n:"01", t:"Qu'est-ce que le droit ?", ch:"droitI1", id:"1XvLtjtlXgp-yRufG-cr87xN8GyvcmwVH1PDNm227uPI", w:62, h:254, q:"droit1"},
@@ -1232,6 +1234,11 @@ const VOLUMES = [
 ];
 
 const COURS = [
+  ["2026-10-14","hggsp","Les États leaders face au changement climatique","1O5qosrt_Vve1T7pJEpgduXvzaDszifIJQDYtJM9byOw","hggsp5:axe2"],
+  ["2026-10-13","philo","Explication de texte, la perception du cube","10sRLm5_Fsg8rKQ8I0duUkvJMAWkETdn7-Q6064y0W00","philoRaison"],
+  ["2026-10-12","hggsp","Jalon 2, le climat : chronologie de la coopération internationale","1omwAdDw8cNfIcZRoeSHW60mIcch1J95qkzeqJyrwODU","hggsp5:axe2"],
+  ["2026-10-12","ses","D'où vient la croissance économique, la destruction créatrice","1z5VCR5yDyb34kF_xRS-lDNPhsd5gsg3311IeZoGTN00","ses2"],
+  ["2026-10-09","ang","When fantasy becomes reality : une image de robot humanoïde","161hqJrnags_xdMgFEF4BH_Xayus5KQRMJhcsqPZcjIk","ang2"],
   ["2026-10-06","hg","Les aires marines protégées et les rivalités géopolitiques en mer","1_OV3oyyKzxH2Ue6gso5AvPVTkrsDGSttUZKFOod1jE4","hgG1:p2"],
   ["2026-10-05","hggsp","Axe 2, le changement climatique : problématique et Jalon 1","1f6aw8kj7vTNrr13q5fhTt9P-aB4_JMKvlhE8kr1uQlc","hggsp5:axe2"],
   ["2026-10-02","ses","La productivité globale des facteurs, exemple chiffré","1NibfwaMq5B1Q0WPfRVs4KeorMKMPRxzBkPqHC_386Po","ses2"],
@@ -1269,6 +1276,7 @@ const COURS = [
 /* Nouveautés du site : une entrée par mise à jour poussée en ligne, la plus récente en premier.
    Enrichi à chaque push (demande d'Adam du 29/09/2026). */
 const NOUVEAUTES = [
+  {d:"2026-10-15", t:"Un nouveau chapitre d'Anglais et trois fiches enrichies", body:"Un nouveau chapitre d'Anglais est arrivé, « Chapter 2 : When Fantasy Becomes Reality ». En HGGSP (Thème 5), une deuxième fiche couvre le Jalon 2 sur le climat et les relations internationales (PNUE, GIEC, accords de Paris, justice climatique), avec son propre QCM. La fiche de SES sur les sources de la croissance économique s'enrichit de la croissance endogène, des 4 capitaux, du rôle des institutions et de la destruction créatrice (Schumpeter), avec un nouveau QCM. La fiche « La raison » en Philosophie s'enrichit d'un texte sur la perception et la raison."},
   {d:"2026-10-13", t:"Une révision express pour le contrôle de géo sur « Mers et océans »", body:"En haut de la section « Par chapitre » de la page Histoire-Géo, un bloc temporaire de révision couvre le chapitre « Mers et océans » : notions clés à déplier, méthode de l'étude de document(s), pièges à éviter, dates et chiffres, et un petit QCM. Ce bloc sera retiré après le contrôle."},
   {d:"2026-10-09", t:"Quatre nouveaux cours numérisés et fiches enrichies", body:"Quatre cours ont été numérisés et intégrés au Drive : méthodologie de lecture des documents géographiques en Histoire-Géo (Thème 1), structure des introductions de dissertation et d'explication de texte en Philosophie (Méthode), croissance endogène et rôle des institutions en SES (Chapitre 1), changement climatique et coopération en HGGSP (Thème 5). Chaque chapitre a une fiche enrichie avec notions clés, pièges à éviter, et repères pour l'épreuve."},
   {d:"2026-10-08", t:"Les QCM des chapitres sont maintenant toujours visibles", body:"Les QCM de révision ne sont plus cachés dans le menu déroulant du chapitre : ils s'affichent désormais directement sous la liste des fiches et des cours, toujours accessibles sans devoir cliquer pour dérouler le chapitre. Les QCM restent liés au chapitre avec la même mise en page soignée (titre en majuscules grisées, fond et bordure distincts)."},
@@ -1313,6 +1321,7 @@ const CHAPITRES = {
     {k:"philoM", dir:"1p3Ihbp1FshJQJnF1rMTmetZtA1MVISaG", n:"Méthode", t:"Méthode du bac"}],
   ang:[
     {k:"ang1", dir:"1Q9MsHbQ7ZYHJ27KcXvrjUoX8eHR-CqCx", n:"Chapter 1", t:"Tradwives in the USA and the Women's Liberation Movement"},
+    {k:"ang2", dir:"1B1hVTKZwRv7l-qJ965X2veoRMyUrGDHd", n:"Chapter 2", t:"When Fantasy Becomes Reality"},
     {k:"angM", dir:"1QJqm2ZDfmPmZ0SfPVVu55vG7uklfGIFc", n:"Méthode", t:"Méthodologie et conseils"}],
   es:[
     {k:"es2a", dir:"12YJ3O8OYhJLpoInRTXbhzAkcf3zTF8Hk", n:"Thème 2 · Le futur des énergies", t:"Deux siècles d'énergie électrique"},
@@ -1469,7 +1478,28 @@ const QCM = {
     ["Comte est un texte-charnière parce qu'il est rapproché…",["de la notion de Bonheur seulement","de la notion de Raison seulement","d'aucune autre notion","de la Raison et du Bonheur à la fois"],3,"Texte-charnière avec le Bonheur, classé sous Raison mais rapproché du Bonheur."],
     ["Pour Wittgenstein, un fait extraordinaire mais seulement provisoirement inexpliqué par la science est…",["un miracle absolu","un miracle relatif","une preuve de l'existence de Dieu","une erreur de raisonnement"],1,"Le miracle relatif est un fait extraordinaire mais seulement provisoirement inexpliqué."],
     ["Selon Wittgenstein, la limite de la raison scientifique est…",["une limite de degré, comblée par le progrès","une limite de nature : elle ne rencontre jamais l'absolu","inexistante","propre à chaque science particulière"],1,"Ce n'est pas une limite de degré mais une limite de nature : elle ne rencontre jamais l'absolu."],
-    ["Les quatre obstacles à la raison présentés dans cette fiche sont, dans l'ordre…",["corporel, culturel, logique, catégoriel","culturel, corporel, catégoriel, logique","logique, catégoriel, corporel, culturel","catégoriel, logique, culturel, corporel"],0,"Maïmonide (corporel), Montaigne (culturel), Comte (logique), Wittgenstein (catégoriel)."]
+    ["Les quatre obstacles à la raison présentés dans cette fiche sont, dans l'ordre…",["corporel, culturel, logique, catégoriel","culturel, corporel, catégoriel, logique","logique, catégoriel, corporel, culturel","catégoriel, logique, culturel, corporel"],0,"Maïmonide (corporel), Montaigne (culturel), Comte (logique), Wittgenstein (catégoriel)."],
+    ["Dans le texte du cube, voir un objet ne suffit pas à le connaître parce que…",["les sens ne livrent que des aspects partiels et changeants, unifiés ensuite par le discours","la vue est le seul sens fiable","le cube n'existe pas réellement","la connaissance est toujours fausse"],0,"Les apparences successives (les faces du cube) ne deviennent une connaissance vraie que par le discours et l'intelligence, qui les unifient."]
+  ],
+  ses4:[
+    ["Au Danemark en 2019, sur une croissance du PIB de 2,8 %, quelle est la part de la productivité globale des facteurs (PGF) ?",["0,9 point","0,5 point","1,4 point","2,8 points"],2,"PIB +2,8 % décomposé en facteur travail +0,9 point, facteur capital +0,5 point, PGF +1,4 point (source OCDE)."],
+    ["La croissance économique se distingue du développement car elle mesure…",["une amélioration qualitative des conditions de vie","une augmentation quantitative de la production (le PIB)","le bien-être subjectif d'une population","la répartition des richesses"],1,"La croissance est quantitative (PIB), le développement est qualitatif (conditions de vie)."],
+    ["La croissance dite « endogène » résulte principalement…",["de facteurs extérieurs à l'économie nationale","de l'investissement volontaire de l'État et des entreprises dans les 4 capitaux","du hasard des cycles économiques","de la seule démographie"],1,"Croissance endogène : elle n'est pas un phénomène exogène mais résulte d'un investissement volontaire."],
+    ["Lequel de ces éléments ne fait PAS partie des « 4 capitaux » de la croissance endogène ?",["Le capital humain","Le capital technologique","Le capital financier","Le capital public"],2,"Les 4 capitaux : humain, technologique, physique et public ; le capital financier n'en fait pas partie."],
+    ["Le rôle des institutions (droits de propriété, stabilité) dans la croissance est…",["de créer l'environnement qui permet l'investissement et l'innovation","de remplacer l'investissement privé","de limiter la productivité","sans effet sur la croissance"],0,"Sans droits de propriété protégés, même un investissement massif en capital ne génère pas d'innovation durable."],
+    ["Un indice base 100 passe de 100 en 2011 à 108 en 2019. Le taux de croissance sur la période est de…",["0,8 %","8 %","108 %","1,08 %"],1,"108 − 100 = 8 % : le taux de variation se lit directement en soustrayant 100 à la valeur finale."],
+    ["Le concept de « destruction créatrice » est dû à…",["Joseph Schumpeter","Adam Smith","Robert Solow","John Maynard Keynes"],0,"Joseph Schumpeter : l'innovation détruit d'anciennes activités tout en en créant de nouvelles."],
+    ["La destruction créatrice signifie que l'innovation…",["détruit des emplois sans jamais en créer","détruit certains emplois mais en crée d'autres, notamment pour les travailleurs qualifiés","ne touche jamais l'emploi","profite uniquement aux entreprises déjà installées"],1,"L'innovation fait disparaître certains emplois mais en crée d'autres, en particulier pour les travailleurs qualifiés, complémentaires de l'innovation."]
+  ],
+  hggsp2:[
+    ["Le PNUE (Programme des Nations unies pour l'environnement) est fondé en…",["1972, à Stockholm","1992, à Rio","1997, à Kyoto","2015, à Paris"],0,"Fondation du PNUE en 1972 à Stockholm."],
+    ["Le GIEC est fondé en 1988 par…",["le PNUE et l'OMM","l'ONU seule","la CCNUCC","les accords de Paris"],0,"Le PNUE et l'OMM (Organisation météorologique mondiale) fondent le GIEC en 1988."],
+    ["Le protocole de Kyoto (1997) impose des objectifs chiffrés de réduction…",["à tous les pays du monde sans exception","aux seuls pays développés, et il est refusé par les États-Unis","aux seuls pays en développement","uniquement à la Chine"],1,"Kyoto fixe des objectifs chiffrés pour les pays développés ; les États-Unis le refusent."],
+    ["La COP21 (2015) est marquante car elle…",["fonde le GIEC","aboutit aux accords de Paris, un tournant du multilatéralisme climatique","crée le PNUE","est la première conférence climatique de l'ONU"],1,"COP21, 2015 : accords de Paris, différenciation des efforts selon les moyens nationaux, bilan tous les cinq ans."],
+    ["Selon le PNUE (rapport Emissions Gap 2025), une mise en œuvre intégrale des accords de Paris mènerait à une hausse de…",["2,3 à 2,5°C d'ici la fin du siècle","0,5°C d'ici la fin du siècle","4°C d'ici la fin du siècle","aucune hausse supplémentaire"],0,"2,3 à 2,5°C avec mise en œuvre intégrale des accords de Paris, contre environ 2,8°C avec les politiques actuellement en place."],
+    ["Au moment du protocole de Kyoto, la Chine était classée…",["pays développé, donc engagée par des objectifs chiffrés","pays en développement, donc non concernée par les objectifs chiffrés","premier émetteur mondial","leader de la transition écologique"],1,"En 1997, la Chine est un pays en développement et n'est pas concernée par les objectifs chiffrés de Kyoto ; elle devient plus tard un moteur de la transition écologique."],
+    ["Depuis quelle COP les pays d'Afrique sont-ils présentés comme particulièrement engagés dans la coopération climatique ?",["La COP22, à Marrakech en 2016","La COP21, à Paris en 2015","La COP3, à Kyoto en 1997","Le sommet de Rio, en 1992"],0,"La COP22 (Marrakech, 2016) est restée associée à l'engagement des pays africains sur le climat."],
+    ["La « justice climatique » relie la question climatique…",["à la seule croissance économique","à la justice sociale et environnementale (inégalités, droits humains, responsabilités historiques)","à la seule politique énergétique nationale","au droit maritime uniquement"],1,"Définition générale : la justice climatique aborde le changement climatique comme un enjeu éthique et politique, lié aux inégalités, aux droits humains et aux responsabilités historiques différenciées des États."]
   ]
 };
 
@@ -3470,10 +3500,15 @@ const LEX = [
   {t:"Ménage", m:"ses", s:["02"], d:"Occupants d'une résidence, avec ou sans lien de parenté, partageant un budget commun."},
   {t:"Génération", m:"ses", s:["02"], d:"Individus nés la même décennie, partageant des événements communs."},
   {t:"Salarisation, tertiarisation, féminisation, massification scolaire", m:"ses", s:["02"], d:"Quatre évolutions distinctes de la population active depuis 1950 : hausse de la part des salariés, du secteur tertiaire, des femmes dans l'emploi, et du niveau de diplôme."},
+  {t:"Croissance endogène", m:"ses", s:["04"], d:"La croissance économique n'est pas un phénomène exogène (extérieur) mais résulte de l'investissement volontaire de l'État et des entreprises."},
+  {t:"Les 4 capitaux", m:"ses", s:["04"], d:"Capital humain (éducation, santé), capital technologique (recherche), capital physique (équipements), capital public (droits de propriété, lois, infrastructure)."},
+  {t:"Institutions (économie)", m:"ses", s:["04"], d:"Ensemble de règles (droits de propriété, stabilité politique, sécurité) qui créent l'environnement permettant l'investissement et l'innovation."},
+  {t:"Externalités positives", m:"ses", s:["04"], d:"Effets bénéfiques non intentionnels de l'investissement sur les autres agents. Exemple : la recherche publique profite aux entreprises."},
+  {t:"Destruction créatrice", m:"ses", s:["04"], d:"Concept de l'économiste Joseph Schumpeter : processus par lequel l'innovation détruit d'anciennes activités et d'anciens emplois tout en en créant de nouveaux, la destruction et la création étant liées et reposant sur l'entrepreneur innovateur."},
 
   /* HGGSP */
   {t:"Environnement", m:"hggsp", s:["01"], d:"Espace productif définissant le rapport entre l'homme et la nature, enjeu planétaire entre exploitation et protection."},
-  {t:"Crise frumentaire", m:"hggsp", s:["01"], d:"Crise liée au manque de grain, associée au grand hiver de 1788-1789 et à la Révolution française."},
+  {t:"Crise frumentaire", m:"hggsp", s:["01","02"], d:"Crise liée au manque de grain et à la disette, provoquée par les variations climatiques : exemple historique du grand hiver de 1788-1789 et de la Révolution française, mais la notion vaut aussi pour les crises contemporaines."},
   {t:"Anthropocène", m:"hggsp", s:["01"], d:"L'action humaine est devenue une force majeure de transformation de la Terre (artificialisation des sols, exploitation des terres rares).", note:"Terme proposé au début des années 2000 ; en mars 2024, l'instance internationale de stratigraphie a voté contre sa reconnaissance comme époque géologique officielle."},
   {t:"Biosphère", m:"hggsp", s:["01"], d:"Espaces où la vie est possible."},
   {t:"Hydrosphère", m:"hggsp", s:["01"], d:"Ensemble des eaux de la planète."},
@@ -3508,6 +3543,13 @@ const LEX = [
   {t:"Climat (définition de l'OMM)", m:"hggsp", s:["01"], d:"Conditions météorologiques moyennes (températures, ensoleillement...) observées sur une longue durée, environ trente ans."},
   {t:"Axe 2 (Thème 5), la maîtrise du changement climatique", m:"hggsp", s:["01"], d:"Enjeu de coopération internationale : le réchauffement climatique, accéléré par l'activité humaine, provoque des inégalités entre les sociétés, ce qui exige une coopération internationale pour le maîtriser."},
   {t:"Cernes des arbres et pollens fossilisés", m:"hggsp", s:["01"], d:"Archives naturelles utilisées pour reconstituer le climat du passé : les cernes renseignent la croissance annuelle des arbres, les pollens fossilisés des éléments de la végétation ancienne et donc du climat d'une époque.", note:GEN},
+  {t:"Jalon 2 (Thème 5), le climat, enjeu des relations internationales", m:"hggsp", s:["02"], d:"Comment le changement climatique recompose-t-il les relations internationales, entre coopération multilatérale, rivalités de puissance et justice climatique ?"},
+  {t:"Justice climatique", m:"hggsp", s:["02"], d:"Approche qui aborde le changement climatique comme un enjeu éthique et politique, reliant la question climatique à la justice sociale et environnementale : elle interroge les inégalités, les droits humains et les responsabilités historiques différenciées des États face au changement climatique.", note:"Définition générale, à confronter au cours."},
+  {t:"PNUE", m:"hggsp", s:["02"], d:"Programme des Nations unies pour l'environnement, fondé en 1972 à Stockholm."},
+  {t:"GIEC", m:"hggsp", s:["02"], d:"Groupe d'experts intergouvernemental sur l'évolution du climat, fondé en 1988 par le PNUE et l'OMM (Organisation météorologique mondiale) ; publie des rapports de référence sur le changement climatique (premier rapport en 1990, sixième en 2023)."},
+  {t:"CCNUCC", m:"hggsp", s:["02"], d:"Convention-cadre des Nations unies sur les changements climatiques, née du sommet de la Terre à Rio de Janeiro en 1992."},
+  {t:"Protocole de Kyoto (1997)", m:"hggsp", s:["02"], d:"Premier accord international à fixer des objectifs chiffrés de réduction des émissions pour les pays développés ; refusé par les États-Unis. La Chine, alors classée pays en développement, n'est pas concernée par ces objectifs."},
+  {t:"COP21, accords de Paris (2015)", m:"hggsp", s:["02"], d:"Tournant du multilatéralisme climatique : différenciation des efforts selon les moyens nationaux, bilan tous les cinq ans. Le changement climatique devient une affaire universelle."},
 
   /* Anglais */
   {t:"Tradwife", m:"ang", s:["01"], d:"Short for traditional wife : femme, souvent influenceuse américaine, qui présente le foyer, le mariage et la maternité comme le centre de sa vie, à travers des vidéos très soignées sur les réseaux sociaux."},
@@ -3517,6 +3559,9 @@ const LEX = [
   {t:"Choice, autonomy, agency", m:"ang", s:["01"], d:"Les notions centrales du texte. La vraie question n'est pas ce qu'une femme choisit, mais si elle a la liberté et les ressources de choisir."},
   {t:"Coercion, privilege", m:"ang", s:["01"], d:"La coercition est une pression sociale ou économique qui force un choix ; le privilège désigne les avantages, surtout économiques, qui rendent un mode de vie possible."},
   {t:"Gender hierarchy", m:"ang", s:["01"], d:"L'idée, défendue par certaines influenceuses, d'une autorité masculine et d'une soumission féminine présentées comme naturelles."},
+  {t:"Technology risk", m:"ang", s:["02"], d:"La peur que la technologie (ici incarnée par l'intelligence artificielle et les robots humanoïdes) échappe au contrôle humain ou serve à manipuler, plutôt qu'à servir l'humanité."},
+  {t:"Manipulation (image du robot)", m:"ang", s:["02"], d:"Dans l'image étudiée, la tête du robot féminin est contrôlée par les mains d'un autre robot, ce qui symbolise une perte de contrôle sur sa propre image ou sa propre volonté."},
+  {t:"Futuristic vision", m:"ang", s:["02"], d:"Représentation imaginaire d'une société à venir, souvent utilisée en science-fiction pour interroger les risques ou les promesses du présent."},
 
   /* Histoire-Géo */
   {t:"Mondialisation", m:"hg", s:["01"], d:"Intensification et multiplication des flux (marchandises, capitaux, informations, personnes) à l'échelle planétaire, entraînant une interdépendance des territoires."},
@@ -3547,6 +3592,7 @@ const LEX = [
   {t:"Comparaison descendante et ascendante", m:"philo", s:["02"], d:"Méthode de Démocrite pour être heureux : se comparer aux plus malheureux (comparaison descendante) plutôt qu'aux plus riches (comparaison ascendante, source d'envie et de désir sans fin)."},
   {t:"Perfection première et perfection dernière", m:"philo", s:["03"], d:"Chez Maïmonide, les deux degrés de l'accomplissement humain : la perfection première, la santé du corps, et la perfection dernière, la raison en acte, la plus noble."},
   {t:"Miracle absolu et miracle relatif", m:"philo", s:["03"], d:"Chez Wittgenstein, le miracle relatif est un fait extraordinaire seulement provisoirement inexpliqué par la science ; le miracle absolu, hors de portée par principe de toute explication scientifique, ne se rencontre jamais dans les faits."},
+  {t:"Le cube de bois, perception et raison", m:"philo", s:["03"], d:"Voir un objet ne suffit pas à le connaître, car les sens ne livrent jamais qu'une suite d'aspects partiels et changeants (ici, les faces d'un cube). La vérité de l'objet n'est pas donnée par la vue ou le toucher, mais construite par le discours et l'intelligence, qui unifient ces apparences successives en une seule idée du cube.", note:"Texte étudié en classe, auteur à confirmer avec le professeur."},
   {t:"Vérité", m:"philo", s:["04"], d:"Adéquation entre un énoncé (ou une pensée) et la réalité qu'il décrit, ou cohérence interne d'un raisonnement."},
   {t:"Vérités logiques (vérités de raison)", m:"philo", s:["04"], d:"Énoncés vrais en vertu de leur seule forme, indépendamment de l'expérience (exemple : « tout célibataire est non marié »), dont la négation est contradictoire. Rapprochement possible avec la distinction de Leibniz entre vérités de raison (nécessaires) et vérités de fait (contingentes).", note:"Repère général, à confronter au cours."},
   {t:"Élitisme épistémique", m:"philo", s:["04"], d:"Position qui réserve l'accès à la vérité à un groupe restreint de savants ou d'experts : le cours interroge la légitimité d'une telle position."},

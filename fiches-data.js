@@ -76,13 +76,61 @@ const FICHE_DATA = {
   "ses-04": {
     titre: "Les sources de la croissance économique",
     m: "ses", n: "04",
+    auteurs: [
+      {n:"Joseph Schumpeter", d:"Économiste à l'origine du concept de destruction créatrice : l'innovation détruit d'anciennes activités et d'anciens emplois tout en en créant de nouveaux."}
+    ],
     dates: [
-      "Danemark, 2019 (OCDE) : PIB + 2,8 %, dont facteur travail + 0,9 point, facteur capital + 0,5 point et productivité globale des facteurs + 1,4 point."
+      "Danemark, 2019 (OCDE) : PIB + 2,8 %, dont facteur travail + 0,9 point, facteur capital + 0,5 point et productivité globale des facteurs + 1,4 point.",
+      "France, 2020 : 2,2 % du PIB investi en recherche (DIRD), contre 0,5 % en Roumanie (écart de 1,7 point).",
+      "France, 2016 : dépense publique en éducation = 5,4 % du PIB, contre 2,6 % en Roumanie.",
+      "PIB par habitant (2017, indice UE = 100) : France 104, Roumanie 63.",
+      "Méthode : lire un indice base 100 (ex. 100 en 2011, 108 en 2019) en soustrayant 100 à la valeur finale pour obtenir le taux de variation en pourcentage."
     ],
     pieges: [
-      {t:"Croissance économique / développement", d:"Ne pas confondre : la croissance mesure une augmentation quantitative de la production (PIB), le développement une amélioration qualitative des conditions de vie d'une population. Distinction classique du programme, à confronter au cours."}
+      {t:"Croissance économique / développement", d:"Ne pas confondre : la croissance mesure une augmentation quantitative de la production (PIB), le développement une amélioration qualitative des conditions de vie d'une population. Distinction classique du programme, à confronter au cours."},
+      {t:"Croissance endogène / croissance exogène", d:"La croissance endogène résulte d'un investissement volontaire de l'État et des entreprises dans les 4 capitaux (humain, technologique, physique, public) ; la croissance exogène résulterait de facteurs extérieurs."},
+      {t:"Institutions, condition trop souvent oubliée", d:"Sans droits de propriété protégés et un cadre institutionnel stable, même un investissement massif en capital ne génère pas d'innovation durable."},
+      {t:"Destruction créatrice ≠ destruction nette d'emplois", d:"L'innovation fait disparaître certains emplois mais en crée d'autres, en particulier pour les travailleurs qualifiés capables d'exécuter des tâches non répétitives, complémentaires de l'innovation."}
     ],
-    dissert: "Sujet type : quelles sont les sources de la croissance économique ? Plan possible : d'abord l'accumulation des facteurs de production (augmentation du facteur travail, investissement en capital) ; ensuite le rôle de la productivité globale des facteurs, via la qualification et la motivation des travailleurs ainsi que l'investissement dans de nouvelles machines."
+    dissert: "Sujet type 1 : quelles sont les sources de la croissance économique ? Plan possible : d'abord l'accumulation des facteurs de production (augmentation du facteur travail, investissement en capital) ; ensuite le rôle de la productivité globale des facteurs, via la qualification et la motivation des travailleurs ainsi que l'investissement dans de nouvelles machines ; enfin, montrer que ces deux sources sont alimentées par l'investissement dans les 4 capitaux, qui rend la croissance endogène et cumulative. Sujet type 2 : quel est le rôle des institutions dans la croissance économique ? Plan : institutions → sécurité et stabilité → droits de propriété qui incitent à l'innovation → monopole temporaire qui couvre les coûts de R&D → accumulation du capital humain et technologique. Sujet type 3 : quels défis le processus de croissance soulève-t-il ? Plan : l'innovation s'accompagne d'une destruction créatrice (emplois détruits et créés) → les travailleurs qualifiés sont avantagés par leur complémentarité avec l'innovation → question de la formation et de l'adaptation de la main-d'œuvre."
+  },
+
+  "hggsp-02": {
+    titre: "Le climat : chronologie de la coopération internationale (Jalon 2)",
+    m: "hggsp", n: "02",
+    auteurs: [
+      {n:"PNUE (Programme des Nations unies pour l'environnement)", dates:"1972", d:"Créé à la suite de la conférence de Stockholm, premier organe des Nations unies dédié à l'environnement."},
+      {n:"GIEC (Groupe d'experts intergouvernemental sur l'évolution du climat)", dates:"1988", d:"Fondé conjointement par le PNUE et l'Organisation météorologique mondiale pour évaluer l'état des connaissances scientifiques sur le changement climatique."},
+      {n:"CCNUCC (Convention-cadre des Nations unies sur les changements climatiques)", dates:"1992, sommet de Rio", d:"Cadre général de la coopération climatique internationale, qui instaure les conférences des parties (COP) comme rendez-vous annuel."},
+      {n:"Protocole de Kyoto", dates:"1997", d:"Premier accord contraignant, mais limité aux pays développés : il fixe des objectifs de réduction des émissions aux seuls pays industrialisés, les États-Unis refusant de le ratifier."},
+      {n:"Accords de Paris (COP21)", dates:"2015", d:"Accord universel, engageant cette fois l'ensemble des pays (développés et en développement), avec un objectif de limitation du réchauffement nettement en dessous de 2 °C, si possible 1,5 °C."}
+    ],
+    dates: [
+      "1972 : création du PNUE, après la conférence de Stockholm.",
+      "1988 : création du GIEC par le PNUE et l'OMM.",
+      "1992 : sommet de Rio, adoption de la CCNUCC.",
+      "1997 : protocole de Kyoto, engageant les seuls pays développés ; refus de ratification des États-Unis.",
+      "2015 : accords de Paris (COP21), premier accord universel sur le climat.",
+      "2022 : COP22 (à distinguer des COP tenues en Afrique, comme celle de Marrakech en 2016, qui ont mis l'accent sur les enjeux africains de financement et d'adaptation climatique).",
+      "Rapport sur l'écart entre les engagements (Emissions Gap Report 2025, PNUE) : trajectoire estimée entre 2,3 et 2,5 °C de réchauffement si tous les engagements nationaux (NDC) étaient pleinement mis en œuvre, contre environ 2,8 °C au rythme des seules politiques actuellement appliquées."
+    ],
+    pieges: [
+      {t:"Kyoto (1997) / Paris (2015) : qui s'engage ?", d:"Ne pas confondre : Kyoto n'engage que les pays développés (et les États-Unis n'ont jamais ratifié), tandis que Paris engage pour la première fois l'ensemble des pays, développés et en développement."},
+      {t:"La Chine, statut à l'époque de Kyoto puis rôle ultérieur", d:"Au moment du protocole de Kyoto (1997), la Chine est classée parmi les pays en développement et n'a donc pas d'objectif contraignant ; son poids dans les négociations climatiques s'affirme surtout à partir des années 2010, à mesure qu'elle devient l'un des tout premiers émetteurs mondiaux de CO2."},
+      {t:"COP tenues en Afrique", d:"Plusieurs COP se sont tenues sur le continent africain (par exemple Marrakech en 2016), mettant en avant les enjeux spécifiques des pays africains (financement de l'adaptation, vulnérabilité climatique) : à ne pas confondre avec une unique « COP22 » si la date précise évoquée en cours n'est pas celle de 2016, à confirmer avec le professeur.", flag:true},
+      {t:"Engagements (NDC) / politiques réellement appliquées", d:"Les projections de réchauffement diffèrent selon qu'on suppose la pleine mise en œuvre des engagements nationaux (NDC, 2,3-2,5 °C) ou seulement la poursuite des politiques actuelles (2,8 °C) : un écart qui mesure le déficit d'action climatique."},
+      {t:"Justice climatique", d:"Définition générale, à confronter au cours : principe selon lequel la responsabilité du changement climatique et ses effets ne sont pas répartis également entre pays ni entre populations, ce qui appelle une répartition équitable des efforts de réduction et des moyens d'adaptation.", note:"Définition générale, à confronter au cours."}
+    ],
+    dissert: "Repères pour l'étude critique de documents : situer tout document sur le climat dans cette chronologie (PNUE 1972 → GIEC 1988 → CCNUCC 1992 → Kyoto 1997 → Paris 2015), en identifiant s'il s'agit d'un texte juridique contraignant (Kyoto, Paris) ou d'un rapport d'évaluation scientifique (GIEC, PNUE). Sujet type : la coopération internationale face au changement climatique est-elle efficace ? Plan possible : des progrès réels dans l'architecture de la coopération (du cadre non contraignant de Rio à l'accord universel de Paris) ; mais un écart persistant entre engagements affichés (NDC) et politiques réellement appliquées (2,3-2,5 °C contre 2,8 °C, PNUE 2025) ; enfin les enjeux de justice climatique, qui opposent pays développés et pays en développement sur le partage de l'effort et des financements."
+  },
+
+  "ang-02": {
+    titre: "Chapter 2 : When Fantasy Becomes Reality",
+    m: "ang", n: "02",
+    auteurs: [
+      {n:"Vocabulaire utile du support", d:"human-like (qui ressemble à un humain) ; flawless (parfait, sans défaut) ; to convey a message (transmettre un message) ; to highlight (mettre en avant, souligner) ; to demonstrate (démontrer) ; mankind / humanity (l'humanité) ; creative thinking (pensée créative) ; pair work (travail en binôme)."}
+    ],
+    dissert: "Chapitre encore peu développé (une seule séance numérisée à ce jour, autour d'une image de robot humanoïde). Le vocabulaire ci-dessus est à réemployer pour décrire et commenter une image de ce type : identifier ce que l'image cherche à transmettre (to convey), ce qu'elle met en avant (to highlight) sur les rapports entre technologie et humanité (mankind/humanity), et discuter si la ressemblance humaine (human-like, flawless) de l'image relève d'une vision réaliste ou futuriste (futuristic vision) de la technologie. Fiche à enrichir au fil des prochains cours de ce chapitre."
   },
 
   "hggsp-01": {
@@ -215,13 +263,15 @@ const FICHE_DATA = {
       {n:"Maïmonide", dates:"1138–1204", d:"Guide des égarés, III, XXVII : la Loi vise le bien-être du corps (condition nécessaire, obtenue par la vie en société) puis, seule fin vraiment noble, le bien-être de l'âme, c'est-à-dire le passage de la raison en puissance à la raison en acte. Repère mobilisé : en acte / en puissance."},
       {n:"Montaigne", dates:"1533–1592", d:"Les Essais (1580) : ce que nous prenons pour les lois naturelles de la conscience naît en réalité de la coutume, intériorisée dès la naissance ; seul un patient retour sur soi permet de distinguer le vrai jugement du simple pli de l'habitude. Repère mobilisé : universel / général / particulier / singulier."},
       {n:"Comte", dates:"1798–1857", d:"Cours de philosophie positive : l'esprit humain ne peut s'observer lui-même en train de penser, l'organe observé et l'organe observateur étant identiques ; la connaissance des phénomènes humains doit donc se fonder sur l'observation extérieure et intersubjective. Repère mobilisé : objectif / subjectif / intersubjectif."},
-      {n:"Wittgenstein", dates:"1889–1951", d:"Conférence sur l'éthique : tout fait, aussi extraordinaire soit-il, cesse d'être miraculeux dès qu'on l'examine scientifiquement ; la science ne rencontre donc jamais l'absolu, seulement du relatif provisoirement inexpliqué. Repère mobilisé : absolu / relatif."}
+      {n:"Wittgenstein", dates:"1889–1951", d:"Conférence sur l'éthique : tout fait, aussi extraordinaire soit-il, cesse d'être miraculeux dès qu'on l'examine scientifiquement ; la science ne rencontre donc jamais l'absolu, seulement du relatif provisoirement inexpliqué. Repère mobilisé : absolu / relatif."},
+      {n:"Le cube de bois (texte étudié en classe, auteur à confirmer avec le professeur)", d:"Voir un cube ne suffit pas à le connaître : les sens n'en livrent jamais que des faces et des aspects partiels, changeants selon le point de vue ; c'est le discours et l'intelligence qui unifient ces apparences successives en une connaissance vraie de l'objet."}
     ],
     pieges: [
       {t:"Quatre obstacles à la raison, quatre natures différentes", d:"Corporel et temporaire chez Maïmonide, culturel et jamais totalement levé chez Montaigne, logique mais contournable par une autre méthode chez Comte, catégoriel et définitif chez Wittgenstein : ne pas les traiter comme un seul et même obstacle."},
-      {t:"Chez Wittgenstein, une limite de nature, pas de degré", d:"La limite de la raison scientifique n'est pas une limite de degré (elle expliquerait indéfiniment plus de faits) mais une limite de nature : elle ne rencontre jamais l'absolu."}
+      {t:"Chez Wittgenstein, une limite de nature, pas de degré", d:"La limite de la raison scientifique n'est pas une limite de degré (elle expliquerait indéfiniment plus de faits) mais une limite de nature : elle ne rencontre jamais l'absolu."},
+      {t:"Perception / connaissance (texte du cube)", d:"Ne pas confondre percevoir un objet (saisir une face, un aspect à la fois) et le connaître (saisir ce qu'il est, par-delà la diversité des apparences) : c'est précisément le passage de l'une à l'autre, par la raison, que le texte du cube met en évidence."}
     ],
-    dissert: "Q6, faut-il se fier à sa propre raison : Maïmonide et Montaigne convergent vers un oui conditionnel, une fois la raison affranchie de ses entraves (le manque corporel, la coutume). Q7, la raison a-t-elle des limites : Comte et Wittgenstein répondent oui, mais avec des limites de nature différente — une méthode à changer chez Comte, la catégorie même du factuel chez Wittgenstein."
+    dissert: "Q6, faut-il se fier à sa propre raison : Maïmonide et Montaigne convergent vers un oui conditionnel, une fois la raison affranchie de ses entraves (le manque corporel, la coutume). Q7, la raison a-t-elle des limites : Comte et Wittgenstein répondent oui, mais avec des limites de nature différente — une méthode à changer chez Comte, la catégorie même du factuel chez Wittgenstein. Le texte du cube illustre, par un exemple concret de perception, le rôle propre de la raison dans la connaissance : au-delà des sens, c'est elle qui unifie les apparences en un objet connu."
   },
 
   "philo-04": {
