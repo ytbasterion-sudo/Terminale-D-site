@@ -385,5 +385,51 @@ const FICHE_DATA = {
       {q:"II.10", r:"La laïcité permet à des personnes de convictions différentes de vivre sous les mêmes règles sans qu'aucune religion ne s'impose aux autres. Elle évite ainsi les conflits religieux et garantit l'égalité devant les services publics."}
     ],
     dissert: "Sujet type : « Le droit est-il un facteur d'organisation et de pacification de la société ? » I. Le droit organise la vie en société : il fixe des règles sanctionnées par l'autorité publique (Starck), garantit l'ordre public et empêche la loi du plus fort. II. Il pacifie en exprimant des valeurs partagées : liberté, égalité, solidarité, laïcité (DDHC, DUDH, loi de 1905), et en s'adaptant aux mœurs (Malinvaud)."
+  },
+  "hggsp-03": {
+    titre: "Étude conclusive : les États-Unis et la question environnementale (Jalon 1)",
+    m: "hggsp", n: "03",
+    auteurs: [
+      {n:"Henry David Thoreau", d:"Auteur de Walden."},
+      {n:"John Muir", d:"Fondateur du Sierra Club."},
+      {n:"Théodore Roosevelt", dates:"président de 1901 à 1909", d:"Politique de conservation et création de zones protégées."},
+      {n:"Rachel Carson", dates:"1962", d:"Auteure de Silent Spring."},
+      {n:"Arne Naess", d:"Écologie profonde : transformer les valeurs et les relations."},
+      {n:"Joseph Schumpeter", d:"La puissance d'un État repose sur sa capacité à innover."}
+    ],
+    dates: [
+      "1776 : déclaration d'indépendance des 13 colonies des USA.",
+      "1845 : J. O'Sullivan, expression « Destinée manifeste ».",
+      "1864 : protection de la vallée de Yosemite (Mariposa Grove).",
+      "1872 : création du parc national de Yellowstone.",
+      "1916 : création du National Park Service.",
+      "1962 : Silent Spring de Rachel Carson.",
+      "1970 : Earth Day et Environmental Protection Agency.",
+      "1980 : déréglementation des actions pro-environnementales.",
+      "1989 : marée noire de l'Exxon Valdez en Alaska.",
+      "1992 : Sommet de la Terre, Rio. 1997 : protocole de Kyoto.",
+      "2010 : scandale Deepwater Horizon, dans le golfe du Mexique.",
+      "2015 : COP21, engagement des accords de Paris sous Obama. 2017 : retrait sous Trump. 2021 : retour.",
+      "Janvier 2026 : retrait effectif des accords de Paris. 2025 : production énergétique américaine record."
+    ],
+    pieges: [
+      {t:"Préservationnisme / conservationnisme", d:"Le préservationnisme protège la nature de l'homme, le conservationnisme organise son usage. Distinction générale, à confronter au cours.", note:"Définition générale, à confronter au cours."},
+      {t:"Le paradoxe américain", d:"Les États-Unis protègent des paysages liés à l'identité nationale tout en exploitant les ressources : ne pas présenter le pays comme seulement protecteur ou seulement exploitant."},
+      {t:"Achat de la Louisiane", d:"Le cours note « 1863 : expansion vers l'Ouest par achat de la Louisiane », alors que cet achat date de 1803. À vérifier avec le professeur.", flag:true}
+    ],
+    dissert: "Repères pour l'étude critique de documents ou la dissertation. Sujet type : les États-Unis, entre protection et exploitation de leur environnement. Plan possible : 1) un territoire riche et contrasté, exploité dès le XIXe siècle (ruée vers l'or, expansion au détriment des populations amérindiennes) ; 2) l'invention de la protection (parcs nationaux, Roosevelt, EPA) ; 3) une politique climatique discontinue (accords de Paris, retraits, retours). Problématique du cours : comment une puissance née de l'appropriation et de l'exploitation intensive d'un territoire riche en ressources peut-elle être simultanément pionnière de la protection environnementale, traversée de conflits internes et d'une diplomatie climatique discontinue ?"
+  },
+
+  "ses-05": {
+    titre: "Chapitre 3 · Les fondements du commerce international",
+    m: "ses", n: "05",
+    auteurs: [
+      {n:"David Ricardo", dates:"1772–1823", d:"Économiste britannique, théorie de l'avantage comparatif (Des principes de l'économie politique et de l'impôt, 1817)."}
+    ],
+    pieges: [
+      {t:"Avantage comparatif / avantage absolu", d:"L'avantage comparatif se juge par le coût relatif entre deux productions, pas par la production la plus efficace en valeur absolue. Définition générale, à confronter au cours.", note:"Définition générale, à confronter au cours."},
+      {t:"Cours incomplet à vérifier", d:"La phrase du cours « se spécialiser dans laquelle il a un avantage comparatif » est incomplète (le mot production semble manquer), et le cours est numéroté « 2. L'avantage comparatif » sans partie 1 visible. À vérifier avec le professeur.", flag:true}
+    ],
+    dissert: "Sujet type : pourquoi les pays ont-ils intérêt à échanger ? Plan possible : 1) mesurer la situation commerciale d'un pays (exportations, importations, solde) ; 2) la spécialisation selon l'avantage comparatif (Ricardo, draps et vin). Chapitre à enrichir au fil des prochains cours."
   }
 };

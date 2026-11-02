@@ -1206,6 +1206,7 @@ const VOLUMES = [
   {m:"ses", code:"SES", n:"M", t:"Méthodologie du bac", ch:"sesM", id:"1ZHfZX08gPUt5wqTUusuA_cFGK2g9ianHoil5YXXTol0", w:54, h:228},
   {m:"ses", code:"SES", n:"P", t:"Programme de l'année", ch:"sesM", id:"1MVa1B9teMl7gJzxuga_O5yekOX0K3CXOwMaZCougksk", w:40, h:214},
   {m:"ses", code:"SES", n:"04", t:"Les sources de la croissance économique", ch:"ses2", id:"1k7zvFxkZKCnzzgxzDOKyogz3kKyuU4NiHF9Gwdat_Q0", w:64, h:254, q:"ses4"},
+  {m:"ses", code:"SES", n:"05", t:"Les fondements du commerce international", ch:"ses3", id:"1NDRZjiKpCDBCqb2xzpAjntCQuUPQppCj9suptZJNl5I", w:50, h:240, q:"ses5"},
   {m:"hggsp", code:"HGGSP", n:"01", t:"Environnement, entre exploitation et protection", ch:"hggsp5", id:"1pQu0DYhwBwF27OJNLD8gnEqw-c2dsZ-I4gY8Kbkd1hE", w:84, h:270, q:"hggsp1"},
   {m:"hggsp", code:"HGGSP", n:"M", t:"Méthodologie du bac", ch:"hggspM", id:"17y4Sf192M_g_H34-NaoX4DzNySR0dOh8GkDV60YVVEQ", w:52, h:228},
   {m:"hggsp", code:"HGGSP", n:"P", t:"Programme de l'année", ch:"hggspM", id:"1dviXGbJuJtNbArI_yOa1s4zggFRiITI4HhdS7b2bED8", w:38, h:214},
@@ -1223,6 +1224,7 @@ const VOLUMES = [
   {m:"philo", code:"PHILO", n:"04", t:"La vérité", ch:"philoVerite", id:"1k7NNk1EzAcUDvttdCbQbujCfMNMwrXiWy9PKQ6cFZls", w:44, h:222},
   {m:"hg", code:"HG", n:"03", t:"Mers et océans, des réserves de ressources", ch:"hgG1", id:"1JgN_HnLEbwlA7MzfnHbV6IB31kQPjVlvXGjfismhLQw", w:56, h:250, q:"hg3"},
   {m:"hggsp", code:"HGGSP", n:"02", t:"Climat et coopération internationale", ch:"hggsp5", id:"1iE_wulFmRP90nk-gAes0jOjzrP0vam7xN7fW1Tdc-qo", w:70, h:262, q:"hggsp2"},
+  {m:"hggsp", code:"HGGSP", n:"03", t:"Étude conclusive : les États-Unis et la question environnementale", ch:"hggsp5", id:"1DihxDZyVKMEwknf5qnBOVk-d0053VaQjyaKH3-5X_Bg", w:66, h:258, q:"hggsp3"},
   {m:"ang", code:"ANG", n:"02", t:"When Fantasy Becomes Reality", ch:"ang2", id:"1K1cJtlw7wOUwQf7hV778h7TluRR328ummEnAENGzB6k", w:38, h:200},
   {m:"es", code:"SCI", n:"01", t:"L'alternateur", ch:"es2a", id:"1pMahzoxQERFBPmBitIdrIyXmbs5aJfw-ff9UKp26rUU", w:52, h:246, q:"es1"},
   {m:"es", code:"SCI", n:"M", t:"Méthodologie et conseils", ch:"esM", id:"10A8cVoYyGas_24sLK-CGt7k9_49p5avraBzbHpMoVSk", w:50, h:226},
@@ -1234,6 +1236,8 @@ const VOLUMES = [
 ];
 
 const COURS = [
+  ["2026-11-02","ses","Chapitre 3 : les fondements du commerce international, l'avantage comparatif","1zedmj7QZ-Zlu7OIF9TYjCV14DFTUhSvQvY5sL1sUS4U","ses3"],
+  ["2026-11-02","hggsp","Étude conclusive : les États-Unis et la question environnementale (Jalon 1)","1KH2YI_E_wKaOBHRAFPa9kZFXbbsbSQk4Ybv3Tj9ENgY","hggsp5:usa"],
   ["2026-10-14","hggsp","Les États leaders face au changement climatique","1O5qosrt_Vve1T7pJEpgduXvzaDszifIJQDYtJM9byOw","hggsp5:axe2"],
   ["2026-10-13","philo","Explication de texte, la perception du cube","10sRLm5_Fsg8rKQ8I0duUkvJMAWkETdn7-Q6064y0W00","philoRaison"],
   ["2026-10-12","hggsp","Jalon 2, le climat : chronologie de la coopération internationale","1omwAdDw8cNfIcZRoeSHW60mIcch1J95qkzeqJyrwODU","hggsp5:axe2"],
@@ -1276,6 +1280,7 @@ const COURS = [
 /* Nouveautés du site : une entrée par mise à jour poussée en ligne, la plus récente en premier.
    Enrichi à chaque push (demande d'Adam du 29/09/2026). */
 const NOUVEAUTES = [
+  {d:"2026-11-02", t:"Un nouveau chapitre de SES et l'étude conclusive d'HGGSP sur les États-Unis", body:"Le chapitre 3 de SES, « Quels sont les fondements du commerce international et l'internationalisation de la production ? », est arrivé avec son premier cours (solde commercial, avantage comparatif de Ricardo), sa fiche, son QCM et ses notions de lexique. En HGGSP (Thème 5), l'étude conclusive « Les États-Unis et la question environnementale » a son cours du 2 novembre, une fiche (conservationnisme, préservationnisme, destinée manifeste, chronologie de la protection de l'environnement aux États-Unis) et un QCM."},
   {d:"2026-10-15", t:"Un nouveau chapitre d'Anglais et trois fiches enrichies", body:"Un nouveau chapitre d'Anglais est arrivé, « Chapter 2 : When Fantasy Becomes Reality ». En HGGSP (Thème 5), une deuxième fiche couvre le Jalon 2 sur le climat et les relations internationales (PNUE, GIEC, accords de Paris, justice climatique), avec son propre QCM. La fiche de SES sur les sources de la croissance économique s'enrichit de la croissance endogène, des 4 capitaux, du rôle des institutions et de la destruction créatrice (Schumpeter), avec un nouveau QCM. La fiche « La raison » en Philosophie s'enrichit d'un texte sur la perception et la raison."},
   {d:"2026-10-13", t:"Une révision express pour le contrôle de géo sur « Mers et océans »", body:"En haut de la section « Par chapitre » de la page Histoire-Géo, un bloc temporaire de révision couvre le chapitre « Mers et océans » : notions clés à déplier, méthode de l'étude de document(s), pièges à éviter, dates et chiffres, et un petit QCM. Ce bloc sera retiré après le contrôle."},
   {d:"2026-10-09", t:"Quatre nouveaux cours numérisés et fiches enrichies", body:"Quatre cours ont été numérisés et intégrés au Drive : méthodologie de lecture des documents géographiques en Histoire-Géo (Thème 1), structure des introductions de dissertation et d'explication de texte en Philosophie (Méthode), croissance endogène et rôle des institutions en SES (Chapitre 1), changement climatique et coopération en HGGSP (Thème 5). Chaque chapitre a une fiche enrichie avec notions clés, pièges à éviter, et repères pour l'épreuve."},
@@ -1305,9 +1310,10 @@ const CHAPITRES = {
   ses:[
     {k:"ses1", dir:"1EfwKZw5swvBA2Ga7eDqh7vB-4iYvjhM9", n:"Chapitre 1", sub:"Sociologie", t:"Comment est structurée la société française actuelle ?", parts:[["p1", "Partie I · Les analyses de la structure sociale"], ["p2", "Partie II · Facteurs et évolutions de la structure sociale"]]},
     {k:"ses2", dir:"1ZSUI5JiIzowv6OMkUc2CugqqCTXegjwS", n:"Chapitre 2", sub:"Économie", t:"Quelles sont les sources et les défis de la croissance économique ?"},
+    {k:"ses3", dir:"12CRFYBt7G5US2dl35S9SGL-12Eq0E3CV", n:"Chapitre 3", sub:"Économie", t:"Quels sont les fondements du commerce international et l'internationalisation de la production ?"},
     {k:"sesM", dir:"1yzhs8aHQa3i9A74BX8CIDabuo8Y9Hqpn", n:"Méthode", t:"Méthode du bac, programme et rentrée"}],
   hggsp:[
-    {k:"hggsp5", dir:"1L6T1fjnZrR_AgNWQCNaltUhY8-uFf3Y7", n:"Thème 5", t:"L'environnement, entre exploitation et protection : un enjeu planétaire", parts:[["intro", "Introduction"], ["axe1", "Axe 1 · Exploiter, préserver et protéger"], ["axe2", "Axe 2 · La maîtrise du changement climatique"]]},
+    {k:"hggsp5", dir:"1L6T1fjnZrR_AgNWQCNaltUhY8-uFf3Y7", n:"Thème 5", t:"L'environnement, entre exploitation et protection : un enjeu planétaire", parts:[["intro", "Introduction"], ["axe1", "Axe 1 · Exploiter, préserver et protéger"], ["axe2", "Axe 2 · La maîtrise du changement climatique"], ["usa", "Étude conclusive · Les États-Unis et la question environnementale"]]},
     {k:"hggspM", dir:"1cNpZBl1MD1biVUHt0dOdfEIbdpn04IlC", n:"Méthode", t:"Méthode du bac, programme et rentrée"}],
   hg:[
     {k:"hgG1", dir:"1vFGJgo_GiN9voUqgrPJtPad5zC9y4UTn", n:"Géographie · Thème 1", t:"Mers et océans : au cœur de la mondialisation", parts:[["p1", "1 · Les espaces maritimes, une approche géostratégique"], ["p2", "2 · Des réserves de ressources qui polarisent des flux"]]},
@@ -1500,6 +1506,24 @@ const QCM = {
     ["Au moment du protocole de Kyoto, la Chine était classée…",["pays développé, donc engagée par des objectifs chiffrés","pays en développement, donc non concernée par les objectifs chiffrés","premier émetteur mondial","leader de la transition écologique"],1,"En 1997, la Chine est un pays en développement et n'est pas concernée par les objectifs chiffrés de Kyoto ; elle devient plus tard un moteur de la transition écologique."],
     ["Depuis quelle COP les pays d'Afrique sont-ils présentés comme particulièrement engagés dans la coopération climatique ?",["La COP22, à Marrakech en 2016","La COP21, à Paris en 2015","La COP3, à Kyoto en 1997","Le sommet de Rio, en 1992"],0,"La COP22 (Marrakech, 2016) est restée associée à l'engagement des pays africains sur le climat."],
     ["La « justice climatique » relie la question climatique…",["à la seule croissance économique","à la justice sociale et environnementale (inégalités, droits humains, responsabilités historiques)","à la seule politique énergétique nationale","au droit maritime uniquement"],1,"Définition générale : la justice climatique aborde le changement climatique comme un enjeu éthique et politique, lié aux inégalités, aux droits humains et aux responsabilités historiques différenciées des États."]
+  ],
+  hggsp3:[
+    ["L'anthropocentrisme consiste à…",["mettre les intérêts humains au centre","mettre la nature au centre de toute décision","refuser toute exploitation des ressources","interdire l'accès aux parcs nationaux"],0,"Anthropocentrisme (cours) : mettre les intérêts humains au centre."],
+    ["L'expression « Destinée manifeste » est formulée en 1845 par…",["J. O'Sullivan","Henry David Thoreau","John Muir","Rachel Carson"],0,"1845 : J. O'Sullivan formule l'expression « Destinée manifeste »."],
+    ["Le parc national de Yellowstone est créé en…",["1872","1776","1916","1970"],0,"1872 : création du parc national de Yellowstone."],
+    ["La politique de conservation et la création de zones protégées sont associées, entre 1901 et 1909, à la présidence de…",["Théodore Roosevelt","Barack Obama","Donald Trump","Thomas Jefferson"],0,"1901-1909 : présidence de Théodore Roosevelt, politique de conservation, création de zones protégées."],
+    ["Le National Park Service est créé en…",["1916","1872","1962","1992"],0,"1916 : création du National Park Service."],
+    ["Silent Spring (1962), qui alerte sur les effets des pesticides, est un livre de…",["Rachel Carson","John Muir","Arne Naess","Henry David Thoreau"],0,"1962 : Silent Spring de Rachel Carson."],
+    ["La marée noire de l'Exxon Valdez, en 1989, touche…",["l'Alaska","le golfe du Mexique","la Californie","la Louisiane"],0,"1989 : marée noire de l'Exxon Valdez en Alaska (le golfe du Mexique est le lieu de Deepwater Horizon, en 2010)."],
+    ["Quelle suite de dates décrit le rapport des États-Unis aux accords de Paris ?",["2015 engagement, 2017 retrait, 2021 retour, janvier 2026 retrait effectif","2015 retrait, 2017 engagement, 2021 retrait, 2026 retour","1997 engagement, 2015 retrait, 2021 retour","2015 engagement, jamais de retrait"],0,"2015 : COP21 et engagement sous Obama ; 2017 : retrait sous Trump ; 2021 : retour ; janvier 2026 : retrait effectif."]
+  ],
+  ses5:[
+    ["Le commerce international désigne…",["l'échange de biens et services entre les pays","la production d'un pays pour sa seule consommation","les échanges entre entreprises d'un même pays","les seules ventes de biens agricoles"],0,"Commerce international : échange de biens et services entre les pays."],
+    ["Le solde commercial se calcule…",["exportations moins importations","importations moins exportations","exportations plus importations","exportations divisées par importations"],0,"Solde commercial = exportations – importations."],
+    ["Selon David Ricardo, un pays doit se spécialiser dans la production…",["pour laquelle son coût est le moins important par rapport à ses autres productions","qui est la plus rentable en valeur absolue dans le monde","qui emploie le plus de travailleurs","dont il consomme le plus"],0,"Ricardo : se spécialiser là où l'avantage comparatif est le plus grand, c'est-à-dire le coût le moins important par rapport aux autres productions."],
+    ["Dans l'exemple du cours, l'Angleterre a un avantage comparatif dans la production de…",["draps","vin","blé","charbon"],0,"Exemple du cours : l'Angleterre se spécialise dans les draps."],
+    ["Dans l'exemple du cours, le Portugal se spécialise dans…",["le vin","les draps","le coton","l'acier"],0,"Exemple du cours : le Portugal se spécialise dans le vin."],
+    ["Un solde commercial excédentaire signifie que le pays…",["exporte plus qu'il n'importe","importe plus qu'il n'exporte","n'a aucun échange","a un budget de l'État équilibré"],0,"Solde excédentaire : le solde, exportations moins importations, est positif, donc excédent commercial."]
   ]
 };
 
@@ -3631,7 +3655,19 @@ const LEX = [
   {t:"Économie d'échelle", m:"ses", s:["04"], d:"Baisse du coût unitaire de production lorsque la quantité produite augmente, la plupart des coûts de production restant fixes quel que soit le volume produit."},
   {t:"Cycle de vie", m:"ses", s:["02"], d:"Étapes de la vie (célibat, couple, famille, veuvage) et modes de vie qui y sont associés."},
   {t:"Composition familiale", m:"ses", s:["02"], d:"Forme de la famille, taille de la famille et place dans la fratrie ; elle crée des inégalités de niveau de vie (un couple a en général un niveau de vie plus élevé qu'une famille monoparentale)."},
-  {t:"Tertiarisation", m:"ses", s:["02"], d:"Hausse de la part du secteur tertiaire (les services : commerce, santé, éducation, administration, banque…) dans l'emploi et la production, au détriment de l'agriculture et de l'industrie.", note:"Notée « à définir » en cours : définition générale, à confronter au cours."}
+  {t:"Tertiarisation", m:"ses", s:["02"], d:"Hausse de la part du secteur tertiaire (les services : commerce, santé, éducation, administration, banque…) dans l'emploi et la production, au détriment de l'agriculture et de l'industrie.", note:"Notée « à définir » en cours : définition générale, à confronter au cours."},
+  /* HGGSP, étude conclusive États-Unis (fiche 03) */
+  {t:"Anthropocentrisme", m:"hggsp", s:["03"], d:"Mettre les intérêts humains au centre."},
+  {t:"Préservationnisme, conservationnisme", m:"hggsp", s:["03"], d:"Le préservationnisme vise à protéger la nature en la gardant intacte, à l'écart de l'activité humaine. Le conservationnisme vise à gérer les ressources naturelles de façon raisonnée, pour un usage durable.", note:"Notés « à définir » en cours : définition générale, à confronter au cours."},
+  {t:"Destinée manifeste", m:"hggsp", s:["03"], d:"Expression de J. O'Sullivan (1845) : théorie selon laquelle les États-Unis seraient investis d'une mission divine d'expansion territoriale sur le continent, leur supériorité justifiant la conquête de l'Ouest."},
+  {t:"Wilderness", m:"hggsp", s:["03"], d:"Nature sauvage, préservée de l'empreinte humaine. Le cliché du « wilderness » s'accorde avec la pensée américaine.", note:"Définition générale, à confronter au cours."},
+  {t:"Front pionnier", m:"hggsp", s:["03"], d:"Espace ouvert, avec création d'une frontière entre territoire et espace."},
+  {t:"Justice environnementale", m:"hggsp", s:["03"], d:"Répartir équitablement les risques."},
+  {t:"Greenwashing", m:"hggsp", s:["03"], d:"Communication qui donne une image écologique trompeuse.", note:"Noté « à définir » en cours : définition générale, à confronter au cours."},
+  /* SES, chapitre 3 (fiche 05) */
+  {t:"Commerce international", m:"ses", s:["05"], d:"Échange de biens et services entre les pays : exportation (vente à l'étranger) et importation (achat à l'étranger)."},
+  {t:"Solde commercial", m:"ses", s:["05"], d:"Exportations moins importations. Positif, il s'agit d'un excédent commercial ; négatif, d'un déficit commercial.", note:"Définition générale du déficit, à confronter au cours."},
+  {t:"Avantage comparatif (Ricardo)", m:"ses", s:["05"], d:"Selon David Ricardo, un pays doit se spécialiser dans la production pour laquelle son coût est le moins important par rapport à ses autres productions. Exemple du cours : l'Angleterre se spécialise dans les draps, le Portugal dans le vin."}
 ];
 
 /* ---------- Vue : lexique ---------- */
