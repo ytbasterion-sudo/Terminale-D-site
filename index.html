@@ -381,15 +381,15 @@ select{font:inherit;font-family:var(--grotesk);font-size:16px;background:var(--b
 .due-strip{border:1px solid var(--ink);padding:18px 20px;margin:0 0 60px;background:var(--bg)}
 .due-strip > .k{margin:0 0 12px}
 .hello{border:1px solid var(--line);padding:16px 20px;margin:0 0 20px;background:var(--bg-2);display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
-.hello > .k{margin:0;flex:none}
-.hello-f{display:flex;flex-wrap:wrap;gap:12px;align-items:center;flex:1;min-width:200px}
-.hello-f input{font:inherit;font-family:var(--grotesk);font-size:15px;background:transparent;color:var(--ink);border:0;border-bottom:1px solid var(--ink);padding:6px 2px;min-width:0;flex:1 1 160px;border-radius:0}
+.hello > .k{margin:0;flex:1 1 100%}
+.hello-f{display:flex;flex-wrap:nowrap;gap:12px;align-items:center;flex:1 1 100%;min-width:0}
+.hello-f input{font:inherit;font-family:var(--grotesk);font-size:15px;background:transparent;color:var(--ink);border:0;border-bottom:1px solid var(--ink);padding:6px 2px;min-width:0;width:auto;flex:1 1 auto;border-radius:0}
 .hello-f input:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
-.hello-f .btn{padding:10px 16px;font-size:13.5px}
+.hello-f .btn{padding:10px 16px;font-size:13.5px;flex:none}
 .hello-skip{all:unset;cursor:pointer;flex:none;font-family:var(--grotesk);font-size:13px;color:var(--ink-2);text-decoration:underline;text-underline-offset:2px}
 .hello-skip:hover{color:var(--ink)}
 .hello-skip:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
-@media (max-width:560px){ .hello{padding:14px 16px} .hello-f{min-width:0}}
+@media (max-width:560px){ .hello{padding:14px 16px} }
 .due-list{display:flex;flex-wrap:wrap;gap:8px}
 .due{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border:1px solid var(--line);text-decoration:none;font-family:var(--grotesk);font-weight:500;font-size:15px;transition:border-color .25s,padding .3s}
 .due:hover{border-color:var(--ink);padding-left:18px}
@@ -1140,6 +1140,7 @@ html.mode-m .offline-banner,html:not(.mode-d) .offline-banner{padding-bottom:cal
 .cd-qz.done button.cd-opt{pointer-events:none}
 @media (max-width:560px){ .cd-strip{padding:18px 16px 22px} .cd-grid{grid-template-columns:1fr} }
 /* ---------- Application installée (PWA) ---------- */
+html{overflow-x:hidden}
 html.standalone{-webkit-tap-highlight-color:transparent}
 html.standalone body{overscroll-behavior-y:none}
 html.standalone .tabbar,html.standalone .nav,html.standalone .btn,html.standalone .modesw{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
@@ -1294,6 +1295,7 @@ const COURS = [
 /* Nouveautés du site : une entrée par mise à jour poussée en ligne, la plus récente en premier.
    Enrichi à chaque push (demande d'Adam du 29/09/2026). */
 const NOUVEAUTES = [
+  {d:"2026-11-05", t:"Correctif iPhone : la page ne déborde plus sur la droite", body:"Sur iPhone, la carte « Comment veux-tu qu'on t'appelle ? » de la page d'accueil était trop étroite pour son bouton « Valider », ce qui décalait toute la page vers la droite et coupait les titres. La carte passe maintenant sur deux lignes et le site ne peut plus déborder sur le côté."},
   {d:"2026-11-05", t:"Terminale D s'installe comme une application", body:"Le site a un nouveau logo et s'installe sur l'écran d'accueil, sur Android comme sur iPhone : il s'ouvre alors en plein écran, comme une app, et les fiches, les QCM, le lexique, Mes notes et la Séance restent consultables sans réseau (seuls les liens vers le Drive ont besoin d'une connexion). Quand une nouvelle version est en ligne, un bandeau propose de recharger. Pour l'installer : bouton « Installer » sur Android, ou Partager puis « Sur l'écran d'accueil » sur iPhone ; le bouton est aussi en bas de chaque page."},
   {d:"2026-11-03", t:"Philosophie : nouveau professeur, le contenu de l'ancien est retiré", body:"La classe change de professeur de philosophie : les chapitres, fiches, cours, QCM et notions de lexique rédigés avec l'ancien professeur sont retirés de la page Philosophie. Le premier cours du nouveau professeur (la doxa et un exemple de sujet) est en attente de classement, et la page se remplira au fil des prochains cours."},
   {d:"2026-11-02", t:"Un nouveau chapitre de SES et l'étude conclusive d'HGGSP sur les États-Unis", body:"Le chapitre 3 de SES, « Quels sont les fondements du commerce international et l'internationalisation de la production ? », est arrivé avec son premier cours (solde commercial, avantage comparatif de Ricardo), sa fiche, son QCM et ses notions de lexique. En HGGSP (Thème 5), l'étude conclusive « Les États-Unis et la question environnementale » a son cours du 2 novembre, une fiche (conservationnisme, préservationnisme, destinée manifeste, chronologie de la protection de l'environnement aux États-Unis) et un QCM."},

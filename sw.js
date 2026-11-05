@@ -1,7 +1,7 @@
 /* Service worker de tdlfi.space : le site reste consultable hors connexion.
    À CHAQUE PUSH, changer VERSION : c'est ce qui déclenche le bandeau « Nouvelle version »
    chez ceux qui ont installé l'application, et le nettoyage de l'ancien cache. */
-const VERSION = "2026-11-05.1";
+const VERSION = "2026-11-05.2";
 const CACHE = "td-site-" + VERSION;
 const RUNTIME = "td-runtime-v1";   // polices et bibliothèques externes, stables d'une version à l'autre
 const CORE = ["/", "/fiches-data.js", "/manifest.json", "/favicon.svg", "/favicon-32.png",
