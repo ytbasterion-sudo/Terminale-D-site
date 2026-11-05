@@ -2,8 +2,9 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Terminale D</title>
+<script>try{if(matchMedia("(display-mode: standalone)").matches||navigator.standalone===true)document.documentElement.classList.add("standalone")}catch(e){}</script>
 <script>try{var t=localStorage.getItem("td.theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 <script>/* Détection d'une accélération GPU absente ou logicielle (laptops bas de gamme, pilotes
    désactivés) : avant même le premier affichage, pour éviter un flash d'animations qui
@@ -33,10 +34,13 @@ try{
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tdlfi.space/">
 <meta name="theme-color" content="#F4F3EF">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230E0E10'/%3E%3Ctext x='50' y='68' font-size='58' font-family='Georgia,serif' fill='%23F4F3EF' text-anchor='middle'%3ED%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="manifest" href="/manifest.json">
-<link rel="apple-touch-icon" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="Terminale D">
 <meta name="apple-mobile-web-app-title" content="Terminale D">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1135,6 +1139,22 @@ html.mode-m .offline-banner,html:not(.mode-d) .offline-banner{padding-bottom:cal
 .cd-qz.done .cd-expl{display:block}
 .cd-qz.done button.cd-opt{pointer-events:none}
 @media (max-width:560px){ .cd-strip{padding:18px 16px 22px} .cd-grid{grid-template-columns:1fr} }
+/* ---------- Application installée (PWA) ---------- */
+html.standalone{-webkit-tap-highlight-color:transparent}
+html.standalone body{overscroll-behavior-y:none}
+html.standalone .tabbar,html.standalone .nav,html.standalone .btn,html.standalone .modesw{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+.pwa-card,.pwa-toast{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:70;margin-inline:auto;max-width:560px;background:var(--bg);color:var(--ink);border:1px solid var(--ink);box-shadow:0 12px 32px rgba(0,0,0,.18)}
+.pwa-card{display:grid;grid-template-columns:48px minmax(0,1fr);gap:12px 14px;padding:16px}
+.pwa-card img{width:48px;height:48px;border-radius:11px;display:block}
+.pwa-h{margin:0;font-family:var(--grotesk);font-weight:700;font-size:16.5px;line-height:1.25}
+.pwa-d{margin:4px 0 0;font-size:15.5px;line-height:1.4;color:var(--ink-2)}
+.pwa-acts{grid-column:1/-1;display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap}
+.pwa-toast{display:flex;align-items:center;gap:12px;padding:12px 12px 12px 16px;font-family:var(--grotesk);font-size:14.5px;line-height:1.35}
+.pwa-toast span{flex:1;min-width:0}
+.pwa-x{all:unset;cursor:pointer;font-size:24px;line-height:1;padding:6px 8px;color:var(--ink-2)}
+.pwa-x:focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+@media (max-width:1023px){ .pwa-card,.pwa-toast{bottom:calc(76px + env(safe-area-inset-bottom,0px))} }
+@media print{ .pwa-card,.pwa-toast{display:none !important} }
 </style>
 </head>
 <body>
@@ -1173,6 +1193,10 @@ html.mode-m .offline-banner,html:not(.mode-d) .offline-banner{padding-bottom:cal
     <button type="button" data-theme-set="light" aria-pressed="false">Clair</button>
     <button type="button" data-theme-set="dark" aria-pressed="false">Sombre</button>
     <button type="button" data-theme-set="" aria-pressed="false">Auto</button>
+  </div>
+  <div class="modesw" id="installsw" role="group" aria-label="Application" hidden>
+    <span class="k muted">Application</span>
+    <button type="button" id="install-btn">Installer sur l'écran d'accueil</button>
   </div>
   <div class="modesw" role="group" aria-label="Affichage">
     <span class="k muted">Affichage</span>
@@ -1213,15 +1237,9 @@ const VOLUMES = [
   {m:"hg", code:"HG", n:"01", t:"Les espaces maritimes, une approche géostratégique", ch:"hgG1", id:"1YgKTKee96cDN6otOcB5dAcaOCzGaBSn0alpW7k7Fgiw", w:62, h:256, q:"hg1"},
   {m:"hg", code:"HG", n:"02", t:"Lexique des espaces maritimes", ch:"hgG1", id:"1bOQI3JPize5KYSAWIDMzBBuk94bZYfBqLRYvux5tLag", w:48, h:244, q:"hg2"},
   {m:"hg", code:"HG", n:"M", t:"Méthodologie et conseils", ch:"hgM", id:"1Y5jGBMmL7jT_ECYiYm77NucVQad0dN2VJ6UyfGT2LF4", w:52, h:228},
-  {m:"philo", code:"PHILO", n:"01", t:"Le bonheur et les plaisirs", ch:"philoBonheur", id:"1Wys6xgOrZ3Qk49M1fBD8JF9jgA0q5nBb7ISEcNiu7Qc", w:50, h:250, q:"philo1"},
-  {m:"philo", code:"PHILO", n:"02", t:"Le Bonheur", ch:"philoBonheur", id:"1cPf56X_YPIpZGN4wnc4YAQ6rL0CGWqfJkSOx_FqLJuI", w:44, h:222, q:"philo2"},
-  {m:"philo", code:"PHILO", n:"03", t:"La Raison", ch:"philoRaison", id:"1A_8Gy3FUPazYxZkOHsXTPC5k-IDpkD5xYEdOkLbG16A", w:42, h:220, q:"philo3"},
   {m:"ang", code:"ANG", n:"01", t:"Tradwives and the Women's Liberation Movement", ch:"ang1", id:"1D80q_o5JFtdUpadDDWyCVWGxxuPXV7NqbTekQx14MqU", w:58, h:246, q:"ang1"},
   {m:"ang", code:"ANG", n:"T", t:"From Liberation to “Tradwife” : le texte du chapitre", ch:"ang1", id:"1FsjelMJ3bVwkYtHWUlfKTXIZUlAuGBOoKwwYSv-bGbs", w:44, h:230},
   {m:"ang", code:"ANG", n:"M", t:"Méthodologie et conseils", ch:"angM", id:"1MX68UlBY1YKCNgs75oliMgDuHrY1bI_ucHj9uw-rCjs", w:52, h:228},
-  {m:"philo", code:"PHILO", n:"M", t:"Méthodologie du bac", ch:"philoM", id:"1AdTAq1m8dQe_GMl-xb1TctrCT3pyeX6baYi7Im132Jc", w:62, h:236},
-  {m:"philo", code:"PHILO", n:"T", t:"Méthode de l'introduction : dissertation et explication de texte", ch:"philoM", id:"1LpTrB7PY4Wk5y4VDicqvId4NgXQzWTQIyAEnkA8MNks", w:48, h:224},
-  {m:"philo", code:"PHILO", n:"04", t:"La vérité", ch:"philoVerite", id:"1k7NNk1EzAcUDvttdCbQbujCfMNMwrXiWy9PKQ6cFZls", w:44, h:222},
   {m:"hg", code:"HG", n:"03", t:"Mers et océans, des réserves de ressources", ch:"hgG1", id:"1JgN_HnLEbwlA7MzfnHbV6IB31kQPjVlvXGjfismhLQw", w:56, h:250, q:"hg3"},
   {m:"hggsp", code:"HGGSP", n:"02", t:"Climat et coopération internationale", ch:"hggsp5", id:"1iE_wulFmRP90nk-gAes0jOjzrP0vam7xN7fW1Tdc-qo", w:70, h:262, q:"hggsp2"},
   {m:"hggsp", code:"HGGSP", n:"03", t:"Étude conclusive : les États-Unis et la question environnementale", ch:"hggsp5", id:"1DihxDZyVKMEwknf5qnBOVk-d0053VaQjyaKH3-5X_Bg", w:66, h:258, q:"hggsp3"},
@@ -1236,17 +1254,16 @@ const VOLUMES = [
 ];
 
 const COURS = [
+  ["2026-11-03","philo","La doxa et le sujet « Les lois sont-elles nécessaires pour être libre ? »","1n8O7QV0izSP70-PJxH1m11OKI6sHC6timNRPj77VBMU","philoAutre"],
   ["2026-11-02","ses","Chapitre 3 : les fondements du commerce international, l'avantage comparatif","1zedmj7QZ-Zlu7OIF9TYjCV14DFTUhSvQvY5sL1sUS4U","ses3"],
   ["2026-11-02","hggsp","Étude conclusive : les États-Unis et la question environnementale (Jalon 1)","1KH2YI_E_wKaOBHRAFPa9kZFXbbsbSQk4Ybv3Tj9ENgY","hggsp5:usa"],
   ["2026-10-14","hggsp","Les États leaders face au changement climatique","1O5qosrt_Vve1T7pJEpgduXvzaDszifIJQDYtJM9byOw","hggsp5:axe2"],
-  ["2026-10-13","philo","Explication de texte, la perception du cube","10sRLm5_Fsg8rKQ8I0duUkvJMAWkETdn7-Q6064y0W00","philoRaison"],
   ["2026-10-12","hggsp","Jalon 2, le climat : chronologie de la coopération internationale","1omwAdDw8cNfIcZRoeSHW60mIcch1J95qkzeqJyrwODU","hggsp5:axe2"],
   ["2026-10-12","ses","D'où vient la croissance économique, la destruction créatrice","1z5VCR5yDyb34kF_xRS-lDNPhsd5gsg3311IeZoGTN00","ses2"],
   ["2026-10-09","ang","When fantasy becomes reality : une image de robot humanoïde","161hqJrnags_xdMgFEF4BH_Xayus5KQRMJhcsqPZcjIk","ang2"],
   ["2026-10-06","hg","Les aires marines protégées et les rivalités géopolitiques en mer","1_OV3oyyKzxH2Ue6gso5AvPVTkrsDGSttUZKFOod1jE4","hgG1:p2"],
   ["2026-10-05","hggsp","Axe 2, le changement climatique : problématique et Jalon 1","1f6aw8kj7vTNrr13q5fhTt9P-aB4_JMKvlhE8kr1uQlc","hggsp5:axe2"],
   ["2026-10-02","ses","La productivité globale des facteurs, exemple chiffré","1NibfwaMq5B1Q0WPfRVs4KeorMKMPRxzBkPqHC_386Po","ses2"],
-  ["2026-10-02","philo","Y a-t-il des vérités indiscutables ?","1Z7QrU1fP44H9C223SlBIEzESLIN_5l7nDLHhDdltdK8","philoVerite"],
   ["2026-10-01","hggsp","Étude de document, la carte des émissions mondiales de CO2","1TjwJ1-bqbpL1oz7Y0Jx7cZkSCGCsj39niOQxehen3zc","hggsp5:axe2"],
   ["2026-10-01","ses","Les sources de la croissance économique","1LcPrHX-kKuyTchaz9Zn6oGKIdVXoCb_SsEPRiWEuLSA","ses2"],
   ["2026-09-30","hggsp","Les limites planétaires et la grande accélération","1uERCoLrMcNjeSMn0Dqtd70ME1xVM9DWDGxyOfHy6ek0","hggsp5:axe1"],
@@ -1255,7 +1272,6 @@ const COURS = [
   ["2026-09-25","ses","Les facteurs sociodémographiques de la stratification sociale","1UDlqxuIRANEOI9BZkrtEqpFjdPFX4r-bMMQ9NGe8yv4","ses1:p2"],
   ["2026-09-25","hg","Les mers, réserves de ressources : les ressources halieutiques","1KNrHhaW6r2dMylCf6vou5pdD9StvmrEjR7PFjHfKwGs","hgG1:p2"],
   ["2026-09-24","ses","Méthodologie de l'épreuve composée, l'étude d'un document","1mXS0hfIWU6mKpOOvEDeCo64bat8wL9qJgdvZ2wiyPfg","sesM"],
-  ["2026-09-24","philo","Une représentation moderne du mythe de la caverne de Platon","1gAwUoXIB5PIwV5vRGwH7r9smFouEZHgSXU_yi-POznU","philoAutre"],
   ["2026-09-23","hggsp","Jalon 1, la forêt française depuis Colbert (suite : le bois au service de la puissance, XIXe siècle)","10wUVftdR1YbQLxcByd_0HBoMhOEkouU9RqOhLqE6uOo","hggsp5:axe1"],
   ["2026-09-21","hggsp","La forêt française, du legs de Colbert aux défis climatiques (étude de cas Fontainebleau)","1sX1nfujRMEy7F1IbTNuAprAsj9x67rktCph7FUmY0J0","hggsp5:axe1"],
   ["2026-09-21","ses","Les outils de mesure des inégalités de revenu et de patrimoine","1sT8QZcA8WSwMcyJs_7OVl2koy_SUSJoRCwY64gwu4hU","ses1:p2"],
@@ -1268,11 +1284,9 @@ const COURS = [
   ["2026-09-14","hggsp","La construction sociale des problèmes environnementaux","1T6lfFRbc8JJTO0cdOz95kpK3P_-uOeO9DMW1NAGFZSM","hggsp5:intro"],
   ["2026-09-14","ses","Synthèse sur la pertinence de l'analyse en classes sociales","16RpY0fv8Ty4lv5NnO1-gpJ_JsZpN8VeWJymDh4XfOms","ses1:p1"],
   ["2026-09-11","ses","La moyennisation de la société française (Trente Glorieuses)","1FmbQtZ2N88jfaXe1XqZ65FgIJYSn-cpe58oG9EXfdIk","ses1:p1"],
-  ["2026-09-10","philo","Une vie heureuse est-elle une vie de plaisirs ?","19wdqdH2gD7QlGCqS14u-4irX3Y6xZqeXpqb7IBpw3VY","philoBonheur"],
   ["2026-09-10","ses","Marx et Weber, méthodologie de l'épreuve composée","1K2W-HKPMiGV5zmvTVJ5m0VUVVXliDoqkGVlKt1c5JIM","ses1:p1"],
   ["2026-09-10","hggsp","Greta Thunberg et la politisation de l'environnement","1sP1BbAg5CXk1Rzf9s-iaKmytjp0bqNz-uOQsLlntgvc","hggsp5:intro"],
   ["2026-09-09","hggsp","Environnement, entre exploitation et protection (Thème 5)","1LBV7t1_gaUZ-DBAQwc-9G7-DzjiiSoOoXluQKjvH6kQ","hggsp5:intro"],
-  ["2026-09-08","philo","La nature a-t-elle besoin de nous ?","1ZRRQS-dFgUi8HnBcybomyRjmgybN79CXWfN75Fc8n-g","philoNature"],
   ["2026-09-07","ses","Rentrée","1Gz4R7IkTNMI1FdXRAofgY7D912LcUx5nVebXcvPzLLY","sesM"],
   ["2026-09-07","hggsp","Rentrée","1BsRUzkC8_WBUl5V0voENyJddBYnK0AmTb-4zjLVJkkA","hggspM"]
 ];
@@ -1280,6 +1294,8 @@ const COURS = [
 /* Nouveautés du site : une entrée par mise à jour poussée en ligne, la plus récente en premier.
    Enrichi à chaque push (demande d'Adam du 29/09/2026). */
 const NOUVEAUTES = [
+  {d:"2026-11-05", t:"Terminale D s'installe comme une application", body:"Le site a un nouveau logo et s'installe sur l'écran d'accueil, sur Android comme sur iPhone : il s'ouvre alors en plein écran, comme une app, et les fiches, les QCM, le lexique, Mes notes et la Séance restent consultables sans réseau (seuls les liens vers le Drive ont besoin d'une connexion). Quand une nouvelle version est en ligne, un bandeau propose de recharger. Pour l'installer : bouton « Installer » sur Android, ou Partager puis « Sur l'écran d'accueil » sur iPhone ; le bouton est aussi en bas de chaque page."},
+  {d:"2026-11-03", t:"Philosophie : nouveau professeur, le contenu de l'ancien est retiré", body:"La classe change de professeur de philosophie : les chapitres, fiches, cours, QCM et notions de lexique rédigés avec l'ancien professeur sont retirés de la page Philosophie. Le premier cours du nouveau professeur (la doxa et un exemple de sujet) est en attente de classement, et la page se remplira au fil des prochains cours."},
   {d:"2026-11-02", t:"Un nouveau chapitre de SES et l'étude conclusive d'HGGSP sur les États-Unis", body:"Le chapitre 3 de SES, « Quels sont les fondements du commerce international et l'internationalisation de la production ? », est arrivé avec son premier cours (solde commercial, avantage comparatif de Ricardo), sa fiche, son QCM et ses notions de lexique. En HGGSP (Thème 5), l'étude conclusive « Les États-Unis et la question environnementale » a son cours du 2 novembre, une fiche (conservationnisme, préservationnisme, destinée manifeste, chronologie de la protection de l'environnement aux États-Unis) et un QCM."},
   {d:"2026-10-15", t:"Un nouveau chapitre d'Anglais et trois fiches enrichies", body:"Un nouveau chapitre d'Anglais est arrivé, « Chapter 2 : When Fantasy Becomes Reality ». En HGGSP (Thème 5), une deuxième fiche couvre le Jalon 2 sur le climat et les relations internationales (PNUE, GIEC, accords de Paris, justice climatique), avec son propre QCM. La fiche de SES sur les sources de la croissance économique s'enrichit de la croissance endogène, des 4 capitaux, du rôle des institutions et de la destruction créatrice (Schumpeter), avec un nouveau QCM. La fiche « La raison » en Philosophie s'enrichit d'un texte sur la perception et la raison."},
   {d:"2026-10-13", t:"Une révision express pour le contrôle de géo sur « Mers et océans »", body:"En haut de la section « Par chapitre » de la page Histoire-Géo, un bloc temporaire de révision couvre le chapitre « Mers et océans » : notions clés à déplier, méthode de l'étude de document(s), pièges à éviter, dates et chiffres, et un petit QCM. Ce bloc sera retiré après le contrôle."},
@@ -1319,12 +1335,7 @@ const CHAPITRES = {
     {k:"hgG1", dir:"1vFGJgo_GiN9voUqgrPJtPad5zC9y4UTn", n:"Géographie · Thème 1", t:"Mers et océans : au cœur de la mondialisation", parts:[["p1", "1 · Les espaces maritimes, une approche géostratégique"], ["p2", "2 · Des réserves de ressources qui polarisent des flux"]]},
     {k:"hgM", dir:"1rB2-yXJ5i1pQVbvFALswuJBAr1izl49e", n:"Méthode", t:"Méthode et conseils"}],
   philo:[
-    {k:"philoNature", dir:"13eSGIagnSL7DG6gzWMI1apNad4UXW3vw", n:"Notion", t:"La nature"},
-    {k:"philoBonheur", dir:"1FcRlvoQ3OnlQWVwCeILR5lNgN88jtLgi", n:"Notion", t:"Le bonheur"},
-    {k:"philoRaison", dir:"1IgDDRzYD_4KIXR2Kz8cuOHuEZgI3HPD-", n:"Notion", t:"La raison"},
-    {k:"philoVerite", dir:"1fTkc-PYWEQ6hgj8fmUeOyjcgRp6PO_Sx", n:"Notion", t:"La vérité"},
-    {k:"philoAutre", dir:"1rYOOnrhIzkuJxSsTiL2pztY6jqPZUCeK", n:"À classer", t:"Cours dont la notion reste à confirmer", aside:true},
-    {k:"philoM", dir:"1p3Ihbp1FshJQJnF1rMTmetZtA1MVISaG", n:"Méthode", t:"Méthode du bac"}],
+    {k:"philoAutre", dir:"1rYOOnrhIzkuJxSsTiL2pztY6jqPZUCeK", n:"À classer", t:"Cours dont la notion reste à confirmer", aside:true}],
   ang:[
     {k:"ang1", dir:"1Q9MsHbQ7ZYHJ27KcXvrjUoX8eHR-CqCx", n:"Chapter 1", t:"Tradwives in the USA and the Women's Liberation Movement"},
     {k:"ang2", dir:"1B1hVTKZwRv7l-qJ965X2veoRMyUrGDHd", n:"Chapter 2", t:"When Fantasy Becomes Reality"},
@@ -1402,27 +1413,6 @@ const QCM = {
     ["Laquelle de ces affirmations est juste ?",["Tout delta est une embouchure","Toute embouchure est un delta","Un estuaire est un delta","Un canal est une embouchure naturelle"],0,"Tout delta est une embouchure, mais un estuaire en est une autre forme."],
     ["Une route maritime circumterrestre…",["fait le tour complet de la Terre","relie deux ports d'un même pays","longe une seule côte","traverse uniquement l'océan Atlantique"],0,"Circumterrestre : route qui fait le tour de la Terre en reliant les grands bassins de circulation mondiale."]
   ],
-  philo1:[
-    ["L'hédonisme fonde le bonheur sur…",["le calcul rationnel des plaisirs et de leurs conséquences","le renoncement à tout plaisir","le devoir moral","la contemplation"],0,"Agir bien revient à maximiser le plaisir et minimiser la souffrance."],
-    ["L'ataraxie désigne…",["l'absence de trouble de l'âme","l'excès de plaisir","le calcul des plaisirs","le bonheur collectif"],0,"État recherché par les épicuriens."],
-    ["L'épicurisme antique recommande…",["des plaisirs simples et la modération des désirs","d'abuser de tout ce qui est bon","de fuir tout plaisir","de maximiser les plaisirs superflus"],0,"Épicure vise l'ataraxie en évitant les désirs superflus."],
-    ["Le carpe diem populaire est…",["une déformation de la pensée d'Épicure","sa continuation fidèle","une objection à l'hédonisme","une forme d'ataraxie"],0,"Le carpe diem, philosophie de l'excès, n'est pas la continuation fidèle de la pensée d'Épicure."],
-    ["L'objection de l'intellectualisation reproche à l'hédonisme…",["de réduire le bonheur, une expérience vécue, à un calcul","de rendre la morale égoïste","d'ignorer la subjectivité du plaisir","d'oublier les autres"],0,"Intellectualisation : le bonheur réduit à un simple calcul rationnel."],
-    ["L'exemple de Dexter illustre quelle objection ?",["La subjectivité du plaisir","L'intellectualisation","La réduction de la morale au calcul d'intérêt","L'ataraxie"],0,"Ce qui procure du plaisir varie d'un individu à l'autre : le plaisir seul ne distingue pas le bien du mal."],
-    ["Agir bien parce que cela procure du plaisir rendrait la morale…",["égoïste plutôt que désintéressée","universelle","impossible à calculer","collective"],0,"Objection : réduction de la morale à un calcul d'intérêt."],
-    ["Quelle question ouverte clôt le cours ?",["Peut-on être heureux quand les autres ne le sont pas ?","La nature a-t-elle besoin de nous ?","Le plaisir est-il un calcul ?","Faut-il fuir les désirs ?"],0,"Elle ouvre sur la dimension collective du bonheur."]
-  ],
-  philo2:[
-    ["Pour Démocrite, l'heureuse disposition de l'âme naît de…",["la quantité de plaisir possédée","la modération du plaisir, non de sa quantité","le renoncement total au plaisir","la richesse matérielle"],1,"L'euthymie naît de la modération du plaisir, non de sa quantité."],
-    ["La comparaison descendante proposée par Démocrite consiste à…",["se comparer aux plus riches","se comparer aux plus malheureux","comparer son plaisir à sa douleur","comparer sa vie passée à sa vie présente"],1,"Elle consiste à se comparer aux plus malheureux plutôt qu'aux plus riches, pour se satisfaire de ce qu'on a."],
-    ["Chez Platon, la loi vise…",["le bonheur exceptionnel des gardiens","le bonheur de la cité tout entière","le bonheur de chaque individu séparément","l'abolition de toute contrainte"],1,"La loi ne vise pas le bonheur exceptionnel d'une classe, mais celui de la cité tout entière."],
-    ["Le repère mobilisé par le texte de Platon est…",["absolu / relatif","obligation / contrainte","idéal / réel","exemple / preuve"],1,"Repère mobilisé : obligation / contrainte, la loi unit les citoyens par la persuasion ou la contrainte."],
-    ["Pour Descartes, le vrai office de la raison est…",["de supprimer toute passion","d'examiner la juste valeur des biens","d'ignorer la fortune","de garantir la réussite de tous nos desseins"],1,"Le vrai office de la raison est d'examiner la juste valeur des biens pour orienter nos efforts vers les plus désirables."],
-    ["Le texte de Descartes est un texte-charnière parce qu'il est classé…",["à la fois sous Bonheur et sous Raison","seulement sous Raison","seulement sous Bonheur","sous aucune des deux notions"],0,"Texte-charnière avec la Raison : classé à la fois sous Bonheur et sous Raison."],
-    ["Pour Pascal, le désir de bonheur est…",["rare et réservé à quelques-uns","universel, partagé par tous les hommes sans exception","propre aux seuls croyants","absent chez les plus pauvres"],1,"Tous les hommes recherchent le bonheur sans exception."],
-    ["Selon Pascal, ce désir universel de bonheur…",["est toujours satisfait par l'expérience","n'est jamais satisfait sans la foi","disparaît avec l'âge","se satisfait par le seul calcul rationnel"],1,"Aucun homme, sans la foi, n'y parvient jamais, malgré l'universalité du désir."],
-    ["Quelle réponse au problème du bonheur fait l'objet d'une fiche séparée ?",["Celle de Démocrite","Celle d'Épicure","Celle de Platon","Celle de Pascal"],1,"La réponse d'Épicure (le calcul hédoniste) fait l'objet de la fiche Philosophie - Le bonheur et les plaisirs."]
-  ],
   ang1:[
     ["Le mot « tradwife » est l'abréviation de…",["traditional wife","trading wife","traditional worker","tradition of women"],0,"Tradwife est l'abréviation de traditional wife."],
     ["Les tradwives présentent comme le centre de leur vie…",["leur carrière professionnelle","le foyer, le mariage et la maternité","l'engagement politique","les voyages"],1,"Elles présentent le foyer, le mariage et la maternité comme le centre de leur vie, dans des vidéos très soignées sur les réseaux sociaux."],
@@ -1474,18 +1464,6 @@ const QCM = {
     ["« Libres et égaux en droits » désigne une égalité…",["sociale : mêmes revenus","juridique et politique : mêmes droits","de talents","de patrimoine"],1,"Égalité politique et non sociale (document 3)."],
     ["Une aide de solidarité comme l'Aspa…",["exige une contrepartie en travail","est accordée sans contrepartie, sous condition de ressources","est versée à tous","est une charité privée"],1,"Aucune contrepartie, mais des conditions de ressources et de besoin."],
     ["La neutralité religieuse s'impose…",["à tous les citoyens partout","à l'État, aux collectivités et aux services publics","uniquement aux religions","à personne"],1,"Neutralité de l'État et des services publics, non de leurs usagers (document 5)."]
-  ],
-  philo3:[
-    ["Pour Maïmonide, la Loi vise deux fins : le bien-être du corps et…",["le bien-être de l'âme","la richesse matérielle","la gloire politique","le plaisir immédiat"],0,"La Loi vise le bien-être du corps, condition nécessaire, puis, seule fin vraiment noble, le bien-être de l'âme."],
-    ["La perfection dernière, chez Maïmonide, consiste à…",["accumuler des richesses","passer de la raison en puissance à la raison en acte","obéir sans réfléchir à la Loi","fuir la vie en société"],1,"Le bien-être de l'âme est le passage de la raison en puissance à la raison en acte."],
-    ["Pour Montaigne, ce que nous prenons pour les lois naturelles de la conscience naît en réalité…",["de la raison pure","de la coutume","de l'expérience scientifique","de la religion"],1,"Ce que nous prenons pour les lois naturelles de la conscience naît en réalité de la coutume."],
-    ["Le repère mobilisé par le texte de Montaigne est…",["absolu / relatif","en acte / en puissance","universel / général / particulier / singulier","objectif / subjectif / intersubjectif"],2,"Repère mobilisé : universel / général / particulier / singulier."],
-    ["Pour Comte, l'esprit humain ne peut pas…",["observer les phénomènes extérieurs","s'observer lui-même en train de penser","utiliser l'observation intersubjective","fonder une science des phénomènes humains"],1,"L'esprit humain ne peut s'observer lui-même en train de penser, l'organe observé et l'organe observateur étant identiques."],
-    ["Comte est un texte-charnière parce qu'il est rapproché…",["de la notion de Bonheur seulement","de la notion de Raison seulement","d'aucune autre notion","de la Raison et du Bonheur à la fois"],3,"Texte-charnière avec le Bonheur, classé sous Raison mais rapproché du Bonheur."],
-    ["Pour Wittgenstein, un fait extraordinaire mais seulement provisoirement inexpliqué par la science est…",["un miracle absolu","un miracle relatif","une preuve de l'existence de Dieu","une erreur de raisonnement"],1,"Le miracle relatif est un fait extraordinaire mais seulement provisoirement inexpliqué."],
-    ["Selon Wittgenstein, la limite de la raison scientifique est…",["une limite de degré, comblée par le progrès","une limite de nature : elle ne rencontre jamais l'absolu","inexistante","propre à chaque science particulière"],1,"Ce n'est pas une limite de degré mais une limite de nature : elle ne rencontre jamais l'absolu."],
-    ["Les quatre obstacles à la raison présentés dans cette fiche sont, dans l'ordre…",["corporel, culturel, logique, catégoriel","culturel, corporel, catégoriel, logique","logique, catégoriel, corporel, culturel","catégoriel, logique, culturel, corporel"],0,"Maïmonide (corporel), Montaigne (culturel), Comte (logique), Wittgenstein (catégoriel)."],
-    ["Dans le texte du cube, voir un objet ne suffit pas à le connaître parce que…",["les sens ne livrent que des aspects partiels et changeants, unifiés ensuite par le discours","la vue est le seul sens fiable","le cube n'existe pas réellement","la connaissance est toujours fausse"],0,"Les apparences successives (les faces du cube) ne deviennent une connaissance vraie que par le discours et l'intelligence, qui les unifient."]
   ],
   ses4:[
     ["Au Danemark en 2019, sur une croissance du PIB de 2,8 %, quelle est la part de la productivité globale des facteurs (PGF) ?",["0,9 point","0,5 point","1,4 point","2,8 points"],2,"PIB +2,8 % décomposé en facteur travail +0,9 point, facteur capital +0,5 point, PGF +1,4 point (source OCDE)."],
@@ -1546,10 +1524,10 @@ const SUBJ = {
     quote:"Un espace maritime n'est stratégique que s'il réunit certains critères.", cite:"Fiche HG 01", plate:"ports",
     cap:["Planche · La rangée portuaire chinoise", "Cinq ensembles, trafic dominé par Shanghai et le delta du Yangzi"]},
   philo:{short:"Philosophie", big:"Philo", full:"Philosophie", nav:"Philo",
-    title:"Une vie heureuse est-elle <em>une vie de plaisirs ?</em>",
-    lead:"L'hédonisme et son calcul des plaisirs, Épicure et l'ataraxie, puis trois objections qui fissurent la thèse.",
-    quote:"Peut-on être heureux quand les autres ne le sont pas ?", cite:"Question ouverte du cours", plate:"ataraxie",
-    cap:["Planche · De l'agitation à l'ataraxie", "L'absence de trouble de l'âme, selon les épicuriens"]},
+    title:"Les lois sont-elles <em>nécessaires pour être libre ?</em>",
+    lead:"Un nouveau professeur, un nouveau départ : la doxa, la règle des trois parties de deux sous-parties, et un premier exemple de sujet. La page se remplira au fil des cours.",
+    quote:"Il vaut mieux 3 parties de 2 sous-parties chacune qu'autre chose.", cite:"Cours du 3 novembre", plate:"ataraxie",
+    cap:["Planche · Philosophie", "Une illustration, en attendant les premiers chapitres"]},
   es:{short:"Sciences", big:"Sciences", full:"Enseignement scientifique", nav:"Sciences", tile:"ondes",
     title:"Deux siècles <em>d'énergie électrique</em>",
     lead:"L'alternateur, au cœur de presque toutes les centrales : un aimant qui tourne, une bobine fixe, et une tension qui naît du mouvement.",
@@ -1648,6 +1626,7 @@ let live = [];
 /* Sur téléphone : moins de pixels et 30 images/s pour les illustrations (mesuré : défilement 30 → ~55 i/s) */
 /* ---------- Affichage : téléphone ou ordinateur, au choix du visiteur ---------- */
 const MODE_KEY = "td.mode", NARROW = matchMedia("(max-width: 760px)");
+const STANDALONE = document.documentElement.classList.contains("standalone");
 let MODE = (() => { try { const m = localStorage.getItem(MODE_KEY); return m === "m" || m === "d" ? m : null; } catch { return null; } })();
 const MOB = {get matches(){ return MODE ? MODE === "m" : NARROW.matches; }};
 const MEDIA0 = new WeakMap();
@@ -1675,7 +1654,7 @@ function applyMode(){
      partagé…), le viewport meta ne fait rien : innerWidth reste étroit, et c'est ce
      qu'on regarde ici pour appliquer un zoom CSS de secours, quel que soit le cas. */
   const vp = document.querySelector('meta[name="viewport"]'), small = screen.width < 900 || innerWidth < 900;
-  if (vp && !IN_FRAME) vp.setAttribute("content", MODE === "d" && small ? "width=1280" : "width=device-width, initial-scale=1.0");
+  if (vp && !IN_FRAME) vp.setAttribute("content", MODE === "d" && small ? "width=1280, viewport-fit=cover" : "width=device-width, initial-scale=1.0, viewport-fit=cover");
   const zoom = MODE === "d" && innerWidth < 1100 ? innerWidth / 1280 : 1;
   document.body.style.zoom = zoom === 1 ? "" : String(zoom); root.classList.toggle("mode-zoom", zoom !== 1);
 }
@@ -1707,6 +1686,8 @@ DARKQ.addEventListener("change", markTheme);
 function markMode(){ $$("[data-mode]").forEach(b => b.setAttribute("aria-pressed", String((MODE || "") === b.dataset.mode))); }
 function modePicker(){
   if (MODE) return;
+  /* Dans l'application installée, pas de question : on prend l'affichage adapté à l'écran. */
+  if (STANDALONE) { setMode(NARROW.matches ? "m" : "d"); setTimeout(startTour, 450); return; }
   const rec = NARROW.matches ? "m" : "d";
   const phone = '<svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><rect x="9" y="3" width="14" height="26" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M14 25h4" stroke="currentColor" stroke-width="1.6"/></svg>';
   const pc = '<svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><rect x="3" y="6" width="26" height="16" rx="1.5" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M11 27h10M16 22v5" stroke="currentColor" stroke-width="1.6"/></svg>';
@@ -1744,6 +1725,7 @@ function startTour(){
   const onResize = () => place(steps[i]);
   const finish = () => {
     try { localStorage.setItem(TOUR_KEY, "1"); } catch {}
+    setTimeout(() => autoInstall(), 1500);   /* proposer l'installation juste après la visite */
     removeEventListener("resize", onResize); removeEventListener("keydown", onKey);
     document.documentElement.classList.remove("tour-open");
     wrap.remove();
@@ -3608,19 +3590,6 @@ const LEX = [
   {t:"ZEE (zone économique exclusive)", m:"hg", s:["02"], d:"Espace maritime qui s'étend jusqu'à 200 milles marins (environ 370 km) des côtes, où l'État côtier est seul à pouvoir exploiter les ressources. Définie par la convention de Montego Bay (1982). À ne pas confondre avec les eaux territoriales (12 milles, pleine souveraineté de l'État)."},
 
   /* Philosophie */
-  {t:"Épicurisme populaire (carpe diem)", m:"philo", s:["01"], d:"Philosophie de l'excès selon laquelle tout ce qui est bon mériterait d'être abusé. C'est une déformation de la pensée d'Épicure, pas sa continuation fidèle."},
-  {t:"Hédonisme", m:"philo", s:["01"], d:"Théorie du bonheur fondée sur le calcul rationnel des plaisirs et de leurs conséquences. Agir bien revient à maximiser le plaisir et minimiser la souffrance."},
-  {t:"Épicurisme antique", m:"philo", s:["01"], d:"Doctrine d'Épicure qui vise l'ataraxie par des plaisirs simples et la modération des désirs, en évitant les désirs superflus."},
-  {t:"Ataraxie", m:"philo", s:["01"], d:"Absence de trouble de l'âme, état recherché par les épicuriens."},
-  {t:"Euthymie", m:"philo", s:["02"], d:"Heureuse disposition de l'âme, obtenue selon Démocrite par la modération du plaisir, non par sa quantité."},
-  {t:"Comparaison descendante et ascendante", m:"philo", s:["02"], d:"Méthode de Démocrite pour être heureux : se comparer aux plus malheureux (comparaison descendante) plutôt qu'aux plus riches (comparaison ascendante, source d'envie et de désir sans fin)."},
-  {t:"Perfection première et perfection dernière", m:"philo", s:["03"], d:"Chez Maïmonide, les deux degrés de l'accomplissement humain : la perfection première, la santé du corps, et la perfection dernière, la raison en acte, la plus noble."},
-  {t:"Miracle absolu et miracle relatif", m:"philo", s:["03"], d:"Chez Wittgenstein, le miracle relatif est un fait extraordinaire seulement provisoirement inexpliqué par la science ; le miracle absolu, hors de portée par principe de toute explication scientifique, ne se rencontre jamais dans les faits."},
-  {t:"Le cube de bois, perception et raison", m:"philo", s:["03"], d:"Voir un objet ne suffit pas à le connaître, car les sens ne livrent jamais qu'une suite d'aspects partiels et changeants (ici, les faces d'un cube). La vérité de l'objet n'est pas donnée par la vue ou le toucher, mais construite par le discours et l'intelligence, qui unifient ces apparences successives en une seule idée du cube.", note:"Texte étudié en classe, auteur à confirmer avec le professeur."},
-  {t:"Vérité", m:"philo", s:["04"], d:"Adéquation entre un énoncé (ou une pensée) et la réalité qu'il décrit, ou cohérence interne d'un raisonnement."},
-  {t:"Vérités logiques (vérités de raison)", m:"philo", s:["04"], d:"Énoncés vrais en vertu de leur seule forme, indépendamment de l'expérience (exemple : « tout célibataire est non marié »), dont la négation est contradictoire. Rapprochement possible avec la distinction de Leibniz entre vérités de raison (nécessaires) et vérités de fait (contingentes).", note:"Repère général, à confronter au cours."},
-  {t:"Élitisme épistémique", m:"philo", s:["04"], d:"Position qui réserve l'accès à la vérité à un groupe restreint de savants ou d'experts : le cours interroge la légitimité d'une telle position."},
-  {t:"Consensus", m:"philo", s:["04"], d:"Accord collectif autour d'un énoncé. Se pose la question de savoir s'il suffit à établir une vérité, ou si la vérité peut exister indépendamment de l'accord du plus grand nombre."},
   {t:"Système normatif", m:"droit", s:["01"], d:"Ensemble de règles qui poussent les individus à adopter des conduites jugées justes, sous peine de sanctions : le droit, mais aussi la morale, les normes sociales, la religion, l'éthique."},
   {t:"Morale", m:"droit", s:["01","02"], d:"« Science du bien et du mal », qui exprime les valeurs d'une société à un moment donné ; sa transgression n'est sanctionnée que par la conscience, pas par un tribunal."},
   {t:"Droit objectif", m:"droit", s:["01"], d:"Le Droit, avec une majuscule : l'ensemble des règles qui régissent la vie en société dans un pays donné (ex. : le droit français)."},
@@ -3802,10 +3771,84 @@ if (MODE) setTimeout(startTour, 450);
 addEventListener("load", () => ST && ST.refresh());
 document.fonts?.ready.then(() => { fitType(); if (ST) ST.refresh(); });
 
-/* ---------- Hors connexion : le site reste consultable ---------- */
-if ("serviceWorker" in navigator) {
-  addEventListener("load", () => { navigator.serviceWorker.register("/sw.js").catch(() => {}); });
+/* ---------- Application installable (PWA) : hors connexion, mises à jour, installation ---------- */
+function pwaToast(text, action, onAction){
+  const old = $(".pwa-toast"); if (old) old.remove();
+  const t = el("div", {class:"pwa-toast", role:"status", "aria-live":"polite"},
+    el("span", {}, text),
+    action ? el("button", {type:"button", class:"btn", onclick:() => { t.remove(); onAction(); }}, action) : null,
+    el("button", {type:"button", class:"pwa-x", "aria-label":"Fermer", onclick:() => t.remove()}, "×"));
+  document.body.append(t);
+  if (!action) setTimeout(() => t.remove(), 4500);
 }
+if ("serviceWorker" in navigator && !IN_FRAME) {
+  const hadController = !!navigator.serviceWorker.controller;
+  let reloading = false;
+  navigator.serviceWorker.addEventListener("controllerchange", () => {
+    if (!hadController || reloading) return;
+    reloading = true; location.reload();
+  });
+  addEventListener("load", async () => {
+    try {
+      const reg = await navigator.serviceWorker.register("/sw.js");
+      const offer = w => { if (w && navigator.serviceWorker.controller)
+        pwaToast("Une nouvelle version du site est prête.", "Recharger", () => w.postMessage("SKIP_WAITING")); };
+      if (reg.waiting) offer(reg.waiting);
+      reg.addEventListener("updatefound", () => {
+        const w = reg.installing;
+        if (w) w.addEventListener("statechange", () => { if (w.state === "installed") offer(w); });
+      });
+      /* Une app installée reste ouverte des jours : on vérifie les mises à jour à chaque retour dessus. */
+      document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") reg.update().catch(() => {}); });
+    } catch {}
+  });
+}
+/* Installation : bouton natif sur Android (Chrome, Edge, Samsung), explication sur iPhone/iPad. */
+const IS_IOS = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+const INSTALL_KEY = "td.install";
+let deferredInstall = null;
+const installState = () => { try { return JSON.parse(localStorage.getItem(INSTALL_KEY) || "{}") || {}; } catch { return {}; } };
+const saveInstall = o => { try { localStorage.setItem(INSTALL_KEY, JSON.stringify(Object.assign(installState(), o))); } catch {} };
+const canInstall = () => !STANDALONE && !IN_FRAME && (!!deferredInstall || IS_IOS);
+function markInstall(){ const g = $("#installsw"); if (g) g.hidden = !canInstall(); }
+function installCard(force){
+  if (!canInstall() || $(".pwa-card")) return;
+  const st = installState();
+  if (!force && st.later && Date.now() - st.later < 30 * 864e5) return;
+  const ios = !deferredInstall;
+  const close = later => { card.remove(); if (later) saveInstall({later:Date.now()}); };
+  const txt = ios
+    ? ["Touche ", el("b", {}, "Partager"), " (le carré avec une flèche), puis ", el("b", {}, "Sur l'écran d'accueil"), ". Le site s'ouvrira comme une app, même sans réseau."]
+    : ["Ouvre le site comme une app, en plein écran, avec tes fiches, tes QCM et le lexique même sans réseau."];
+  const card = el("div", {class:"pwa-card", role:"dialog", "aria-label":"Installer l'application"},
+    el("img", {src:"/icon-192.png", alt:"", width:"48", height:"48"}),
+    el("div", {}, el("p", {class:"pwa-h"}, "Terminale D sur ton écran d'accueil"), el("p", {class:"pwa-d"}, ...txt)),
+    el("div", {class:"pwa-acts"},
+      el("button", {type:"button", class:"btn ghost", onclick:() => close(true)}, ios ? "Compris" : "Plus tard"),
+      ios ? null : el("button", {type:"button", class:"btn", onclick: async () => {
+        close(false);
+        const p = deferredInstall; deferredInstall = null;
+        try { p.prompt(); const r = await p.userChoice; if (r && r.outcome === "dismissed") saveInstall({later:Date.now()}); } catch {}
+        markInstall();
+      }}, "Installer")));
+  document.body.append(card);
+}
+function autoInstall(){
+  let toured = null; try { toured = localStorage.getItem(TOUR_KEY); } catch {}
+  if (toured === "1" && MOB.matches && !$(".tour-wrap") && !$(".mp")) installCard(false);
+}
+addEventListener("beforeinstallprompt", e => { e.preventDefault(); deferredInstall = e; markInstall(); setTimeout(autoInstall, 2500); });
+addEventListener("appinstalled", () => { deferredInstall = null; saveInstall({done:Date.now()}); const c = $(".pwa-card"); if (c) c.remove(); markInstall(); });
+$("#install-btn")?.addEventListener("click", () => installCard(true));
+markInstall();
+if (IS_IOS && !STANDALONE) setTimeout(autoInstall, 3000);
+/* Hors connexion, un lien vers le Drive ou un autre site ne peut pas s'ouvrir : on le dit au lieu d'ouvrir une page d'erreur. */
+document.addEventListener("click", e => {
+  const a = e.target.closest ? e.target.closest('a[href^="http"]') : null;
+  if (!a || navigator.onLine) return;
+  e.preventDefault();
+  pwaToast("Pas de réseau : ce lien s'ouvrira quand tu seras de nouveau connecté.");
+}, true);
 (function offlineBanner(){
   const b = $("#offline-banner");
   if (!b) return;

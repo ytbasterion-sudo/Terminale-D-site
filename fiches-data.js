@@ -229,63 +229,9 @@ const FICHE_DATA = {
     dissert: "Sujet type : « Les mers et océans, des espaces convoités pour leurs ressources. » I. Des ressources vitales (pêche, besoins d'une population en forte croissance). II. Des ressources qui polarisent des flux et attirent des acteurs, entre exploitation (pêche, hydrocarbures, minerais des fonds marins, tourisme) et tentative de régulation (AMP, Convention de Barcelone, CNUDM, accord BBNJ). Exemple mobilisable : le crabe bleu en Méditerranée (golfe de Gabès), qui illustre à la fois une menace écologique (espèce invasive) et un enjeu économique, avec des réponses nationales divergentes entre la Tunisie et la France. La fiche pourra être complétée avec les cours suivants."
   },
 
-  "philo-01": {
-    titre: "Le bonheur et les plaisirs (l'hédonisme)",
-    m: "philo", n: "01",
-    auteurs: [{n:"Épicure", dates:"341–270 av. J.-C.", d:"Fondateur de l'épicurisme, doctrine axée sur la modération et non sur l'excès. Source du texte étudié : Lettre à Ménécée."}],
-    pieges: [
-      {t:"Hédonisme / épicurisme antique / carpe diem populaire", d:"Ne pas les confondre : l'hédonisme est le calcul rationnel des plaisirs ; l'épicurisme antique vise l'ataraxie par la modération des désirs ; le carpe diem populaire est une philosophie de l'excès, une déformation de la pensée d'Épicure."},
-      {t:"Épicure n'est pas un hédoniste naïf", d:"Ne pas réduire Épicure à un hédonisme immédiat : tout plaisir n'est pas à choisir, une fois passé au crible du calcul rationnel (Lettre à Ménécée)."}
-    ],
-    dissert: "Sujet type : le bonheur est-il affaire de plaisirs ? Plan possible : la thèse hédoniste d'Épicure, puis ses trois limites (l'intellectualisation, qui réduit le bonheur à un calcul rationnel ; la réduction de la morale à un calcul d'intérêt, qui la rend égoïste plutôt que désintéressée ; la subjectivité du plaisir, qui varie d'un individu à l'autre — exemple du cours : le personnage de fiction Dexter tire du plaisir de tuer, ce qui montre que le plaisir seul ne suffit pas à distinguer une action bonne d'une action mauvaise), puis l'ouverture sur le bonheur d'autrui (peut-on être heureux quand les autres ne le sont pas ? voir la fiche « Le Bonheur », Platon)."
-  },
 
-  "philo-02": {
-    titre: "Le Bonheur",
-    m: "philo", n: "02",
-    auteurs: [
-      {n:"Démocrite", dates:"Ve–IVe siècle av. J.-C.", d:"L'heureuse disposition de l'âme (l'euthymie) naît de la modération du plaisir, non de sa quantité. Méthode : la comparaison descendante (se comparer aux plus malheureux) plutôt qu'ascendante (source d'envie et de désir sans fin). Repère mobilisé : absolu / relatif."},
-      {n:"Platon", dates:"428/427–348/347 av. J.-C.", d:"La République, IV : la loi ne vise pas le bonheur exceptionnel d'une classe, mais celui de la cité tout entière ; le bonheur individuel se subordonne à la fonction politique de chacun. Repère mobilisé : obligation / contrainte."},
-      {n:"Descartes", dates:"1596–1650", d:"Lettre à Élisabeth (1645) : la passion fait croire les choses meilleures qu'elles ne sont ; le vrai office de la raison est d'examiner la juste valeur des biens pour orienter nos efforts vers les plus désirables, indépendamment du succès fixé par la fortune. Repère mobilisé : idéal / réel."},
-      {n:"Pascal", dates:"1623–1662", d:"Pensées : tous les hommes recherchent le bonheur sans exception, mais aucun, sans la foi, n'y parvient jamais ; l'échec, constaté chez toutes les catégories humaines, ne suffit pourtant jamais à éteindre l'espoir. Repère mobilisé : exemple / preuve."}
-    ],
-    pieges: [
-      {t:"Bonheur individuel / bonheur collectif", d:"Ne pas confondre le bonheur individuel (Démocrite, Épicure, Descartes), réglé par une discipline du désir ou des passions, et le bonheur collectif (Platon), réglé par la loi."},
-      {t:"Chez Pascal, l'universel porte sur le désir, pas la satisfaction", d:"Tous veulent être heureux (universel), aucun, sans la foi, n'y parvient (universel aussi, mais dans l'échec) : ne pas confondre les deux niveaux."}
-    ],
-    dissert: "Q5, peut-on apprendre à être heureux : Démocrite répond oui, par un exercice réfléchi de comparaison plutôt qu'un savoir théorique immédiat. Q2, peut-on être heureux quand les autres ne le sont pas : chez Platon, le bonheur individuel est subordonné au bonheur collectif, finalisé par le lien social. Q4, pour être heureux faut-il être raisonnable : chez Descartes, la raison corrige les erreurs de jugement de la passion et garantit un bonheur possible, non un succès garanti. Q3, le bonheur est-il une aspiration universelle : chez Pascal, oui pour le désir, non pour sa satisfaction, dont l'échec est tout aussi universel hors la foi. Une cinquième réponse à ce problème, celle d'Épicure (le calcul hédoniste), fait l'objet d'une fiche séparée : voir « Le bonheur et les plaisirs »."
-  },
 
-  "philo-03": {
-    titre: "La Raison",
-    m: "philo", n: "03",
-    auteurs: [
-      {n:"Maïmonide", dates:"1138–1204", d:"Guide des égarés, III, XXVII : la Loi vise le bien-être du corps (condition nécessaire, obtenue par la vie en société) puis, seule fin vraiment noble, le bien-être de l'âme, c'est-à-dire le passage de la raison en puissance à la raison en acte. Repère mobilisé : en acte / en puissance."},
-      {n:"Montaigne", dates:"1533–1592", d:"Les Essais (1580) : ce que nous prenons pour les lois naturelles de la conscience naît en réalité de la coutume, intériorisée dès la naissance ; seul un patient retour sur soi permet de distinguer le vrai jugement du simple pli de l'habitude. Repère mobilisé : universel / général / particulier / singulier."},
-      {n:"Comte", dates:"1798–1857", d:"Cours de philosophie positive : l'esprit humain ne peut s'observer lui-même en train de penser, l'organe observé et l'organe observateur étant identiques ; la connaissance des phénomènes humains doit donc se fonder sur l'observation extérieure et intersubjective. Repère mobilisé : objectif / subjectif / intersubjectif."},
-      {n:"Wittgenstein", dates:"1889–1951", d:"Conférence sur l'éthique : tout fait, aussi extraordinaire soit-il, cesse d'être miraculeux dès qu'on l'examine scientifiquement ; la science ne rencontre donc jamais l'absolu, seulement du relatif provisoirement inexpliqué. Repère mobilisé : absolu / relatif."},
-      {n:"Le cube de bois (texte étudié en classe, auteur à confirmer avec le professeur)", d:"Voir un cube ne suffit pas à le connaître : les sens n'en livrent jamais que des faces et des aspects partiels, changeants selon le point de vue ; c'est le discours et l'intelligence qui unifient ces apparences successives en une connaissance vraie de l'objet."}
-    ],
-    pieges: [
-      {t:"Quatre obstacles à la raison, quatre natures différentes", d:"Corporel et temporaire chez Maïmonide, culturel et jamais totalement levé chez Montaigne, logique mais contournable par une autre méthode chez Comte, catégoriel et définitif chez Wittgenstein : ne pas les traiter comme un seul et même obstacle."},
-      {t:"Chez Wittgenstein, une limite de nature, pas de degré", d:"La limite de la raison scientifique n'est pas une limite de degré (elle expliquerait indéfiniment plus de faits) mais une limite de nature : elle ne rencontre jamais l'absolu."},
-      {t:"Perception / connaissance (texte du cube)", d:"Ne pas confondre percevoir un objet (saisir une face, un aspect à la fois) et le connaître (saisir ce qu'il est, par-delà la diversité des apparences) : c'est précisément le passage de l'une à l'autre, par la raison, que le texte du cube met en évidence."}
-    ],
-    dissert: "Q6, faut-il se fier à sa propre raison : Maïmonide et Montaigne convergent vers un oui conditionnel, une fois la raison affranchie de ses entraves (le manque corporel, la coutume). Q7, la raison a-t-elle des limites : Comte et Wittgenstein répondent oui, mais avec des limites de nature différente — une méthode à changer chez Comte, la catégorie même du factuel chez Wittgenstein. Le texte du cube illustre, par un exemple concret de perception, le rôle propre de la raison dans la connaissance : au-delà des sens, c'est elle qui unifie les apparences en un objet connu."
-  },
 
-  "philo-04": {
-    titre: "La vérité",
-    m: "philo", n: "04",
-    auteurs: [
-      {n:"Leibniz", dates:"1646–1716", d:"Distingue les vérités de raison, nécessaires et universelles (comme les vérités logiques et mathématiques), des vérités de fait, contingentes et connues par l'expérience. Repère mobilisable pour éclairer la distinction faite en cours entre vérités indiscutables et vérités controversées, à confronter à ce qu'en a dit précisément le professeur."}
-    ],
-    pieges: [
-      {t:"Vérité logique / vérité factuelle ou de valeur", d:"Ne pas confondre une vérité logique (vraie par sa seule forme, comme « tout célibataire est non marié ») et une vérité factuelle ou de valeur, qui dépend de l'expérience ou d'un jugement et peut donc être discutée."},
-      {t:"Consensus et vérité ne se confondent pas", d:"Un énoncé peut être largement partagé sans être vrai, et une vérité peut être découverte ou défendue par une minorité avant d'être reconnue par le plus grand nombre."}
-    ],
-    dissert: "Sujet type : y a-t-il des vérités indiscutables ? Plan possible : d'abord montrer qu'il existe des vérités qui semblent s'imposer à tous, comme les vérités logiques (« tout célibataire est non marié ») ; ensuite interroger la prétention de certains à détenir seuls la vérité (critique de l'élitisme épistémique) ; enfin se demander si la vérité peut se passer du consensus du plus grand nombre, ou si elle en dépend."
-  },
 
   "ang-01": {
     titre: "Tradwives and the Women's Liberation Movement",

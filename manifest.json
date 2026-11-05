@@ -1,0 +1,25 @@
+{
+  "id": "/",
+  "name": "Terminale D",
+  "short_name": "Terminale D",
+  "description": "Le magazine de révision de la Terminale D : cours, fiches, QCM et lexique, même hors connexion.",
+  "lang": "fr",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#F4F3EF",
+  "theme_color": "#F4F3EF",
+  "categories": ["education"],
+  "icons": [
+    {"src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+    {"src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    {"src": "/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"},
+    {"src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any"}
+  ],
+  "shortcuts": [
+    {"name": "Séance", "short_name": "Séance", "description": "Lancer une séance de révision chronométrée", "url": "/#seance", "icons": [{"src": "/icon-192.png", "sizes": "192x192"}]},
+    {"name": "Lexique", "short_name": "Lexique", "description": "Chercher une notion", "url": "/#lexique", "icons": [{"src": "/icon-192.png", "sizes": "192x192"}]},
+    {"name": "Mes notes", "short_name": "Notes", "description": "Suivre ses notes et sa projection au bac", "url": "/#notes", "icons": [{"src": "/icon-192.png", "sizes": "192x192"}]}
+  ]
+}
