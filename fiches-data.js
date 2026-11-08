@@ -96,32 +96,58 @@ const FICHE_DATA = {
   },
 
   "hggsp-02": {
-    titre: "Le climat : chronologie de la coopération internationale (Jalon 2)",
+    titre: "Climat et coopération internationale",
     m: "hggsp", n: "02",
     auteurs: [
-      {n:"PNUE (Programme des Nations unies pour l'environnement)", dates:"1972", d:"Créé à la suite de la conférence de Stockholm, premier organe des Nations unies dédié à l'environnement."},
-      {n:"GIEC (Groupe d'experts intergouvernemental sur l'évolution du climat)", dates:"1988", d:"Fondé conjointement par le PNUE et l'Organisation météorologique mondiale pour évaluer l'état des connaissances scientifiques sur le changement climatique."},
-      {n:"CCNUCC (Convention-cadre des Nations unies sur les changements climatiques)", dates:"1992, sommet de Rio", d:"Cadre général de la coopération climatique internationale, qui instaure les conférences des parties (COP) comme rendez-vous annuel."},
-      {n:"Protocole de Kyoto", dates:"1997", d:"Premier accord contraignant, mais limité aux pays développés : il fixe des objectifs de réduction des émissions aux seuls pays industrialisés, les États-Unis refusant de le ratifier."},
-      {n:"Accords de Paris (COP21)", dates:"2015", d:"Accord universel, engageant cette fois l'ensemble des pays (développés et en développement), avec un objectif de limitation du réchauffement nettement en dessous de 2 °C, si possible 1,5 °C."}
+      {n:"Emmanuel Le Roy Ladurie", d:"Historien pionnier, Histoire du climat depuis l'an mil (1967) ; pour lui, l'orage du 13 juillet 1788 et la météo de 1788-1789 jouent un rôle de « gâchette » de la Révolution, dont les causes sont plus profondes."},
+      {n:"Pascal Acot", d:"Histoire du climat (2009) : le léger réchauffement du Xe siècle favorise les grands défrichements et l'essor démographique."},
+      {n:"Jean Taté", d:"Chroniqueur de Château-Porcien (Ardennes) : témoignage sur le Grand Hiver de 1709, publié en 1889."},
+      {n:"GIEC, CCNUCC et COP", d:"Le GIEC (1988) évalue et synthétise les travaux scientifiques, sans décider des politiques. La CCNUCC et les COP sont le socle et les rendez-vous de la négociation climatique."},
+      {n:"Acteurs et trajectoires", d:"La France, historiquement reconnue pour les accords de Paris ; les pays d'Afrique, engagés depuis la COP22 (Marrakech, 2016) ; la Chine et les États-Unis, dont les positions ont évolué mais pas dans le même sens, la Chine passant du statut de pays en développement non engagé par Kyoto à celui de moteur de la transition. L'Alliance des petits États insulaires défend la limite de 1,5 °C et transforme sa vulnérabilité en capacité de mise à l'agenda."},
+      {n:"Tuvalu et le traité Falepili", d:"Avec l'Australie : voie de résidence en Australie (jusqu'à 280 places par an) et reconnaissance de la continuité de l'État malgré la montée des eaux ; en échange, l'article 4 soumet certains engagements de sécurité de Tuvalu avec des tiers à l'accord de l'Australie."},
+      {n:"Greta Thunberg", d:"Grève scolaire d'août 2018, à l'origine de Fridays for Future et de l'internationalisation des mobilisations de jeunesse en 2019."}
     ],
     dates: [
-      "1972 : création du PNUE, après la conférence de Stockholm.",
-      "1988 : création du GIEC par le PNUE et l'OMM.",
-      "1992 : sommet de Rio, adoption de la CCNUCC.",
-      "1997 : protocole de Kyoto, engageant les seuls pays développés ; refus de ratification des États-Unis.",
-      "2015 : accords de Paris (COP21), premier accord universel sur le climat.",
-      "2022 : COP22 (à distinguer des COP tenues en Afrique, comme celle de Marrakech en 2016, qui ont mis l'accent sur les enjeux africains de financement et d'adaptation climatique).",
-      "Rapport sur l'écart entre les engagements (Emissions Gap Report 2025, PNUE) : trajectoire estimée entre 2,3 et 2,5 °C de réchauffement si tous les engagements nationaux (NDC) étaient pleinement mis en œuvre, contre environ 2,8 °C au rythme des seules politiques actuellement appliquées."
+      "Temps long : plus de 2 millions d'années d'alternance de périodes glaciaires et interglaciaires ; 4 longues glaciations en 700 000 ans ; interglaciaire actuel : l'Holocène.",
+      "900-1300 : POM (jusqu'à +0,4 °C), surtout dans l'hémisphère nord ; grands défrichements dès 1050, surface cultivée en hausse d'un tiers à la fin du XIIIe siècle, villes neuves dès le milieu du XIIe siècle.",
+      "XIVe-milieu du XIXe siècle : PAG (jusqu'à -0,5 °C), surtout en Europe et en Amérique du Nord. Depuis le milieu du XIXe siècle : hausse rapide (jusqu'à +1,4 °C).",
+      "Éruptions volcaniques perturbatrices : 1783, 1815, 1863, 1997.",
+      "1648 et 1789 : la Fronde et la Révolution ont pu être « accélérées » par les variations climatiques.",
+      "1709 : Grand Hiver (gel du 6 janvier à début mars) ; Louis XIV oblige à déclarer les grains et envoie des commissaires visiter les greniers pour ravitailler les villes et éviter les séditions.",
+      "1788-1789 : sécheresse, orage du 13 juillet 1788, froid du 25 novembre 1788 à la mi-janvier 1789 (environ 10 000 morts en janvier 1789), 58 émeutes frumentaires en 1788 et 239 dans les quatre premiers mois de 1789 ; Necker interdit l'exportation des grains (25 août 1788).",
+      "1972 : fondation du PNUE, lors de la conférence de Stockholm.",
+      "1988 : le PNUE et l'OMM fondent le GIEC. 1990 : premier rapport du GIEC.",
+      "1992 : la CCNUCC, ouverte à la signature au Sommet de la Terre de Rio, établit le socle du régime climatique.",
+      "1997 : protocole de Kyoto (en vigueur en 2005), premiers objectifs chiffrés et contraignants pour les pays industrialisés ; non ratifié par les États-Unis (voir fiche États-Unis).",
+      "2015 : COP21, Accord de Paris (adopté le 12 décembre 2015, en vigueur le 4 novembre 2016) : rester bien en dessous de 2 °C et viser 1,5 °C, CDN révisées tous les cinq ans, bilan mondial.",
+      "2021 : rapport Groundswell de la Banque mondiale, jusqu'à 216 millions de migrants climatiques internes d'ici 2050 dans le scénario pessimiste.",
+      "2022 : COP27, création d'un fonds pour les pertes et préjudices, rendu opérationnel à la COP28.",
+      "2023 : sixième rapport du GIEC (synthèse) : rôle établi des activités humaines, environ +1,1 °C en 2011-2020 par rapport à 1850-1900. COP28 de Dubaï : premier bilan mondial et appel à une transition hors des combustibles fossiles.",
+      "Finance climat : objectif de 100 milliards de dollars par an prévu pour 2020, atteint seulement en 2022 ; 136,7 milliards fournis et mobilisés en 2024 (OCDE, mai 2026). COP29 de Bakou (2024) : au moins 300 milliards par an d'ici 2035, et appel à 1 300 milliards toutes sources confondues.",
+      "Traité Falepili : signé le 9 novembre 2023, en vigueur le 28 août 2024.",
+      "2025 : COP30 de Belém (mise en œuvre, adaptation, financements). 23 juillet 2025 : avis consultatif de la Cour internationale de Justice, qui précise les obligations des États (prévenir les dommages significatifs, coopérer), y compris pour les États non parties aux traités climatiques.",
+      "PNUE (rapport Emissions Gap 2025) : une mise en œuvre intégrale des engagements de l'Accord de Paris mènerait à une hausse de 2,3 à 2,5 °C d'ici la fin du siècle, contre environ 2,8 °C avec les politiques actuelles.",
+      "1er janvier 2026 : régime définitif du MACF européen.",
+      "COP31 : Antalya, du 9 au 20 novembre 2026 ; pré-COP du 5 au 8 octobre 2026 organisée par les Fidji, Tuvalu et l'Australie.",
+      "Étude de document (1er octobre) : une carte fondée sur des données de la Banque mondiale (2014) et du BP Statistical Review of World Energy (2019) attribue à la Chine environ 28 % des émissions mondiales de CO2 et aux États-Unis environ 15 %, loin devant la Russie ou l'Australie. Donnée d'un document daté, à actualiser si réutilisée hors de ce contexte."
     ],
     pieges: [
-      {t:"Kyoto (1997) / Paris (2015) : qui s'engage ?", d:"Ne pas confondre : Kyoto n'engage que les pays développés (et les États-Unis n'ont jamais ratifié), tandis que Paris engage pour la première fois l'ensemble des pays, développés et en développement."},
-      {t:"La Chine, statut à l'époque de Kyoto puis rôle ultérieur", d:"Au moment du protocole de Kyoto (1997), la Chine est classée parmi les pays en développement et n'a donc pas d'objectif contraignant ; son poids dans les négociations climatiques s'affirme surtout à partir des années 2010, à mesure qu'elle devient l'un des tout premiers émetteurs mondiaux de CO2."},
-      {t:"COP tenues en Afrique", d:"Plusieurs COP se sont tenues sur le continent africain (par exemple Marrakech en 2016), mettant en avant les enjeux spécifiques des pays africains (financement de l'adaptation, vulnérabilité climatique) : à ne pas confondre avec une unique « COP22 » si la date précise évoquée en cours n'est pas celle de 2016, à confirmer avec le professeur.", flag:true},
-      {t:"Engagements (NDC) / politiques réellement appliquées", d:"Les projections de réchauffement diffèrent selon qu'on suppose la pleine mise en œuvre des engagements nationaux (NDC, 2,3-2,5 °C) ou seulement la poursuite des politiques actuelles (2,8 °C) : un écart qui mesure le déficit d'action climatique."},
-      {t:"Justice climatique", d:"Définition générale, à confronter au cours : principe selon lequel la responsabilité du changement climatique et ses effets ne sont pas répartis également entre pays ni entre populations, ce qui appelle une répartition équitable des efforts de réduction et des moyens d'adaptation.", note:"Définition générale, à confronter au cours."}
+      {t:"Climat / météorologie", d:"Ne pas les confondre : le climat est une moyenne à long terme (30 ans et plus), la météo relève du court terme."},
+      {t:"Jalon 1 de l'Axe 2", d:"Ne pas réduire l'étude du climat en Europe à un seul épisode comme 1788-1789 ; croiser plusieurs archives (cernes, pollens, glaciers, vendanges, témoignages) sur la longue durée, et rappeler les variations internes à chaque phase."},
+      {t:"Le climat, cause unique des crises ?", d:"Non : il agit comme « gâchette » ou multiplicateur, les causes politiques et sociales restent décisives (1789)."},
+      {t:"Négliger les impacts inégalitaires", d:"Le changement climatique affecte d'abord les pays pauvres, mais responsabilités et vulnérabilités ne coïncident pas toujours, et les pays riches ont aussi des inégalités internes."},
+      {t:"Ignorer l'urgence de la coopération", d:"Le dérèglement est un problème collectif qui nécessite une action coordonnée au-delà des frontières nationales."},
+      {t:"Réduire la négociation à une opposition Nord-Sud", d:"Chine, Inde, pays pétroliers, pays moins avancés et États insulaires n'ont pas les mêmes intérêts."},
+      {t:"La trajectoire chinoise", d:"Ne pas confondre les deux moments : en 1997, la Chine est classée pays en développement et n'est pas concernée par les objectifs chiffrés de Kyoto ; aujourd'hui, elle est à la fois le premier émetteur mondial et un moteur de la transition écologique."},
+      {t:"Les +1,1 °C du GIEC", d:"Une moyenne pluriannuelle mondiale, pas l'anomalie d'une année ni une température régionale."},
+      {t:"Accord de Paris : contraignant, mais sans sanction", d:"Il est juridiquement contraignant (préparer, communiquer, maintenir des CDN, transparence), mais aucune sanction automatique ne garantit les objectifs chiffrés."},
+      {t:"Scénarios, pas prédictions", d:"Les trajectoires du PNUE et les 216 millions de Groundswell sont des scénarios ; ces 216 millions sont des migrants internes, non des personnes franchissant les frontières."},
+      {t:"Les chiffres de Bakou", d:"Ne pas additionner les 300 et les 1 300 milliards (périmètres différents), ni confondre annonce et versement, prêt et subvention."},
+      {t:"Quota / crédit carbone", d:"Ne pas les confondre : acheter des crédits ne garantit pas la baisse d'un plafond d'émissions."},
+      {t:"« Réfugié climatique »", d:"Ce n'est pas un statut juridique : la Convention de Genève (1951) suppose une persécution ; des protections peuvent toutefois s'appliquer selon les situations."},
+      {t:"L'avis de la CIJ (2025)", d:"Ce n'est pas un jugement condamnant un État, et il ne prévoit aucune réparation automatique."}
     ],
-    dissert: "Repères pour l'étude critique de documents : situer tout document sur le climat dans cette chronologie (PNUE 1972 → GIEC 1988 → CCNUCC 1992 → Kyoto 1997 → Paris 2015), en identifiant s'il s'agit d'un texte juridique contraignant (Kyoto, Paris) ou d'un rapport d'évaluation scientifique (GIEC, PNUE). Sujet type : la coopération internationale face au changement climatique est-elle efficace ? Plan possible : des progrès réels dans l'architecture de la coopération (du cadre non contraignant de Rio à l'accord universel de Paris) ; mais un écart persistant entre engagements affichés (NDC) et politiques réellement appliquées (2,3-2,5 °C contre 2,8 °C, PNUE 2025) ; enfin les enjeux de justice climatique, qui opposent pays développés et pays en développement sur le partage de l'effort et des financements."
+    dissert: "Pour argumenter (professeur) : distinguer objectif diplomatique, obligation juridique, financement annoncé, mesure appliquée et résultat observé ; un exemple est démonstratif quand on explique ce qu'il établit et les limites de sa portée. Documents types : données paléoclimatologiques (cernes, pollens, glaciers comme celui d'Aletsch), témoignages et images (Très Riches Heures du duc de Berry), textes scientifiques, données de production agricole, accords internationaux. Analyser : (1) source et auteur (crédibilité scientifique), (2) données présentées et leur fiabilité, (3) implications pour la coopération internationale, (4) limites des preuves ou des solutions proposées. Exemple de dissertation (cours du professeur) : Le changement climatique global et les relations internationales. Problématique : dans quelle mesure le changement climatique transforme-t-il un système fondé sur la souveraineté des États, alors que l'action collective a des responsabilités, coûts et bénéfices inégaux ? Plan : 1) construire une gouvernance commune (crise globale aux responsabilités inégales ; GIEC, CCNUCC, Kyoto, Paris) ; 2) une coopération traversée par les conflits de développement et de puissance (finance et justice climatique ; marchés carbone, MACF) ; 3) une recomposition par les risques et les demandes de justice (mobilités, Tuvalu ; mobilisations, CIJ). Accroche possible : Tuvalu et le traité Falepili. Exemple d'étude critique : le Grand Hiver de 1709 vu par Jean Taté. Plan inspiré de l'album méthode du professeur : 1) sources et froid (gel brutal de janvier à mars) ; 2) crise et inégalités (blés perdus ; le père du chroniqueur achète de l'orge pour ressemer) ; 3) pouvoir et histoire (déclaration des grains, commissaires, peur des séditions). Critique : un témoignage local, au récit religieux (« la colère de Dieu »), publié en 1889."
   },
 
   "ang-02": {
@@ -139,40 +165,40 @@ const FICHE_DATA = {
     auteurs: [
       {n:"Laurent Testot", d:"Auteur de Cataclysmes, une histoire environnementale de l'humanité."},
       {n:"Greta Thunberg", d:"Discours à l'ONU, exemple de politisation d'un problème environnemental par la société civile."},
-      {n:"Rapport Meadows", dates:"1972", d:"Club de Rome, Halte à la croissance ? — conception systémique, croissance menaçante si le rythme se poursuit."},
-      {n:"Conférence de Stockholm", dates:"1972", d:"Première grande conférence internationale sur l'environnement."},
+      {n:"Rapport Meadows", d:"1972, Club de Rome, Halte à la croissance ? — conception systémique, croissance menaçante si le rythme se poursuit."},
       {n:"Edgar Morin", d:"La conscience écologique naît des interactions entre phénomènes naturels."},
-      {n:"Ratzel / Vidal de la Blache", d:"Ratzel : déterminisme géographique (le milieu déterminerait les sociétés). Vidal de la Blache : possibilisme (les sociétés choisissent parmi les possibilités offertes par leur milieu). Repère mobilisable pour nuancer la pensée déterministe du cours ; le lien exact fait par le professeur entre les deux reste à confirmer."},
-      {n:"Colbert", d:"Ordonnance des eaux et forêts (1669) : gestion de la forêt française, à la fois pour protéger la ressource et sécuriser le bois de marine de la flotte royale. Méthode associée en cours : enquêter, mesurer, ordonner."},
-      {n:"Andrée Corvol-Dessert", d:"Historienne ; dépendance de la France d'Ancien Régime à ses forêts."},
+      {n:"Ratzel / Vidal de la Blache", d:"Ratzel : déterminisme géographique ou environnemental (le milieu déterminerait les sociétés). Vidal de la Blache : possibilisme (les sociétés choisissent parmi les possibilités offertes par leur milieu). Repère pour nuancer la pensée déterministe du cours."},
+      {n:"Colbert", d:"Ordonnance des eaux et forêts (1669), pour protéger la ressource et sécuriser le bois de marine de la flotte royale. Méthode associée en cours : enquêter, mesurer, ordonner. Formule qui lui est attribuée : « La France périra faute de bois. »"},
+      {n:"Andrée Corvol-Dessert", d:"Historienne (« Bois, forêts », Dictionnaire de l'Ancien Régime, dir. Lucien Bély, PUF, 1996). Sans bois, ni chauffage, ni cuisson, ni défense (affûts de canon, fortins), ni marine : « la forêt conditionnait la survie de chacun et la vie de tous » ; les paysans y mènent le bétail et y raclent les litières. Le pouvoir veut moins des gestionnaires que des conservateurs capables d'écarter usurpateurs, défricheurs et délinquants."},
       {n:"Bernardin de Saint-Pierre", d:"Auteur auquel le cours attribue aux arbres des fonctions de maintien de l'humidité et de la fraîcheur, mobilisé au XIXe siècle en lien avec la prévention des incendies."}
     ],
     dates: [
-      "Édit de Louis XIV (XVIIe siècle) puis 1669 : Ordonnance des eaux et forêts.",
-      "1788–1789 : grand hiver, crise frumentaire, prélude à la Révolution française.",
-      "Anthropocène : terme proposé au début des années 2000 ; en mars 2024, l'instance internationale de stratigraphie a voté contre sa reconnaissance comme époque géologique officielle.",
-      "1972 : rapport Meadows.",
-      "1987 : rapport Brundtland (Notre avenir à tous), qui popularise la notion de développement durable.",
-      "1992 : sommet de Rio, qui installe les sommets de la Terre comme rendez-vous internationaux réguliers sur l'environnement.",
-      "Années 1930 : naissance de l'écologie comme science.",
-      "Étude de cas de la forêt de Fontainebleau : 32 000 hectares, à environ 70 km au sud-est de Paris, plus de 3 millions de visiteurs par an ; schéma de cohérence territoriale (SCoT) de 2018.",
-      "13 à 18 % : part du territoire français couverte par la forêt sous l'Ancien Régime.",
-      "1827 : code forestier, qui renforce l'administration de la forêt française au XIXe siècle.",
+      "Néolithique : à partir de -10 000 environ au Moyen-Orient, puis diffusion sur près de 7 000 ans (synthèse du professeur) ; le document de la présentation orale donne -9 500 au Proche-Orient, -6 500 en Europe, jusqu'au début de l'âge du bronze vers -2 300. Peintures rupestres du Tassili n'Ajjer (Algérie, vers le VIIe millénaire avant J.-C.) : domestication des animaux.",
+      "Édit de Louis XIV (XVIIe siècle) : préservation de la forêt française face aux besoins de bois de marine contre les Anglais. 1669 : Ordonnance des eaux et forêts.",
+      "13 à 18 % : taux de boisement de la France sous l'Ancien Régime.",
+      "Forêt française aujourd'hui (francetvinfo, 2016) : environ un tiers de la surface du pays, quatrième forêt d'Europe ; la moitié de la forêt privée est faite de parcelles d'un ou deux hectares, souvent laissées à l'abandon.",
+      "1972 : rapport Meadows et conférence de Stockholm, première grande conférence des Nations unies sur l'environnement.",
+      "1987 : rapport Brundtland, qui popularise la notion de développement durable.",
+      "1992 : sommet de Rio (Sommet de la Terre), qui donne une forte portée à la conciliation entre exploitation et protection de l'environnement.",
+      "Anthropocène : terme proposé au début des années 2000 ; en mars 2024, l'instance internationale de stratigraphie a voté contre sa reconnaissance comme époque géologique officielle, sans nier l'impact humain sur la planète.",
+      "Crise de 1929, citée en cours comme exemple de spéculation rapide (des actions à 100 dollars à midi ne valant plus qu'un dollar à 13 heures) ; lien précis avec le thème environnemental à confirmer.",
+      "Étude de cas de la forêt de Fontainebleau (dossier du 21 septembre) : 32 000 hectares, à environ 70 km au sud-est de Paris, plus de 3 millions de visiteurs par an ; schéma de cohérence territoriale (SCoT) de 2018.",
       "Entre 1942 et 1949 : grands épisodes d'incendie dans les Landes, attribués en cours à la sécheresse et au régime pétainiste.",
-      "Étude de document (1er octobre) : carte légendée fondée sur des données de la Banque mondiale (2014) et le BP Statistical Review of World Energy (2019) — la Chine émettait environ 28 % des émissions mondiales de CO2, les États-Unis environ 15 %, loin devant des pays comme la Russie ou l'Australie. Donnée précise d'un document étudié en classe, à actualiser avec des statistiques plus récentes si réutilisée hors de ce contexte précis."
+      "1949 : date retenue par le cours pour la création du FFN, après les incendies des Landes ; les sources historiques usuelles retiennent 1946 (loi de 1946, après le rapport Leloup) : écart à vérifier avec le professeur."
     ],
     pieges: [
-      {t:"Pensée déterministe", d:"C'est l'inégalité des ressources en fonction de l'endroit sur Terre. Formulation du cours, à garder telle quelle ; le lien avec le déterminisme environnemental mentionné par le professeur (voir Auteurs et repères, Ratzel/Vidal de la Blache) reste à confirmer avec lui — ne pas le reconstituer soi-même.", flag:true},
-      {t:"Jalon 1 de l'Axe 2", d:"Ne pas réduire l'étude du climat en Europe du Moyen Âge au XIXe siècle à un seul épisode comme la crise de 1788-1789 : la méthode consiste à croiser plusieurs archives naturelles (cernes des arbres, pollens fossilisés) sur la longue durée."},
-      {t:"Anthropocène", d:"Ne pas la présenter comme une époque géologique officiellement reconnue : son statut scientifique fait encore débat."},
-      {t:"Problème environnemental / fait environnemental", d:"Ne pas les confondre : le second suppose une mobilisation collective qui juge le premier inacceptable."},
-      {t:"Exploiter, conserver, préserver", d:"Trois logiques distinctes face à l'environnement, à ne pas confondre (voir Notions clés)."},
+      {t:"Anthropocène", d:"Ne pas la présenter comme une époque géologique officiellement reconnue : son statut scientifique fait encore débat. À vérifier avec le professeur : le lexique du Padlet parle de « période géologique actuelle » (tout en signalant le débat), alors que la fiche retient le vote de mars 2024 contre sa reconnaissance officielle.", flag:true},
+      {t:"Écologie : 1866 ou années 1930 ?", d:"À vérifier avec le professeur : le lexique du Padlet date le terme « écologie » de 1866, alors que les notes de cours situent la naissance de l'écologie comme science dans les années 1930 (autour de la notion d'écosystème) ; préciser ce que le cours veut faire retenir.", flag:true},
+      {t:"Pensée déterministe", d:"Ne pas la présenter comme une théorie admise sans nuance : le déterminisme géographique est critiqué par la géographie contemporaine (possibilisme de Vidal de la Blache). Le lien exact fait par le professeur entre pensée déterministe et déterminisme environnemental reste à vérifier avec lui.", flag:true},
+      {t:"Fait environnemental / problème environnemental", d:"Ne pas les confondre : le problème, au sens sociologique, suppose une mobilisation collective qui juge le fait inacceptable."},
+      {t:"Exploiter, conserver, préserver", d:"Ne pas confondre ces trois logiques, ni cette grille avec le titre de l'Axe 1, « Exploiter, préserver, protéger »."},
+      {t:"« La France périra faute de bois »", d:"Ne pas prendre la formule au pied de la lettre : selon Andrée Corvol-Dessert, le conditionnel s'impose, la France n'ayant jamais manqué de bois."},
+      {t:"Parc national cité en cours sous le nom de « parc de Bizerte »", d:"Pas de nom officiel confirmé : il pourrait s'agir du parc national de l'Ichkeul, près de Bizerte, à confirmer plutôt qu'à recopier tel quel.", flag:true},
+      {t:"Conflit d'usage, pastoralisme, expertise et construction médiatique", d:"Définitions générales, à confronter aux explications précises du professeur."},
       {t:"Forêt domaniale / forêt privée, reboisement / déforestation", d:"Ne pas confondre forêt domaniale et forêt privée, ni reboisement et déforestation, qui sont deux processus opposés."},
-      {t:"Création du Fonds forestier national (FFN)", d:"Le cours date sa création de 1949, présentée comme consécutive aux incendies des Landes. Les sources historiques usuelles situent sa création en 1946 (après le rapport Leloup, dans le contexte de la reconstruction d'après-guerre). Garder la date du cours dans les révisions, mais savoir qu'un écart existe : à vérifier avec le professeur plutôt qu'à trancher seul.", flag:true},
-      {t:"Parc national cité en cours sous le nom de « parc de Bizerte »", d:"Pas de nom officiel confirmé : il pourrait s'agir du parc national de l'Ichkeul, près de Bizerte, mais cette précision n'a pas été vérifiée en cours, à confirmer plutôt qu'à recopier telle quelle.", flag:true},
-      {t:"Conflit d'usage et pastoralisme", d:"Définitions générales de géographie, à confronter aux explications précises données par le professeur."}
+      {t:"Création du Fonds forestier national (FFN)", d:"Garder la date de 1949 du cours dans les révisions, sans la présenter comme indiscutable (les sources usuelles retiennent 1946).", flag:true}
     ],
-    dissert: "Esprit critique à appliquer systématiquement à un document : le contexte de production, la date (jamais neutre), ce qui n'est pas immédiatement visible (exemple : l'usage du mot « paysage »). Utiliser le modèle naming, blaming, claiming pour analyser l'émergence d'un problème dans un document, et repérer l'expertise et la construction médiatique comme leviers d'accélération de sa reconnaissance. Comparer des cas de gestion différente (Californie et Caroline du Sud, cités en cours) pour montrer que la gestion de l'environnement dépend de choix politiques et sociaux, pas seulement de contraintes naturelles. L'Ordonnance de 1669 vue par Andrée Corvol-Dessert est un bon exemple de mise en perspective d'un texte réglementaire ancien par un regard historique contemporain. Utiliser le triptyque exploiter/conserver/préserver comme grille de classement des politiques ou des acteurs présentés dans un document. L'étude de cas de la forêt de Fontainebleau (carte IGN et SCoT de 2018) illustre bien la multifonctionnalité d'un espace forestier et les conflits d'usage qu'elle engendre. Retracer la chronologie longue du chapitre (Moyen Âge : le censier ; Ancien Régime : Colbert, ordonnance de 1669 ; XIXe siècle : code forestier de 1827, incendies des Landes, FFN ; enjeux contemporains : Fontainebleau) est une bonne façon de montrer, sur la durée, que la gestion de la forêt combine puissance de l'État, enjeux économiques et conflits d'usage."
+    dissert: "Problématique de l'Axe 1 (professeur) : l'humanité peut-elle encore continuer à exploiter son environnement sans chercher à le préserver, le protéger ? Utiliser le modèle naming, blaming, claiming pour analyser l'émergence d'un problème dans un document ; repérer l'expertise et la construction médiatique comme leviers de sa reconnaissance. Esprit critique à appliquer systématiquement : contexte de production, date (jamais neutre), ce qui n'est pas immédiatement visible (exemple : l'usage du mot « paysage »). Le triptyque exploiter, conserver, préserver sert de grille de classement des politiques ou des acteurs présentés dans un document ; le schéma systémique permet de situer acteurs, espaces et flux. La forêt de Fontainebleau (carte IGN et SCoT de 2018) illustre la multifonctionnalité d'un espace forestier et les conflits d'usage qu'elle engendre, du XVIIe siècle à nos jours. Chronologie longue de la forêt française : Moyen Âge (censier), Ancien Régime (Colbert, 1669), XIXe siècle (code forestier de 1827), XXe siècle (incendies des Landes, FFN), enjeux contemporains (Fontainebleau) : la gestion de la forêt combine puissance de l'État, enjeux économiques et conflits d'usage. Exemple d'étude critique (dossier 1 du professeur) : Ordonnance des eaux et forêts (1669) et texte d'Andrée Corvol-Dessert (1996). Consigne : dans quelle mesure la réglementation de la forêt est-elle une manifestation de la volonté de puissance de Louis XIV ? Plan : 1) une ressource aux usages multiples (chauffage, cuisson, pâturage, artisanat, marine) ; 2) des moyens de préservation et de gestion (corps de lois, registre du bétail, Maîtrises, bois réservé) ; 3) une affirmation de la puissance royale (marine, défense, contrôle des usagers), à nuancer : la France ne manquait pas de bois. Critique : un texte normatif royal confronté au regard rétrospectif d'une historienne. Exemple de dissertation : Exploiter, préserver et protéger la forêt française depuis Colbert. Plan chronologique : 1) une ressource stratégique sous le contrôle de l'État (1669, bois de marine) ; 2) une gestion devenue technique (1827, reboisement, FFN après les incendies des Landes) ; 3) une forêt multifonctionnelle et vulnérable (Fontainebleau, conflits d'usage, changement climatique)."
   },
 
   "hg-01": {
@@ -333,37 +359,55 @@ const FICHE_DATA = {
     dissert: "Sujet type : « Le droit est-il un facteur d'organisation et de pacification de la société ? » I. Le droit organise la vie en société : il fixe des règles sanctionnées par l'autorité publique (Starck), garantit l'ordre public et empêche la loi du plus fort. II. Il pacifie en exprimant des valeurs partagées : liberté, égalité, solidarité, laïcité (DDHC, DUDH, loi de 1905), et en s'adaptant aux mœurs (Malinvaud)."
   },
   "hggsp-03": {
-    titre: "Étude conclusive : les États-Unis et la question environnementale (Jalon 1)",
+    titre: "Étude conclusive : les États-Unis et la question environnementale",
     m: "hggsp", n: "03",
     auteurs: [
-      {n:"Henry David Thoreau", d:"Auteur de Walden."},
-      {n:"John Muir", d:"Fondateur du Sierra Club."},
-      {n:"Théodore Roosevelt", dates:"président de 1901 à 1909", d:"Politique de conservation et création de zones protégées."},
-      {n:"Rachel Carson", dates:"1962", d:"Auteure de Silent Spring."},
-      {n:"Arne Naess", d:"Écologie profonde : transformer les valeurs et les relations."},
-      {n:"Joseph Schumpeter", d:"La puissance d'un État repose sur sa capacité à innover."}
+      {n:"Henry David Thoreau", d:"Walden, ou la Vie dans les bois (1854)."},
+      {n:"John Muir", dates:"1838-1914", d:"Né en Écosse, père du préservationnisme ; fonde le Sierra Club (1892) et pèse sur Theodore Roosevelt pour faire de Yosemite un parc fédéral, statut plus protecteur qu'un parc d'État."},
+      {n:"Gifford Pinchot", d:"Forestier, futur chef du service fédéral des forêts, figure du conservationnisme, allié de Roosevelt."},
+      {n:"Theodore Roosevelt", dates:"président républicain, 1901-1909", d:"Affirme la responsabilité fédérale envers l'environnement ; environ 93 millions d'hectares protégés (forêts nationales, réserves animales, cinq parcs nationaux). Logique de conservation : les forêts protégées fournissent encore du bois."},
+      {n:"Sierra Club", d:"Agit par l'éducation, les bénévoles, les recours juridiques et le lobbying ; illustre le rôle de la société civile."},
+      {n:"Frederick Jackson Turner", d:"Conférence de 1893 qui fait de la Frontière le creuset de la société américaine (autonomie, initiative) ; lecture à historiciser, qui marginalise les peuples dépossédés."},
+      {n:"Rachel Carson", d:"Silent Spring (1962), contre les pesticides."},
+      {n:"Arne Naess", d:"Écologie profonde."},
+      {n:"Joseph Schumpeter", d:"La puissance d'un État repose sur sa capacité à innover."},
+      {n:"Robert Redford", d:"Et au milieu coule une rivière (1992), célébration de la wilderness du Montana ; engagé au Natural Resources Defense Council. Le succès du film accroît la fréquentation de la rivière Big Hole, d'où conflits d'usage et restrictions de pêche."},
+      {n:"ONG américaines internationales", d:"Wildlife Conservation Society (aires protégées, présente dans 65 pays), Amis de la Terre (d'abord contre le nucléaire)."},
+      {n:"Acteurs opposés aux politiques climatiques", d:"Conservateurs et évangélistes (déni climatique, méfiance envers la science et l'État fédéral, parallèle avec le créationnisme), concentrés dans les États ruraux du centre et du sud-est et les États pétroliers (Texas, Alaska) ; lobbies des énergies fossiles (Global Climate Coalition)."},
+      {n:"Acteurs favorables", d:"États littoraux et métropolitains, villes (New York, Chicago), Californie ; mouvement « We Are Still In » et U.S. Climate Alliance, contre-pouvoirs face au retrait de Paris."},
+      {n:"Patagonia", d:"Fondée en 1972 par Yvon Chouinard : matériaux recyclés ou bio, 1 % du chiffre d'affaires reversé, entreprise léguée à une fondation ; mais accusée de greenwashing (coton lié à l'exploitation des Ouïghours)."}
     ],
     dates: [
-      "1776 : déclaration d'indépendance des 13 colonies des USA.",
-      "1845 : J. O'Sullivan, expression « Destinée manifeste ».",
-      "1864 : protection de la vallée de Yosemite (Mariposa Grove).",
-      "1872 : création du parc national de Yellowstone.",
-      "1916 : création du National Park Service.",
-      "1962 : Silent Spring de Rachel Carson.",
-      "1970 : Earth Day et Environmental Protection Agency.",
-      "1980 : déréglementation des actions pro-environnementales.",
-      "1989 : marée noire de l'Exxon Valdez en Alaska.",
-      "1992 : Sommet de la Terre, Rio. 1997 : protocole de Kyoto.",
-      "2010 : scandale Deepwater Horizon, dans le golfe du Mexique.",
-      "2015 : COP21, engagement des accords de Paris sous Obama. 2017 : retrait sous Trump. 2021 : retour.",
-      "Janvier 2026 : retrait effectif des accords de Paris. 2025 : production énergétique américaine record."
+      "1776 : indépendance. 1804-1806 : expédition de Lewis et Clark, inventaire des milieux de l'Ouest. 1845 : Destinée manifeste.",
+      "1859 : forage d'Edwin Drake près de Titusville (Pennsylvanie), essor de l'industrie pétrolière.",
+      "1862 : Homestead Act (Lincoln), 160 acres (environ 65 hectares) contre résidence et mise en valeur : l'État fédéral organise la conquête.",
+      "1869 : première liaison ferroviaire transcontinentale.",
+      "1864 : protection de la vallée de Yosemite. 1872 : parc national de Yellowstone, sous Grant, géré par l'État fédéral (secrétaire à l'Intérieur), destiné aussi à l'accueil du public (4,76 millions de visites en 2025).",
+      "1890 : création du parc national de Yosemite autour de la vallée ; la vallée elle-même, confiée à la Californie en 1864, ne rejoint le parc national qu'en 1906.",
+      "1892 : Sierra Club. 1895 : Wildlife Conservation Society. 1905 : création du United States Forest Service et de l'American Bison Society (Roosevelt, William Hornaday). 1906 : Antiquities Act, qui permet au président de classer des monuments nationaux.",
+      "1913 : le Congrès autorise le barrage de Hetch Hetchy (Yosemite) pour alimenter San Francisco, contre Muir et avec Pinchot. 1916 : National Park Service.",
+      "Années 1930 : Dust Bowl dans les Grandes Plaines (sécheresses et sols fragilisés par l'agriculture). 1935 : barrage Hoover sur le Colorado.",
+      "1962 : Silent Spring. 1969 : Amis de la Terre. 1970 : Earth Day, Environmental Protection Agency (EPA) et Clean Air Act. 1972 : Clean Water Act.",
+      "1989 : marée noire de l'Exxon Valdez ; à la conférence de Noordwijk, refus américain des objectifs chiffrés de réduction des émissions ; création de la Global Climate Coalition pour bloquer les limites d'émissions.",
+      "1997 : sous Clinton, le Sénat adopte à l'unanimité (95 voix contre 0) la résolution Byrd-Hagel, qui refuse tout traité climatique n'engageant pas aussi les pays en développement ; le protocole de Kyoto, signé par Clinton, n'est jamais soumis à la ratification.",
+      "2006 : en Californie, la loi AB 32 fixe un objectif de réduction des émissions de gaz à effet de serre. 2009 : des courriels et brouillons de climatologues sont piratés et publiés en ligne (« Climategate ») pour discréditer leurs conclusions.",
+      "2015 : Obama, démocrate modéré, s'investit dans la COP21. 2017 : Trump annonce le retrait de Paris et bloque les négociations climatiques jusqu'en 2021 ; Californie, New York et l'État de Washington créent la U.S. Climate Alliance ; mouvement « We Are Still In ». 2021 : retour dans l'accord avec Biden.",
+      "2022 : Inflation Reduction Act, 370 milliards de dollars pour les infrastructures et les renouvelables, réservés à la production sur le sol américain (mesure protectionniste). 2022 : arrêt West Virginia v. EPA de la Cour suprême, qui restreint le pouvoir de l'EPA de réguler les émissions de carbone des centrales.",
+      "27 janvier 2026 : second retrait de l'Accord de Paris effectif ; en janvier 2026, annonce du retrait de la CCNUCC. 2025 : production énergétique américaine record.",
+      "Les États-Unis : pionniers de la protection et deuxièmes consommateurs de ressources naturelles au monde, derrière la Chine."
     ],
     pieges: [
-      {t:"Préservationnisme / conservationnisme", d:"Le préservationnisme protège la nature de l'homme, le conservationnisme organise son usage. Distinction générale, à confronter au cours.", note:"Définition générale, à confronter au cours."},
-      {t:"Le paradoxe américain", d:"Les États-Unis protègent des paysages liés à l'identité nationale tout en exploitant les ressources : ne pas présenter le pays comme seulement protecteur ou seulement exploitant."},
-      {t:"Achat de la Louisiane", d:"Le cours note « 1863 : expansion vers l'Ouest par achat de la Louisiane », alors que cet achat date de 1803. À vérifier avec le professeur.", flag:true}
+      {t:"Préservationnisme / conservationnisme", d:"Ne pas les confondre : préservationnisme (Muir : protéger la nature de l'homme), conservationnisme (Pinchot, Roosevelt : organiser son usage). Hetch Hetchy oppose deux visions de l'intérêt collectif, pas des écologistes à des industriels."},
+      {t:"Le paradoxe américain", d:"Les États-Unis ne sont pas seulement protecteurs ou seulement exploitants : le cours insiste sur le paradoxe, des paysages liés à l'identité nationale protégés tout en exploitant les ressources ; ce n'est pas non plus un passage linéaire de l'exploitation à la protection."},
+      {t:"Au-delà du clivage démocrates-républicains", d:"Ne pas y réduire les positions américaines : le refus de Kyoto est unanime au Sénat (résolution Byrd-Hagel), et États fédérés, villes, entreprises et ONG agissent aussi."},
+      {t:"Une société homogène, un Ouest vide ?", d:"Ne pas présenter la société américaine comme homogène, ni l'Ouest comme un espace vide : la wilderness et la Frontière effacent les peuples autochtones."},
+      {t:"Retrait de Paris / retrait de la CCNUCC (2026)", d:"Deux démarches distinctes, aux calendriers juridiques différents."},
+      {t:"Parc d'État / parc national", d:"Le premier relève d'un État fédéré (Dead Horse Point, Utah), le second de l'État fédéral."},
+      {t:"Achat de la Louisiane", d:"À vérifier avec le professeur : dans le cours, l'achat de la Louisiane est noté 1863, alors qu'il date de 1803 (le Padlet n'en parle pas et ne permet pas de trancher).", flag:true},
+      {t:"Yosemite : 1864 ou 1890 ?", d:"À vérifier avec le professeur : le document du Padlet sur John Muir dit que la vallée de Yosemite obtient « le statut de parc d'État » en 1890 ; en réalité, elle est confiée à la Californie dès 1864, et 1890 est la création du parc national de Yosemite.", flag:true},
+      {t:"Kyoto : un refus « à l'unanimité » ?", d:"À vérifier avec le professeur : le document du Padlet dit que le Sénat « refuse à l'unanimité de ratifier le protocole de Kyoto » ; le vote unanime de 1997 porte en fait sur la résolution Byrd-Hagel, et le protocole n'a jamais été soumis au vote.", flag:true}
     ],
-    dissert: "Repères pour l'étude critique de documents ou la dissertation. Sujet type : les États-Unis, entre protection et exploitation de leur environnement. Plan possible : 1) un territoire riche et contrasté, exploité dès le XIXe siècle (ruée vers l'or, expansion au détriment des populations amérindiennes) ; 2) l'invention de la protection (parcs nationaux, Roosevelt, EPA) ; 3) une politique climatique discontinue (accords de Paris, retraits, retours). Problématique du cours : comment une puissance née de l'appropriation et de l'exploitation intensive d'un territoire riche en ressources peut-elle être simultanément pionnière de la protection environnementale, traversée de conflits internes et d'une diplomatie climatique discontinue ?"
+    dissert: "Comparer des cas de gestion différente (Californie et Caroline du Sud, cités en cours) pour montrer que la gestion de l'environnement dépend de choix politiques et sociaux, pas seulement de contraintes naturelles. Articuler les échelles : fédérale, États fédérés, locale, internationale ; les choix américains ont des conséquences planétaires. Pour une étude de document sur un parc (Yellowstone, Dead Horse Point) : distinguer objectifs annoncés par la loi, fréquentation mesurée et effets écologiques réellement démontrés ; repérer la mise en scène de la wilderness. Sujet type : Les États-Unis, entre protection et exploitation de leur environnement. Esquisse : 1) un territoire riche et contrasté, exploité dès le XIXe siècle ; 2) l'invention de la protection (parcs, Roosevelt, EPA) ; 3) une politique climatique discontinue (accords de Paris, retraits, retours). Dissertation rédigée du professeur : L'esprit pionnier et le rapport des États-Unis à leur environnement depuis le XIXe siècle. Problématique : dans quelle mesure l'héritage de l'esprit pionnier permet-il de comprendre les tensions entre exploitation et protection ? Plan : 1) la conquête de la nature, fondement de l'identité (Lewis et Clark, Destinée manifeste, Turner, Homestead Act) ; 2) une transformation des milieux au service de la puissance (chemin de fer, Drake, Hoover, Dust Bowl) ; 3) une protection précoce mais contradictoire (Yellowstone, Muir et Pinchot, Hetch Hetchy, EPA, AB 32). Accroche : 1862 Homestead Act, 1872 Yellowstone. Sujet possible (jalon 2) : Les États-Unis et l'environnement à l'échelle internationale. Plan : 1) une diplomatie changeante (Noordwijk, Kyoto, Paris, retraits) ; 2) des acteurs divisés (ONG, évangélistes, États et villes, entreprises) ; 3) un enjeu de puissance face à la Chine et à l'Europe (IRA, unilatéralisme)."
   },
 
   "ses-05": {
