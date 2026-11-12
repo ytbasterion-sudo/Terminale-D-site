@@ -721,6 +721,23 @@ html.no-gpu .mast,html.no-gpu .big-t,html.no-gpu .track,html.no-gpu .shero h1{wi
 .chap-dir{grid-column:1/-1;margin:0}.chap-dir a{text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}.chap-dir a:hover{color:var(--ink)}
 .chap .part{margin:22px 0 8px;color:var(--ct,var(--c,var(--ink)))}
 .chap .part:first-of-type{margin-top:0}
+.chap-b-parts{grid-template-columns:minmax(0,1fr)}
+.chap-parts{display:block;border-top:1px solid var(--ink)}
+.part-d{border-bottom:1px solid var(--line)}
+.part-h{list-style:none;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:6px 16px;align-items:center;padding:16px 0}
+.part-h::-webkit-details-marker{display:none}
+.part-h:focus-visible{outline:2px solid var(--focus);outline-offset:4px}
+.part-t{font-family:var(--serif);font-size:clamp(19px,1.8vw,24px);line-height:1.2;color:var(--ct,var(--c,var(--ink)))}
+.part-h .chap-i{grid-area:auto;width:28px;height:28px}
+.part-d[open] > .part-h .chap-i::after{transform:translate(-50%,-50%) rotate(0)}
+.part-h:hover .chap-i{background:var(--ink)}
+.part-h:hover .chap-i::before,.part-h:hover .chap-i::after{background:var(--bg)}
+.part-b{display:grid;gap:22px;padding:2px 0 28px}
+.chap-grp{margin:34px 0 4px;color:var(--ct,var(--c,var(--ink)))}
+.chap-idx-g{grid-column:1/-1;margin:6px 0 -2px}
+.chap-b:not(:has(.chap-fiches)) > .chap-col{grid-column:1/-1}
+.cl li.suite a{padding-left:22px}
+.cl .sfx{display:inline-block;margin-right:8px;padding:1px 6px;border:1px solid var(--line);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-2);vertical-align:2px}
 .cl{list-style:none;margin:0;padding:0;border-top:1px solid var(--ink)}
 .cl a{display:grid;grid-template-columns:72px minmax(0,1fr) auto;gap:14px;align-items:baseline;padding:13px 0;border-bottom:1px solid var(--line);text-decoration:none;transition:padding .3s cubic-bezier(.2,.7,.2,1)}
 .cl a:hover{padding-left:8px}
@@ -1188,25 +1205,25 @@ const MAT = {
 };
 
 const VOLUMES = [
-  {m:"ses", code:"SES", n:"01", t:"Les analyses de la structure sociale", ch:"ses1", id:"1ACeppauoU3aSk2zWId5I65HEmPHTfu1UAPA0akXkegA", w:70, h:262, q:"ses1"},
-  {m:"ses", code:"SES", n:"02", t:"Facteurs et évolutions de la structure sociale", ch:"ses1", id:"1IYMFk6SkzYJz15iANfXsoS1Tk-aW1ZOpZPKTn7FMXCc", w:64, h:262, q:"ses2"},
+  {m:"ses", code:"SES", n:"01", t:"Les analyses de la structure sociale", ch:"ses1", id:"1ACeppauoU3aSk2zWId5I65HEmPHTfu1UAPA0akXkegA", p:"p1", w:70, h:262, q:"ses1"},
+  {m:"ses", code:"SES", n:"02", t:"Facteurs et évolutions de la structure sociale", ch:"ses1", id:"1IYMFk6SkzYJz15iANfXsoS1Tk-aW1ZOpZPKTn7FMXCc", p:"p2", w:64, h:262, q:"ses2"},
   {m:"ses", code:"SES", n:"03", t:"EC1.1, le corrigé", ch:"ses1", id:"1_ChptLCNx_A8ScEalEqyskGky1V47nFZW_FPkdnmLmo", w:58, h:240, q:"ses3"},
   {m:"ses", code:"SES", n:"M", t:"Méthodologie du bac", ch:"sesM", id:"1ZHfZX08gPUt5wqTUusuA_cFGK2g9ianHoil5YXXTol0", w:54, h:228},
   {m:"ses", code:"SES", n:"P", t:"Programme de l'année", ch:"sesM", id:"1MVa1B9teMl7gJzxuga_O5yekOX0K3CXOwMaZCougksk", w:40, h:214},
   {m:"ses", code:"SES", n:"04", t:"Les sources de la croissance économique", ch:"ses2", id:"1k7zvFxkZKCnzzgxzDOKyogz3kKyuU4NiHF9Gwdat_Q0", w:64, h:254, q:"ses4"},
   {m:"ses", code:"SES", n:"05", t:"Les fondements du commerce international", ch:"ses3", id:"1NDRZjiKpCDBCqb2xzpAjntCQuUPQppCj9suptZJNl5I", w:50, h:240, q:"ses5"},
-  {m:"hggsp", code:"HGGSP", n:"01", t:"Environnement, entre exploitation et protection", ch:"hggsp5", id:"1pQu0DYhwBwF27OJNLD8gnEqw-c2dsZ-I4gY8Kbkd1hE", w:84, h:270, q:"hggsp1"},
+  {m:"hggsp", code:"HGGSP", n:"01", t:"Environnement, entre exploitation et protection", ch:"hggsp5", id:"1pQu0DYhwBwF27OJNLD8gnEqw-c2dsZ-I4gY8Kbkd1hE", p:"intro", w:84, h:270, q:"hggsp1"},
   {m:"hggsp", code:"HGGSP", n:"M", t:"Méthodologie du bac", ch:"hggspM", id:"17y4Sf192M_g_H34-NaoX4DzNySR0dOh8GkDV60YVVEQ", w:52, h:228},
   {m:"hggsp", code:"HGGSP", n:"P", t:"Programme de l'année", ch:"hggspM", id:"1dviXGbJuJtNbArI_yOa1s4zggFRiITI4HhdS7b2bED8", w:38, h:214},
-  {m:"hg", code:"HG", n:"01", t:"Les espaces maritimes, une approche géostratégique", ch:"hgG1", id:"1YgKTKee96cDN6otOcB5dAcaOCzGaBSn0alpW7k7Fgiw", w:62, h:256, q:"hg1"},
-  {m:"hg", code:"HG", n:"02", t:"Lexique des espaces maritimes", ch:"hgG1", id:"1bOQI3JPize5KYSAWIDMzBBuk94bZYfBqLRYvux5tLag", w:48, h:244, q:"hg2"},
+  {m:"hg", code:"HG", n:"01", t:"Les espaces maritimes, une approche géostratégique", ch:"hgG1", id:"1YgKTKee96cDN6otOcB5dAcaOCzGaBSn0alpW7k7Fgiw", p:"p1", w:62, h:256, q:"hg1"},
+  {m:"hg", code:"HG", n:"02", t:"Lexique des espaces maritimes", ch:"hgG1", id:"1bOQI3JPize5KYSAWIDMzBBuk94bZYfBqLRYvux5tLag", p:"p1", w:48, h:244, q:"hg2"},
   {m:"hg", code:"HG", n:"M", t:"Méthodologie et conseils", ch:"hgM", id:"1Y5jGBMmL7jT_ECYiYm77NucVQad0dN2VJ6UyfGT2LF4", w:52, h:228},
   {m:"ang", code:"ANG", n:"01", t:"Tradwives and the Women's Liberation Movement", ch:"ang1", id:"1D80q_o5JFtdUpadDDWyCVWGxxuPXV7NqbTekQx14MqU", w:58, h:246, q:"ang1"},
   {m:"ang", code:"ANG", n:"T", t:"From Liberation to “Tradwife” : le texte du chapitre", ch:"ang1", id:"1FsjelMJ3bVwkYtHWUlfKTXIZUlAuGBOoKwwYSv-bGbs", w:44, h:230},
   {m:"ang", code:"ANG", n:"M", t:"Méthodologie et conseils", ch:"angM", id:"1MX68UlBY1YKCNgs75oliMgDuHrY1bI_ucHj9uw-rCjs", w:52, h:228},
-  {m:"hg", code:"HG", n:"03", t:"Mers et océans, des réserves de ressources", ch:"hgG1", id:"1JgN_HnLEbwlA7MzfnHbV6IB31kQPjVlvXGjfismhLQw", w:56, h:250, q:"hg3"},
-  {m:"hggsp", code:"HGGSP", n:"02", t:"Climat et coopération internationale", ch:"hggsp5", id:"1iE_wulFmRP90nk-gAes0jOjzrP0vam7xN7fW1Tdc-qo", w:70, h:262, q:"hggsp2"},
-  {m:"hggsp", code:"HGGSP", n:"03", t:"Étude conclusive : les États-Unis et la question environnementale", ch:"hggsp5", id:"1DihxDZyVKMEwknf5qnBOVk-d0053VaQjyaKH3-5X_Bg", w:66, h:258, q:"hggsp3"},
+  {m:"hg", code:"HG", n:"03", t:"Mers et océans, des réserves de ressources", ch:"hgG1", id:"1JgN_HnLEbwlA7MzfnHbV6IB31kQPjVlvXGjfismhLQw", p:"p2", w:56, h:250, q:"hg3"},
+  {m:"hggsp", code:"HGGSP", n:"02", t:"Climat et coopération internationale", ch:"hggsp5", id:"1iE_wulFmRP90nk-gAes0jOjzrP0vam7xN7fW1Tdc-qo", p:"axe2", w:70, h:262, q:"hggsp2"},
+  {m:"hggsp", code:"HGGSP", n:"03", t:"Étude conclusive : les États-Unis et la question environnementale", ch:"hggsp5", id:"1DihxDZyVKMEwknf5qnBOVk-d0053VaQjyaKH3-5X_Bg", p:"usa", w:66, h:258, q:"hggsp3"},
   {m:"ang", code:"ANG", n:"02", t:"When Fantasy Becomes Reality", ch:"ang2", id:"1K1cJtlw7wOUwQf7hV778h7TluRR328ummEnAENGzB6k", w:38, h:200},
   {m:"es", code:"SCI", n:"01", t:"L'alternateur", ch:"es2a", id:"1pMahzoxQERFBPmBitIdrIyXmbs5aJfw-ff9UKp26rUU", w:52, h:246, q:"es1"},
   {m:"es", code:"SCI", n:"M", t:"Méthodologie et conseils", ch:"esM", id:"10A8cVoYyGas_24sLK-CGt7k9_49p5avraBzbHpMoVSk", w:50, h:226},
@@ -1215,12 +1232,25 @@ const VOLUMES = [
   {m:"droit", code:"DROIT", n:"T", t:"Leçon 1 : qu'est-ce que le droit ? (poly du professeur)", ch:"droitI1", id:"1dtYcp8heMN4iHcDQPoR2DlbLo3cYqU1f_zWs6R257cQ", w:44, h:230},
   {m:"droit", code:"DROIT", n:"T", t:"Le droit et ses fonctions (dossier documentaire)", ch:"droitI2", id:"1XuijB5nYe4td_SWApIHXUYbsnN2vcfBH9-2n63oU7O8", w:44, h:230},
   {m:"droit", code:"DROIT", n:"M", t:"Méthodologie et conseils", ch:"droitM", id:"1RoChNgaiBkfmTQ8CrTC5WByPe8Myo5IY670SqVPCpAE", w:52, h:228},
+  {m:"hg", code:"HG", n:"04", t:"La crise de 1929 et ses conséquences", ch:"hgH1", id:"1zA9JvvDHrCAfA11i03WXAU8LHRSSjpeQ2VeSDZV_KFw", w:56, h:250},
+  {m:"hg", code:"HG", n:"05", t:"Les régimes totalitaires", ch:"hgH2", id:"1mN8s1z_2PwiBo0qqI_Dxm1B5ag4j4xvqaKawrWq3GnA", w:50, h:244},
+  {m:"es", code:"SCI", n:"02", t:"Le cycle du carbone", ch:"es1a", id:"1UItXtdxy-vaXxc5Ttbgt-13-yKvLhPNXcxonX4QARfo", w:50, h:244},
   {m:"philo", code:"PHILO", n:"M", t:"Méthodologie et conseils pour le bac", ch:"philoM", id:"1Ar1UaJeqTH_anTrsJKM63d9JvgBPReIwfmBOnPk4bD4", w:62, h:236},
   {m:"philo", code:"PHILO", n:"T", t:"Méthode Bac dissertation (document du professeur)", ch:"philoM", id:"1dbv6S17A_wx7CBsHtV2hMhmWQYrSxYlQN-qgXyZrI7s", w:48, h:224}
 ];
 
 const COURS = [
-  ["2026-11-03","philo","La doxa et le sujet « Les lois sont-elles nécessaires pour être libre ? »","1n8O7QV0izSP70-PJxH1m11OKI6sHC6timNRPj77VBMU","philoAutre"],
+  ["2026-11-10","philo","Les limites de ce qu'on peut dire ; consistance, extension, utilité","1AhLmrFqn1WxOo3nUBL5c8palIHDfpqngitJBNLb73Z4","philoLois"],
+  ["2026-11-10","hg","Chapitre 2 : Les régimes totalitaires","1DBz5XRhUYJEkagc_8MYQss0oTL8paERVJIDNXfNWFAs","hgH2"],
+  ["2026-11-10","es","Les quatre réservoirs de carbone","1tXK9stMAOgVcoDwsxo3yz0TqqOVm9CtHiCmSNGf_NzM","es1a"],
+  ["2026-11-09","ses","Chapitre 3 : les stratégies des FMN, compétitivité prix et hors prix","1BkKDzmOV3i78YGTOU3QuBLSOQQu7C40w8JWUuxEAUFI","ses3"],
+  ["2026-11-09","philo","La dissertation de philosophie : structure, problème, problématique","1bvYk0Pl5ZG5YYLiRpnrhJhLkVl9lQnxp5_VtNL-YfWY","philoLois"],
+  ["2026-11-06","ses","Dissertation : comment expliquer le commerce international ? (stratégies des FMN)","1qIjrjnGXuAnEkr-OBUWIXZJWZl2xX_m3DsAeVQNvfpE","ses3"],
+  ["2026-11-06","philo","Construire une sous-partie : un argument soutenu par la thèse d'un philosophe (la liberté)","1jeFJCEcTIW-10kAwsW-RUGkRhtBZdMUGlTWG7TuS5rw","philoLois"],
+  ["2026-11-05","ses","Chapitre 3 : avantage comparatif, échanges intra-branches, fragmentation de la chaîne de valeur","1iFnH3UZdiI62wcXbIp3R8Gz2w2D3AUpTmr8J0wGwQ-s","ses3"],
+  ["2026-11-04","hggsp","Conquête du territoire et marginalisation des peuples autochtones (destinée manifeste)","1YfPLJt0q2n9Uh2-5sF4AvjozEZ2FfpYsV9d4X4HV9wE","hggsp5:usa"],
+  ["2026-11-04","hg","La crise de 1929 : extension géographique et réaction des États (New Deal)","1m0RGjGZw_8EBfD2lJMM6bYFGHNuadTMYlpeNDOUfC6Q","hgH1"],
+  ["2026-11-03","philo","La doxa et le sujet « Les lois sont-elles nécessaires pour être libre ? »","1n8O7QV0izSP70-PJxH1m11OKI6sHC6timNRPj77VBMU","philoLois"],
   ["2026-11-02","ses","Chapitre 3 : les fondements du commerce international, l'avantage comparatif","1zedmj7QZ-Zlu7OIF9TYjCV14DFTUhSvQvY5sL1sUS4U","ses3"],
   ["2026-11-02","hggsp","Étude conclusive : les États-Unis et la question environnementale (Jalon 1)","1KH2YI_E_wKaOBHRAFPa9kZFXbbsbSQk4Ybv3Tj9ENgY","hggsp5:usa"],
   ["2026-10-14","hggsp","Les États leaders face au changement climatique","1O5qosrt_Vve1T7pJEpgduXvzaDszifIJQDYtJM9byOw","hggsp5:axe2"],
@@ -1236,11 +1266,11 @@ const COURS = [
   ["2026-09-30","hg","La maritimisation et les détroits stratégiques : le cas du port de Yangzi","1-cpgufEv5RU7NBmyFjWREiO6QarS8uD0LdiF2aNtnHs","hgG1:p1"],
   ["2026-09-25","ses","Les facteurs sociodémographiques de la stratification sociale","1UDlqxuIRANEOI9BZkrtEqpFjdPFX4r-bMMQ9NGe8yv4","ses1:p2"],
   ["2026-09-24","ses","Méthodologie de l'épreuve composée, l'étude d'un document","1mXS0hfIWU6mKpOOvEDeCo64bat8wL9qJgdvZ2wiyPfg","sesM"],
-  ["2026-09-23","hggsp","Jalon 1, la forêt française depuis Colbert (suite : le bois au service de la puissance, XIXe siècle)","10wUVftdR1YbQLxcByd_0HBoMhOEkouU9RqOhLqE6uOo","hggsp5:axe1"],
+  ["2026-09-23","hggsp","Jalon 1, la forêt française depuis Colbert (suite : le bois au service de la puissance, XIXe siècle)","10wUVftdR1YbQLxcByd_0HBoMhOEkouU9RqOhLqE6uOo","hggsp5:axe1",1],
   ["2026-09-21","hggsp","La forêt française, du legs de Colbert aux défis climatiques (étude de cas Fontainebleau)","1sX1nfujRMEy7F1IbTNuAprAsj9x67rktCph7FUmY0J0","hggsp5:axe1"],
   ["2026-09-21","ses","Les outils de mesure des inégalités de revenu et de patrimoine","1sT8QZcA8WSwMcyJs_7OVl2koy_SUSJoRCwY64gwu4hU","ses1:p2"],
   ["2026-09-18","ses","Les facteurs de hiérarchisation de la structure sociale (PCS et revenu)","11zRoy3Q2it3q_-fQIoARnMGIP54ABySZWIIySli1d5U","ses1:p2"],
-  ["2026-09-18","hg","Étude de cas, la façade maritime chinoise (suite)","1_b7jQVCZNXX8C_ReK0yzUqfxv_pCPUVyN55qQfwTp7U","hgG1:p1"],
+  ["2026-09-18","hg","Étude de cas, la façade maritime chinoise (suite)","1_b7jQVCZNXX8C_ReK0yzUqfxv_pCPUVyN55qQfwTp7U","hgG1:p1",1],
   ["2026-09-17","hggsp","Jalon 1, la forêt française depuis Colbert","1Skklv4yrlouAwIRGeas9fenNXbev9Hs33G6SDiA1YtU","hggsp5:axe1"],
   ["2026-09-16","hggsp","Axe 1, exploiter, préserver, protéger : les enjeux","1mflToGvq4yHybsyX7PXg4gKRwktZAImmQ1sS5zUOW9g","hggsp5:axe1"],
   ["2026-09-15","hg","Les espaces maritimes, une approche géostratégique","1Vh98Ma41dtBXlzmeTN3HljnxNjFUFRxCqHBtBEKcsA8","hgG1:p1"],
@@ -1256,6 +1286,7 @@ const COURS = [
 /* Nouveautés du site : une entrée par mise à jour poussée en ligne, la plus récente en premier.
    Enrichi à chaque push (demande d'Adam du 29/09/2026). */
 const NOUVEAUTES = [
+  {d:"2026-11-12", t:"Cours rangés par partie, histoire séparée de la géo", body:"Dans les gros chapitres (HGGSP, SES chapitre 1, géographie), chaque partie est un bloc replié avec sa fiche en tête, puis ses cours dans l'ordre ; seule la partie en cours est ouverte. Les séances « suite » sont marquées. Histoire-Géo se divise en Géographie et Histoire (crise de 1929, régimes totalitaires). La philo est un seul fil de cours au lieu d'un dossier « à classer ». Les cours du 4 au 10 novembre sont en ligne."},
   {d:"2026-11-09", t:"Quatre cours quasi vides retirés", body:"Quatre cours qui ne contenaient presque rien (une question sans réponse, quelques lignes) ont été retirés de la liste : le cas des ports chinois du 16 septembre, la vidéo de Greta Thunberg du 10 septembre, les ressources halieutiques du 25 septembre et l'alternateur du 25 septembre. Le reste du contenu est inchangé."},
   {d:"2026-11-08", t:"Les fiches HGGSP du Thème 5 enrichies avec le Padlet du professeur", body:"Les trois fiches du Thème 5 d'HGGSP s'enrichissent du Padlet du professeur : l'environnement aux États-Unis (Muir et Pinchot, Roosevelt, Homestead Act, Hetch Hetchy, Inflation Reduction Act), l'histoire du climat (cernes, pollens, Petit Âge Glaciaire, désormais regroupée dans la fiche Climat) et la diplomatie climatique, avec de nombreuses nouvelles notions dans le Lexique et un QCM plus long sur les États-Unis. La fiche de méthodologie du bac d'HGGSP est aussi reconstruite sur la méthode du professeur (dissertation, étude critique, Grand oral)."},
   {d:"2026-11-06", t:"Le bloc de révision du contrôle de géo est retiré", body:"Le bloc temporaire « Contrôle de géo demain : ce qu'il faut réviser », ajouté en haut de la page Histoire-Géo pour le contrôle sur « Mers et océans », a été retiré maintenant que le contrôle est passé. Les fiches, les cours et le QCM du chapitre restent en place."},
@@ -1299,16 +1330,19 @@ const CHAPITRES = {
     {k:"hggsp5", dir:"1L6T1fjnZrR_AgNWQCNaltUhY8-uFf3Y7", n:"Thème 5", t:"L'environnement, entre exploitation et protection : un enjeu planétaire", parts:[["intro", "Introduction"], ["axe1", "Axe 1 · Exploiter, préserver et protéger"], ["axe2", "Axe 2 · La maîtrise du changement climatique"], ["usa", "Étude conclusive · Les États-Unis et la question environnementale"]]},
     {k:"hggspM", dir:"1cNpZBl1MD1biVUHt0dOdfEIbdpn04IlC", n:"Méthode", t:"Méthode du bac, programme et rentrée"}],
   hg:[
-    {k:"hgG1", dir:"1vFGJgo_GiN9voUqgrPJtPad5zC9y4UTn", n:"Géographie · Thème 1", t:"Mers et océans : au cœur de la mondialisation", parts:[["p1", "1 · Les espaces maritimes, une approche géostratégique"], ["p2", "2 · Des réserves de ressources qui polarisent des flux"]]},
-    {k:"hgM", dir:"1rB2-yXJ5i1pQVbvFALswuJBAr1izl49e", n:"Méthode", t:"Méthode et conseils"}],
+    {k:"hgG1", grp:"Géographie", dir:"1vFGJgo_GiN9voUqgrPJtPad5zC9y4UTn", n:"Géographie · Thème 1", t:"Mers et océans : au cœur de la mondialisation", parts:[["p1", "1 · Les espaces maritimes, une approche géostratégique"], ["p2", "2 · Des réserves de ressources qui polarisent des flux"]]},
+    {k:"hgH1", grp:"Histoire", dir:"19ajyamsC6Twhp7boZgk2vJy-2mlcqIPp", n:"Histoire · Chapitre 1", t:"La crise de 1929 et ses conséquences"},
+    {k:"hgH2", grp:"Histoire", dir:"117ZrO4KPZHxb-R8conwRUvOYFYhV4-A_", n:"Histoire · Chapitre 2", t:"Les régimes totalitaires"},
+    {k:"hgM", grp:"Pour les deux", dir:"1rB2-yXJ5i1pQVbvFALswuJBAr1izl49e", n:"Méthode", t:"Méthode et conseils"}],
   philo:[
-    {k:"philoAutre", dir:"1rYOOnrhIzkuJxSsTiL2pztY6jqPZUCeK", n:"À classer", t:"Cours dont la notion reste à confirmer", aside:true},
+    {k:"philoLois", dir:"1rYOOnrhIzkuJxSsTiL2pztY6jqPZUCeK", n:"Fil 1 · notion à confirmer", t:"Autour du sujet « Les lois sont-elles nécessaires pour être libre ? »", thread:true},
     {k:"philoM", dir:"1NkYeO5kuoOYVOAgM39F5zYFnfG3-sPkm", n:"Méthode", t:"Méthode du bac"}],
   ang:[
     {k:"ang1", dir:"1Q9MsHbQ7ZYHJ27KcXvrjUoX8eHR-CqCx", n:"Chapter 1", t:"Tradwives in the USA and the Women's Liberation Movement"},
     {k:"ang2", dir:"1B1hVTKZwRv7l-qJ965X2veoRMyUrGDHd", n:"Chapter 2", t:"When Fantasy Becomes Reality"},
     {k:"angM", dir:"1QJqm2ZDfmPmZ0SfPVVu55vG7uklfGIFc", n:"Méthode", t:"Méthodologie et conseils"}],
   es:[
+    {k:"es1a", dir:"1mHWiUQFQyt9dLSn-pVcb6ojETFsGU_qM", n:"Climat", t:"Le cycle du carbone"},
     {k:"es2a", dir:"12YJ3O8OYhJLpoInRTXbhzAkcf3zTF8Hk", n:"Thème 2 · Le futur des énergies", t:"Deux siècles d'énergie électrique"},
     {k:"esM", dir:"1rY78_b0lTmnc9MoEqcS5SyZPlUP_Hg24", n:"Méthode", t:"Méthodologie et conseils"}],
   droit:[
@@ -2575,9 +2609,13 @@ function chaptersOf(k){
   const out = defs.map(c => {
     const all = vols.filter(v => (known.has(v.ch) ? v.ch : "_autre") === c.k), vs = all.filter(v => v.n !== "T"), ts = all.filter(v => v.n === "T");
     const cs = cours.filter(x => (known.has(chOf(x)) ? chOf(x) : "_autre") === c.k).sort((a, b) => a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0);
-    const groups = c.parts ? [...c.parts.map(([pk, pt]) => ({t:pt, cours:cs.filter(x => (x[4] || "").split(":")[1] === pk)})), {t:"Autres cours du thème", cours:cs.filter(x => !c.parts.some(([pk]) => (x[4] || "").split(":")[1] === pk))}].filter(g => g.cours.length) : [{t:null, cours:cs}];
+    const pOf = x => (x[4] || "").split(":")[1], partKeys = c.parts ? c.parts.map(([pk]) => pk) : [];
+    const groups = c.parts ? [...c.parts.map(([pk, pt]) => ({k:pk, t:pt, vols:vs.filter(v => v.p === pk), cours:cs.filter(x => pOf(x) === pk)})), {k:"_x", t:"Autres cours du thème", vols:[], cours:cs.filter(x => !partKeys.includes(pOf(x)))}].filter(g => g.cours.length || g.vols.length) : [{k:"_", t:null, vols:vs, cours:cs}];
+    const lastG = c.parts ? groups.reduce((a, g) => g.cours.length && g.cours[g.cours.length - 1][0] > (a ? a.cours[a.cours.length - 1][0] : "") ? g : a, null) : null;
+    if (lastG) lastG.cur = true;
+    const vs0 = c.parts ? vs.filter(v => !partKeys.includes(v.p)) : vs;
     const last = cs.length ? cs[cs.length - 1][0] : "";
-    return {...c, vols:vs, texts:ts, cours:cs, groups, qvols:vs.filter(v => v.q && QCM[v.q]), last, meth:/M$/.test(c.k)};
+    return {...c, vols:vs, vols0:vs0, texts:ts, cours:cs, groups, qvols:vs.filter(v => v.q && QCM[v.q]), last, meth:/M$/.test(c.k)};
   }).filter(c => c.vols.length || c.cours.length || c.texts.length);
   const latest = out.filter(c => !c.meth && !c.aside).reduce((a, c) => c.last > (a ? a.last : "") ? c : a, null);
   const opened = latest || out.find(c => !c.meth && !c.aside) || null;
@@ -2736,12 +2774,18 @@ function ficheRow(v, seen){
       el("span", {class:"chap-i", "aria-hidden":"true"})),
     body));
 }
+/* Liste de cours : une séance marquée « suite » (6e élément de COURS) s'affiche décalée sous son cours parent. */
+function coursList(cs){
+  return el("ol", {class:"cl"}, cs.map(x => { const [dt, , t, id, , suite] = x, [, mo, d] = dt.split("-");
+    return el("li", {class:suite ? "suite" : null}, el("a", {href:DOC(id), target:"_blank", rel:"noopener"}, el("span", {class:"d"}, +d + " " + MOIS[+mo - 1]), el("span", {class:"t"}, suite ? el("span", {class:"sfx k"}, "suite") : null, t), el("span", {class:"go"}, arrow()))); }));
+}
 function renderChapters(k){
   const chs = chaptersOf(k);
   const items = chs.map((c, i) => {
     const nq = c.qvols.reduce((a, v) => a + QCM[v.q].length, 0);
     const meta = [c.vols.length ? c.vols.length + (c.vols.length > 1 ? " fiches" : " fiche") : null, c.cours.length + c.texts.length ? c.cours.length + c.texts.length + " cours" : null, nq ? nq + " questions" : null, c.meth ? null : chapRange(c)].filter(Boolean).join(" · ");
     const extra = CHAP_EXTRA[c.k] ? CHAP_EXTRA[c.k]() : null;
+    const seen = new Map();
     const quizHost = c.qvols.length ? el("div", {class:"chap-quiz"}, el("h4", {class:"k muted"}, "QCM du chapitre"), el("div", {class:"qcol"})) : null;
     const det = el("details", {class:"chap" + (c.meth ? " meth" : ""), open:c.open || null, id:"ch-" + c.k},
       el("summary", {class:"chap-h"},
@@ -2749,30 +2793,38 @@ function renderChapters(k){
         el("span", {class:"chap-t"}, c.t),
         el("span", {class:"chap-m k muted"}, meta),
         el("span", {class:"chap-i", "aria-hidden":"true"})),
-      el("div", {class:"chap-b"},
-        c.vols.length ? (() => { const seen = new Map(); return el("div", {class:"chap-col chap-fiches"}, el("h4", {class:"k muted"}, "Fiches de révision"),
-          el("ul", {class:"fl"}, c.vols.map(v => ficheRow(v, seen)))); })() : null,
-        c.cours.length || c.texts.length ? el("div", {class:"chap-col"}, el("h4", {class:"k muted"}, "Les cours, dans l'ordre"),
-          c.texts.length ? el("ol", {class:"cl"}, c.texts.map(v => el("li", {}, el("a", {href:DOC(v.id), target:"_blank", rel:"noopener"}, el("span", {class:"d"}, "Texte"), el("span", {class:"t"}, v.t), el("span", {class:"go"}, arrow()))))) : null,
-          c.cours.length ? c.groups.flatMap(g => [g.t ? el("p", {class:"part k"}, g.t) : null,
-            el("ol", {class:"cl"}, g.cours.map(([dt, , t, id]) => { const [, mo, d] = dt.split("-");
-              return el("li", {}, el("a", {href:DOC(id), target:"_blank", rel:"noopener"}, el("span", {class:"d"}, +d + " " + MOIS[+mo - 1]), el("span", {class:"t"}, t), el("span", {class:"go"}, arrow()))); }))]) : null) : null,
+      el("div", {class:"chap-b" + (c.parts ? " chap-b-parts" : "")},
+        c.vols0.length ? el("div", {class:"chap-col chap-fiches"}, el("h4", {class:"k muted"}, c.parts ? "Fiches du chapitre" : "Fiches de révision"),
+          el("ul", {class:"fl"}, c.vols0.map(v => ficheRow(v, seen)))) : null,
+        c.texts.length ? el("div", {class:"chap-col"}, el("h4", {class:"k muted"}, "Textes"),
+          el("ol", {class:"cl"}, c.texts.map(v => el("li", {}, el("a", {href:DOC(v.id), target:"_blank", rel:"noopener"}, el("span", {class:"d"}, "Texte"), el("span", {class:"t"}, v.t), el("span", {class:"go"}, arrow())))))) : null,
+        c.parts ? el("div", {class:"chap-parts"}, c.groups.map(g => {
+          const n = g.vols.length + g.cours.length;
+          const gm = [g.vols.length ? g.vols.length + (g.vols.length > 1 ? " fiches" : " fiche") : null, g.cours.length ? g.cours.length + (g.cours.length > 1 ? " cours" : " cours") : null].filter(Boolean).join(" · ");
+          return el("details", {class:"part-d", open:(c.open && g.cur) || null},
+            el("summary", {class:"part-h"}, el("span", {class:"part-t"}, g.t, g.cur && c.cur ? el("span", {class:"chap-cur"}, "En cours") : null), el("span", {class:"k muted part-m"}, gm), el("span", {class:"chap-i", "aria-hidden":"true"})),
+            el("div", {class:"part-b"},
+              g.vols.length ? el("div", {class:"chap-col chap-fiches"}, el("h4", {class:"k muted"}, "Fiche" + (g.vols.length > 1 ? "s" : "") + " de révision"), el("ul", {class:"fl"}, g.vols.map(v => ficheRow(v, seen)))) : null,
+              g.cours.length ? el("div", {class:"chap-col"}, el("h4", {class:"k muted"}, "Les cours, dans l'ordre"), coursList(g.cours)) : null));
+        })) : (c.cours.length ? el("div", {class:"chap-col"}, el("h4", {class:"k muted"}, "Les cours, dans l'ordre"), coursList(c.cours)) : null),
         extra,
         c.dir ? el("p", {class:"chap-dir"}, el("a", {class:"k muted", href:FOLDER(c.dir), target:"_blank", rel:"noopener"}, "Ouvrir le dossier du chapitre dans le Drive ↗")) : null));
     if (quizHost) mountQuiz(quizHost, c.qvols);
     // Retourner un conteneur avec le details ET le quizHost en dehors
-    return el("div", {class:"chap-wrap"}, det, quizHost);
+    const grpHead = c.grp && (i === 0 || chs[i - 1].grp !== c.grp) ? el("h3", {class:"chap-grp k"}, c.grp) : null;
+    return el("div", {class:"chap-wrap"}, grpHead, det, quizHost);
   });
   const wrap = el("div", {class:"chaps"}, items);
   if (chs.length < 2) return wrap;
   const relayout = () => { if (typeof ST !== "undefined" && ST) ST.refresh(); };
   /* Sommaire : un bouton par chapitre, qui ouvre et fait défiler jusqu'au chapitre */
-  const idx = el("nav", {class:"chap-idx", "aria-label":"Sommaire des chapitres"}, chs.map((c, i) => {
+  const idx = el("nav", {class:"chap-idx", "aria-label":"Sommaire des chapitres"}, chs.flatMap((c, i) => {
     const n = c.vols.length + c.cours.length + c.texts.length;
-    return el("button", {type:"button", class:"chap-chip" + (c.cur ? " cur" : "") + (c.meth ? " meth" : ""), onclick:() => {
+    const gh = c.grp && (i === 0 || chs[i - 1].grp !== c.grp) ? el("p", {class:"chap-idx-g k muted"}, c.grp) : null;
+    return [gh, el("button", {type:"button", class:"chap-chip" + (c.cur ? " cur" : "") + (c.meth ? " meth" : ""), onclick:() => {
       items[i].hidden = false; items[i].open = true; relayout();
       items[i].scrollIntoView({behavior:MOTION ? "smooth" : "auto", block:"start"}); }},
-      el("span", {class:"k"}, c.n), el("span", {class:"cc-t"}, c.t), el("span", {class:"k muted"}, n + (n > 1 ? " documents" : " document")));
+      el("span", {class:"k"}, c.n), el("span", {class:"cc-t"}, c.t), el("span", {class:"k muted"}, n + (n > 1 ? " documents" : " document")))];
   }));
   /* Recherche dans les cours et fiches de la matière */
   const input = el("input", {type:"search", class:"chap-q", placeholder:"Chercher un cours, une fiche, une date…", "aria-label":"Chercher dans les cours et les fiches de la matière", autocomplete:"off"});
@@ -2782,17 +2834,18 @@ function renderChapters(k){
   const run = () => {
     const q = norm(input.value.trim());
     if (!q) {
-      $$("li,.part,.chap-col", wrap).forEach(x => x.hidden = false); items.forEach(d => d.hidden = false);
-      if (saved) { items.forEach((d, i) => d.open = saved[i]); saved = null; }
+      $$("li,.part,.chap-col,.part-d", wrap).forEach(x => x.hidden = false); items.forEach(d => d.hidden = false);
+      if (saved) { items.forEach((d, i) => d.open = saved[i]); $$(".part-d", wrap).forEach((p, i) => p.open = saved.p[i]); saved = null; }
       empty.hidden = true; count.textContent = ""; idx.hidden = false; relayout(); return;
     }
-    if (!saved) saved = items.map(d => d.open);
+    if (!saved) { saved = items.map(d => d.open); saved.p = $$(".part-d", wrap).map(p => p.open); }
     let hits = 0;
     items.forEach(d => {
       const head = norm($(".chap-n", d).textContent + " " + $(".chap-t", d).textContent).includes(q);
       let n = 0;
       $$("li", d).forEach(li => { const ok = head || norm(li.textContent + " " + (li.dataset.kw || "")).includes(q); li.hidden = !ok; if (ok) n++; });
       $$(".part", d).forEach(p => { const ol = p.nextElementSibling; p.hidden = !!ol && ![...ol.children].some(li => !li.hidden); });
+      $$(".part-d", d).forEach(pd => { const any = $$("li", pd).some(li => !li.hidden); pd.hidden = !any; pd.open = any; });
       $$(".chap-col", d).forEach(col => { col.hidden = !$$("li", col).some(li => !li.hidden); });
       d.hidden = !(head || n); d.open = !d.hidden; hits += n;
     });
